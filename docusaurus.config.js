@@ -13,7 +13,7 @@ const config = {
 	onBrokenLinks: 'throw',
 	onBrokenMarkdownLinks: 'warn',
 	favicon: 'img/favicon.ico',
-	organizationName: 'SocketSomeone', // Usually your GitHub org/user name.
+	organizationName: 'necord-js', // Usually your GitHub org/user name.
 	projectName: 'necord', // Usually your repo name.
 	presets: [
 		[
@@ -23,7 +23,7 @@ const config = {
 				debug: process.env.NODE_ENV !== 'production',
 				docs: {
 					sidebarPath: require.resolve('./sidebars.js'),
-					editUrl: 'https://github.com/SocketSomeone/necord/tree/master/docs',
+					editUrl: 'https://github.com/necord-js/documentation/tree/master',
 					path: 'content',
 					routeBasePath: '/',
 					showLastUpdateAuthor: true,
