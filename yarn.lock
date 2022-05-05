@@ -1590,14 +1590,14 @@
     "@types/react" "*"
     prop-types "^15.6.2"
 
-"@docusaurus/remark-plugin-npm2yarn@2.0.0-beta.18":
-  version "2.0.0-beta.18"
-  resolved "https://registry.yarnpkg.com/@docusaurus/remark-plugin-npm2yarn/-/remark-plugin-npm2yarn-2.0.0-beta.18.tgz#f898f186ffb4d5e7938be050c71be222c55f4d03"
-  integrity sha512-GmlbPzB8ImH6ey0LhOTe5NOIY30TwVNXarpm63zG1HYEUOT/H8X8w2NQPlT6RyhH9FtDi4bKMzfEP4ImpJGgCQ==
+"@docusaurus/remark-plugin-npm2yarn@2.0.0-beta.19":
+  version "2.0.0-beta.19"
+  resolved "https://registry.yarnpkg.com/@docusaurus/remark-plugin-npm2yarn/-/remark-plugin-npm2yarn-2.0.0-beta.19.tgz#252f8b6cbbe1235e990c1b3d02f654aef2541baa"
+  integrity sha512-559b2PLZU/lHv1C7xlQf5zgiyUkxJoWkMOC9i5/DcJIZsJcoVDBdIcJq0n7CNFDrss2eV54FKmA7wzdIjUUWWQ==
   dependencies:
     npm-to-yarn "^1.0.1"
-    tslib "^2.3.1"
-    unist-util-visit "^2.0.2"
+    tslib "^2.4.0"
+    unist-util-visit "^2.0.3"
 
 "@docusaurus/theme-classic@2.0.0-beta.18":
   version "2.0.0-beta.18"
@@ -7362,10 +7362,10 @@ trough@^1.0.0:
   resolved "https://registry.npmjs.org/trough/-/trough-1.0.5.tgz#b8b639cefad7d0bb2abd37d433ff8293efa5f406"
   integrity sha512-rvuRbTarPXmMb79SmzEp8aqXNKcK+y0XaB298IXueQ8I2PsrATcPBCSPyK/dDNa2iWOhKlfNnOjdAOTBU/nkFA==
 
-tslib@^2.0.3, tslib@^2.1.0, tslib@^2.2.0, tslib@^2.3.1:
-  version "2.3.1"
-  resolved "https://registry.npmjs.org/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
-  integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
+tslib@^2.0.3, tslib@^2.1.0, tslib@^2.2.0, tslib@^2.3.1, tslib@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
+  integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
 
 type-fest@^0.20.2:
   version "0.20.2"
