@@ -1592,17 +1592,6 @@
     url-loader "^4.1.1"
     webpack "^5.72.0"
 
-"@docusaurus/module-type-aliases@2.0.0-beta.19":
-  version "2.0.0-beta.19"
-  resolved "https://registry.yarnpkg.com/@docusaurus/module-type-aliases/-/module-type-aliases-2.0.0-beta.19.tgz#60c2eea0c3cac58e83ced6f696ff4e395de8d627"
-  integrity sha512-VlumB8un3zNZxe7sanAoCnM+WefDsfX/QlSP/uD6w9pdfJDAO7e2/YJRwP0UWmGJ659xd+MGopGyLzA4ga+HaA==
-  dependencies:
-    "@docusaurus/types" "2.0.0-beta.19"
-    "@types/react" "*"
-    "@types/react-router-config" "*"
-    "@types/react-router-dom" "*"
-    react-helmet-async "*"
-
 "@docusaurus/module-type-aliases@2.0.0-beta.20":
   version "2.0.0-beta.20"
   resolved "https://registry.yarnpkg.com/@docusaurus/module-type-aliases/-/module-type-aliases-2.0.0-beta.20.tgz#669605a64b04226c391e0284c44743e137eb2595"
@@ -1816,19 +1805,6 @@
   dependencies:
     fs-extra "^10.1.0"
     tslib "^2.4.0"
-
-"@docusaurus/types@2.0.0-beta.19":
-  version "2.0.0-beta.19"
-  resolved "https://registry.yarnpkg.com/@docusaurus/types/-/types-2.0.0-beta.19.tgz#c2f0a29f6d54b11f3a336e03446b3991019f6b1f"
-  integrity sha512-aaKyQahhB18cDa4yl0WPOWr9GYcH+6rujGWce2SbMIzlKLhokAXRNO2gUFmqFNafIFyb6B+WpZVBpA0+O2aGPw==
-  dependencies:
-    commander "^5.1.0"
-    history "^4.9.0"
-    joi "^17.6.0"
-    react-helmet-async "^1.3.0"
-    utility-types "^3.10.0"
-    webpack "^5.72.0"
-    webpack-merge "^5.8.0"
 
 "@docusaurus/types@2.0.0-beta.20":
   version "2.0.0-beta.20"
