@@ -68,7 +68,7 @@ const config = {
 				},
 				{hid: 'og:site_name', property: 'og:site_name', content: 'Necord'},
 				{hid: 'og:type', property: 'og:type', content: 'website'},
-				{hid: 'twitter:site', name: 'twitter:site', content: '@nuxt_js'},
+				{hid: 'twitter:site', name: 'twitter:site', content: '@socketsomeone'},
 				{
 					hid: 'twitter:card',
 					name: 'twitter:card',
