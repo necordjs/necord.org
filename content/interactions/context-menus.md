@@ -27,7 +27,7 @@ public async getUserAvatar(@Context() [interaction]: [ContextMenuInteraction], @
 
 If all goes well, you should see something like this:
 
-![User Command](https://i.imgur.com/flpESLP.png)
+![User Command](https://i.imgur.com/flpESLP.png 'User Command')
 
 ## Message Commands
 
@@ -42,4 +42,4 @@ public async copyMessage(@Context() [interaction]: [ContextMenuInteraction], @Op
 
 If all goes well, you should see something like this:
 
-![Message Command](https://i.imgur.com/AaB71Ur.png)
+![Message Command](https://i.imgur.com/AaB71Ur.png 'Message Command')

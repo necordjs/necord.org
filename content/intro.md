@@ -5,6 +5,8 @@ slug: /
 
 title: Introduction
 
+description: A module for creating Discord bots using NestJS, based on Discord.js.
+
 sidebar_position: 1
 ---
 

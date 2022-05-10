@@ -38,6 +38,7 @@ const config = {
 				sitemap: {
 					changefreq: 'weekly',
 					priority: 0.5,
+					ignorePatterns: ['/contributing/**']
 				},
 				gtag: {
 					trackingID: 'G-46VBZHXG63',
@@ -53,16 +54,47 @@ const config = {
 			algolia: {
 				appId: 'U7YH0EPYI9',
 				apiKey: 'c41976c1ed280e75acc3e9efd4aaaf00',
-				indexName: 'necord'
+				indexName: 'necord',
+				contextualSearch: true
 			},
 			announcementBar: {
 				content:
 					'⭐️ If you like Necord, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/SocketSomeone/necord">GitHub</a>! ⭐️'
 			},
-			metadata: [{
-				name: 'keywords',
-				content: 'discord, discord-bot, framework, necord, github, open-source'
-			}],
+			metadata: [
+				{
+					name: 'keywords',
+					content: 'discord, discord-bot, framework, necord, github, open-source'
+				},
+				{hid: 'og:site_name', property: 'og:site_name', content: 'Necord'},
+				{hid: 'og:type', property: 'og:type', content: 'website'},
+				{hid: 'twitter:site', name: 'twitter:site', content: '@nuxt_js'},
+				{
+					hid: 'twitter:card',
+					name: 'twitter:card',
+					content: 'summary_large_image'
+				},
+				{
+					hid: 'og:image',
+					property: 'og:image',
+					content: 'https://necord.org/img/preview.png'
+				},
+				{
+					hid: 'og:image:secure_url',
+					property: 'og:image:secure_url',
+					content: 'https://necord.org/img/preview.png'
+				},
+				{
+					hid: 'og:image:alt',
+					property: 'og:image:alt',
+					content: 'Necord'
+				},
+				{
+					hid: 'twitter:image',
+					name: 'twitter:image',
+					content: 'https://necord.org/img/preview.png'
+				}
+			],
 			navbar: {
 				logo: {
 					alt: 'Necord Logo',
