@@ -1,4 +1,6 @@
 yarn.lock   -diff -merge
 yarn.lock    linguist-generated=true
 * text 		 eol=lf
+* 			 text=auto
+*.png 		 -text
 *.png 		 binary
