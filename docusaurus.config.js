@@ -13,7 +13,7 @@ const config = {
 	onBrokenLinks: 'throw',
 	onBrokenMarkdownLinks: 'warn',
 	favicon: 'img/favicon.ico',
-	organizationName: 'necord-js', // Usually your GitHub org/user name.
+	organizationName: 'necordjs', // Usually your GitHub org/user name.
 	projectName: 'necord', // Usually your repo name.
 	presets: [
 		[
@@ -23,7 +23,7 @@ const config = {
 				debug: process.env.NODE_ENV !== 'production',
 				docs: {
 					sidebarPath: require.resolve('./sidebars.js'),
-					editUrl: 'https://github.com/necord-js/documentation/tree/master',
+					editUrl: 'https://github.com/necordjs/documentation/tree/master',
 					path: 'content',
 					routeBasePath: '/',
 					showLastUpdateAuthor: true,
@@ -59,7 +59,7 @@ const config = {
 			},
 			announcementBar: {
 				content:
-					'⭐️ If you like Necord, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/SocketSomeone/necord">GitHub</a>! ⭐️'
+					'⭐️ If you like Necord, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/necordjs/necord">GitHub</a>! ⭐️'
 			},
 			metadata: [
 				{
@@ -113,7 +113,7 @@ const config = {
 						'aria-label': 'NPM'
 					},
 					{
-						href: 'https://github.com/SocketSomeone/necord',
+						href: 'https://github.com/necordjs/necord',
 						position: 'right',
 						className: 'header-github-link',
 						'aria-label': 'GitHub repository'
