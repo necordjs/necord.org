@@ -148,7 +148,7 @@ const config = {
 					{
 						tagName: 'link',
 						rel: 'icon',
-						href: '/img/logo.png',
+						href: '/img/logo-small.png',
 					},
 					{
 						tagName: 'link',
@@ -173,18 +173,18 @@ const config = {
 					{
 						tagName: 'link',
 						rel: 'apple-touch-icon',
-						href: '/img/logo.png',
+						href: '/img/logo-small.png',
 					},
 					{
 						tagName: 'link',
 						rel: 'mask-icon',
-						href: '/img/logo.svg',
+						href: '/img/logo-small.png',
 						color: 'rgb(37, 194, 160)',
 					},
 					{
 						tagName: 'meta',
 						name: 'msapplication-TileImage',
-						content: '/img/logo.png',
+						content: '/img/logo-small.png',
 					},
 					{
 						tagName: 'meta',
