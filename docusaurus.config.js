@@ -168,7 +168,7 @@ const config = {
 					{
 						tagName: 'meta',
 						name: 'apple-mobile-web-app-status-bar-style',
-						content: '#000',
+						content: '#FFF',
 					},
 					{
 						tagName: 'link',
@@ -179,7 +179,7 @@ const config = {
 						tagName: 'link',
 						rel: 'mask-icon',
 						href: '/img/logo-small.png',
-						color: 'rgb(37, 194, 160)',
+						color: '#c12549',
 					},
 					{
 						tagName: 'meta',
@@ -189,7 +189,7 @@ const config = {
 					{
 						tagName: 'meta',
 						name: 'msapplication-TileColor',
-						content: '#000',
+						content: '#FFF',
 					}
 				]
 			}
