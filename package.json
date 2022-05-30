@@ -28,7 +28,7 @@
 		"sass": "1.52.1"
 	},
 	"devDependencies": {
-		"@docusaurus/module-type-aliases": "2.0.0-beta.20",
+		"@docusaurus/module-type-aliases": "2.0.0-beta.21",
 		"@tsconfig/docusaurus": "1.0.5",
 		"typescript": "4.7.2"
 	},
