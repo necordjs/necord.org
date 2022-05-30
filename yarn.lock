@@ -1642,10 +1642,10 @@
     "@types/react" "*"
     prop-types "^15.6.2"
 
-"@docusaurus/remark-plugin-npm2yarn@2.0.0-beta.20":
-  version "2.0.0-beta.20"
-  resolved "https://registry.yarnpkg.com/@docusaurus/remark-plugin-npm2yarn/-/remark-plugin-npm2yarn-2.0.0-beta.20.tgz#4c0d6721b53efbcaf772c69f117115becc1122c3"
-  integrity sha512-kMys0puRJ6iNx5XFZyll6BnbglfmJVqWHgwQLR7OGBw190dYNi1xH85Mi7dOjogrZO5k/gYk6MOo2xvivUd4rQ==
+"@docusaurus/remark-plugin-npm2yarn@2.0.0-beta.21":
+  version "2.0.0-beta.21"
+  resolved "https://registry.yarnpkg.com/@docusaurus/remark-plugin-npm2yarn/-/remark-plugin-npm2yarn-2.0.0-beta.21.tgz#10eb88a2dab6193568eff76b6a83b79e313ef765"
+  integrity sha512-CqvmoFEj05NzaQBKxnsfI90aM8KHJZWyCzED/Qg5odUD9VtR9zNQJ1Nu/X1ctqCN7FBIxBYk2tz1Xb1+zCP8gg==
   dependencies:
     npm-to-yarn "^1.0.1"
     tslib "^2.4.0"
