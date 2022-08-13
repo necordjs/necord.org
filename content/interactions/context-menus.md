@@ -14,7 +14,7 @@ sidebar_position: 2
 
 ```typescript
 @UserCommand({ name: 'Get avatar' })
-public async getUserAvatar(@Context() [interaction]: [ContextMenuInteraction], @Options('user') user: User) {
+public async getUserAvatar(@Context() [interaction]: UserCommandContext, @Options('user') user: User) {
      return interaction.reply({
           embeds: [
           new MessageEmbed()
@@ -35,7 +35,7 @@ If all goes well, you should see something like this:
 
 ```typescript
 @MessageCommand({ name: 'Copy Message' })
-public async copyMessage(@Context() [interaction]: [ContextMenuInteraction], @Options('message') message: Message) {
+public async copyMessage(@Context() [interaction]: MessageCommandContext, @Options('message') message: Message) {
      return interaction.reply({ content: message.content });
 }
 ```

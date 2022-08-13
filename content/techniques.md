@@ -8,7 +8,6 @@ title: Techniques
 sidebar_position: 4
 ---
 
-
 ## Async configuration
 
 When you need to pass module options asynchronously instead of statically, use the `.forRootAsync()` method. As with most dynamic modules, Nest provides several techniques to deal with async configuration.
@@ -17,10 +16,10 @@ One technique is to use a factory function:
 
 ```typescript
 NecordModule.forRootAsync({
-  useFactory: () => ({
-    token: 'DISCORD_BOT_TOKEN',
-    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES]
-  }),
+    useFactory: () => ({
+        token: "DISCORD_BOT_TOKEN",
+        intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages],
+    }),
 });
 ```
 
@@ -28,19 +27,20 @@ Like other [factory providers](https://docs.nestjs.com/fundamentals/custom-provi
 
 ```typescript
 NecordModule.forRootAsync({
-  imports: [ConfigModule.forFeature(necordModuleConfig)],
-  useFactory: async (configService: ConfigService) => ({
-    token: configService.get<string>('DISCORD_BOT_TOKEN'),
-    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES]
-  }),
-  inject: [ConfigService],
+    imports: [ConfigModule.forFeature(necordModuleConfig)],
+    useFactory: async (configService: ConfigService) => ({
+        token: configService.get<string>("DISCORD_BOT_TOKEN"),
+        intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages],
+    }),
+    inject: [ConfigService],
 });
 ```
+
 Alternatively, you can configure the NecordModule using a class instead of a factory, as shown below:
 
 ```typescript
 NecordModule.forRootAsync({
-  useClass: NecordConfigService,
+    useClass: NecordConfigService,
 });
 ```
 
@@ -49,12 +49,12 @@ The construction above instantiates `NecordConfigService` inside `NecordModule`,
 ```typescript
 @Injectable()
 class NecordConfigService implements NecordOptionsFactory {
-  createNecordOptions(): NecordModuleOptions {
-    return {
-      token: 'DISCORD_BOT_TOKEN',
-      intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES]
-    };
-  }
+    createNecordOptions(): NecordModuleOptions {
+        return {
+            token: "DISCORD_BOT_TOKEN",
+            intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages],
+        };
+    }
 }
 ```
 
@@ -68,10 +68,11 @@ To do this, change the bootstrap function in the `main.ts` file of your project 
 
 ```typescript
 async function bootstrap() {
-  const app = await NestFactory.createApplicationContext(AppModule);
+    const app = await NestFactory.createApplicationContext(AppModule);
 }
 bootstrap();
 ```
+
 This initializes Nest as a **standalone application** (without any network listeners).
 
 All that remains is to remove unused dependencies:

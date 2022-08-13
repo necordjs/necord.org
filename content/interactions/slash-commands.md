@@ -10,7 +10,7 @@ sidebar_position: 1
 type `/` and you're ready to use your favorite bot. You can easily see all the commands a bot has, and validation and error handling help
 you get the command right the first time.
 
-![Slash Commands](https://miro.medium.com/max/700/0*Q5CzShKq5zm3kzcv.png 'Slash Commands')
+![Slash Commands](https://miro.medium.com/max/700/0*Q5CzShKq5zm3kzcv.png "Slash Commands")
 
 ## Global Commands
 
@@ -26,15 +26,15 @@ global commands when they're ready for public use.
 Create `app.commands.ts` file and add method with `SlashCommand` decorator.
 
 ```typescript
-import {Injectable} from '@nestjs/common';
-import {Context, SlashCommand} from 'necord';
-import {CommandInteraction} from 'discord.js';
+import { Injectable } from "@nestjs/common";
+import { Context, SlashCommand } from "necord";
+import { CommandInteraction } from "discord.js";
 
 @Injectable()
 export class AppCommands {
-    @SlashCommand('ping', 'Ping-Pong Command')
+    @SlashCommand("ping", "Ping-Pong Command")
     public async onPing(@Context() [interaction]: [CommandInteraction]) {
-        return interaction.reply({content: 'Pong!'});
+        return interaction.reply({ content: "Pong!" });
     }
 }
 ```
@@ -44,16 +44,16 @@ export class AppCommands {
 Add to your Slash Command, Context Menu `@Guilds` decorator for a special guilds only.
 
 ```typescript
-import {Injectable} from '@nestjs/common';
-import {Context, SlashCommand} from 'necord';
-import {CommandInteraction} from 'discord.js';
+import { Injectable } from "@nestjs/common";
+import { Context, SlashCommand } from "necord";
+import { CommandInteraction } from "discord.js";
 
 @Injectable()
 export class AppCommands {
     @Guilds([process.env.DEV_GUILD])
-    @SlashCommand('ping', 'Ping-Pong Command')
+    @SlashCommand("ping", "Ping-Pong Command")
     public async onPing(@Context() [interaction]: [CommandInteraction]) {
-        return interaction.reply({content: 'Pong!'});
+        return interaction.reply({ content: "Pong!" });
     }
 }
 ```
@@ -67,9 +67,9 @@ Use the option decorator to define a parameter in a slash command, let's create 
 ```typescript
 export class LengthDto {
     @StringOption({
-        name: 'text',
-        description: 'Your text',
-        required: true
+        name: "text",
+        description: "Your text",
+        required: true,
     })
     text: string;
 }
@@ -96,17 +96,17 @@ export class AppCommands {
 
 List of all built-in option decorators:
 
-| Decorator         | Return                        |
-|-------------------|-------------------------------|
-| StringOption      | `string`                      |
-| NumberOption      | `number`                      |
-| IntegerOption     | `number`                      |
-| BooleanOption     | `boolean`                     |
-| UserOption        | `User`                        |
-| MemberOption      | `GuildMember`                 |
-| ChannelOption     | `Channel`                     |
-| RoleOption        | `Role`                        |
-| MentionableOption | `GuildMember`, `User`, `Role `|
+| Decorator         | Return                         |
+| ----------------- | ------------------------------ |
+| StringOption      | `string`                       |
+| NumberOption      | `number`                       |
+| IntegerOption     | `number`                       |
+| BooleanOption     | `boolean`                      |
+| UserOption        | `User`                         |
+| MemberOption      | `GuildMember`                  |
+| ChannelOption     | `Channel`                      |
+| RoleOption        | `Role`                         |
+| MentionableOption | `GuildMember`, `User`, `Role ` |
 
 ## Autocomplete
 
@@ -121,18 +121,20 @@ TODO
 Use `SlashGroup` decorators on class-level `(Group)` and method-level `(SubGroup)`:
 
 ```typescript
-import {SlashGroup, SlashCommand} from 'necord';
+import {createCommandGroupDecorator, Subcommand} from 'necord';
 
-@SlashGroup('utils', 'Utils group')
+export const UtilsCommandDecorator = createCommandGroupDecorator({
+    name: 'utils',
+    description: 'Utils group',
+});
+
+@UtilsCommandDecorator()
 export class UtilsCommands {
-    @SlashCommand('ping', 'Ping-pong command')
+    @Subcommand({
+        name: 'ping',
+        description: 'Ping-pong command'
+    })
     public async onPing(...) {
-    ...
-    }
-
-    @SlashGroup('string', 'Commands with string utils')
-    @SlashCommand('length', 'Get length of your text')
-    public async onLength(...) {
     ...
     }
 }

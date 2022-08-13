@@ -35,10 +35,10 @@ This module provides fast and easy way for creating Discord bots and deep integr
 
 **Features**
 
-- Simple. Flexible. Easy to use.
-- Ability to create custom decorators.
-- Interact with Discord (Slash Commands, Context Menus, Message Components, Listeners).
-- Full support of NestJS guards, interceptors, filters and pipes!
+-   Simple. Flexible. Easy to use.
+-   Ability to create custom decorators.
+-   Interact with Discord (Slash Commands, Context Menus, Message Components, Listeners).
+-   Full support of NestJS guards, interceptors, filters and pipes!
 
 For questions and support please use
 the [Issues](https://github.com/necordjs/necord/issues/new?assignees=&labels=question&template=question.yml).
@@ -56,44 +56,42 @@ $ npm install necord discord.js
 Once the installation process is complete, we can import the `NecordModule` into the root `AppModule`:
 
 ```typescript
-import { NecordModule } from 'necord';
-import { Module } from '@nestjs/common';
-import { Intents } from 'discord.js';
+import { NecordModule } from "necord";
+import { Module } from "@nestjs/common";
+import { GatewayIntentBits } from "discord.js";
 
 @Module({
     imports: [
         NecordModule.forRoot({
-            token: 'DISCORD_BOT_TOKEN',
-            intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES]
-        })
+            token: "DISCORD_BOT_TOKEN",
+            intents: [GatewayIntentBits.Guilds],
+        }),
     ],
-    providers: []
+    providers: [],
 })
-export class AppModule {
-}
+export class AppModule {}
 ```
 
 Then create `app.update.ts` file and add `On`/`Once` decorators for handling Discord API events:
 
 ```typescript
-import { Injectable, Logger } from '@nestjs/common';
-import { Context, On, Once, ContextOf } from 'necord';
-import { Client } from 'discord.js';
+import { Injectable, Logger } from "@nestjs/common";
+import { Context, On, Once, ContextOf } from "necord";
+import { Client } from "discord.js";
 
 @Injectable()
 export class AppUpdate {
     private readonly logger = new Logger(AppUpdate.name);
 
-    public constructor(private readonly client: Client) {
-    }
+    public constructor(private readonly client: Client) {}
 
-    @Once('ready')
-    public onReady(@Context() [client]: ContextOf<'ready'>) {
+    @Once("ready")
+    public onReady(@Context() [client]: ContextOf<"ready">) {
         this.logger.log(`Bot logged in as ${client.user.username}`);
     }
 
-    @On('warn')
-    public onWarn(@Context() [message]: ContextOf<'warn'>) {
+    @On("warn")
+    public onWarn(@Context() [message]: ContextOf<"warn">) {
         this.logger.warn(message);
     }
 }

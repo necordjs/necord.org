@@ -14,7 +14,7 @@
 		"write-heading-ids": "docusaurus write-heading-ids",
 		"typecheck": "tsc",
 		"predocker:start": "yarn",
-		"docker:start": "yarn start"
+		"docker:start": "yarn start --host 0.0.0.0"
 	},
 	"dependencies": {
 		"@docusaurus/core": "2.0.1",

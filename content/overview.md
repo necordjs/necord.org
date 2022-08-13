@@ -80,13 +80,13 @@ Once the installation process is complete, we can import the `NecordModule` into
 ```typescript title="src/app.module.ts"
 import { NecordModule } from 'necord';
 import { Module } from '@nestjs/common';
-import { Intents } from 'discord.js';
+import { GatewayIntentBits } from 'discord.js';
 
 @Module({
     imports: [
         NecordModule.forRoot({
             token: 'DISCORD_BOT_TOKEN',
-            intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES],
+            intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages],
             development: ['DISCORD_DEV_GUILD_ID']
         })
     ],
@@ -151,8 +151,10 @@ Create a simple command handler for messages using `@TextCommand`.
 export class AppUpdate {
 ...
 
-    @TextCommand('ping')
-    public onPing(@Context() [message]: ContextOf<'messageCreate'>, @Options() options: string[]) {
+    @TextCommand({
+        name: 'string
+    })
+    public onPing(@Context() [message]: TextCommandContext, @Options() options: string[]) {
         return message.reply('pong!');
     }
 
