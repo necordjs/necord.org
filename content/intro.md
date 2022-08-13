@@ -55,7 +55,7 @@ $ npm install necord discord.js
 
 Once the installation process is complete, we can import the `NecordModule` into the root `AppModule`:
 
-```typescript
+```typescript title="src/app.module.ts"
 import { NecordModule } from "necord";
 import { Module } from "@nestjs/common";
 import { GatewayIntentBits } from "discord.js";
@@ -74,7 +74,7 @@ export class AppModule {}
 
 Then create `app.update.ts` file and add `On`/`Once` decorators for handling Discord API events:
 
-```typescript
+```typescript title="src/app.update.ts"
 import { Injectable, Logger } from "@nestjs/common";
 import { Context, On, Once, ContextOf } from "necord";
 import { Client } from "discord.js";

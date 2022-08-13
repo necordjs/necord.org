@@ -25,7 +25,7 @@ global commands when they're ready for public use.
 
 Create `app.commands.ts` file and add method with `SlashCommand` decorator.
 
-```typescript
+```typescript title="app-commands.service.ts"
 import { Injectable } from "@nestjs/common";
 import { Context, SlashCommand } from "necord";
 import { CommandInteraction } from "discord.js";
@@ -43,7 +43,7 @@ export class AppCommands {
 
 Add to your Slash Command, Context Menu `@Guilds` decorator for a special guilds only.
 
-```typescript
+```typescript title="app-commands.service.ts"
 import { Injectable } from "@nestjs/common";
 import { Context, SlashCommand } from "necord";
 import { CommandInteraction } from "discord.js";
@@ -64,7 +64,9 @@ export class AppCommands {
 
 Use the option decorator to define a parameter in a slash command, let's create the `LengthDto` class:
 
-```typescript
+```typescript title="length.dto.ts"
+import { StringOption } from "necord";
+
 export class LengthDto {
     @StringOption({
         name: "text",
@@ -77,7 +79,7 @@ export class LengthDto {
 
 It has only one basic properties. Thereafter we can use the newly created DTO inside the `AppCommands`:
 
-```typescript
+```typescript title="app-commands.service.ts"
 import {Injectable} from '@nestjs/common';
 import {Context, SlashCommand, Options} from 'necord';
 import {CommandInteraction} from 'discord.js';
@@ -120,7 +122,7 @@ TODO
 
 Use `SlashGroup` decorators on class-level `(Group)` and method-level `(SubGroup)`:
 
-```typescript
+```typescript title="utils-commands.service.ts"
 import {createCommandGroupDecorator, Subcommand} from 'necord';
 
 export const UtilsCommandDecorator = createCommandGroupDecorator({

@@ -14,39 +14,70 @@ When you need to pass module options asynchronously instead of statically, use t
 
 One technique is to use a factory function:
 
-```typescript
-NecordModule.forRootAsync({
-    useFactory: () => ({
-        token: "DISCORD_BOT_TOKEN",
-        intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages],
-    }),
-});
+```typescript title="src/app.module.ts"
+import { NecordModule } from "necord";
+import { Module } from "@nestjs/common";
+import { GatewayIntentBits } from "discord.js";
+
+@Module({
+    imports: [
+        NecordModule.forRootAsync({
+            useFactory: () => ({
+                token: "DISCORD_BOT_TOKEN",
+                intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages],
+            }),
+        }),
+    ],
+})
+export class AppModule {}
 ```
 
 Like other [factory providers](https://docs.nestjs.com/fundamentals/custom-providers#factory-providers-usefactory), our factory function can be async and can inject dependencies through inject.
 
-```typescript
-NecordModule.forRootAsync({
-    imports: [ConfigModule.forFeature(necordModuleConfig)],
-    useFactory: async (configService: ConfigService) => ({
-        token: configService.get<string>("DISCORD_BOT_TOKEN"),
-        intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages],
-    }),
-    inject: [ConfigService],
-});
+```typescript title="src/app.module.ts"
+import { NecordModule } from "necord";
+import { Module } from "@nestjs/common";
+import { GatewayIntentBits } from "discord.js";
+
+@Module({
+    imports: [
+        NecordModule.forRootAsync({
+            imports: [ConfigModule.forFeature(necordModuleConfig)],
+            useFactory: async (configService: ConfigService) => ({
+                token: configService.get<string>("DISCORD_BOT_TOKEN"),
+                intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages],
+            }),
+            inject: [ConfigService],
+        }),
+    ],
+})
+export class AppModule {}
 ```
 
 Alternatively, you can configure the NecordModule using a class instead of a factory, as shown below:
 
-```typescript
-NecordModule.forRootAsync({
-    useClass: NecordConfigService,
-});
+```typescript title="src/app.module.ts"
+import { NecordModule } from "necord";
+import { Module } from "@nestjs/common";
+import { GatewayIntentBits } from "discord.js";
+
+@Module({
+    imports: [
+        NecordModule.forRootAsync({
+            useClass: NecordConfigService,
+        }),
+    ],
+})
+export class AppModule {}
 ```
 
 The construction above instantiates `NecordConfigService` inside `NecordModule`, using it to create the required options object. Note that in this example, the `NecordConfigService` has to implement the `NecordOptionsFactory` interface, as shown below. The `NecordModule` will call the `.createNecordOptions()` method on the instantiated object of the supplied class.
 
-```typescript
+```typescript title="src/discord-config.service.ts"
+import { Injectable } from "@nestjs/common";
+import { NecordOptionsFactory, NecordModuleOptions } from "necord";
+import { GatewayIntentBits } from "discord.js";
+
 @Injectable()
 class NecordConfigService implements NecordOptionsFactory {
     createNecordOptions(): NecordModuleOptions {
@@ -66,10 +97,13 @@ If you initialized your application with the Nest CLI, Express framework will be
 
 To do this, change the bootstrap function in the `main.ts` file of your project on something like that:
 
-```typescript
+```typescript title="src/main.ts"
+import { NestFactory } from "@nestjs/core";
+
 async function bootstrap() {
     const app = await NestFactory.createApplicationContext(AppModule);
 }
+
 bootstrap();
 ```
 

@@ -16,10 +16,16 @@ There are several different types of components; this documentation will outline
 
 <img src="https://support.discord.com/hc/article_attachments/1500019725621/buttons.png" alt="Buttons" width="500" />
 
-```typescript
-@Button('BUTTON')
-public onButton(@Context() [interaction]: ButtonContext) {
-    return interaction.reply({ content: 'Button clicked!' });
+```typescript title="discord.service.ts"
+import { Injectable } from "@nestjs/common";
+import { Context, Button, ButtonContext } from "necord";
+
+@Injectable()
+export class DiscordService {
+    @Button("BUTTON")
+    public onButton(@Context() [interaction]: ButtonContext) {
+        return interaction.reply({ content: "Button clicked!" });
+    }
 }
 ```
 
@@ -29,9 +35,15 @@ public onButton(@Context() [interaction]: ButtonContext) {
 
 <img src="https://support.discord.com/hc/article_attachments/4403374488087/mceclip0.png" alt="Select Menu" width="500" />
 
-```typescript
-@SelectMenu('SELECT_MENU')
-public onSelectMenu(@Context() [interaction]: SelectMenuContext, @Options() options: string[]) {
-    return interaction.reply({ content: `Your selected color - ${options.join(' ')}` });
+```typescript title="discord.service.ts"
+import { Injectable } from "@nestjs/common";
+import { Context, SelectMenu, SelectMenuContext, Options } from "necord";
+
+@Injectable()
+export class DiscordService {
+    @SelectMenu("SELECT_MENU")
+    public onSelectMenu(@Context() [interaction]: SelectMenuContext, @Options() options: string[]) {
+        return interaction.reply({ content: `Your selected color - ${options.join(" ")}` });
+    }
 }
 ```

@@ -12,34 +12,44 @@ sidebar_position: 2
 
 **User commands** are application commands that appear on the context menu (right click or tap) of users. They're a great way to surface quick actions for your app that target users.
 
-```typescript
-@UserCommand({ name: 'Get avatar' })
-public async getUserAvatar(@Context() [interaction]: UserCommandContext, @Options('user') user: User) {
-     return interaction.reply({
-          embeds: [
-          new MessageEmbed()
-               .setTitle(`Avatar ${user.username}`)
-               .setImage(user.displayAvatarURL({ size: 4096, dynamic: true }))
-          ]
-     });
+```typescript title="discord.service.ts"
+import { Injectable } from "@nestjs/common";
+import { Context, UserCommand, UserCommandContext, Options } from "necord";
+import { User } from "discord.js";
+
+@Injectable()
+export class DiscordService {
+    @UserCommand({ name: "Get avatar" })
+    public async getUserAvatar(@Context() [interaction]: UserCommandContext, @Options("user") user: User) {
+        return interaction.reply({
+            embeds: [new MessageEmbed().setTitle(`Avatar ${user.username}`).setImage(user.displayAvatarURL({ size: 4096, dynamic: true }))],
+        });
+    }
 }
 ```
 
 If all goes well, you should see something like this:
 
-![User Command](https://i.imgur.com/flpESLP.png 'User Command')
+![User Command](https://i.imgur.com/flpESLP.png "User Command")
 
 ## Message Commands
 
 **Message commands** are application commands that appear on the context menu (right click or tap) of messages. They're a great way to surface quick actions for your app that target messages.
 
-```typescript
-@MessageCommand({ name: 'Copy Message' })
-public async copyMessage(@Context() [interaction]: MessageCommandContext, @Options('message') message: Message) {
-     return interaction.reply({ content: message.content });
+```typescript title="discord.service.ts"
+import { Injectable } from "@nestjs/common";
+import { Context, MessageCommand, MessageCommandContext, Options } from "necord";
+import { Message } from "discord.js";
+
+@Injectable()
+export class DiscordService {
+    @MessageCommand({ name: "Copy Message" })
+    public async copyMessage(@Context() [interaction]: MessageCommandContext, @Options("message") message: Message) {
+        return interaction.reply({ content: message.content });
+    }
 }
 ```
 
 If all goes well, you should see something like this:
 
-![Message Command](https://i.imgur.com/AaB71Ur.png 'Message Command')
+![Message Command](https://i.imgur.com/AaB71Ur.png "Message Command")

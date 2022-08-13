@@ -38,8 +38,8 @@ be created and populated with several core files.
 The `main.ts` includes an async function, which will **bootstrap** our application:
 
 ```typescript title="src/main.ts"
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { NestFactory } from "@nestjs/core";
+import { AppModule } from "./app.module";
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -78,22 +78,21 @@ replace it.
 Once the installation process is complete, we can import the `NecordModule` into the root `AppModule`:
 
 ```typescript title="src/app.module.ts"
-import { NecordModule } from 'necord';
-import { Module } from '@nestjs/common';
-import { GatewayIntentBits } from 'discord.js';
+import { NecordModule } from "necord";
+import { Module } from "@nestjs/common";
+import { GatewayIntentBits } from "discord.js";
 
 @Module({
     imports: [
         NecordModule.forRoot({
-            token: 'DISCORD_BOT_TOKEN',
+            token: "DISCORD_BOT_TOKEN",
             intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages],
-            development: ['DISCORD_DEV_GUILD_ID']
-        })
+            development: ["DISCORD_DEV_GUILD_ID"],
+        }),
     ],
-    providers: []
+    providers: [],
 })
-export class AppModule {
-}
+export class AppModule {}
 ```
 
 :::info
@@ -108,24 +107,23 @@ properly.
 Then create `app.update.ts` file and add `On`/`Once` decorators for handling Discord API events:
 
 ```typescript title="src/app.update.ts"
-import { Injectable, Logger } from '@nestjs/common';
-import { Context, On, Once, ContextOf } from 'necord';
-import { Client } from 'discord.js';
+import { Injectable, Logger } from "@nestjs/common";
+import { Context, On, Once, ContextOf } from "necord";
+import { Client } from "discord.js";
 
 @Injectable()
 export class AppUpdate {
     private readonly logger = new Logger(AppUpdate.name);
 
-    public constructor(private readonly client: Client) {
-    }
+    public constructor(private readonly client: Client) {}
 
-    @Once('ready')
-    public onReady(@Context() [client]: ContextOf<'ready'>) {
+    @Once("ready")
+    public onReady(@Context() [client]: ContextOf<"ready">) {
         this.logger.log(`Bot logged in as ${client.user.username}`);
     }
 
-    @On('warn')
-    public onWarn(@Context() [message]: ContextOf<'warn'>) {
+    @On("warn")
+    public onWarn(@Context() [message]: ContextOf<"warn">) {
         this.logger.warn(message);
     }
 }
@@ -147,6 +145,9 @@ apps, those with 100 or more servers. Hence, You cannot use text commands if you
 Create a simple command handler for messages using `@TextCommand`.
 
 ```typescript title="src/app.commands.ts"
+import { Injectable } from '@nestjs/common';
+import { Context, TextCommand, TextCommandContext, Options } from 'necord';
+
 @Injectable()
 export class AppUpdate {
 ...
