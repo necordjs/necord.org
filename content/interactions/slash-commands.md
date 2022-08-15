@@ -147,6 +147,22 @@ export class UtilsCommands {
     ...
     }
 }
+
+@UtilsCommandDecorator({
+    name: "string",
+    descriptionn: "String utility commands"
+})
+export class UtilsStringCommands {
+    @Subcommand({
+        name: 'length',
+        description: 'String length command'
+    })
+    public async onLength(...) {
+    ...
+    }
+}
+
+
 ```
 
 After the registration commands, the bot will process `/utils ping` and `/utils string length` commands, like here:
