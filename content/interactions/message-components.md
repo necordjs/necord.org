@@ -37,13 +37,13 @@ export class DiscordService {
 
 ```typescript title="discord.service.ts"
 import { Injectable } from "@nestjs/common";
-import { Context, SelectMenu, SelectMenuContext, Options } from "necord";
+import { Context, SelectMenu, SelectMenuContext, Values } from "necord";
 
 @Injectable()
 export class DiscordService {
     @SelectMenu("SELECT_MENU")
-    public onSelectMenu(@Context() [interaction]: SelectMenuContext, @Options() options: string[]) {
-        return interaction.reply({ content: `Your selected color - ${options.join(" ")}` });
+    public onSelectMenu(@Context() [interaction]: SelectMenuContext, @Values() values: string[]) {
+        return interaction.reply({ content: `Your selected color - ${values.join(" ")}` });
     }
 }
 ```

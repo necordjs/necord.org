@@ -27,13 +27,15 @@ Create `app.commands.ts` file and add method with `SlashCommand` decorator.
 
 ```typescript title="app-commands.service.ts"
 import { Injectable } from "@nestjs/common";
-import { Context, SlashCommand } from "necord";
-import { CommandInteraction } from "discord.js";
+import { Context, SlashCommand, SlashCommandContext } from "necord";
 
 @Injectable()
 export class AppCommands {
-    @SlashCommand("ping", "Ping-Pong Command")
-    public async onPing(@Context() [interaction]: [CommandInteraction]) {
+    @SlashCommand({
+        name: "ping",
+        description: "Ping-Pong Command",
+    })
+    public async onPing(@Context() [interaction]: SlashCommandContext) {
         return interaction.reply({ content: "Pong!" });
     }
 }
@@ -41,18 +43,20 @@ export class AppCommands {
 
 ## Guild Commands
 
-Add to your Slash Command, Context Menu `@Guilds` decorator for a special guilds only.
+If you want to have guild specific commands, use the `guilds` property on the `SlashCommand` decorator
 
 ```typescript title="app-commands.service.ts"
 import { Injectable } from "@nestjs/common";
-import { Context, SlashCommand } from "necord";
-import { CommandInteraction } from "discord.js";
+import { Context, SlashCommand, SlashCommandContext } from "necord";
 
 @Injectable()
 export class AppCommands {
-    @Guilds([process.env.DEV_GUILD])
-    @SlashCommand("ping", "Ping-Pong Command")
-    public async onPing(@Context() [interaction]: [CommandInteraction]) {
+    @SlashCommand({
+        name: "ping",
+        description: "Ping-Pong Command",
+        guilds: [process.env.DEV_GUILD],
+    })
+    public async onPing(@Context() [interaction]: SlashCommandContext) {
         return interaction.reply({ content: "Pong!" });
     }
 }
@@ -80,17 +84,19 @@ export class LengthDto {
 It has only one basic properties. Thereafter we can use the newly created DTO inside the `AppCommands`:
 
 ```typescript title="app-commands.service.ts"
-import {Injectable} from '@nestjs/common';
-import {Context, SlashCommand, Options} from 'necord';
-import {CommandInteraction} from 'discord.js';
-import {LengthDto} from './dtos/length.dto';
+import { Injectable } from '@nestjs/common';
+import { Context, SlashCommand, Options, SlashCommandContext } from 'necord';
+import { LengthDto } from './dtos/length.dto';
 
 @Injectable()
 export class AppCommands {
 ...
 
-    @SlashCommand('length', 'Get length of text')
-    public async onLength(@Context() [interaction]: [CommandInteraction], @Options() {text}: LengthDto) {
+    @SlashCommand({
+        name: "length",
+        description: "Get length of text"
+    })
+    public async onLength(@Context() [interaction]: SlashCommandContext, @Options() {text}: LengthDto) {
         return interaction.reply({content: `Length of your text ${text.length}`});
     }
 }
@@ -109,6 +115,7 @@ List of all built-in option decorators:
 | ChannelOption     | `Channel`                      |
 | RoleOption        | `Role`                         |
 | MentionableOption | `GuildMember`, `User`, `Role ` |
+| AttachmentOption  | `Attachment`                   |
 
 ## Autocomplete
 
