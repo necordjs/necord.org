@@ -96,7 +96,7 @@ export class AppCommands {
         name: "length",
         description: "Get length of text"
     })
-    public async onLength(@Context() [interaction]: SlashCommandContext, @Options() {text}: LengthDto) {
+    public async onLength(@Context() [interaction]: SlashCommandContext, @Options() { text }: LengthDto) {
         return interaction.reply({content: `Length of your text ${text.length}`});
     }
 }

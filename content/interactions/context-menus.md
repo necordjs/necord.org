@@ -14,13 +14,13 @@ sidebar_position: 2
 
 ```typescript title="discord.service.ts"
 import { Injectable } from "@nestjs/common";
-import { Context, UserCommand, UserCommandContext, Options } from "necord";
+import { Context, UserCommand, UserCommandContext, Target } from "necord";
 import { User } from "discord.js";
 
 @Injectable()
 export class DiscordService {
     @UserCommand({ name: "Get avatar" })
-    public async getUserAvatar(@Context() [interaction]: UserCommandContext, @Options("user") user: User) {
+    public async getUserAvatar(@Context() [interaction]: UserCommandContext, @Target() user: User) {
         return interaction.reply({
             embeds: [new MessageEmbed().setTitle(`Avatar ${user.username}`).setImage(user.displayAvatarURL({ size: 4096, dynamic: true }))],
         });
@@ -38,13 +38,13 @@ If all goes well, you should see something like this:
 
 ```typescript title="discord.service.ts"
 import { Injectable } from "@nestjs/common";
-import { Context, MessageCommand, MessageCommandContext, Options } from "necord";
+import { Context, MessageCommand, MessageCommandContext, Target } from "necord";
 import { Message } from "discord.js";
 
 @Injectable()
 export class DiscordService {
     @MessageCommand({ name: "Copy Message" })
-    public async copyMessage(@Context() [interaction]: MessageCommandContext, @Options("message") message: Message) {
+    public async copyMessage(@Context() [interaction]: MessageCommandContext, @Target() message: Message) {
         return interaction.reply({ content: message.content });
     }
 }

@@ -146,7 +146,7 @@ Create a simple command handler for messages using `@TextCommand`.
 
 ```typescript title="src/app.commands.ts"
 import { Injectable } from '@nestjs/common';
-import { Context, TextCommand, TextCommandContext, Options } from 'necord';
+import { Context, TextCommand, TextCommandContext, Arguments } from 'necord';
 
 @Injectable()
 export class AppUpdate {
@@ -155,7 +155,7 @@ export class AppUpdate {
     @TextCommand({
         name: 'string
     })
-    public onPing(@Context() [message]: TextCommandContext, @Options() options: string[]) {
+    public onPing(@Context() [message]: TextCommandContext, @Arguments() args: string[]) {
         return message.reply('pong!');
     }
 
