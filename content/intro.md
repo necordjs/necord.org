@@ -85,7 +85,7 @@ export class AppUpdate {
 
     public constructor(private readonly client: Client) {}
 
-    @Once("ready")
+    @Once('ready')
     public onReady(@Context() [client]: ContextOf<"ready">) {
         this.logger.log(`Bot logged in as ${client.user.username}`);
     }

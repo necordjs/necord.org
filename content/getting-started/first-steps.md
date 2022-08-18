@@ -120,7 +120,7 @@ import { Once, On, Context, ContextOf } from "necord";
 export class DiscordService {
     private readonly logger = new Logger(DiscordService.name);
 
-    @Once("ready")
+    @Once('ready')
     public onReady(@Context() [client]: ContextOf<"ready">) {
         this.logger.log(`Bot logged in as ${client.user.username}`);
     }
