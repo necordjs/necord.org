@@ -90,7 +90,7 @@ export class AppUpdate {
         this.logger.log(`Bot logged in as ${client.user.username}`);
     }
 
-    @on('warn')
+    @On('warn')
     public onWarn(@Context() [message]: ContextOf<'warn'>) {
         this.logger.warn(message);
     }
