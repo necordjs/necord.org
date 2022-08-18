@@ -170,8 +170,8 @@ import { AnimeAutocompleteInterceptor } from './anime.interceptor.dto';
 @Injectable()
 export class AnimeCommands {
 ...
-
-	@UseInterceptors(AnimeAutocompleteInterceptor)
+    
+    @UseInterceptors(AnimeAutocompleteInterceptor)
     @SlashCommand({
         name: 'anime',
         description: 'Lookup information about an anime'
