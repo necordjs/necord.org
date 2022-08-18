@@ -125,7 +125,7 @@ export class DiscordService {
         this.logger.log(`Bot logged in as ${client.user.username}`);
     }
 
-    @on("warn")
+    @on('warn')
     public onWarn(@Context() [message]: ContextOf<'warn'>) {
         this.logger.warn(message);
     }
@@ -161,11 +161,11 @@ import { Context, SlashCommand, SlashCommandContext } from "necord";
 @Injectable()
 export class DiscordService {
     @SlashCommand({
-        name: "ping",
-        description: "Ping command!",
+        name: 'ping',
+        description: 'Ping command!',
     })
     public async onPing(@Context() [interaction]: SlashCommandContext) {
-        return interaction.reply({ content: "Pong!" });
+        return interaction.reply({ content: 'Pong!' });
     }
 }
 ```

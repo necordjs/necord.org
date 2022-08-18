@@ -24,7 +24,7 @@ import { Context, Button, ButtonContext } from 'necord';
 export class DiscordService {
     @Button('BUTTON')
     public onButton(@Context() [interaction]: ButtonContext) {
-        return interaction.reply({ content: "Button clicked!" });
+        return interaction.reply({ content: 'Button clicked!' });
     }
 }
 ```
@@ -41,9 +41,9 @@ import { Context, SelectMenu, SelectMenuContext, Values } from 'necord';
 
 @Injectable()
 export class DiscordService {
-    @SelectMenu("SELECT_MENU")
+    @SelectMenu('SELECT_MENU')
     public onSelectMenu(@Context() [interaction]: SelectMenuContext, @Values() values: string[]) {
-        return interaction.reply({ content: `Your selected color - ${values.join(" ")}` });
+        return interaction.reply({ content: `Your selected color - ${values.join(' ')}` });
     }
 }
 ```

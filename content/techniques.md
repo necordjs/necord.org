@@ -23,7 +23,7 @@ import { GatewayIntentBits } from 'discord.js';
     imports: [
         NecordModule.forRootAsync({
             useFactory: () => ({
-                token: "DISCORD_BOT_TOKEN",
+                token: 'DISCORD_BOT_TOKEN',
                 intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages],
             }),
         }),
@@ -44,7 +44,7 @@ import { GatewayIntentBits } from 'discord.js';
         NecordModule.forRootAsync({
             imports: [ConfigModule.forFeature(necordModuleConfig)],
             useFactory: async (configService: ConfigService) => ({
-                token: configService.get<string>("DISCORD_BOT_TOKEN"),
+                token: configService.get<string>('DISCORD_BOT_TOKEN'),
                 intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages],
             }),
             inject: [ConfigService],
@@ -82,7 +82,7 @@ import { GatewayIntentBits } from 'discord.js';
 class NecordConfigService implements NecordOptionsFactory {
     createNecordOptions(): NecordModuleOptions {
         return {
-            token: "DISCORD_BOT_TOKEN",
+            token: 'DISCORD_BOT_TOKEN',
             intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages],
         };
     }

@@ -32,11 +32,11 @@ import { Context, SlashCommand, SlashCommandContext } from "necord";
 @Injectable()
 export class AppCommands {
     @SlashCommand({
-        name: "ping",
-        description: "Ping-Pong Command",
+        name: 'ping',
+        description: 'Ping-Pong Command',
     })
     public async onPing(@Context() [interaction]: SlashCommandContext) {
-        return interaction.reply({ content: "Pong!" });
+        return interaction.reply({ content: 'Pong!' });
     }
 }
 ```
@@ -52,12 +52,12 @@ import { Context, SlashCommand, SlashCommandContext } from "necord";
 @Injectable()
 export class AppCommands {
     @SlashCommand({
-        name: "ping",
-        description: "Ping-Pong Command",
+        name: 'ping',
+        description: 'Ping-Pong Command',
         guilds: [process.env.DEV_GUILD],
     })
     public async onPing(@Context() [interaction]: SlashCommandContext) {
-        return interaction.reply({ content: "Pong!" });
+        return interaction.reply({ content: 'Pong!' });
     }
 }
 ```
@@ -73,8 +73,8 @@ import { StringOption } from "necord";
 
 export class LengthDto {
     @StringOption({
-        name: "text",
-        description: "Your text",
+        name: 'text',
+        description: 'Your text',
         required: true,
     })
     text: string;
@@ -150,8 +150,8 @@ import { StringOption } from "necord";
 
 export class AnimeDto {
     @StringOption({
-        name: "anime",
-        description: "The anime to look up",
+        name: 'anime',
+        description: 'The anime to look up',
         autocomplete: true,
         required: true,
     })
@@ -211,7 +211,7 @@ export class UtilsCommands {
 
 @UtilsCommandDecorator({
     name: 'string',
-    descriptionn: "String utility commands"
+    descriptionn: 'String utility commands'
 })
 export class UtilsStringCommands {
     @Subcommand({
