@@ -153,7 +153,8 @@ export class AppUpdate {
 ...
 
     @TextCommand({
-        name: 'string
+        name: 'ping',
+        description: 'Ping command!',
     })
     public onPing(@Context() [message]: TextCommandContext, @Arguments() args: string[]) {
         return message.reply('pong!');
