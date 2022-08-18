@@ -118,12 +118,12 @@ export class AppUpdate {
     public constructor(private readonly client: Client) {}
 
     @Once('ready')
-    public onReady(@Context() [client]: ContextOf<"ready">) {
+    public onReady(@Context() [client]: ContextOf<'ready'>) {
         this.logger.log(`Bot logged in as ${client.user.username}`);
     }
 
     @on('warn')
-    public onWarn(@Context() [message]: ContextOf<"warn">) {
+    public onWarn(@Context() [message]: ContextOf<'warn'>) {
         this.logger.warn(message);
     }
 }
