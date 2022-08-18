@@ -5,6 +5,7 @@ title: Contribution Guide
 
 sidebar_position: 1
 ---
+
 # Contributing
 
 If you wish to contribute to the necord codebase or documentation, feel free to fork the repository and submit a
@@ -25,6 +26,6 @@ To get ready to work on the codebase, please do the following:
 
 A high level overview of tools used:
 
-- [TypeScript](https://www.typescriptlang.org/) as the development language
-- [Eslint](https://eslint.org/) for code-style
-- [Prettier](https://prettier.io/) for code formatting
+-   [TypeScript](https://www.typescriptlang.org/) as the development language
+-   [Eslint](https://eslint.org/) for code-style
+-   [Prettier](https://prettier.io/) for code formatting

@@ -64,10 +64,10 @@ import { GatewayIntentBits } from 'discord.js';
     imports: [
         NecordModule.forRoot({
             token: 'DISCORD_BOT_TOKEN',
-            intents: [GatewayIntentBits.Guilds],
-        }),
+            intents: [GatewayIntentBits.Guilds]
+        })
     ],
-    providers: [],
+    providers: []
 })
 export class AppModule {}
 ```

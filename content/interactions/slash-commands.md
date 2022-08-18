@@ -33,7 +33,7 @@ import { Context, SlashCommand, SlashCommandContext } from 'necord';
 export class AppCommands {
     @SlashCommand({
         name: 'ping',
-        description: 'Ping-Pong Command',
+        description: 'Ping-Pong Command'
     })
     public async onPing(@Context() [interaction]: SlashCommandContext) {
         return interaction.reply({ content: 'Pong!' });
@@ -54,7 +54,7 @@ export class AppCommands {
     @SlashCommand({
         name: 'ping',
         description: 'Ping-Pong Command',
-        guilds: [process.env.DEV_GUILD],
+        guilds: [process.env.DEV_GUILD]
     })
     public async onPing(@Context() [interaction]: SlashCommandContext) {
         return interaction.reply({ content: 'Pong!' });
@@ -75,7 +75,7 @@ export class LengthDto {
     @StringOption({
         name: 'text',
         description: 'Your text',
-        required: true,
+        required: true
     })
     text: string;
 }
@@ -133,11 +133,13 @@ class AnimeAutocompleteInterceptor extends AutocompleteInterceptor {
         let choices: string[];
 
         if (focused.name === 'anime') {
-            choices = ["Hunter x Hunter", "Naruto", "One Piece"];
+            choices = ['Hunter x Hunter', 'Naruto', 'One Piece'];
         }
 
         return interaction.respond(
-            choices.filter((choice) => choice.startsWith(focused.value.toString())).map((choice) => ({ name: choice, value: choice }))
+            choices
+                .filter(choice => choice.startsWith(focused.value.toString()))
+                .map(choice => ({ name: choice, value: choice }))
         );
     }
 }
@@ -153,7 +155,7 @@ export class AnimeDto {
         name: 'anime',
         description: 'The anime to look up',
         autocomplete: true,
-        required: true,
+        required: true
     })
     anime: string;
 }
@@ -170,7 +172,7 @@ import { AnimeAutocompleteInterceptor } from './anime.interceptor.dto';
 @Injectable()
 export class AnimeCommands {
 ...
-    
+
     @UseInterceptors(AnimeAutocompleteInterceptor)
     @SlashCommand({
         name: 'anime',

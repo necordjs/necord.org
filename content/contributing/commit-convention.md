@@ -48,15 +48,15 @@ Other prefixes are up to your discretion. Suggested prefixes are `docs`, `chore`
 
 ### Scope
 
-The scope refers to which section of the application the changes took place in, such as `SlashCommand`, `ContextMenu`,  or `MessageComponents`
+The scope refers to which section of the application the changes took place in, such as `SlashCommand`, `ContextMenu`, or `MessageComponents`
 
 ### Subject
 
 The subject contains a succinct description of the change:
 
-- Use the imperative, present tense: "change", not "changed" nor "changes"
-- do not capitalize the first letter
-- do not end you message with a period (.)
+-   Use the imperative, present tense: "change", not "changed" nor "changes"
+-   do not capitalize the first letter
+-   do not end you message with a period (.)
 
 ### Body
 

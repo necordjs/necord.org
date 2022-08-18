@@ -22,7 +22,11 @@ export class DiscordService {
     @UserCommand({ name: 'Get avatar' })
     public async getUserAvatar(@Context() [interaction]: UserCommandContext, @Target() user: User) {
         return interaction.reply({
-            embeds: [new MessageEmbed().setTitle(`Avatar ${user.username}`).setImage(user.displayAvatarURL({ size: 4096, dynamic: true }))],
+            embeds: [
+                new MessageEmbed()
+                    .setTitle(`Avatar ${user.username}`)
+                    .setImage(user.displayAvatarURL({ size: 4096, dynamic: true }))
+            ]
         });
     }
 }
@@ -44,7 +48,10 @@ import { Message } from 'discord.js';
 @Injectable()
 export class DiscordService {
     @MessageCommand({ name: 'Copy Message' })
-    public async copyMessage(@Context() [interaction]: MessageCommandContext, @Target() message: Message) {
+    public async copyMessage(
+        @Context() [interaction]: MessageCommandContext,
+        @Target() message: Message
+    ) {
         return interaction.reply({ content: message.content });
     }
 }
