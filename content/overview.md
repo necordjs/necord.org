@@ -87,7 +87,7 @@ import { GatewayIntentBits } from 'discord.js';
         NecordModule.forRoot({
             token: 'DISCORD_BOT_TOKEN',
             intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages],
-            development: ["DISCORD_DEV_GUILD_ID"],
+            development: ['DISCORD_DEV_GUILD_ID'],
         }),
     ],
     providers: [],
