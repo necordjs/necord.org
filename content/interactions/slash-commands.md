@@ -26,8 +26,8 @@ global commands when they're ready for public use.
 Create `app.commands.ts` file and add method with `SlashCommand` decorator.
 
 ```typescript title="app-commands.service.ts"
-import { Injectable } from "@nestjs/common";
-import { Context, SlashCommand, SlashCommandContext } from "necord";
+import { Injectable } from '@nestjs/common';
+import { Context, SlashCommand, SlashCommandContext } from 'necord';
 
 @Injectable()
 export class AppCommands {
@@ -46,8 +46,8 @@ export class AppCommands {
 If you want to have guild specific commands, use the `guilds` property on the `SlashCommand` decorator
 
 ```typescript title="app-commands.service.ts"
-import { Injectable } from "@nestjs/common";
-import { Context, SlashCommand, SlashCommandContext } from "necord";
+import { Injectable } from '@nestjs/common';
+import { Context, SlashCommand, SlashCommandContext } from 'necord';
 
 @Injectable()
 export class AppCommands {
@@ -69,7 +69,7 @@ export class AppCommands {
 Use the option decorator to define a parameter in a slash command, let's create the `LengthDto` class:
 
 ```typescript title="length.dto.ts"
-import { StringOption } from "necord";
+import { StringOption } from 'necord';
 
 export class LengthDto {
     @StringOption({
