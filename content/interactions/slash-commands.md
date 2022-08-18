@@ -10,7 +10,7 @@ sidebar_position: 1
 type `/` and you're ready to use your favorite bot. You can easily see all the commands a bot has, and validation and error handling help
 you get the command right the first time.
 
-![Slash Commands](https://miro.medium.com/max/700/0*Q5CzShKq5zm3kzcv.png "Slash Commands")
+![Slash Commands](https://miro.medium.com/max/700/0*Q5CzShKq5zm3kzcv.png 'Slash Commands')
 
 ## Global Commands
 
@@ -132,7 +132,7 @@ class AnimeAutocompleteInterceptor extends AutocompleteInterceptor {
         const focused = interaction.options.getFocused(true);
         let choices: string[];
 
-        if (focused.name === "anime") {
+        if (focused.name === 'anime') {
             choices = ["Hunter x Hunter", "Naruto", "One Piece"];
         }
 

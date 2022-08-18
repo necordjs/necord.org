@@ -30,7 +30,7 @@ export class DiscordService {
 
 If all goes well, you should see something like this:
 
-![User Command](https://i.imgur.com/flpESLP.png "User Command")
+![User Command](https://i.imgur.com/flpESLP.png 'User Command')
 
 ## Message Commands
 
@@ -52,4 +52,4 @@ export class DiscordService {
 
 If all goes well, you should see something like this:
 
-![Message Command](https://i.imgur.com/AaB71Ur.png "Message Command")
+![Message Command](https://i.imgur.com/AaB71Ur.png 'Message Command')
