@@ -119,7 +119,70 @@ List of all built-in option decorators:
 
 ## Autocomplete
 
-TODO
+To add autocomplete to your Slashcommand you will need a interceptor first. This class will intercept all requests from the user after typing in the autocomplete option field
+
+```typescript title="anime.interceptor.ts"
+import { Injectable, UseInterceptors } from '@nestjs/common';
+import { AutocompleteInteraction, CommandInteraction } from 'discord.js';
+import { AutocompleteInterceptor, Ctx, Opts, SlashCommand } from 'necord';
+
+@Injectable()
+class AnimeAutocompleteInterceptor extends AutocompleteInterceptor {
+	public transformOptions(interaction: AutocompleteInteraction) {
+		const focused = interaction.options.getFocused(true);
+		let choices: string[];
+
+		if (focused.name === 'anime') {
+			choices = ['Hunter x Hunter', 'Naruto', 'One Piece'];
+		}
+
+		return interaction.respond(
+			choices
+				.filter(choice => choice.startsWith(focused.value.toString()))
+				.map(choice => ({ name: choice, value: choice }))
+		);
+	}
+}
+```
+
+You'll then have to add `autocomplete: true` to your options class:
+
+```typescript  title="dtos/anime.dto.ts"
+import { StringOption } from 'necord';
+
+export class AnimeDto {
+	@StringOption({
+		name: 'anime',
+		description: 'The anime to look up',
+		autocomplete: true,
+		required: true
+	})
+	anime: string;
+}
+```
+
+And last but not least, apply the interceptor to your slash command
+
+```typescript title="anime-commands.service.ts"
+import { Injectable, UseInterceptors } from '@nestjs/common';
+import { Context, SlashCommand, Options, SlashCommandContext } from 'necord';
+import { AnimeDto } from './dtos/anime.dto';
+import { AnimeAutocompleteInterceptor } from './anime.interceptor.dto';
+
+@Injectable()
+export class AnimeCommands {
+...
+
+	@UseInterceptors(AnimeAutocompleteInterceptor)
+    @SlashCommand({
+        name: "anime",
+        description: "Lookup information about an anime"
+    })
+    public async onSearch(@Context() [interaction]: SlashCommandContext, @Options() { anime }: AnimeDto) {
+        return interaction.reply({content: `I found the anime ${anime}`});
+    }
+}
+```
 
 ## Groups
 
