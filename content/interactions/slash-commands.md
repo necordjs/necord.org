@@ -26,8 +26,8 @@ global commands when they're ready for public use.
 Create `app.commands.ts` file and add method with `SlashCommand` decorator.
 
 ```typescript title="app-commands.service.ts"
-import { Injectable } from '@nestjs/common';
-import { Context, SlashCommand, SlashCommandContext } from 'necord';
+import { Injectable } from "@nestjs/common";
+import { Context, SlashCommand, SlashCommandContext } from "necord";
 
 @Injectable()
 export class AppCommands {
@@ -46,8 +46,8 @@ export class AppCommands {
 If you want to have guild specific commands, use the `guilds` property on the `SlashCommand` decorator
 
 ```typescript title="app-commands.service.ts"
-import { Injectable } from '@nestjs/common';
-import { Context, SlashCommand, SlashCommandContext } from 'necord';
+import { Injectable } from "@nestjs/common";
+import { Context, SlashCommand, SlashCommandContext } from "necord";
 
 @Injectable()
 export class AppCommands {
@@ -69,7 +69,7 @@ export class AppCommands {
 Use the option decorator to define a parameter in a slash command, let's create the `LengthDto` class:
 
 ```typescript title="length.dto.ts"
-import { StringOption } from 'necord';
+import { StringOption } from "necord";
 
 export class LengthDto {
     @StringOption({
@@ -93,8 +93,8 @@ export class AppCommands {
 ...
 
     @SlashCommand({
-        name: "length",
-        description: "Get length of text"
+        name: 'length',
+        description: 'Get length of text'
     })
     public async onLength(@Context() [interaction]: SlashCommandContext, @Options() { text }: LengthDto) {
         return interaction.reply({content: `Length of your text ${text.length}`});
@@ -122,42 +122,40 @@ List of all built-in option decorators:
 To add autocomplete to your Slashcommand you will need a interceptor first. This class will intercept all requests from the user after typing in the autocomplete option field
 
 ```typescript title="anime.interceptor.ts"
-import { Injectable, UseInterceptors } from '@nestjs/common';
-import { AutocompleteInteraction, CommandInteraction } from 'discord.js';
-import { AutocompleteInterceptor, Ctx, Opts, SlashCommand } from 'necord';
+import { Injectable, UseInterceptors } from "@nestjs/common";
+import { AutocompleteInteraction, CommandInteraction } from "discord.js";
+import { AutocompleteInterceptor, Ctx, Opts, SlashCommand } from "necord";
 
 @Injectable()
 class AnimeAutocompleteInterceptor extends AutocompleteInterceptor {
-	public transformOptions(interaction: AutocompleteInteraction) {
-		const focused = interaction.options.getFocused(true);
-		let choices: string[];
+    public transformOptions(interaction: AutocompleteInteraction) {
+        const focused = interaction.options.getFocused(true);
+        let choices: string[];
 
-		if (focused.name === 'anime') {
-			choices = ['Hunter x Hunter', 'Naruto', 'One Piece'];
-		}
+        if (focused.name === "anime") {
+            choices = ["Hunter x Hunter", "Naruto", "One Piece"];
+        }
 
-		return interaction.respond(
-			choices
-				.filter(choice => choice.startsWith(focused.value.toString()))
-				.map(choice => ({ name: choice, value: choice }))
-		);
-	}
+        return interaction.respond(
+            choices.filter((choice) => choice.startsWith(focused.value.toString())).map((choice) => ({ name: choice, value: choice }))
+        );
+    }
 }
 ```
 
 You'll then have to add `autocomplete: true` to your options class:
 
-```typescript  title="dtos/anime.dto.ts"
-import { StringOption } from 'necord';
+```typescript title="dtos/anime.dto.ts"
+import { StringOption } from "necord";
 
 export class AnimeDto {
-	@StringOption({
-		name: 'anime',
-		description: 'The anime to look up',
-		autocomplete: true,
-		required: true
-	})
-	anime: string;
+    @StringOption({
+        name: "anime",
+        description: "The anime to look up",
+        autocomplete: true,
+        required: true,
+    })
+    anime: string;
 }
 ```
 
@@ -175,8 +173,8 @@ export class AnimeCommands {
 
 	@UseInterceptors(AnimeAutocompleteInterceptor)
     @SlashCommand({
-        name: "anime",
-        description: "Lookup information about an anime"
+        name: 'anime',
+        description: 'Lookup information about an anime'
     })
     public async onSearch(@Context() [interaction]: SlashCommandContext, @Options() { anime }: AnimeDto) {
         return interaction.reply({content: `I found the anime ${anime}`});
@@ -212,7 +210,7 @@ export class UtilsCommands {
 }
 
 @UtilsCommandDecorator({
-    name: "string",
+    name: 'string',
     descriptionn: "String utility commands"
 })
 export class UtilsStringCommands {

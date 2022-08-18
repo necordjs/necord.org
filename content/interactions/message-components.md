@@ -17,12 +17,12 @@ There are several different types of components; this documentation will outline
 <img src="https://support.discord.com/hc/article_attachments/1500019725621/buttons.png" alt="Buttons" width="500" />
 
 ```typescript title="discord.service.ts"
-import { Injectable } from "'@nestjs/common';
-import { Context, Button, ButtonContext } from "'necord';
+import { Injectable } from '@nestjs/common';
+import { Context, Button, ButtonContext } from 'necord';
 
 @Injectable()
 export class DiscordService {
-    @Button("BUTTON")
+    @Button('BUTTON')
     public onButton(@Context() [interaction]: ButtonContext) {
         return interaction.reply({ content: "Button clicked!" });
     }
@@ -36,8 +36,8 @@ export class DiscordService {
 <img src="https://support.discord.com/hc/article_attachments/4403374488087/mceclip0.png" alt="Select Menu" width="500" />
 
 ```typescript title="discord.service.ts"
-import { Injectable } from "'@nestjs/common';
-import { Context, SelectMenu, SelectMenuContext, Values } from "'necord';
+import { Injectable } from '@nestjs/common';
+import { Context, SelectMenu, SelectMenuContext, Values } from 'necord';
 
 @Injectable()
 export class DiscordService {

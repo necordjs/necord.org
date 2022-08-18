@@ -34,9 +34,9 @@ Not sure what modules are? Catch up by reading about them in [NestJS](https://do
 :::
 
 ```typescript title="discord.module.ts"
-import { Module } from '@nestjs/common';
-import { DiscordService } from './discord.service';
-import { GatewayIntentBits } from 'discord.js';
+import { Module } from "@nestjs/common";
+import { DiscordService } from "./discord.service";
+import { GatewayIntentBits } from "discord.js";
 
 @Module({
     imports: [
@@ -99,7 +99,7 @@ In this section of the guide, all of the code will be in the `discord.service.ts
 :::
 
 ```ts title="discord.service.ts"
-import { Injectable } from '@nestjs/common';
+import { Injectable } from "@nestjs/common";
 
 @Injectable()
 export class DiscordService {
@@ -113,20 +113,20 @@ Necord supports interacting with all [discord events](https://discord.js.org/#/d
 While the best practice is to use the more specific decorators when possible, this is useful if you wish to use features Necord doesn't support via custom decorators, to interact with the raw requests, or to listen to all events using a decorator such as `interactionCreate`.
 
 ```typescript title="discord.service.ts"
-import { Injectable, Logger } from '@nestjs/common';
-import { Once, On, Context, ContextOf } from 'necord';
+import { Injectable, Logger } from "@nestjs/common";
+import { Once, On, Context, ContextOf } from "necord";
 
 @Injectable()
 export class DiscordService {
     private readonly logger = new Logger(DiscordService.name);
 
-    @Once('ready')
-    public onReady(@Context() [client]: ContextOf<'ready'>) {
+    @Once("ready")
+    public onReady(@Context() [client]: ContextOf<"ready">) {
         this.logger.log(`Bot logged in as ${client.user.username}`);
     }
 
-    @On('warn')
-    public onWarn(@Context() [message]: ContextOf<'warn'>) {
+    @on("warn")
+    public onWarn(@Context() [message]: ContextOf<"warn">) {
         this.logger.warn(message);
     }
 }
@@ -155,8 +155,8 @@ Slash commands allow you to create commands with precise arguments and choices, 
 To create a command with Necord, you can use the `SlashCommand` decorator.
 
 ```typescript title="discord.service.ts"
-import { Injectable } from '@nestjs/common';
-import { Context, SlashCommand, SlashCommandContext } from 'necord';
+import { Injectable } from "@nestjs/common";
+import { Context, SlashCommand, SlashCommandContext } from "necord";
 
 @Injectable()
 export class DiscordService {

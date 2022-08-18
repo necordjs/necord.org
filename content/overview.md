@@ -38,8 +38,8 @@ be created and populated with several core files.
 The `main.ts` includes an async function, which will **bootstrap** our application:
 
 ```typescript title="src/main.ts"
-import { NestFactory } from "'@nestjs/core';
-import { AppModule } from "'./app.module';
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -78,9 +78,9 @@ replace it.
 Once the installation process is complete, we can import the `NecordModule` into the root `AppModule`:
 
 ```typescript title="src/app.module.ts"
-import { NecordModule } from "'necord';
-import { Module } from "'@nestjs/common';
-import { GatewayIntentBits } from "'discord.js';
+import { NecordModule } from 'necord';
+import { Module } from '@nestjs/common';
+import { GatewayIntentBits } from 'discord.js';
 
 @Module({
     imports: [
@@ -107,9 +107,9 @@ properly.
 Then create `app.update.ts` file and add `On`/`Once` decorators for handling Discord API events:
 
 ```typescript title="src/app.update.ts"
-import { Injectable, Logger } from "'@nestjs/common';
-import { Context, On, Once, ContextOf } from "'necord';
-import { Client } from "'discord.js';
+import { Injectable, Logger } from '@nestjs/common';
+import { Context, On, Once, ContextOf } from 'necord';
+import { Client } from 'discord.js';
 
 @Injectable()
 export class AppUpdate {
@@ -122,7 +122,7 @@ export class AppUpdate {
         this.logger.log(`Bot logged in as ${client.user.username}`);
     }
 
-    @On("warn")
+    @on('warn')
     public onWarn(@Context() [message]: ContextOf<"warn">) {
         this.logger.warn(message);
     }
