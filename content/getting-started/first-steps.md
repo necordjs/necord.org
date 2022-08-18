@@ -43,10 +43,10 @@ import { GatewayIntentBits } from 'discord.js';
         NecordModule.forRoot({
             token: process.env.DISCORD_TOKEN,
             intents: [GatewayIntentBits.Guilds],
-            development: [process.env.DISCORD_DEVELOPMENT_GUILD_ID],
-        }),
+            development: [process.env.DISCORD_DEVELOPMENT_GUILD_ID]
+        })
     ],
-    providers: [DiscordService],
+    providers: [DiscordService]
 })
 export class DiscordModule {}
 ```
@@ -162,7 +162,7 @@ import { Context, SlashCommand, SlashCommandContext } from 'necord';
 export class DiscordService {
     @SlashCommand({
         name: 'ping',
-        description: 'Ping command!',
+        description: 'Ping command!'
     })
     public async onPing(@Context() [interaction]: SlashCommandContext) {
         return interaction.reply({ content: 'Pong!' });

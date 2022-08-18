@@ -24,10 +24,14 @@ import { GatewayIntentBits } from 'discord.js';
         NecordModule.forRootAsync({
             useFactory: () => ({
                 token: 'DISCORD_BOT_TOKEN',
-                intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages],
-            }),
-        }),
-    ],
+                intents: [
+                    GatewayIntentBits.Guilds,
+                    GatewayIntentBits.GuildMessages,
+                    GatewayIntentBits.DirectMessages
+                ]
+            })
+        })
+    ]
 })
 export class AppModule {}
 ```
@@ -45,11 +49,15 @@ import { GatewayIntentBits } from 'discord.js';
             imports: [ConfigModule.forFeature(necordModuleConfig)],
             useFactory: async (configService: ConfigService) => ({
                 token: configService.get<string>('DISCORD_BOT_TOKEN'),
-                intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages],
+                intents: [
+                    GatewayIntentBits.Guilds,
+                    GatewayIntentBits.GuildMessages,
+                    GatewayIntentBits.DirectMessages
+                ]
             }),
-            inject: [ConfigService],
-        }),
-    ],
+            inject: [ConfigService]
+        })
+    ]
 })
 export class AppModule {}
 ```
@@ -64,9 +72,9 @@ import { GatewayIntentBits } from 'discord.js';
 @Module({
     imports: [
         NecordModule.forRootAsync({
-            useClass: NecordConfigService,
-        }),
-    ],
+            useClass: NecordConfigService
+        })
+    ]
 })
 export class AppModule {}
 ```
@@ -83,7 +91,11 @@ class NecordConfigService implements NecordOptionsFactory {
     createNecordOptions(): NecordModuleOptions {
         return {
             token: 'DISCORD_BOT_TOKEN',
-            intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages],
+            intents: [
+                GatewayIntentBits.Guilds,
+                GatewayIntentBits.GuildMessages,
+                GatewayIntentBits.DirectMessages
+            ]
         };
     }
 }
