@@ -186,9 +186,11 @@ export class AnimeCommands {
 
 ## Groups
 
-> **💡 TIP**
->
-> For those developers looking to make more organized and complex groups of commands, look no further than subgroups and groups.
+::tip 
+**💡 TIP**
+
+For those developers looking to make more organized and complex groups of commands, look no further than subgroups and groups.
+::
 
 Use `SlashGroup` decorators on class-level `(Group)` and method-level `(SubGroup)`:
 
