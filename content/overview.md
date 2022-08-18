@@ -80,20 +80,19 @@ Once the installation process is complete, we can import the `NecordModule` into
 ```typescript title="src/app.module.ts"
 import { NecordModule } from 'necord';
 import { Module } from '@nestjs/common';
-import { Intents } from 'discord.js';
+import { GatewayIntentBits } from 'discord.js';
 
 @Module({
     imports: [
         NecordModule.forRoot({
             token: 'DISCORD_BOT_TOKEN',
-            intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES],
-            development: ['DISCORD_DEV_GUILD_ID']
-        })
+            intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages],
+            development: ['DISCORD_DEV_GUILD_ID'],
+        }),
     ],
-    providers: []
+    providers: [],
 })
-export class AppModule {
-}
+export class AppModule {}
 ```
 
 :::info
@@ -116,8 +115,7 @@ import { Client } from 'discord.js';
 export class AppUpdate {
     private readonly logger = new Logger(AppUpdate.name);
 
-    public constructor(private readonly client: Client) {
-    }
+    public constructor(private readonly client: Client) {}
 
     @Once('ready')
     public onReady(@Context() [client]: ContextOf<'ready'>) {
@@ -147,12 +145,18 @@ apps, those with 100 or more servers. Hence, You cannot use text commands if you
 Create a simple command handler for messages using `@TextCommand`.
 
 ```typescript title="src/app.commands.ts"
+import { Injectable } from '@nestjs/common';
+import { Context, TextCommand, TextCommandContext, Arguments } from 'necord';
+
 @Injectable()
 export class AppUpdate {
 ...
 
-    @TextCommand('ping')
-    public onPing(@Context() [message]: ContextOf<'messageCreate'>, @Options() options: string[]) {
+    @TextCommand({
+        name: 'ping',
+        description: 'Ping command!',
+    })
+    public onPing(@Context() [message]: TextCommandContext, @Arguments() args: string[]) {
         return message.reply('pong!');
     }
 

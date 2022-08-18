@@ -25,35 +25,39 @@ global commands when they're ready for public use.
 
 Create `app.commands.ts` file and add method with `SlashCommand` decorator.
 
-```typescript
-import {Injectable} from '@nestjs/common';
-import {Context, SlashCommand} from 'necord';
-import {CommandInteraction} from 'discord.js';
+```typescript title="app-commands.service.ts"
+import { Injectable } from '@nestjs/common';
+import { Context, SlashCommand, SlashCommandContext } from 'necord';
 
 @Injectable()
 export class AppCommands {
-    @SlashCommand('ping', 'Ping-Pong Command')
-    public async onPing(@Context() [interaction]: [CommandInteraction]) {
-        return interaction.reply({content: 'Pong!'});
+    @SlashCommand({
+        name: 'ping',
+        description: 'Ping-Pong Command',
+    })
+    public async onPing(@Context() [interaction]: SlashCommandContext) {
+        return interaction.reply({ content: 'Pong!' });
     }
 }
 ```
 
 ## Guild Commands
 
-Add to your Slash Command, Context Menu `@Guilds` decorator for a special guilds only.
+If you want to have guild specific commands, use the `guilds` property on the `SlashCommand` decorator
 
-```typescript
-import {Injectable} from '@nestjs/common';
-import {Context, SlashCommand} from 'necord';
-import {CommandInteraction} from 'discord.js';
+```typescript title="app-commands.service.ts"
+import { Injectable } from '@nestjs/common';
+import { Context, SlashCommand, SlashCommandContext } from 'necord';
 
 @Injectable()
 export class AppCommands {
-    @Guilds([process.env.DEV_GUILD])
-    @SlashCommand('ping', 'Ping-Pong Command')
-    public async onPing(@Context() [interaction]: [CommandInteraction]) {
-        return interaction.reply({content: 'Pong!'});
+    @SlashCommand({
+        name: 'ping',
+        description: 'Ping-Pong Command',
+        guilds: [process.env.DEV_GUILD],
+    })
+    public async onPing(@Context() [interaction]: SlashCommandContext) {
+        return interaction.reply({ content: 'Pong!' });
     }
 }
 ```
@@ -64,12 +68,14 @@ export class AppCommands {
 
 Use the option decorator to define a parameter in a slash command, let's create the `LengthDto` class:
 
-```typescript
+```typescript title="length.dto.ts"
+import { StringOption } from 'necord';
+
 export class LengthDto {
     @StringOption({
         name: 'text',
         description: 'Your text',
-        required: true
+        required: true,
     })
     text: string;
 }
@@ -77,18 +83,20 @@ export class LengthDto {
 
 It has only one basic properties. Thereafter we can use the newly created DTO inside the `AppCommands`:
 
-```typescript
-import {Injectable} from '@nestjs/common';
-import {Context, SlashCommand, Options} from 'necord';
-import {CommandInteraction} from 'discord.js';
-import {LengthDto} from './dtos/length.dto';
+```typescript title="app-commands.service.ts"
+import { Injectable } from '@nestjs/common';
+import { Context, SlashCommand, Options, SlashCommandContext } from 'necord';
+import { LengthDto } from './dtos/length.dto';
 
 @Injectable()
 export class AppCommands {
 ...
 
-    @SlashCommand('length', 'Get length of text')
-    public async onLength(@Context() [interaction]: [CommandInteraction], @Options() {text}: LengthDto) {
+    @SlashCommand({
+        name: 'length',
+        description: 'Get length of text'
+    })
+    public async onLength(@Context() [interaction]: SlashCommandContext, @Options() { text }: LengthDto) {
         return interaction.reply({content: `Length of your text ${text.length}`});
     }
 }
@@ -96,21 +104,83 @@ export class AppCommands {
 
 List of all built-in option decorators:
 
-| Decorator         | Return                        |
-|-------------------|-------------------------------|
-| StringOption      | `string`                      |
-| NumberOption      | `number`                      |
-| IntegerOption     | `number`                      |
-| BooleanOption     | `boolean`                     |
-| UserOption        | `User`                        |
-| MemberOption      | `GuildMember`                 |
-| ChannelOption     | `Channel`                     |
-| RoleOption        | `Role`                        |
-| MentionableOption | `GuildMember`, `User`, `Role `|
+| Decorator         | Return                         |
+| ----------------- | ------------------------------ |
+| StringOption      | `string`                       |
+| NumberOption      | `number`                       |
+| IntegerOption     | `number`                       |
+| BooleanOption     | `boolean`                      |
+| UserOption        | `User`                         |
+| MemberOption      | `GuildMember`                  |
+| ChannelOption     | `Channel`                      |
+| RoleOption        | `Role`                         |
+| MentionableOption | `GuildMember`, `User`, `Role ` |
+| AttachmentOption  | `Attachment`                   |
 
 ## Autocomplete
 
-TODO
+To add autocomplete to your Slashcommand you will need a interceptor first. This class will intercept all requests from the user after typing in the autocomplete option field
+
+```typescript title="anime.interceptor.ts"
+import { Injectable, UseInterceptors } from '@nestjs/common';
+import { AutocompleteInteraction, CommandInteraction } from 'discord.js';
+import { AutocompleteInterceptor, Ctx, Opts, SlashCommand } from 'necord';
+
+@Injectable()
+class AnimeAutocompleteInterceptor extends AutocompleteInterceptor {
+    public transformOptions(interaction: AutocompleteInteraction) {
+        const focused = interaction.options.getFocused(true);
+        let choices: string[];
+
+        if (focused.name === 'anime') {
+            choices = ["Hunter x Hunter", "Naruto", "One Piece"];
+        }
+
+        return interaction.respond(
+            choices.filter((choice) => choice.startsWith(focused.value.toString())).map((choice) => ({ name: choice, value: choice }))
+        );
+    }
+}
+```
+
+You'll then have to add `autocomplete: true` to your options class:
+
+```typescript title="dtos/anime.dto.ts"
+import { StringOption } from 'necord';
+
+export class AnimeDto {
+    @StringOption({
+        name: 'anime',
+        description: 'The anime to look up',
+        autocomplete: true,
+        required: true,
+    })
+    anime: string;
+}
+```
+
+And last but not least, apply the interceptor to your slash command
+
+```typescript title="anime-commands.service.ts"
+import { Injectable, UseInterceptors } from '@nestjs/common';
+import { Context, SlashCommand, Options, SlashCommandContext } from 'necord';
+import { AnimeDto } from './dtos/anime.dto';
+import { AnimeAutocompleteInterceptor } from './anime.interceptor.dto';
+
+@Injectable()
+export class AnimeCommands {
+...
+    
+    @UseInterceptors(AnimeAutocompleteInterceptor)
+    @SlashCommand({
+        name: 'anime',
+        description: 'Lookup information about an anime'
+    })
+    public async onSearch(@Context() [interaction]: SlashCommandContext, @Options() { anime }: AnimeDto) {
+        return interaction.reply({content: `I found the anime ${anime}`});
+    }
+}
+```
 
 ## Groups
 
@@ -120,22 +190,40 @@ TODO
 
 Use `SlashGroup` decorators on class-level `(Group)` and method-level `(SubGroup)`:
 
-```typescript
-import {SlashGroup, SlashCommand} from 'necord';
+```typescript title="utils-commands.service.ts"
+import {createCommandGroupDecorator, Subcommand} from 'necord';
 
-@SlashGroup('utils', 'Utils group')
+export const UtilsCommandDecorator = createCommandGroupDecorator({
+    name: 'utils',
+    description: 'Utils group',
+});
+
+@UtilsCommandDecorator()
 export class UtilsCommands {
-    @SlashCommand('ping', 'Ping-pong command')
+    @Subcommand({
+        name: 'ping',
+        description: 'Ping-pong command'
+    })
     public async onPing(...) {
     ...
     }
+}
 
-    @SlashGroup('string', 'Commands with string utils')
-    @SlashCommand('length', 'Get length of your text')
+@UtilsCommandDecorator({
+    name: 'string',
+    descriptionn: 'String utility commands'
+})
+export class UtilsStringCommands {
+    @Subcommand({
+        name: 'length',
+        description: 'String length command'
+    })
     public async onLength(...) {
     ...
     }
 }
+
+
 ```
 
 After the registration commands, the bot will process `/utils ping` and `/utils string length` commands, like here:

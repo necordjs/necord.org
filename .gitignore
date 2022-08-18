@@ -45,3 +45,6 @@ lerna-debug.log*
 
 # Lockfile for other package managers
 pnpm-lock.yaml
+
+# Docker .env file
+.env
