@@ -162,7 +162,7 @@ module.exports = function (options) {
     return {
         ...options,
         entry: {
-            server: options.entry,
+            main: options.entry,
             bot: Path.join(__dirname, 'src', 'bot.ts')
         },
         output: {
