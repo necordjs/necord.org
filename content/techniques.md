@@ -132,16 +132,14 @@ npm un @nestjs/platform-express @types/express
 ### What is sharding?
 Discord prevents your bot application from logging in without sharding once you hit a scale of 2,500 guilds. If you are not planning to create a public bot application, then you can go ahead and ignore this section. However, if you are creating a public bot application, it would be wise to keep sharding in mind as it can increase the complexity of your application due to how a sharded process works.
 
-:::warning
+:::caution
 This guide takes the built-in `ShardingManager` from discordjs. You should refer to the discordjs documentation for anything sharding specific. The idea of this guide is to only show you an example of how you would go ahead and implement sharding for necord.
 :::
 
 ### How to implement sharding
 
-If you are running the bot as part of a webserver within NestJS then in order to implement sharding, you must understand that initialising `necord` within your HTTP server process isn't going to be a viable option. So we're going to have to split the two into their own independent processes. This doesn't mean you can't share code between the two, just that they will be running on different processes. You could consider your "bot" application as a microservice of sorts.
-
-:::note
-In your `src` directory, you're going to want to make sure that your necord module import is not within your AppModule. This is important as we don't want the bot spinning up on your main process.
+:::caution
+If you are running the bot as part of a webserver within NestJS, then in order to implement sharding you must understand that initialising `necord` within your HTTP server process isn't going to be a viable option. So we're going to have to split the two into their own independent processes. This doesn't mean you can't share code between the two, just that they will be running on different processes. You could consider your "bot" application as a microservice of sorts.
 :::
 
 1. In your `src` directory, create a new `bot.ts` file, this will be used to instantiate the bot as a standalone application wth some slight differences. The `DiscordModule` cannot be imported within your `AppModule`. This is because we do not want any bot processes on unsharded processes, so if you need to share code between the two, you should import the necessary modules into your `DiscordModule` or alternatively, create a `SharedModule` which is imported both into your `AppModule` and `DiscordModule`.
@@ -155,7 +153,7 @@ async function bootstrap() {
 
 bootstrap();
 ```
-:::warning
+:::info
 You may also need to add a `webpack.config.js` file to your root directory which exports the `bot.ts` file as it's not automatically exported with the application due to how the `bot.ts` file is used within another process which webpack is unable to detect. You can use the following snippet to achieve this:
 ```js
 const Path = require('path');
