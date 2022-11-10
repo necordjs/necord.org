@@ -127,14 +127,6 @@ All that remains is to remove unused dependencies:
 npm un @nestjs/platform-express @types/express
 ```
 
-## Validation (WIP)
-
-## Debugging (WIP)
-
-## ContextOf (WIP)
-
-## Application Registry (WIP)
-
 ## Bot Sharding
 
 ### What is sharding?
@@ -146,13 +138,13 @@ This guide takes the built-in `ShardingManager` from discordjs. You should refer
 
 ### How to implement sharding
 
-In order to implement sharding, you must understand that initialising `necord` within your HTTP server process isn't going to be a viable option. So we're going to have to split the two into their own independent processes. This doesn't mean you can't share code between the two, just that they will be running on different processes. You could consider your "bot" application as a microservice of sorts.
+If you are running the bot as part of a webserver within NestJS then in order to implement sharding, you must understand that initialising `necord` within your HTTP server process isn't going to be a viable option. So we're going to have to split the two into their own independent processes. This doesn't mean you can't share code between the two, just that they will be running on different processes. You could consider your "bot" application as a microservice of sorts.
 
 :::note
 In your `src` directory, you're going to want to make sure that your necord module import is not within your AppModule. This is important as we don't want the bot spinning up on your main process.
 :::
 
-1. In your `src` directory, create a new `bot.ts` file and populate it with the code below:
+1. In your `src` directory, create a new `bot.ts` file, this will be used to instantiate the bot as a standalone application wth some slight differences. The `DiscordModule` cannot be imported within your `AppModule`. This is because we do not want any bot processes on unsharded processes, so if you need to share code between the two, you should import the necessary modules into your `DiscordModule` or alternatively, create a `SharedModule` which is imported both into your `AppModule` and `DiscordModule`.
 ```typescript
 import { NestFactory } from '@nestjs/core';
 import { DiscordModule } from './discord/discord.module';
@@ -183,9 +175,7 @@ module.exports = function (options) {
 ```
 :::
 
-2. Because the discord bot will be a seperate process, you're going to want to import the modules you need into your `DiscordModule` just like you would with the `AppModule`. You can optionally just import the `AppModule` if it makes sense to do so. It may be best to create a `SharedModule` which is both imported by your `DiscordModule` and your `AppModule`.
-
-3. Modify your `main.ts` file to create a new `ShardingManager` instance which calls your `bot.js` file (not .ts extension), specifying a .ts extension will cause errors as this is executed only after your code has been transpiled into JavaScript. You can use the snippet below as an example:
+2. Modify your `main.ts` file to create a new `ShardingManager` instance which calls your `bot.js` file (not .ts extension), specifying a .ts extension will cause errors as this is executed only after your code has been transpiled into JavaScript. You can use the snippet below as an example:
 ```typescript
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
@@ -193,10 +183,7 @@ import { ConfigService } from '@nestjs/config';
 import * as Path from 'path';
 
 export async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {
-    cors: true,
-    bodyParser: false,
-  });
+  const app = await NestFactory.create(AppModule);
   // const config = app.get(ConfigService);
   const port = 80; // config.get<string>('app.port');
 
@@ -230,7 +217,15 @@ export async function bootstrap() {
 bootstrap();
 ```
 
-4. Now when you bootstrap your application, your `bot.ts` context is created on a sharded process.
+3. Now when you bootstrap your application, your `bot.ts` context is created on a sharded process.
 :::tip
 If you are running into further issues and require cross-hosting your bot application, then just swap the `ShardingManager` out for other sharding packages like the [discord-hybrid-sharding](https://github.com/meister03/discord-hybrid-sharding) which is required for the [discord-cross-hosting](https://github.com/meister03/discord-cross-hosting) package.
 :::
+
+## Validation (WIP)
+
+## Debugging (WIP)
+
+## ContextOf (WIP)
+
+## Application Registry (WIP)
