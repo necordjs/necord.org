@@ -134,3 +134,103 @@ npm un @nestjs/platform-express @types/express
 ## ContextOf (WIP)
 
 ## Application Registry (WIP)
+
+## Bot Sharding
+
+### What is sharding?
+Discord prevents your bot application from logging in without sharding once you hit a scale of 2,500 guilds. If you are not planning to create a public bot application, then you can go ahead and ignore this section. However, if you are creating a public bot application, it would be wise to keep sharding in mind as it can increase the complexity of your application due to how a sharded process works.
+
+:::warning
+This guide takes the built-in `ShardingManager` from discordjs. You should refer to the discordjs documentation for anything sharding specific. The idea of this guide is to only show you an example of how you would go ahead and implement sharding for necord.
+:::
+
+### How to implement sharding
+
+In order to implement sharding, you must understand that initialising `necord` within your HTTP server process isn't going to be a viable option. So we're going to have to split the two into their own independent processes. This doesn't mean you can't share code between the two, just that they will be running on different processes. You could consider your "bot" application as a microservice of sorts.
+
+:::note
+In your `src` directory, you're going to want to make sure that your necord module import is not within your AppModule. This is important as we don't want the bot spinning up on your main process.
+:::
+
+1. In your `src` directory, create a new `bot.ts` file and populate it with the code below:
+```typescript
+import { NestFactory } from '@nestjs/core';
+import { DiscordModule } from './discord/discord.module';
+
+async function bootstrap() {
+  await NestFactory.createApplicationContext(DiscordModule);
+}
+
+bootstrap();
+```
+:::warning
+You may also need to add a `webpack.config.js` file to your root directory which exports the `bot.ts` file as it's not automatically exported with the application due to how the `bot.ts` file is used within another process which webpack is unable to detect. You can use the following snippet to achieve this:
+```js
+const Path = require('path');
+
+module.exports = function (options) {
+    return {
+        ...options,
+        entry: {
+            server: options.entry,
+            bot: Path.join(__dirname, 'src', 'bot.ts')
+        },
+        output: {
+            filename: '[name].js'
+        }
+    };
+};
+```
+:::
+
+2. Because the discord bot will be a seperate process, you're going to want to import the modules you need into your `DiscordModule` just like you would with the `AppModule`. You can optionally just import the `AppModule` if it makes sense to do so. It may be best to create a `SharedModule` which is both imported by your `DiscordModule` and your `AppModule`.
+
+3. Modify your `main.ts` file to create a new `ShardingManager` instance which calls your `bot.js` file (not .ts extension), specifying a .ts extension will cause errors as this is executed only after your code has been transpiled into JavaScript. You can use the snippet below as an example:
+```typescript
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import { ConfigService } from '@nestjs/config';
+import * as Path from 'path';
+
+export async function bootstrap() {
+  const app = await NestFactory.create(AppModule, {
+    cors: true,
+    bodyParser: false,
+  });
+  // const config = app.get(ConfigService);
+  const port = 80; // config.get<string>('app.port');
+
+  await app.listen(port);
+
+  const manager = new ShardingManager(Path.join(__dirname, 'bot.js'), {
+    token: 'secret', // config.get<string>('discord.bot.token')
+  });
+
+  manager.spawn();
+
+  manager.on("shardCreate", shard => {
+    shard.on('reconnecting', () => {
+      console.log(`Reconnecting shard: [${shard.id}]`);
+     });
+    shard.on('spawn', () => {
+      console.log(`Spawned shard: [${shard.id}]`);
+    });
+    shard.on('ready', () => {
+      console.log(` Shard [${shard.id}] is ready`);
+    });
+    shard.on('death', () => {
+      console.log(`Died shard: [${shard.id}]`);
+    });
+    shard.on('error', (err)=>{
+      console.log(`Error in  [${shard.id}] with : ${err} `)
+      shard.respawn()
+    })
+  });
+}
+bootstrap();
+```
+
+4. Now when you bootstrap your application, your `bot.ts` context is created on a sharded process.
+:::tip
+If you are running into further issues and require cross-hosting your bot application, then just swap the `ShardingManager` out for other sharding packages like the [discord-hybrid-sharding](https://github.com/meister03/discord-hybrid-sharding) which is required for the [discord-cross-hosting](https://github.com/meister03/discord-cross-hosting) package.
+:::
