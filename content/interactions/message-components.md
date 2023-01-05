@@ -29,6 +29,37 @@ export class DiscordService {
 }
 ```
 
+### Dynamic Button
+You can create buttons with dynamic `id` field. This is useful for passing metadata to buttons.
+
+Dynamic buttons uses [path-to-regexp](https://www.npmjs.com/package/path-to-regexp) format to perform regexp matching. Turn a path string such as `user/:name` into a regular expression.
+
+To create a Dynamic button
+```typescript
+new ButtonBuilder()
+  .setCustomId('click/12345')
+  .setLabel('LABEL')
+  .setStyle(ButtonStyle.Primary)
+```
+
+To receive a Dynamic button
+```typescript
+import { Injectable } from '@nestjs/common';
+import { Context, Button, ButtonContext } from 'necord';
+
+@Injectable()
+export class DiscordService {
+  @Button('click/:value')
+  public onButton(
+    @Context() [interaction]: ButtonContext,
+    @ComponentParam('value') value: string
+  ) {
+    return interaction.reply({ content: `Button clicked! Value: ${value}` });
+  }
+}
+
+```
+
 ## Select Menu
 
 **Select menus** are another interactive component that renders on messages. On desktop, clicking on a select menu opens a dropdown-style UI; on mobile, tapping a select menu opens up a half-sheet with the options.
