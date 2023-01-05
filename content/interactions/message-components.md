@@ -293,3 +293,49 @@ export class DiscordService {
     }
 }
 ```
+
+### Dynamic Select Menu
+All of the Select Menu types, support Dynamic `id` using [path-to-regexp](https://www.npmjs.com/package/path-to-regexp) format.
+
+To create a Dynamic select menu
+```typescript
+new StringSelectMenuBuilder()
+  .setCustomId('preferences/color')
+  .setPlaceholder('Select a color')
+  .setMaxValues(1)
+  .setMinValues(1)
+  .setOptions([
+    { label: 'Red', value: 'Red' },
+    { label: 'Blue', value: 'Blue' },
+    { label: 'Yellow', value: 'Yellow' }
+  ])
+```
+
+To receive a Dynamic select menu
+```typescript
+import { Injectable } from '@nestjs/common';
+import { Context, StringSelect, StringSelectContext,SelectedStrings } from 'necord';
+
+@Injectable()
+export class DiscordService {
+  @StringSelect('preferences/:item')
+	public onPreferenceSelect(
+		@Context() [interaction]: StringSelectContext,
+		@SelectedStrings() values: string[],
+		@ComponentParam('item') item: string
+	) {
+		return interaction.reply({
+			content: `
+      ${item} = ${values.join(',')}\n
+      `
+		});
+	}
+}
+
+```
+Dynamic select menus are compatible with :
+- `StringSelect`
+- `UserSelect`
+- `RoleSelect`
+- `MentionableSelect`
+- `ChannelSelect`
