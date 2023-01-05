@@ -78,3 +78,218 @@ export class DiscordService {
     }
 }
 ```
+:::caution Deprecated since v5.4
+SelectMenu is deprecated and would be removed in Necord v6.
+SelectMenu is replaced by `StringSelectMenu`
+:::
+
+Discord has introduced new select menu components :
+- `String Select`
+- `User Select`
+- `Role Select`
+- `Mentionable Select`
+- `Channel Select`
+
+### String Select
+**String Select** is Select Menu for picking defined text options
+
+To create String Select:
+```typescript
+new StringSelectMenuBuilder()
+  .setCustomId('STRING_SELECT_MENU') // replace with your customId
+  .setPlaceholder('Select your color')
+  .setMaxValues(1)
+  .setMinValues(1)
+  .setOptions([
+    { label: 'Red', value: 'Red' },
+    { label: 'Blue', value: 'Blue' },
+    { label: 'Yellow', value: 'Yellow' }
+  ])
+```
+
+To receive a String Select:
+```typescript
+import { Injectable } from '@nestjs/common';
+import { Context, StringSelect, StringSelectContext, SelectedStrings } from 'necord';
+
+@Injectable()
+export class DiscordService {
+    @StringSelect('STRING_SELECT_MENU')
+    public onStringSelect(
+      @Context() [interaction]: StringSelectContext,
+      @SelectedStrings() selected: string[]
+    ) {
+      return interaction.reply({
+        content: `Your selected color - ${selected.join(' ')}`
+      });
+    }
+}
+```
+
+### User Select
+**User Select** are Select Menu for selecting users
+
+To create User Select:
+```typescript
+new UserSelectMenuBuilder()
+  .setCustomId('USER_SELECT_MENU')
+  .setPlaceholder('Select a user')
+  .setMaxValues(1)
+  .setMinValues(1)
+```
+
+To receive a User Select:
+```typescript
+import { Injectable } from '@nestjs/common';
+import { 
+  Context,
+  UserSelect,
+  UserSelectContext,
+  SelectedUser,
+  ISelectedUser,
+  SelectedMembers,
+  ISelectedMembers
+} from 'necord';
+
+@Injectable()
+export class DiscordService {
+    @UserSelect('USER_SELECT_MENU')
+    public onUserSelect(
+      @Context() [interaction]: UserSelectContext,
+      @SelectedUsers() users: ISelectedUsers, // Collection of users
+      @SelectedMembers() members: ISelectedMembers // Collection of members
+    ) {
+      interaction.reply({
+        content: `
+        Selected users - ${users.map(user => user.username).join(',')}\n
+        Selected members - ${members.map(member => member.user?.username).join(',')}
+        `
+      });
+    }
+}
+```
+
+### Role Select
+**Role Select** are Select Menu for selecting roles
+
+To create Role Select:
+```typescript
+new RoleSelectMenuBuilder()
+  .setCustomId('ROLE_SELECT_MENU')
+  .setPlaceholder('Select a role')
+  .setMaxValues(1)
+  .setMinValues(1)
+```
+
+To receive a Role Select:
+```typescript
+import { Injectable } from '@nestjs/common';
+import { 
+  Context,
+  RoleSelect,
+  RoleSelectContext,
+  SelectedRole,
+  ISelectedRole,
+} from 'necord';
+
+@Injectable()
+export class DiscordService {
+    @RoleSelect('ROLE_SELECT_MENU')
+    public onRoleSelect(
+      @Context() [interaction]: RoleSelectContext,
+      @SelectedRoles() roles: ISelectedRoles, // Collection of roles
+    ) {
+      interaction.reply({
+        content: `
+        Selected roles - ${roles.map(role => role.id).join(',')}
+        `
+      });
+    }
+}
+```
+
+### Channel Select
+**Channel Select** are Select Menu for selecting channels
+
+To create Channel Select:
+```typescript
+new ChannelSelectMenuBuilder()
+  .setCustomId('CHANNEL_SELECT_MENU')
+  .setPlaceholder('Select a channel')
+  .setMaxValues(1)
+  .setMinValues(1)
+```
+
+To receive a Channel Select:
+```typescript
+import { Injectable } from '@nestjs/common';
+import { 
+  Context,
+  ChannelSelect,
+  ChannelSelectContext,
+  SelectedChannel,
+  ISelectedChannel,
+} from 'necord';
+
+@Injectable()
+export class DiscordService {
+    @ChannelSelect('CHANNEL_SELECT_MENU')
+    public onChannelSelect(
+      @Context() [interaction]: ChannelSelectContext,
+      @SelectedChannels() channels: ISelectedChannels, // Collection of channels
+    ) {
+      interaction.reply({
+        content: `
+        Selected channels - ${channels.map(channel => channel.id).join(',')}
+        `
+      });
+    }
+}
+```
+
+### Mentionable Select
+**Mentionable Select** are Select Menu for selecting mentionables (users and roles)
+
+To create Mentionable Select:
+```typescript
+new MentionableSelectMenuBuilder()
+  .setCustomId('MENTIONABLE_SELECT_MENU')
+  .setPlaceholder('Select a user/role')
+  .setMaxValues(1)
+  .setMinValues(1)
+```
+
+To receive a Mentionable Select:
+```typescript
+import { Injectable } from '@nestjs/common';
+import { 
+  Context,
+  MentionableSelect,
+  MentionableSelectContext,
+  SelectedUsers,
+  ISelectedUsers,
+  SelectedMembers,
+  ISelectedMembers,
+  SelectedRoles,
+  ISelectedRoles,
+} from 'necord';
+
+@Injectable()
+export class DiscordService {
+    @MentionableSelect('MENTIONABLE_SELECT_MENU')
+    public onMentionableSelect(
+      @Context() [interaction]: MentionableSelectContext,
+      @SelectedUsers() users: ISelectedUsers,
+      @SelectedMembers() members: ISelectedMembers,
+      @SelectedRoles() roles: ISelectedRoles
+    ) {
+      return interaction.reply({
+        content: `
+        Selected users - ${users.map(user => user.username).join(',')}\n
+        Selected members - ${members.map(member => member.user?.username).join(',')}\n
+        Selected roles - ${roles.map(role => role.name).join(',')}
+        `
+      });
+    }
+}
+```
