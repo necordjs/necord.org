@@ -64,6 +64,7 @@ export interface NecordModuleOptions extends DiscordClientOptions {
     token: string;
     prefix?: string | (message: Message) => string | Promise<string>;
     development?: Snowflake[] | false;
+    skipRegistration?: boolean;
 }
 ```
 
@@ -87,6 +88,9 @@ If you do not specify a development guild, your commands and their arguments are
 If you have commands using the `@Guilds` decorator, the global development argument **will not** overwrite it.
 
 :::
+
+### Skip Registration 
+If `skipRegistration` is `true`, necord would not automatically register your application commands with Discord. You would have to register the application commands manually.
 
 ## Structure
 
