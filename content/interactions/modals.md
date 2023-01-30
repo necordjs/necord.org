@@ -52,8 +52,8 @@ import { Context, Modal, ModalContext,ModalParam } from 'necord';
 
 @Injectable()
 export class DiscordService {
-    @Modal('pizza')
-    public onModal(@Ctx() [interaction]: ModalContext,@ModalParam('value') value: string) {
+    @Modal('pizza/:value')
+    public onModal(@Ctx() [interaction]: ModalContext, @ModalParam('value') value: string) {
       return interaction.reply({
         content: `Your fav pizza ${value} : ${interaction.fields.getTextInputValue('pizza')}`
       });
