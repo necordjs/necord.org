@@ -6,8 +6,6 @@ title: First Steps
 sidebar_position: 1
 ---
 
-## First Steps
-
 In this article, you'll learn about the basics of necord, and how it integrates with [NestJS](https://nestjs.com/)!
 
 :::tip
