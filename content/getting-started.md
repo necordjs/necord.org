@@ -158,7 +158,7 @@ As there are many type of events, its type must be inferred from the `ContextOf<
 
 You can access the context variables by using the `@Context()` decorator within your function, which will populate the variable with an array of arguments.
 
-### Text Commands
+## Text Commands
 
 :::caution
 
@@ -225,7 +225,7 @@ Global commands are cached for up to an hour, therefore to avoid the global comm
 
 :::
 
-### Running the application
+## Running the application
 
 You can run the following command at your OS command prompt to start the application listening Discord API events:
 
