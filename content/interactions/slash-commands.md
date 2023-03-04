@@ -20,7 +20,7 @@ Global commands are cached for one hour. New global commands will fan out slowly
 after an hour. Guild commands update instantly. As such, we recommend you use guild-based commands during development and publish them to
 global commands when they're ready for public use.
 
-[Read more about dev-mode configuration](/start#development)
+[Read more about dev-mode configuration](start#development)
 :::
 
 Create `app.commands.ts` file and add method with `SlashCommand` decorator.
