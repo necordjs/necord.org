@@ -10,8 +10,6 @@ description: A module for creating Discord bots using NestJS, based on Discord.j
 sidebar_position: 1
 ---
 
-#
-
 <div align="center">
    <h1>
        <a href="#"><img src="https://necord.org/img/logo.png" alt ="Necord Logo" /></a>
