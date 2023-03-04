@@ -1,8 +1,6 @@
 ---
 id: async-configuration
 
-slug: /techniques/async-configuration
-
 title: Async Configuration
 
 sidebar_position: 2
@@ -85,7 +83,7 @@ import { NecordOptionsFactory, NecordModuleOptions } from 'necord';
 import { IntentsBitField } from 'discord.js';
 
 @Injectable()
-class NecordConfigService implements NecordOptionsFactory {
+class NecordConfigService {
     createNecordOptions(): NecordModuleOptions {
         return {
             token: 'DISCORD_BOT_TOKEN',
