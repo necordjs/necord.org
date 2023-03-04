@@ -232,11 +232,3 @@ export class UtilsStringCommands {
 After the registration commands, the bot will process `/utils ping` and `/utils string length` commands, like here:
 
 ![Commands](https://i.imgur.com/SmljfJH.png)
-
-## Permissions (WIP)
-
-Use [Nest Guards](https://docs.nestjs.com/guards) until its done
-
-Slash commands have their own permissions system, which allows you to control who has access to use which commands. Unlike the slash
-commands permission setting within the Discord client, you can fine-tune access to commands without preventing the selected user or role
-from using all commands.
