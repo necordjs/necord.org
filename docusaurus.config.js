@@ -28,7 +28,7 @@ const config = {
 					routeBasePath: '/',
 					showLastUpdateAuthor: true,
 					showLastUpdateTime: true,
-					remarkPlugins: [[require('@docusaurus/remark-plugin-npm2yarn'), {sync: true}]]
+					remarkPlugins: [[require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }]]
 				},
 				blog: false,
 				pages: false,
@@ -50,89 +50,104 @@ const config = {
 
 	themeConfig:
 	/** @type {import("@docusaurus/preset-classic").ThemeConfig} */
-		{
-			algolia: {
-				appId: 'U7YH0EPYI9',
-				apiKey: 'c41976c1ed280e75acc3e9efd4aaaf00',
-				indexName: 'necord',
-				contextualSearch: true
-			},
-			announcementBar: {
-				content:
-					'⭐️ If you like Necord, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/necordjs/necord">GitHub</a>! ⭐️'
-			},
-			metadata: [
-				{
-					name: 'keywords',
-					content: 'discord, discord-bot, framework, necord, github, open-source'
-				},
-				{hid: 'og:site_name', property: 'og:site_name', content: 'Necord'},
-				{hid: 'og:type', property: 'og:type', content: 'website'},
-				{
-					hid: 'og:image',
-					property: 'og:image',
-					content: 'https://necord.org/img/preview.png'
-				},
-				{
-					hid: 'og:image:secure_url',
-					property: 'og:image:secure_url',
-					content: 'https://necord.org/img/preview.png'
-				},
-				{
-					hid: 'og:image:alt',
-					property: 'og:image:alt',
-					content: 'Necord'
-				},
-				{hid: 'twitter:site', name: 'twitter:site', content: '@socketsomeone'},
-				{
-					hid: 'twitter:card',
-					name: 'twitter:card',
-					content: 'summary_large_image'
-				},
-				{
-					hid: 'twitter:image',
-					name: 'twitter:image',
-					content: 'https://necord.org/img/preview.png'
-				},
-				{
-					hid: "twitter:image:alt",
-					name: "twitter:image:alt",
-					content: "Necord",
-				},
-			],
-			navbar: {
-				logo: {
-					alt: 'Necord Logo',
-					src: 'img/logo.svg'
-				},
-				items: [
-					{
-						href: 'https://www.npmjs.com/package/necord',
-						position: 'right',
-						className: 'header-npm-link',
-						'aria-label': 'NPM'
-					},
-					{
-						href: 'https://github.com/necordjs/necord',
-						position: 'right',
-						className: 'header-github-link',
-						'aria-label': 'GitHub repository'
-					}
-				]
-			},
-			colorMode: {
-				defaultMode: 'light',
-				disableSwitch: false,
-				respectPrefersColorScheme: true
-			},
-			footer: {
-				copyright: `Copyright © 2021 - ${new Date().getFullYear()} • Built by <a target="_blank" href="https://github.com/SocketSomeone">Alexey Filippov</a> and <a target="_blank" href="https://github.com/SocketSomeone/necord/graphs/contributors">Others</a> with 💖`
-			},
-			prism: {
-				theme: lightCodeTheme,
-				darkTheme: darkCodeTheme
-			}
+	{
+		algolia: {
+			appId: 'U7YH0EPYI9',
+			apiKey: 'c41976c1ed280e75acc3e9efd4aaaf00',
+			indexName: 'necord',
+			contextualSearch: true
 		},
+		announcementBar: {
+			content:
+				'⭐️ If you like Necord, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/necordjs/necord">GitHub</a>! ⭐️'
+		},
+		metadata: [
+			{
+				name: 'keywords',
+				content: 'discord, discord-bot, framework, necord, github, open-source'
+			},
+			{ hid: 'og:site_name', property: 'og:site_name', content: 'Necord' },
+			{ hid: 'og:type', property: 'og:type', content: 'website' },
+			{
+				hid: 'og:image',
+				property: 'og:image',
+				content: 'https://necord.org/img/preview.png'
+			},
+			{
+				hid: 'og:image:secure_url',
+				property: 'og:image:secure_url',
+				content: 'https://necord.org/img/preview.png'
+			},
+			{
+				hid: 'og:image:alt',
+				property: 'og:image:alt',
+				content: 'Necord'
+			},
+			{ hid: 'twitter:site', name: 'twitter:site', content: '@socketsomeone' },
+			{
+				hid: 'twitter:card',
+				name: 'twitter:card',
+				content: 'summary_large_image'
+			},
+			{
+				hid: 'twitter:image',
+				name: 'twitter:image',
+				content: 'https://necord.org/img/preview.png'
+			},
+			{
+				hid: "twitter:image:alt",
+				name: "twitter:image:alt",
+				content: "Necord",
+			},
+		],
+		navbar: {
+			logo: {
+				alt: 'Necord Logo',
+				src: 'img/logo.svg'
+			},
+			items: [
+				{
+					label: 'Documentation',
+					href: '/'
+				},
+				{
+					label: 'Examples',
+					position: 'left',
+					href: 'https://github.com/necordjs/examples'
+				},
+				{
+					label: 'Community',
+					position: 'left',
+					href: 'https://discord.com/invite/mcBYvMTnwP'
+				},
+
+				{
+					href: 'https://www.npmjs.com/package/necord',
+					position: 'right',
+					className: 'header-npm-link',
+					'aria-label': 'NPM'
+				},
+				{
+					href: 'https://github.com/necordjs/necord',
+					position: 'right',
+					className: 'header-github-link',
+					'aria-label': 'GitHub repository'
+				}
+			]
+		},
+		colorMode: {
+			defaultMode: 'light',
+			disableSwitch: false,
+			respectPrefersColorScheme: true
+		},
+		footer: {
+			copyright: `Copyright © 2021 - ${new Date().getFullYear()} • Built by <a target="_blank" href="https://github.com/SocketSomeone">Alexey Filippov</a> and <a target="_blank" href="https://github.com/SocketSomeone/necord/graphs/contributors">Others</a> with 💖`
+		},
+		prism: {
+			theme: lightCodeTheme,
+			darkTheme: darkCodeTheme
+		}
+	},
 	plugins: [
 		'docusaurus-plugin-sass',
 		[

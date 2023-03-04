@@ -34,13 +34,13 @@ Not sure what modules are? Catch up by reading about them in [NestJS](https://do
 ```typescript title="discord.module.ts"
 import { Module } from '@nestjs/common';
 import { DiscordService } from './discord.service';
-import { GatewayIntentBits } from 'discord.js';
+import { IntentsBitField } from 'discord.js';
 
 @Module({
     imports: [
         NecordModule.forRoot({
             token: process.env.DISCORD_TOKEN,
-            intents: [GatewayIntentBits.Guilds],
+            intents: [IntentsBitField.Guilds],
             development: [process.env.DISCORD_DEVELOPMENT_GUILD_ID]
         })
     ],
@@ -87,7 +87,8 @@ If you have commands using the `@Guilds` decorator, the global development argum
 
 :::
 
-### Skip Registration 
+### Skip Registration
+
 If `skipRegistration` is `true`, necord would not automatically register your application commands with Discord. You would have to register the application commands manually.
 
 ## Structure
