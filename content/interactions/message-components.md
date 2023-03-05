@@ -318,7 +318,7 @@ import { Context, StringSelect, StringSelectContext,SelectedStrings } from 'neco
 
 @Injectable()
 export class DiscordService {
-  @StringSelect('preferences/:item')
+    @StringSelect('preferences/:item')
 	public onPreferenceSelect(
 		@Context() [interaction]: StringSelectContext,
 		@SelectedStrings() values: string[],
