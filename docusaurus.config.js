@@ -55,7 +55,8 @@ const config = {
 			appId: 'U7YH0EPYI9',
 			apiKey: 'c41976c1ed280e75acc3e9efd4aaaf00',
 			indexName: 'necord',
-			contextualSearch: true
+			contextualSearch: true,
+			schedule: 'every 1 day at 3:00 pm'
 		},
 		announcementBar: {
 			content:
