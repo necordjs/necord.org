@@ -33,7 +33,7 @@ export class CreateUserDto {
     @StringOption({
         name: 'text',
         description: 'Your email',
-        required: true
+        required: false
     })
     email: string;
 }
