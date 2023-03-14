@@ -12,13 +12,13 @@ sidebar_position: 2
 
 **User commands** are application commands that appear on the context menu (right click or tap) of users. They're a great way to surface quick actions for your app that target users.
 
-```typescript title="discord.service.ts"
+```typescript title="app.commands.ts"
 import { Injectable } from '@nestjs/common';
 import { Context, UserCommand, UserCommandContext, TargetUser } from 'necord';
 import { User } from 'discord.js';
 
 @Injectable()
-export class DiscordService {
+export class AppCommands {
     @UserCommand({ name: 'Get avatar' })
     public async getUserAvatar(
         @Context() [interaction]: UserCommandContext,
@@ -43,13 +43,13 @@ If all goes well, you should see something like this:
 
 **Message commands** are application commands that appear on the context menu (right click or tap) of messages. They're a great way to surface quick actions for your app that target messages.
 
-```typescript title="discord.service.ts"
+```typescript title="app.commands.ts"
 import { Injectable } from '@nestjs/common';
 import { Context, MessageCommand, MessageCommandContext, TargetMessage } from 'necord';
 import { Message } from 'discord.js';
 
 @Injectable()
-export class DiscordService {
+export class AppCommands {
     @MessageCommand({ name: 'Copy Message' })
     public async copyMessage(
         @Context() [interaction]: MessageCommandContext,

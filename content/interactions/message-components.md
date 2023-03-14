@@ -16,12 +16,12 @@ There are several different types of components; this documentation will outline
 
 <img src="/img/content/button.png" alt="Buttons" width="500" />
 
-```typescript title="discord.service.ts"
+```typescript title="app.components.ts"
 import { Injectable } from '@nestjs/common';
 import { Context, Button, ButtonContext } from 'necord';
 
 @Injectable()
-export class DiscordService {
+export class AppComponents {
     @Button('BUTTON')
     public onButton(@Context() [interaction]: ButtonContext) {
         return interaction.reply({ content: 'Button clicked!' });
@@ -48,7 +48,7 @@ import { Injectable } from '@nestjs/common';
 import { Context, Button, ButtonContext } from 'necord';
 
 @Injectable()
-export class DiscordService {
+export class AppComponents {
   @Button('click/:value')
   public onButton(
     @Context() [interaction]: ButtonContext,
@@ -66,12 +66,12 @@ export class DiscordService {
 
 <img src="/img/content/select-menu.png" alt="Select Menu" width="500" />
 
-```typescript title="discord.service.ts"
+```typescript title="app.components.ts"
 import { Injectable } from '@nestjs/common';
 import { Context, SelectMenu, SelectMenuContext, Values } from 'necord';
 
 @Injectable()
-export class DiscordService {
+export class AppComponents {
     @SelectMenu('SELECT_MENU')
     public onSelectMenu(@Context() [interaction]: SelectMenuContext, @Values() values: string[]) {
         return interaction.reply({ content: `Your selected color - ${values.join(' ')}` });
@@ -113,7 +113,7 @@ import { Injectable } from '@nestjs/common';
 import { Context, StringSelect, StringSelectContext, SelectedStrings } from 'necord';
 
 @Injectable()
-export class DiscordService {
+export class AppComponents {
     @StringSelect('STRING_SELECT_MENU')
     public onStringSelect(
       @Context() [interaction]: StringSelectContext,
@@ -152,7 +152,7 @@ import {
 } from 'necord';
 
 @Injectable()
-export class DiscordService {
+export class AppComponents {
     @UserSelect('USER_SELECT_MENU')
     public onUserSelect(
       @Context() [interaction]: UserSelectContext,
@@ -193,7 +193,7 @@ import {
 } from 'necord';
 
 @Injectable()
-export class DiscordService {
+export class AppComponents {
     @RoleSelect('ROLE_SELECT_MENU')
     public onRoleSelect(
       @Context() [interaction]: RoleSelectContext,
@@ -232,7 +232,7 @@ import {
 } from 'necord';
 
 @Injectable()
-export class DiscordService {
+export class AppComponents {
     @ChannelSelect('CHANNEL_SELECT_MENU')
     public onChannelSelect(
       @Context() [interaction]: ChannelSelectContext,
@@ -275,7 +275,7 @@ import {
 } from 'necord';
 
 @Injectable()
-export class DiscordService {
+export class AppComponents {
     @MentionableSelect('MENTIONABLE_SELECT_MENU')
     public onMentionableSelect(
       @Context() [interaction]: MentionableSelectContext,
@@ -317,7 +317,7 @@ import { Injectable } from '@nestjs/common';
 import { Context, StringSelect, StringSelectContext,SelectedStrings } from 'necord';
 
 @Injectable()
-export class DiscordService {
+export class AppComponents {
     @StringSelect('preferences/:item')
 	public onPreferenceSelect(
 		@Context() [interaction]: StringSelectContext,

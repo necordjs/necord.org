@@ -10,12 +10,12 @@ With modals you can create pop-up forms that allow users to provide you with for
 
 <img src="/img/content/modal.png" alt="Modal" width="500" />
 
-```typescript title="discord.service.ts"
+```typescript title="app.modals.ts"
 import { Injectable } from '@nestjs/common';
 import { Context, Modal, ModalContext } from 'necord';
 
 @Injectable()
-export class DiscordService {
+export class AppModals {
     @Modal('pizza')
     public onModal(@Ctx() [interaction]: ModalContext) {
       return interaction.reply({
@@ -46,12 +46,12 @@ new ModalBuilder()
 ```
 
 To receive a Dynamic modal
-```typescript title="discord.service.ts"
+```typescript title="app.modals.ts"
 import { Injectable } from '@nestjs/common';
 import { Context, Modal, ModalContext,ModalParam } from 'necord';
 
 @Injectable()
-export class DiscordService {
+export class AppModals {
     @Modal('pizza/:value')
     public onModal(@Ctx() [interaction]: ModalContext, @ModalParam('value') value: string) {
       return interaction.reply({

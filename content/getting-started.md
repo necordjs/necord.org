@@ -41,7 +41,7 @@ Not sure what modules are? Catch up by reading about them in [NestJS](https://do
 
 ```typescript title="discord.module.ts"
 import { Module } from '@nestjs/common';
-import { DiscordService } from './discord.service';
+import { AppService } from './app.service';
 import { IntentsBitField } from 'discord.js';
 
 @Module({
@@ -52,7 +52,7 @@ import { IntentsBitField } from 'discord.js';
             development: [process.env.DISCORD_DEVELOPMENT_GUILD_ID]
         })
     ],
-    providers: [DiscordService]
+    providers: [AppService]
 })
 export class DiscordModule {}
 ```
@@ -105,15 +105,15 @@ As Necord follows the NestJS structure, the various discord components available
 
 :::info
 
-In this section of the guide, all of the code will be in the `discord.service.ts` file, but for a real application you should separate them into their own components such as `discord.update.ts` and `ping.command.ts`.
+In this section of the guide, all of the code will be in the `app.service.ts` file, but for a real application you should separate them into their own components such as `discord.update.ts` and `ping.command.ts`.
 
 :::
 
-```ts title="discord.service.ts"
+```ts title="app.service.ts"
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class DiscordService {
+export class AppService {
     // Your code here
 }
 ```
@@ -123,13 +123,13 @@ export class DiscordService {
 Necord supports interacting with all [discord events](https://discord.js.org/#/docs/main/stable/class/Client#Events) via the `@On` and `@Once` decorator.  
 While the best practice is to use the more specific decorators when possible, this is useful if you wish to use features Necord doesn't support via custom decorators, to interact with the raw requests, or to listen to all events using a decorator such as `interactionCreate`.
 
-```typescript title="discord.service.ts"
+```typescript title="app.service.ts"
 import { Injectable, Logger } from '@nestjs/common';
 import { Once, On, Context, ContextOf } from 'necord';
 
 @Injectable()
-export class DiscordService {
-    private readonly logger = new Logger(DiscordService.name);
+export class AppService {
+    private readonly logger = new Logger(AppService.name);
 
     @Once('ready')
     public onReady(@Context() [client]: ContextOf<'ready'>) {
@@ -171,14 +171,12 @@ apps, those with 100 or more servers. Hence, You cannot use text commands if you
 
 Create a simple command handler for messages using `@TextCommand`.
 
-```typescript title="src/app.commands.ts"
+```typescript title="src/app.service.ts"
 import { Injectable } from '@nestjs/common';
 import { Context, TextCommand, TextCommandContext, Arguments } from 'necord';
 
 @Injectable()
-export class AppCommands {
-...
-
+export class AppService {
     @TextCommand({
         name: 'ping',
         description: 'Ping command!',
@@ -186,8 +184,6 @@ export class AppCommands {
     public onPing(@Context() [message]: TextCommandContext, @Arguments() args: string[]) {
         return message.reply('pong!');
     }
-
-...
 }
 ```
 
@@ -202,12 +198,12 @@ Slash commands allow you to create commands with precise arguments and choices, 
 
 To create a command with Necord, you can use the `SlashCommand` decorator.
 
-```typescript title="discord.service.ts"
+```typescript title="app.service.ts"
 import { Injectable } from '@nestjs/common';
 import { Context, SlashCommand, SlashCommandContext } from 'necord';
 
 @Injectable()
-export class DiscordService {
+export class AppService {
     @SlashCommand({
         name: 'ping',
         description: 'Ping command!'
