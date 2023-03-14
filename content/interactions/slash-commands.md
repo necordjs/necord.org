@@ -25,7 +25,7 @@ global commands when they're ready for public use.
 
 Create `app.commands.ts` file and add method with `SlashCommand` decorator.
 
-```typescript title="app-commands.service.ts"
+```typescript title="app.commands.ts"
 import { Injectable } from '@nestjs/common';
 import { Context, SlashCommand, SlashCommandContext } from 'necord';
 
@@ -45,7 +45,7 @@ export class AppCommands {
 
 If you want to have guild specific commands, use the `guilds` property on the `SlashCommand` decorator
 
-```typescript title="app-commands.service.ts"
+```typescript title="app.commands.ts"
 import { Injectable } from '@nestjs/common';
 import { Context, SlashCommand, SlashCommandContext } from 'necord';
 
@@ -83,7 +83,7 @@ export class TextDto {
 
 It has only one basic properties. Thereafter we can use the newly created DTO inside the `AppCommands`:
 
-```typescript title="app-commands.service.ts"
+```typescript title="app.commands.ts"
 import { Injectable } from '@nestjs/common';
 import { Context, SlashCommand, Options, SlashCommandContext } from 'necord';
 import { TextDto } from './length.dto';
