@@ -71,7 +71,7 @@ Use the option decorator to define a parameter in a slash command, let's create 
 ```typescript title="length.dto.ts"
 import { StringOption } from 'necord';
 
-export class LengthDto {
+export class TextDto {
     @StringOption({
         name: 'text',
         description: 'Your text',
@@ -86,36 +86,35 @@ It has only one basic properties. Thereafter we can use the newly created DTO in
 ```typescript title="app-commands.service.ts"
 import { Injectable } from '@nestjs/common';
 import { Context, SlashCommand, Options, SlashCommandContext } from 'necord';
-import { LengthDto } from './dtos/length.dto';
+import { TextDto } from './length.dto';
 
 @Injectable()
 export class AppCommands {
-...
-
     @SlashCommand({
         name: 'length',
         description: 'Get length of text'
     })
-    public async onLength(@Context() [interaction]: SlashCommandContext, @Options() { text }: LengthDto) {
+    public async onLength(@Context() [interaction]: SlashCommandContext, @Options() { text }: TextDto) {
         return interaction.reply({content: `Length of your text ${text.length}`});
     }
 }
 ```
 
+
 List of all built-in option decorators:
 
-| Decorator         | Return                         |
-| ----------------- | ------------------------------ |
-| StringOption      | `string`                       |
-| NumberOption      | `number`                       |
-| IntegerOption     | `number`                       |
-| BooleanOption     | `boolean`                      |
-| UserOption        | `User`                         |
-| MemberOption      | `GuildMember`                  |
-| ChannelOption     | `Channel`                      |
-| RoleOption        | `Role`                         |
-| MentionableOption | `GuildMember`, `User`, `Role ` |
-| AttachmentOption  | `Attachment`                   |
+| Decorator           | Type                          | Description          |
+| :------------------ | :---------------------------- | :------------------- |
+| `StringOption`      | `string`                      | A string option      |
+| `NumberOption`      | `number`                      | A number option      |
+| `IntegerOption`     | `number`                      | An integer option    |
+| `BooleanOption`     | `boolean`                     | A boolean option     |
+| `UserOption`        | `User`                        | A user option        |
+| `MemberOption`      | `GuildMember`                 | A member option      |
+| `ChannelOption`     | `GuildChannel`                | A channel option     |
+| `RoleOption`        | `Role`                        | A role option        |
+| `MentionableOption` | `GuildMember \| Role \| User` | A mentionable option |
+| `AttachmentOption`  | `AttachmentOption`            | An attachment option |
 
 ## Autocomplete
 
@@ -147,7 +146,7 @@ class AnimeAutocompleteInterceptor extends AutocompleteInterceptor {
 
 You'll then have to add `autocomplete: true` to your options class:
 
-```typescript title="dtos/anime.dto.ts"
+```typescript title="anime.dto.ts"
 import { StringOption } from 'necord';
 
 export class AnimeDto {
@@ -166,13 +165,11 @@ And last but not least, apply the interceptor to your slash command
 ```typescript title="anime-commands.service.ts"
 import { Injectable, UseInterceptors } from '@nestjs/common';
 import { Context, SlashCommand, Options, SlashCommandContext } from 'necord';
-import { AnimeDto } from './dtos/anime.dto';
-import { AnimeAutocompleteInterceptor } from './anime.interceptor.dto';
+import { AnimeDto } from '/anime.dto';
+import { AnimeAutocompleteInterceptor } from './anime.interceptor';
 
 @Injectable()
 export class AnimeCommands {
-...
-
     @UseInterceptors(AnimeAutocompleteInterceptor)
     @SlashCommand({
         name: 'anime',
