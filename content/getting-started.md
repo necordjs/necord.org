@@ -176,7 +176,7 @@ import { Injectable } from '@nestjs/common';
 import { Context, TextCommand, TextCommandContext, Arguments } from 'necord';
 
 @Injectable()
-export class AppUpdate {
+export class AppCommands {
 ...
 
     @TextCommand({
