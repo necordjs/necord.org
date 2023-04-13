@@ -44,7 +44,7 @@ The available options for this command are the following:
 | `--flat`       | Whether or not a directory is created. (default: false)  |
 | `--sourceRoot` | NestJS service source root directory.                    |
 | `--spec`       | Whether or not a spec file is generated. (default: true) |
-| `--type`       | The type of command. (text-command or slash-command)     |
+| `--strategy`       | The type of command. (text-command or slash-command)     |
 
 ### Generating message components
 
@@ -65,7 +65,7 @@ The available options for this command are the following:
 | `--flat`       | Whether or not a directory is created. (default: false)  |
 | `--sourceRoot` | NestJS service source root directory.                    |
 | `--spec`       | Whether or not a spec file is generated. (default: true) |
-| `--type`       | The type of component. (button, select)                  |
+| `--strategy`       | The type of component. (button, select)                  |
 
 ### Generating context menus
 
@@ -86,7 +86,7 @@ The available options for this command are the following:
 | `--flat`       | Whether or not a directory is created. (default: false)  |
 | `--sourceRoot` | NestJS service source root directory.                    |
 | `--spec`       | Whether or not a spec file is generated. (default: true) |
-| `--type`       | The type of context menu. (user, message)                |
+| `--strategy`       | The type of context menu. (user, message)                |
 
 ### Generating modal components
 
@@ -105,5 +105,5 @@ The available options for this command are the following:
 | `--path`       | The path to create the service.                          |
 | `--flat`       | Whether or not a directory is created. (default: false)  |
 | `--sourceRoot` | NestJS service source root directory.                    |
-| `--spec`       | Whether or not a spec file is generated. (default: true) |
+| `--strategy`       | Whether or not a spec file is generated. (default: true) |
 
