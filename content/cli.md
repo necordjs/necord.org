@@ -5,19 +5,19 @@ slug: cli
 
 title: CLI
 
-description: Necord CLI is a tool that helps you to create your bot faster and easier.
+description: Necord Schematics is a tool that helps you to create your bot faster and easier.
 
 sidebar_position: 6
 ---
 
-The [Necord CLI](https://www.npmjs.com/package/@necord/schematics) is a command-line interface tool that helps you to initialize, develop,
+The [Necord Schematics](https://www.npmjs.com/package/@necord/schematics) is a command-line interface tool that helps you to initialize, develop,
 and maintain your Necord applications. It assists in multiple ways, including scaffolding the project, serving it in development mode, and
 building and bundling the application for production distribution. It embodies best-practice architectural patterns to encourage
 well-structured apps.
 
 ## Installation
 
-To install the CLI, run the following command:
+To install the schematics, run the following command:
 
 ```bash npm2yarn
 npm install -D @necord/schematics
