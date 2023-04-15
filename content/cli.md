@@ -19,6 +19,7 @@ well-structured apps.
 To install the schematics, run the following command:
 
 ```bash npm2yarn
+npm install -g @nestjs/cli
 npm install -D @necord/schematics
 ```
 
