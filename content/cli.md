@@ -28,7 +28,7 @@ npm install -D @necord/schematics
 
 To generate a slash command you can use the command schematic:
 
-```bash npm2yarn
+```bash
 nest g -c @necord/schematics command 
 ```
 
@@ -49,7 +49,7 @@ The available options for this command are the following:
 
 To generate a component you can use the component schematic:
 
-```bash npm2yarn
+```bash
 nest g -c @necord/schematics component 
 ```
 
@@ -70,7 +70,7 @@ The available options for this command are the following:
 
 To generate a context menu you can use the context menu schematic:
 
-```bash npm2yarn
+```bash
 nest g -c @necord/schematics context-menu 
 ```
 
@@ -91,7 +91,7 @@ The available options for this command are the following:
 
 To generate a modal component you can use the modal schematic:
 
-```bash npm2yarn
+```bash
 nest g -c @necord/schematics modal 
 ```
 from there the wizard will ask what the name of the modal is and type of modal.
