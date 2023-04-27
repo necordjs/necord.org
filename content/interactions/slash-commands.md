@@ -121,9 +121,9 @@ List of all built-in option decorators:
 To add autocomplete to your Slashcommand you will need a interceptor first. This class will intercept all requests from the user after typing in the autocomplete option field
 
 ```typescript title="anime.interceptor.ts"
-import { Injectable, UseInterceptors } from '@nestjs/common';
-import { AutocompleteInteraction, CommandInteraction } from 'discord.js';
-import { AutocompleteInterceptor, Ctx, Opts, SlashCommand } from 'necord';
+import { Injectable } from '@nestjs/common';
+import { AutocompleteInteraction } from 'discord.js';
+import { AutocompleteInterceptor } from 'necord';
 
 @Injectable()
 class AnimeAutocompleteInterceptor extends AutocompleteInterceptor {
