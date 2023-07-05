@@ -113,7 +113,7 @@ List of all built-in option decorators:
 | `MemberOption`      | `GuildMember`                 | A member option      |
 | `ChannelOption`     | `GuildChannel`                | A channel option     |
 | `RoleOption`        | `Role`                        | A role option        |
-| `MentionableOption` | `GuildMember | Role | User` | A mentionable option |
+| `MentionableOption` | `GuildMember \| Role \| User` | A mentionable option |
 | `AttachmentOption`  | `AttachmentOption`            | An attachment option |
 
 ## Autocomplete
