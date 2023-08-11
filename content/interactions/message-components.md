@@ -66,23 +66,6 @@ export class AppComponents {
 
 <img src="/img/content/select-menu.png" alt="Select Menu" width="500" />
 
-```typescript title="app.components.ts"
-import { Injectable } from '@nestjs/common';
-import { Context, SelectMenu, SelectMenuContext, Values } from 'necord';
-
-@Injectable()
-export class AppComponents {
-    @SelectMenu('SELECT_MENU')
-    public onSelectMenu(@Context() [interaction]: SelectMenuContext, @Values() values: string[]) {
-        return interaction.reply({ content: `Your selected color - ${values.join(' ')}` });
-    }
-}
-```
-:::caution Deprecated since v5.4
-SelectMenu is deprecated and would be removed in Necord v6.
-SelectMenu is replaced by `StringSelectMenu`
-:::
-
 Discord has introduced new select menu components :
 - `String Select`
 - `User Select`
