@@ -24,6 +24,7 @@ Once the installation process is complete, we can import the `NecordPaginationMo
 ```typescript
 import { NecordModule } from 'necord';
 import { Module } from '@nestjs/common';
+import { NecordPaginationModule } from '@necord/pagination';
 import { AppService } from './app.service';
 
 @Module({
@@ -43,8 +44,7 @@ import { AppService } from './app.service';
     ],
     providers: [AppService]
 })
-export class AppModule {
-}
+export class AppModule {}
 ```
 
 Then, we can inject the `PaginationService` into our service and register a pagination handler:
