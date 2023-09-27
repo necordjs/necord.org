@@ -19,7 +19,7 @@ $ npm install class-validator class-transformer
 Now we can add a few validation rules in our `CreateUserDto`. We do this using decorators provided by the class-validator package, described in detail [here](https://github.com/typestack/class-validator#validation-decorators). In this fashion, any route that uses the `CreateUserDto` will automatically enforce these validation rules.
 
 ```typescript title="src/users/dto/create-user.dto.ts"
-import { IsNotEmpty, IsString, IsEmail } from 'class-validator';
+import { IsNotEmpty, IsString, IsEmail } from 'class-validator'    ;
 
 export class CreateUserDto {
     @StringOption({
@@ -59,7 +59,7 @@ export class UsersCommands {
     })
     public async onCreateUser(
         @Context() [interaction]: SlashCommandContext,
-        @Options(new ValidationPipe()) createUserDto: CreateUserDto
+        @Options(new ValidationPipe({ validateCustomDecorators: true })) createUserDto: CreateUserDto
     ) {
         return interaction.reply({ content: `User created: ${createUserDto.name}` });
     }
