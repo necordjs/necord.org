@@ -16,5 +16,5 @@ You can use the following methods to send your donation:
 
 -   become a backer or sponsor on [OpenCollective](https://opencollective.com/necord)
 -   use [Tinkoff](https://www.tinkoff.ru/rm/filippov.aleksey372/YN6Ob51146) to send a one-time donation
--   USDT TRC20 TTfnL5LMbL7x5mMDa3ZXs5dZifJby7MqxW
+-   Crypto Wallet: TTfnL5LMbL7x5mMDa3ZXs5dZifJby7MqxW (USDT TRC20)
 -   or reach me directly: [socket.someone@gmail.com](mailto:socket.someone@gmail.com)
