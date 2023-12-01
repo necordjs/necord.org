@@ -1861,10 +1861,10 @@
     "@types/react" "*"
     prop-types "^15.6.2"
 
-"@docusaurus/remark-plugin-npm2yarn@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@docusaurus/remark-plugin-npm2yarn/-/remark-plugin-npm2yarn-3.0.0.tgz#85c2b7f56fef67c68ad241d02c8004cec212c889"
-  integrity sha512-OapBu1mXui1LLc/1RJztl0Syr5sTKX6GWt10HBB5XvCxb9l08IkcQwjzktNLWZAUOr+Xbx6LBINbAgm7yKSUOw==
+"@docusaurus/remark-plugin-npm2yarn@3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@docusaurus/remark-plugin-npm2yarn/-/remark-plugin-npm2yarn-3.0.1.tgz#81732c94dd1c55dc0456eaaf9c8b89eb06c6f14f"
+  integrity sha512-UZDvQN6XhaImbQUsmWCNZDZbazv4SDzVJGtlJKBP6DBHMxzYDC7YMVZ6YPRloi74W++5copIIk9DNlp4KtieNw==
   dependencies:
     mdast-util-mdx "^3.0.0"
     npm-to-yarn "^2.0.0"
