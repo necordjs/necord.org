@@ -74,20 +74,12 @@ export interface NecordModuleOptions extends DiscordClientOptions {
 }
 ```
 
-### Token
-
-`token` is your Discord token: it is used to authenticate as your bot.
-
-### Prefix
-
-If you are using `TextCommand`, you can specify the prefix here.
-It can be a string for a static prefix, or a function which returns a string based off the message being sent.
-If using a function, it can be asynchronous.
-
-### Development
-
-As discord caches application commands for up to an hour, it is recommended to specify a development guild when doing development.
-If you do not specify a development guild, your commands and their arguments are likely to be outdated.
+| Property           | Type                                       | Description                                         |
+|--------------------|--------------------------------------------|-----------------------------------------------------|
+| `token`            | `string`                                   | Your Discord token                                  |
+| `prefix`           | `string` or `(message: Message) => string` | The prefix for your bot                             |
+| `development`      | `Snowflake[]` or `false`                   | The development guilds for your bot                 |
+| `skipRegistration` | `boolean`                                  | Skip automatic registration of application commands |
 
 :::caution Warning
 
@@ -95,28 +87,7 @@ If you have commands using the `guilds` property, the global development argumen
 
 :::
 
-### Skip Registration
 
-If `skipRegistration` is `true`, necord would not automatically register your application commands with Discord. You would have to register the application commands manually.
-
-## Structure
-
-As Necord follows the NestJS structure, the various discord components available must be imported as providers.
-
-:::info
-
-In this section of the guide, all of the code will be in the `app.service.ts` file, but for a real application you should separate them into their own components such as `discord.update.ts` and `ping.command.ts`.
-
-:::
-
-```ts title="app.service.ts"
-import { Injectable } from '@nestjs/common';
-
-@Injectable()
-export class AppService {
-    // Your code here
-}
-```
 ## Slash Commands
 
 The best way to interact with your users is to use [Slash commands](https://support.discord.com/hc/en-us/articles/1500000368501-Slash-Commands-FAQ)!
