@@ -111,8 +111,6 @@ Also supports custom events.
 
 ### Channel Events
 
-These events get from `channelUpdate` event.
-
 | Event Name                      | Description                                                               |
 |---------------------------------|---------------------------------------------------------------------------|
 | `guildChannelPermissionsUpdate` | Emitted whenever a channel's permission overwrite for a guild is updated. |
