@@ -39,7 +39,7 @@ export class AppService {
 
 If all goes well, you should see something like this:
 
-![Text Command](https://i.imgur.com/qEMm6xj.png)
+![Text Command](/img/content/text_command.png 'Text Command')
 
 
 ## Arguments

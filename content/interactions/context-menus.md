@@ -37,7 +37,7 @@ export class AppCommands {
 
 If all goes well, you should see something like this:
 
-![User Command](https://i.imgur.com/flpESLP.png 'User Command')
+![User Command](/img/content/context_user.png 'User Command')
 
 ## Message Commands
 
@@ -62,4 +62,4 @@ export class AppCommands {
 
 If all goes well, you should see something like this:
 
-![Message Command](https://i.imgur.com/AaB71Ur.png 'Message Command')
+![Message Command](/img/content/context_message.png 'Message Command')

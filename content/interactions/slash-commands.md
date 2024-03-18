@@ -10,7 +10,7 @@ sidebar_position: 1
 type `/` and you're ready to use your favorite bot. You can easily see all the commands a bot has, and validation and error handling help
 you get the command right the first time.
 
-![Slash Commands](https://i.imgur.com/Sd0ReAL.png 'Slash Commands')
+![Slash Commands](/img/content/slash_command_menu.png 'Slash Commands')
 
 ## Global Commands
 
@@ -228,4 +228,4 @@ export class UtilsStringCommands {
 
 After the registration commands, the bot will process `/utils ping` and `/utils string length` commands, like here:
 
-![Commands](https://i.imgur.com/SmljfJH.png)
+![Commands](/img/content/slash_command_example.png)
