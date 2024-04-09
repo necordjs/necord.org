@@ -62,6 +62,7 @@ export class AppModule {
 }
 ```
 
+`DefaultLocalizationAdapter` can translate your localization strings and placeholders (e.g `{{username}}`)
 Also, you can create your own localization adapter. Just implement the `BaseLocalizationAdapter` interface:
 
 ```typescript
