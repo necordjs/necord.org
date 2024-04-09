@@ -3,7 +3,7 @@ id: localization
 
 title: Localization
 
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 `@necord/localization` is a lightweight localization module for [Necord](https://necord.org/). It allows you to easily localize your bot's commands and messages. The module provides a simple API for managing locales and translations, as well as a powerful localization adapter system.
