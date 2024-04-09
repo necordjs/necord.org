@@ -62,6 +62,24 @@ export class AppModule {
 }
 ```
 
+`UserResolver` gets the location for translation from `interaction.locale` and `GuildResolver` gets it from `interaction.guildLocation`. Also, you can create your own Resolver. Just implement the `LocaleResolver` interface:
+
+```typescript
+import { CommandContext, LocaleResolver } from '@necord/localization';
+import { ExecutionContext, Injectable } from '@nestjs/common';
+import { NecordExecutionContext } from 'necord';
+
+@Injectable()
+export class GuildResolver implements LocaleResolver {
+ resolve(context: ExecutionContext): string | string[] | undefined {
+  const necordContext = NecordExecutionContext.create(context);
+  const [interaction] = necordContext.getContext<CommandContext>();
+
+  return interaction.guildLocale;
+ }
+}
+```
+
 `DefaultLocalizationAdapter` can translate your localization strings and placeholders (e.g `{{username}}`)
 Also, you can create your own localization adapter. Just implement the `BaseLocalizationAdapter` interface:
 
