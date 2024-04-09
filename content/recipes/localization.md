@@ -102,7 +102,7 @@ Then, we can inject the `LOCALIZATION_ADAPTER` into our service and use it to lo
 
 ```typescript
 import { Injectable, Inject, OnModuleInit } from '@nestjs/common';
-import { DefaultLocalizationAdapter, DescriptionTranslations, LOCALIZATION_ADAPTER, NameTranslations } from '@necord/localization';
+import { DefaultLocalizationAdapter, localizationMapByKey, LOCALIZATION_ADAPTER } from '@necord/localization';
 import { Context, SlashCommand, SlashCommandContext } from 'necord';
 
 @Injectable()
@@ -112,10 +112,12 @@ export class AppService implements OnModuleInit {
         private readonly localizationAdapter: DefaultLocalizationAdapter
     ) {
     }
-
-    @NameTranslations('commands.ping.name')
-    @DescriptionTranslations('commands.ping.description')
-    @SlashCommand({ name: 'ping', description: 'Pong!' })
+    @SlashCommand({ 
+      name: 'ping', 
+      description: 'Pong!', 
+      nameLocalizations: localizationMapByKey('commands.ping.name'), 
+      descriptionLocalizations: localizationMapByKey('commands.ping.name') 
+    })
     public ping(@Context() [interaction]: SlashCommandContext) {
         const message = this.localizationAdapter.getTranslation(
             'commands.ping.description',
@@ -130,14 +132,17 @@ Or you can use `@CurrentTranslate` decorator to get the current translation from
 
 ```typescript
 import { Injectable, Inject, OnModuleInit } from '@nestjs/common';
-import { DefaultLocalizationAdapter, DescriptionTranslations, CurrentTranslate, TranslationFn, NameTranslations } from '@necord/localization';
+import { DefaultLocalizationAdapter, CurrentTranslate, localizationMapByKey, TranslationFn } from '@necord/localization';
 import { Context, SlashCommand, SlashCommandContext } from 'necord';
 
 @Injectable()
 export class AppService implements OnModuleInit {
-    @NameTranslations('commands.ping.name')
-    @DescriptionTranslations('commands.ping.description')
-    @SlashCommand({ name: 'ping', description: 'Pong!' })
+    @SlashCommand({ 
+      name: 'ping', 
+      description: 'Pong!', 
+      nameLocalizations: localizationMapByKey('commands.ping.name'), 
+      descriptionLocalizations: localizationMapByKey('commands.ping.name') 
+    })
     public ping(
         @Context() [interaction]: SlashCommandContext,
         @CurrentTranslate() t: TranslationFn
@@ -148,6 +153,33 @@ export class AppService implements OnModuleInit {
 }
 ```
 
-Decorators `NameTranslations` and `DescriptionTranslations` are used to localize the command name and description. You pass the translation key or localization map as an argument to the decorator.
+Function `localizationMapByKey` are used to localize the command name and description. You pass the translation key or localization map as an argument to the function.
+Also you can set what locales the command will be localized
+
+```typescript
+@SlashCommand({ 
+      name: 'ping', 
+      description: 'Pong!', 
+      nameLocalizations: localizationMapByKey('commands.ping.name', ['en', 'ru']), 
+      descriptionLocalizations: localizationMapByKey('commands.ping.name', ['en', 'ru']) 
+    })
+```
+
+Or
+
+```typescript
+@SlashCommand({ 
+  name: 'ping', 
+  description: 'Pong!', 
+  nameLocalizations: {
+    en: 'command.ping.name',
+    ru: 'command.ping.name'
+  }, 
+  descriptionLocalizations: {
+    en: 'command.ping.description',
+    ru: 'command.ping.description'
+  }
+})
+```
 
 Congratulations! You have successfully created your first localized command with Necord!
