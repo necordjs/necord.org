@@ -165,7 +165,7 @@ Also you can set what locales the command will be localized
     })
 ```
 
-Or
+Or just pass a localization object with the location id and translation key to the `nameLocalization` and `descriptionLocalizations` properties
 
 ```typescript
 @SlashCommand({ 
