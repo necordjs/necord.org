@@ -6,7 +6,9 @@ title: Localization
 sidebar_position: 2
 ---
 
-`@necord/localization` is a lightweight localization module for [Necord](https://necord.org/). It allows you to easily localize your bot's commands and messages. The module provides a simple API for managing locales and translations, as well as a powerful localization adapter system.
+`@necord/localization` is a lightweight localization module for [Necord](https://necord.org/). It allows you to easily localize your bot's
+commands and messages. The module provides a simple API for managing locales and translations, as well as a powerful localization adapter
+system.
 
 ## Installation
 
@@ -62,6 +64,10 @@ export class AppModule {
 }
 ```
 
+## Adapters
+
+The `DefaultLocalizationAdapter` is a simple adapter that allows you to provide a map of locales and translations.
+
 Also you can use the `NestedLocalizationAdapter` that allows you to organize translation keys into objects
 
 ```typescript
@@ -72,47 +78,34 @@ NecordLocalizationModule.forRoot({
     adapter: new NestedLocalizationAdapter({
         fallbackLocale: 'en-US',
         locales: {
-          'en-US': {
-            'commands': {
-              'ping': {
-                'name': 'ping',
-                'description': 'Pong!'
-              }
+            'en-US': {
+                'commands': {
+                    'ping': {
+                        'name': 'ping',
+                        'description': 'Pong!'
+                    }
+                }
+            },
+            ru: {
+                'commands': {
+                    'ping': {
+                        'name': 'пинг',
+                        'description': 'Понг!'
+                    }
+                }
             }
-          },
-          ru: {
-            'commands':{
-              'ping': {
-                'name': 'пинг',
-                'description': 'Понг!'
-              }
-            }
-          }
         }
     })
 })
 
 ```
 
-`UserResolver` gets the location for translation from `interaction.locale` and `GuildResolver` gets it from `interaction.guildLocation`. Also, you can create your own Resolver. Just implement the `LocaleResolver` interface:
-
-```typescript
-import { CommandContext, LocaleResolver } from '@necord/localization';
-import { ExecutionContext, Injectable } from '@nestjs/common';
-import { NecordExecutionContext } from 'necord';
-
-@Injectable()
-export class GuildResolver implements LocaleResolver {
- resolve(context: ExecutionContext): string | string[] | undefined {
-  const necordContext = NecordExecutionContext.create(context);
-  const [interaction] = necordContext.getContext<CommandContext>();
-
-  return interaction.guildLocale;
- }
-}
-```
-
+:::info
 `DefaultLocalizationAdapter` and `NestedLocalizationAdapter` can translate your localization strings and placeholders (e.g `{{username}}`)
+:::
+
+#### Custom Adapters
+
 Also, you can create your own localization adapter. Just implement the `BaseLocalizationAdapter` interface:
 
 ```typescript
@@ -130,7 +123,38 @@ export class CustomLocalizationAdapter extends BaseLocalizationAdapter<CustomLoc
 }
 ```
 
-Then, we can inject the `LOCALIZATION_ADAPTER` into our service and use it to localize our commands and messages:
+## Resolvers
+
+Resolvers are used to get the locale for translation. By default, Necord provides two resolvers: `UserResolver` and `GuildResolver`.
+
+| Resolver      | Description                                                                  |
+|---------------|------------------------------------------------------------------------------|
+| UserResolver  | Gets the locale from the user's locale property (`interaction.locale`)       |
+| GuildResolver | Gets the locale from the guild's locale property (`interaction.guildLocale`) |
+
+#### Custom Resolvers
+
+Also, you can create your own Resolver. Just implement the `LocaleResolver` interface:
+
+```typescript
+import { CommandContext, LocaleResolver } from '@necord/localization';
+import { ExecutionContext, Injectable } from '@nestjs/common';
+import { NecordExecutionContext } from 'necord';
+
+@Injectable()
+export class GuildResolver implements LocaleResolver {
+    resolve(context: ExecutionContext): string | string[] | undefined {
+        const necordContext = NecordExecutionContext.create(context);
+        const [interaction] = necordContext.getContext<CommandContext>();
+
+        return interaction.guildLocale;
+    }
+}
+```
+
+## Localization 
+
+We can inject the `LOCALIZATION_ADAPTER` into our service and use it to localize our commands and messages:
 
 ```typescript
 import { Injectable, Inject, OnModuleInit } from '@nestjs/common';
@@ -144,11 +168,12 @@ export class AppService implements OnModuleInit {
         private readonly localizationAdapter: DefaultLocalizationAdapter
     ) {
     }
-    @SlashCommand({ 
-      name: 'ping', 
-      description: 'Pong!', 
-      nameLocalizations: localizationMapByKey('commands.ping.name'), 
-      descriptionLocalizations: localizationMapByKey('commands.ping.name') 
+
+    @SlashCommand({
+        name: 'ping',
+        description: 'Pong!',
+        nameLocalizations: localizationMapByKey('commands.ping.name'),
+        descriptionLocalizations: localizationMapByKey('commands.ping.name')
     })
     public ping(@Context() [interaction]: SlashCommandContext) {
         const message = this.localizationAdapter.getTranslation(
@@ -169,11 +194,11 @@ import { Context, SlashCommand, SlashCommandContext } from 'necord';
 
 @Injectable()
 export class AppService implements OnModuleInit {
-    @SlashCommand({ 
-      name: 'ping', 
-      description: 'Pong!', 
-      nameLocalizations: localizationMapByKey('commands.ping.name'), 
-      descriptionLocalizations: localizationMapByKey('commands.ping.name') 
+    @SlashCommand({
+        name: 'ping',
+        description: 'Pong!',
+        nameLocalizations: localizationMapByKey('commands.ping.name'),
+        descriptionLocalizations: localizationMapByKey('commands.ping.name')
     })
     public ping(
         @Context() [interaction]: SlashCommandContext,
@@ -185,32 +210,38 @@ export class AppService implements OnModuleInit {
 }
 ```
 
-Function `localizationMapByKey` are used to localize the command name and description. You pass the translation key or localization map as an argument to the function.
-Also you can set what locales the command will be localized
+:::info
+Function `localizationMapByKey` are used to localize the command name and description. You pass the translation key or localization map as
+an argument to the function.
+:::
+
+#### Setting up localized commands
+You can set what locales the command will be localized
 
 ```typescript
-@SlashCommand({ 
-      name: 'ping', 
-      description: 'Pong!', 
-      nameLocalizations: localizationMapByKey('commands.ping.name', ['en', 'ru']), 
-      descriptionLocalizations: localizationMapByKey('commands.ping.name', ['en', 'ru']) 
-    })
+@SlashCommand({
+    name: 'ping',
+    description: 'Pong!',
+    nameLocalizations: localizationMapByKey('commands.ping.name', ['en', 'ru']),
+    descriptionLocalizations: localizationMapByKey('commands.ping.name', ['en', 'ru'])
+})
 ```
 
-Or just pass a localization object with the location id and translation key to the `nameLocalization` and `descriptionLocalizations` properties
+Or just pass a localization object with the location id and translation key to the `nameLocalization` and `descriptionLocalizations`
+properties
 
 ```typescript
-@SlashCommand({ 
-  name: 'ping', 
-  description: 'Pong!', 
-  nameLocalizations: {
-    en: 'command.ping.name',
-    ru: 'command.ping.name'
-  }, 
-  descriptionLocalizations: {
-    en: 'command.ping.description',
-    ru: 'command.ping.description'
-  }
+@SlashCommand({
+    name: 'ping',
+    description: 'Pong!',
+    nameLocalizations: {
+        en: 'command.ping.name',
+        ru: 'command.ping.name'
+    },
+    descriptionLocalizations: {
+        en: 'command.ping.description',
+        ru: 'command.ping.description'
+    }
 })
 ```
 
