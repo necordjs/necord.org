@@ -56,10 +56,42 @@ import { AppService } from './app.service';
             })
         })
     ],
-    providers
+    providers: [AppService]
 })
 export class AppModule {
 }
+```
+
+Also you can use the `NestedLocalizationAdapter` that allows you to organize translation keys into objects
+
+```typescript
+import { NecordLocalizationModule, NestedLocalizationAdapter, UserResolver } from '@necord/localization';
+
+NecordLocalizationModule.forRoot({
+    resolvers: UserResolver,
+    adapter: new NestedLocalizationAdapter({
+        fallbackLocale: 'en-US',
+        locales: {
+          'en-US': {
+            'commands': {
+              'ping': {
+                'name': 'ping',
+                'description': 'Pong!'
+              }
+            }
+          },
+          ru: {
+            'commands':{
+              'ping': {
+                'name': 'пинг',
+                'description': 'Понг!'
+              }
+            }
+          }
+        }
+    })
+})
+
 ```
 
 `UserResolver` gets the location for translation from `interaction.locale` and `GuildResolver` gets it from `interaction.guildLocation`. Also, you can create your own Resolver. Just implement the `LocaleResolver` interface:
@@ -80,7 +112,7 @@ export class GuildResolver implements LocaleResolver {
 }
 ```
 
-`DefaultLocalizationAdapter` can translate your localization strings and placeholders (e.g `{{username}}`)
+`DefaultLocalizationAdapter` and `NestedLocalizationAdapter` can translate your localization strings and placeholders (e.g `{{username}}`)
 Also, you can create your own localization adapter. Just implement the `BaseLocalizationAdapter` interface:
 
 ```typescript
