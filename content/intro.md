@@ -65,7 +65,7 @@ import { IntentsBitField } from 'discord.js';
     imports: [
         NecordModule.forRoot({
             token: 'DISCORD_BOT_TOKEN',
-            intents: [IntentsBitField.Guilds]
+            intents: [IntentsBitField.Flags.Guilds]
         })
     ],
     providers: []
