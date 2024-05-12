@@ -60,6 +60,7 @@ Once the installation process is complete, we can import the `NecordModule` into
 import { NecordModule } from 'necord';
 import { Module } from '@nestjs/common';
 import { IntentsBitField } from 'discord.js';
+import { AppUpdate } from './app.update';
 
 @Module({
     imports: [
@@ -68,7 +69,7 @@ import { IntentsBitField } from 'discord.js';
             intents: [IntentsBitField.Flags.Guilds]
         })
     ],
-    providers: []
+    providers: [AppUpdate]
 })
 export class AppModule {}
 ```
