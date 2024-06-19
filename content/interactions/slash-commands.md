@@ -114,7 +114,7 @@ List of all built-in option decorators:
 | `ChannelOption`     | `GuildChannel`                | A channel option     |
 | `RoleOption`        | `Role`                        | A role option        |
 | `MentionableOption` | `GuildMember` \| `Role` \| `User` | A mentionable option |
-| `AttachmentOption`  | `AttachmentOption`            | An attachment option |
+| `AttachmentOption`  | `Attachment`            | An attachment option |
 
 ## Autocomplete
 
@@ -191,7 +191,7 @@ For those developers looking to make more organized and complex groups of comman
 Use `SlashGroup` decorators on class-level `(Group)` and method-level `(SubGroup)`:
 
 ```typescript title="utils-commands.service.ts"
-import {createCommandGroupDecorator, Subcommand} from 'necord';
+import { createCommandGroupDecorator, Subcommand } from 'necord';
 
 export const UtilsCommandDecorator = createCommandGroupDecorator({
     name: 'utils',
