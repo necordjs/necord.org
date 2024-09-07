@@ -14,7 +14,7 @@ reduces friction contributing to this project.
 
 ## Setup
 
-You will need [Node.js](http://nodejs.org) **version 16+**, and [npm](https://www.npmjs.com/).
+You will need [Node.js](http://nodejs.org) **version 18+**, and [npm](https://www.npmjs.com/).
 
 To get ready to work on the codebase, please do the following:
 

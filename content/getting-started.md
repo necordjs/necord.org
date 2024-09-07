@@ -26,7 +26,7 @@ npm install necord discord.js
 ```
 
 :::tip
-You need to install [Node.js](https://nodejs.org/en/) v16.0.0 or newer to use Necord and Discord.js.
+You need to install [Node.js](https://nodejs.org/en/) v18.0.0 or newer to use Necord and Discord.js.
 :::
 
 ## Module
