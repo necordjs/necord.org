@@ -79,7 +79,7 @@ The construction above instantiates `NecordConfigService` inside `NecordModule`,
 
 ```typescript title="src/discord-config.service.ts"
 import { Injectable } from '@nestjs/common';
-import { NecordOptionsFactory, NecordModuleOptions } from 'necord';
+import { NecordModuleOptions } from 'necord';
 import { IntentsBitField } from 'discord.js';
 
 @Injectable()
