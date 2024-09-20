@@ -126,7 +126,7 @@ import { AutocompleteInteraction } from 'discord.js';
 import { AutocompleteInterceptor } from 'necord';
 
 @Injectable()
-class AnimeAutocompleteInterceptor extends AutocompleteInterceptor {
+export class AnimeAutocompleteInterceptor extends AutocompleteInterceptor {
     public transformOptions(interaction: AutocompleteInteraction) {
         const focused = interaction.options.getFocused(true);
         let choices: string[];
@@ -229,3 +229,5 @@ export class UtilsStringCommands {
 After the registration commands, the bot will process `/utils ping` and `/utils string length` commands, like here:
 
 ![Commands](/img/content/slash_command_example.png)
+
+You can view a working example [here](https://github.com/necordjs/examples/tree/master/02-slash-commands).

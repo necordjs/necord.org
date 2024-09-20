@@ -71,33 +71,54 @@ The `DefaultLocalizationAdapter` is a simple adapter that allows you to provide 
 Also you can use the `NestedLocalizationAdapter` that allows you to organize translation keys into objects
 
 ```typescript
+import { NecordModule } from 'necord';
+import { Module } from '@nestjs/common';
 import { NecordLocalizationModule, NestedLocalizationAdapter, UserResolver } from '@necord/localization';
+import { AppService } from './app.service';
 
-NecordLocalizationModule.forRoot({
-    resolvers: UserResolver,
-    adapter: new NestedLocalizationAdapter({
-        fallbackLocale: 'en-US',
-        locales: {
-            'en-US': {
-                'commands': {
-                    'ping': {
-                        'name': 'ping',
-                        'description': 'Pong!'
+@Module({
+    imports: [
+        NecordModule.forRoot({
+            token: process.env.DISCORD_TOKEN,
+            intents: [
+                IntentsBitField.Flags.Guilds,
+                IntentsBitField.Flags.DirectMessages,
+                IntentsBitField.Flags.GuildMembers,
+                IntentsBitField.Flags.GuildMessages,
+                IntentsBitField.Flags.MessageContent
+            ],
+            prefix: '!',
+            development: [process.env.DISCORD_TEST_GUILD]
+        }),
+        NecordLocalizationModule.forRoot({
+            resolvers: UserResolver,
+            adapter: new NestedLocalizationAdapter({
+                fallbackLocale: 'en-US',
+                locales: {
+                    'en-US': {
+                        'commands': {
+                            'ping': {
+                                'name': 'ping',
+                                'description': 'Pong!'
+                            }
+                        }
+                    },
+                    ru: {
+                        'commands': {
+                            'ping': {
+                                'name': 'пинг',
+                                'description': 'Понг!'
+                            }
+                        }
                     }
                 }
-            },
-            ru: {
-                'commands': {
-                    'ping': {
-                        'name': 'пинг',
-                        'description': 'Понг!'
-                    }
-                }
-            }
-        }
-    })
+            })
+        })
+    ],
+    providers: [AppService]
 })
-
+export class AppModule {
+}
 ```
 
 :::info
@@ -246,3 +267,5 @@ properties
 ```
 
 Congratulations! You have successfully created your first localized command with Necord!
+
+You can view a working example [here](https://github.com/necordjs/examples/tree/master/07-localization).

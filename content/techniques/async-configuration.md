@@ -83,7 +83,7 @@ import { NecordModuleOptions } from 'necord';
 import { IntentsBitField } from 'discord.js';
 
 @Injectable()
-class NecordConfigService {
+export class NecordConfigService {
     createNecordOptions(): NecordModuleOptions {
         return {
             token: 'DISCORD_BOT_TOKEN',

@@ -60,3 +60,5 @@ export class AppModals {
     }
 }
 ```
+
+You can view a working example [here](https://github.com/necordjs/examples/tree/master/05-modals).
