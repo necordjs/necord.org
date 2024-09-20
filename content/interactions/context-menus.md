@@ -63,3 +63,6 @@ export class AppCommands {
 If all goes well, you should see something like this:
 
 ![Message Command](/img/content/context_message.png 'Message Command')
+
+You can view a working example [here](https://github.com/necordjs/examples/tree/master/03-context-menus).
+

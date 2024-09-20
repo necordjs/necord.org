@@ -93,3 +93,5 @@ export class AppService implements OnModuleInit {
 
 Congratulations! You have successfully created your first pagination!
 Just use `pagination` command and you will see your pagination!
+
+You can view a working example [here](https://github.com/necordjs/examples/tree/master/06-pagination).

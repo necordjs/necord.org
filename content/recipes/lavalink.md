@@ -266,3 +266,5 @@ export class SourceAutocompleteInterceptor extends AutocompleteInterceptor {
     }
 }
 ```
+
+You can view a working example [here](https://github.com/necordjs/examples/tree/master/08-lavalink).

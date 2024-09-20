@@ -322,3 +322,5 @@ Dynamic select menus are compatible with :
 - `RoleSelect`
 - `MentionableSelect`
 - `ChannelSelect`
+
+You can view a working example [here](https://github.com/necordjs/examples/tree/master/04-message-components).

@@ -125,3 +125,5 @@ You can run the following command at your OS command prompt to start the applica
 ```bash npm2yarn
 $ npm run start
 ```
+
+You can view a working example [here](https://github.com/necordjs/examples/tree/master/01-getting-started).
