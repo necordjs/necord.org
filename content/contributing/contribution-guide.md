@@ -6,7 +6,7 @@ title: Contribution Guide
 sidebar_position: 1
 ---
 
-# Contributing
+# Contribution Guide
 
 If you wish to contribute to the necord codebase or documentation, feel free to fork the repository and submit a
 pull request. We use ESLint to enforce a consistent coding style, so having that set up in your editor of choice
