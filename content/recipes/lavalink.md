@@ -156,10 +156,11 @@ export class AppService {
 }
 ```
 
-| Class (Type to be injected) | Manager Property (Will access to) | Description            |
-|-----------------------------|-----------------------------------|------------------------|
-| `LavalinkManager`           | `lavalinkManager`                 | Lavalink Manager       |
-| `NodeManager`               | `lavalinkManager.nodeManager`     | Node Manager           |
+| Class (Type to be injected) | Manager Property (Will access to)    | Description            |
+|-----------------------------|--------------------------------------|------------------------|
+| `LavalinkManager`           | `lavalinkManager`                    | Lavalink Manager       |
+| `NodeManager`               | `lavalinkManager.nodeManager`        | Node Manager           |
+| `PlayerManager`             | `lavalinkManager (player functions)` | Player Manager         |
 
 ## Play Tracks
 
@@ -168,15 +169,17 @@ export class AppService {
 
 ```typescript title="app.commands.ts"
 import { Injectable, UseInterceptors } from '@nestjs/common';
-import { GuildMember } from 'discord.js';
-import { LavalinkManager } from 'lavalink-client';
+import { NecordLavalinkService, PlayerManager } from 'lavalink-client';
 import { Context, Options, SlashCommand, SlashCommandContext } from 'necord';
 import { QueryDto } from './query.dto';
 import { SourceAutocompleteInterceptor } from 'source.autocomplete';
 
 @Injectable()
 export class AppCommands {
-    public constructor(private readonly lavalinkManager: LavalinkManager) {}
+    public constructor(
+        private readonly playerManager: PlayerManager,
+        private readonly lavalinkService: NecordLavalinkService
+    ) {}
 
     @UseInterceptors(SourceAutocompleteInterceptor)
     @SlashCommand({
@@ -188,11 +191,9 @@ export class AppCommands {
         @Options() { query, source }: QueryDto,
     ) {
         const player =
-            this.lavalinkManager.players.get(interaction.guild.id) ??
-            this.lavalinkManager.createPlayer({
-                guildId: interaction.guild.id,
-                voiceChannelId: (interaction.member as GuildMember).voice.channel.id,
-                textChannelId: interaction.channel.id,
+            this.playerManager.get(interaction.guild.id) ??
+            this.playerManager.create({
+                ...this.lavalinkService.extractInfoForPlayer(interaction),
                 // optional configurations:
                 selfDeaf: true,
                 selfMute: false,
