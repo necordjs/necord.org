@@ -14,7 +14,7 @@ Transform your bot into a professional DJ with the power of the [Lavalink](https
 npm i @necord/lavalink necord discord.js lavalink-client
 ```
 
-- [Lavalink Intallation Guide](https://lavalink.dev/getting-started/index.html)
+- [Lavalink Installation Guide](https://lavalink.dev/getting-started/index.html)
 
 ## Usage
 
