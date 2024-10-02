@@ -71,7 +71,7 @@ export class AppService {
     private readonly logger = new Logger(AppService.name);
 
     @OnNodeManager('connect')
-    public onReady(@Context() [node]: NodeManagerContextOf<'connect'>) {
+    public onConnect(@Context() [node]: NodeManagerContextOf<'connect'>) {
         this.logger.log(`Node: ${node.options.id} Connected`);
     }
 
