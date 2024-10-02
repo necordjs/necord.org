@@ -97,9 +97,17 @@ export class AppService {
 | `playerMove`              | Emitted whenever a Player gets moved between Voice Channels. |
 | `playerDisconnect`        | Emitted whenever a player is disconnected from a channel.  |
 | `playerSocketClose`       | Emitted whenever a Node-Socket got closed for a specific Player. |
-| `playerDestroy`           | Emitted whenever a Player got destroyed                    |
+| `playerDestroy`           | Emitted whenever a Player got destroyed.                   |
 | `playerUpdate`            | Emitted whenever a Player gets an update from Lavalink's playerUpdate Event. |
-| `debug`                   | Emitted for several erros, and logs within lavalink-client, if `managerOptions.advancedOptions.enableDebugEvents` is `true`                            |
+| `playerMuteChange`        | Emitted whenever Player's voice state related to muting is changed. |
+| `playerDeafChange`        | Emitted whenever Player's voice state related to deafing is changed. |
+| `playerSuppressChange`    | Emitted whenever Player's voice state related to supressing is changed. |
+| `playerQueueEmptyStart`   | Emitted whenever the Queue empty handler started (timeout). |
+| `playerQueueEmptyEnd`     | Emitted whenever the Queue empty handler finished (successfully) and destroyed the player. |
+| `playerQueueEmptyCancel`  | Emitted whenever the Queue empty handler cancelled (e.g. because a new track got added). |
+| `playerVoiceJoin`         | Emitted whenever a user joins the player's voice channel.  |
+| `playerVoiceLeave`        | Emitted whenever a user leaves the player's voice channel. |
+| `debug`                   | Emitted for several erros, and logs within lavalink-client, if `managerOptions.advancedOptions.enableDebugEvents` is `true`. |
 
 #### SponsorBlock Plugin Events
 
