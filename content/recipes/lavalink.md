@@ -84,7 +84,7 @@ export class AppService {
 
 ### LavalinkManager Events
 
-- View in Official [**lavalink-client** Documentation](https://lc4.gitbook.io/lavalink-client/docs/lavalinkmanager#event-listeners).
+- View in Official [**lavalink-client** Documentation](https://tomato6966.github.io/lavalink-client/extra/manager-events/).
 
 | Event Name                | Description                                                |
 |---------------------------|------------------------------------------------------------|
@@ -134,7 +134,7 @@ export class AppService {
 
 ### NodeManager Events
 
-- View in Official [**lavalink-client** Documentation](https://lc4.gitbook.io/lavalink-client/docs/nodemanager#event-listeners).
+- View in Official [**lavalink-client** Documentation](https://tomato6966.github.io/lavalink-client/extra/node-events/).
 
 | Event Name                | Description                                                |
 |---------------------------|------------------------------------------------------------|
@@ -172,7 +172,6 @@ export class AppService {
 ## Play Tracks
 
 - Here you'll view a sample of PlayCommand using the best techniques of [Slash Commands](https://necord.org/interactions/slash-commands) tutorial.
-- View in Official [**lavalink-client** Documentation](https://lc4.gitbook.io/lavalink-client/basics/getting-started#play-songs).
 
 ```typescript title="app.commands.ts"
 import { Injectable, UseInterceptors } from '@nestjs/common';
