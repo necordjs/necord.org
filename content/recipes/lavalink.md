@@ -71,7 +71,7 @@ export class AppService {
     private readonly logger = new Logger(AppService.name);
 
     @OnNodeManager('connect')
-    public onReady(@Context() [node]: NodeManagerContextOf<'connect'>) {
+    public onConnect(@Context() [node]: NodeManagerContextOf<'connect'>) {
         this.logger.log(`Node: ${node.options.id} Connected`);
     }
 
@@ -84,7 +84,7 @@ export class AppService {
 
 ### LavalinkManager Events
 
-- View in Official [**lavalink-client** Documentation](https://lc4.gitbook.io/lavalink-client/docs/lavalinkmanager#event-listeners).
+- View in Official [**lavalink-client** Documentation](https://tomato6966.github.io/lavalink-client/extra/manager-events/).
 
 | Event Name                | Description                                                |
 |---------------------------|------------------------------------------------------------|
@@ -97,9 +97,17 @@ export class AppService {
 | `playerMove`              | Emitted whenever a Player gets moved between Voice Channels. |
 | `playerDisconnect`        | Emitted whenever a player is disconnected from a channel.  |
 | `playerSocketClose`       | Emitted whenever a Node-Socket got closed for a specific Player. |
-| `playerDestroy`           | Emitted whenever a Player got destroyed                    |
+| `playerDestroy`           | Emitted whenever a Player got destroyed.                   |
 | `playerUpdate`            | Emitted whenever a Player gets an update from Lavalink's playerUpdate Event. |
-| `debug`                   | Emitted for several erros, and logs within lavalink-client, if `managerOptions.advancedOptions.enableDebugEvents` is `true`                            |
+| `playerMuteChange`        | Emitted whenever Player's voice state related to muting is changed. |
+| `playerDeafChange`        | Emitted whenever Player's voice state related to deafing is changed. |
+| `playerSuppressChange`    | Emitted whenever Player's voice state related to supressing is changed. |
+| `playerQueueEmptyStart`   | Emitted whenever the Queue empty handler started (timeout). |
+| `playerQueueEmptyEnd`     | Emitted whenever the Queue empty handler finished (successfully) and destroyed the player. |
+| `playerQueueEmptyCancel`  | Emitted whenever the Queue empty handler cancelled (e.g. because a new track got added). |
+| `playerVoiceJoin`         | Emitted whenever a user joins the player's voice channel.  |
+| `playerVoiceLeave`        | Emitted whenever a user leaves the player's voice channel. |
+| `debug`                   | Emitted for several erros, and logs within lavalink-client, if `managerOptions.advancedOptions.enableDebugEvents` is `true`. |
 
 #### SponsorBlock Plugin Events
 
@@ -126,7 +134,7 @@ export class AppService {
 
 ### NodeManager Events
 
-- View in Official [**lavalink-client** Documentation](https://lc4.gitbook.io/lavalink-client/docs/nodemanager#event-listeners).
+- View in Official [**lavalink-client** Documentation](https://tomato6966.github.io/lavalink-client/extra/node-events/).
 
 | Event Name                | Description                                                |
 |---------------------------|------------------------------------------------------------|
@@ -165,7 +173,6 @@ export class AppService {
 ## Play Tracks
 
 - Here you'll view a sample of PlayCommand using the best techniques of [Slash Commands](https://necord.org/interactions/slash-commands) tutorial.
-- View in Official [**lavalink-client** Documentation](https://lc4.gitbook.io/lavalink-client/basics/getting-started#play-songs).
 
 ```typescript title="app.commands.ts"
 import { Injectable, UseInterceptors } from '@nestjs/common';
