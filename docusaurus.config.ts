@@ -288,14 +288,7 @@ const config: Config = {
 	],
 	i18n: {
 		defaultLocale,
-		locales: ['en', 'ru', 'pt-BR'],
-		path: 'locale',
-		localeConfigs: {
-			en: {
-				label: 'English',
-				direction: 'ltr'
-			}
-		}
+		locales: ['en', 'ru', 'pt-BR']
 	}
 };
 
