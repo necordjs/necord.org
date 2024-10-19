@@ -19,7 +19,7 @@ const config: Config = {
 	onBrokenAnchors: 'throw',
 	onBrokenMarkdownLinks: 'warn',
 	favicon: 'img/favicon.ico',
-	organizationName: 'necordjs', // Usually your GitHub org/user name.
+	organizationName: 'necordjs', // Usually your GitHub org/username.
 	projectName: 'necord.org', // Usually your repo name.
 	presets: [
 		[
