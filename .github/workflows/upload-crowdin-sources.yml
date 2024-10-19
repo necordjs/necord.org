@@ -5,9 +5,6 @@ on:
   push:
     branches:
       - master
-  pull_request:
-    branches:
-      - master
 
 env:
   CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
@@ -35,19 +32,3 @@ jobs:
 
       - name: Upload translations
         run: yarn translations:upload
-
-      - name: Create a Pull Request with the new translations
-        uses: peter-evans/create-pull-request@v7
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Upload translations"
-          title: "Upload translations"
-          body: "This PR was automatically created to upload new translations to Crowdin."
-          branch: "feat/translations"
-          base: "master"
-          assignees: "SocketSomeone"
-          reviewers: "SocketSomeone"
-          team-reviewers: "octocat"
-          milestone: "1"
-          draft: false
-          delete-branch: true
