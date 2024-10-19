@@ -15,8 +15,6 @@ const config: Config = {
 	baseUrl: '/',
 	onBrokenLinks: 'throw',
 	onBrokenMarkdownLinks: 'warn',
-	onBrokenAnchors: 'throw',
-	onDuplicateRoutes: 'throw',
 	favicon: 'img/favicon.ico',
 	organizationName: 'necordjs', // Usually your GitHub org/user name.
 	projectName: 'necord.org', // Usually your repo name.
