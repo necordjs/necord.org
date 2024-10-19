@@ -9,6 +9,9 @@ on:
     branches:
       - master
 
+env:
+    CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+
 jobs:
   upload:
     name: Upload
