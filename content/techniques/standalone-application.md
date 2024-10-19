@@ -28,6 +28,6 @@ All that remains is to remove unused dependencies:
 npm un @nestjs/platform-express @types/express
 ```
 
-:::caution
+:::warning
 But when you run standalone application you can't use global enhancers due to the fact that they are not registered in the application context. While [issue](https://github.com/nestjs/nest/issues/9017) not resolved, you can use local enhancers instead or start your application via `app.init()` method.
 :::

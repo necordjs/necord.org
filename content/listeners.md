@@ -35,7 +35,7 @@ export class AppService {
 }
 ```
 
-:::caution Warning
+:::warning Warning
 
 If you use global filters, guards or interceptors, they will be triggered once per event!  
 This means if you are replying to the message in guards, you can run into issues with duplicated responses or invalid interactions.

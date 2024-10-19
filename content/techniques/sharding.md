@@ -8,7 +8,7 @@ sidebar_position: 1
 
 Discord prevents your bot application from logging in without sharding once you hit a scale of 2,500 guilds. If you are not planning to create a public bot application, then you can go ahead and ignore this section. However, if you are creating a public bot application, it would be wise to keep sharding in mind as it can increase the complexity of your application due to how a sharded process works.
 
-:::caution
+:::warning
 If you are running the bot as part of a webserver within NestJS, then in order to implement sharding you must understand that initialising `necord` within your HTTP server process isn't going to be a viable option. So we're going to have to split the two into their own independent processes. This doesn't mean you can't share code between the two, just that they will be running on different processes. You could consider your "bot" application as a microservice of sorts.
 :::
 

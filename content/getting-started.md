@@ -81,7 +81,7 @@ export interface NecordModuleOptions extends DiscordClientOptions {
 | `development`      | `Snowflake[]` or `false`                   | The development guilds for your bot                 |
 | `skipRegistration` | `boolean`                                  | Skip automatic registration of application commands |
 
-:::caution Warning
+:::warning Warning
 
 If you have commands using the `guilds` property, the global development argument **will not** overwrite it.
 

@@ -10,7 +10,7 @@ description: Text commands are the most common type of command. They are used to
 sidebar_position: 5
 ---
 
-:::caution
+:::warning
 
 A text command is dependent on the content of the message but unfortunately, Discord plans to remove message content for verified bots and
 apps, those with 100 or more servers. Hence, You cannot use text commands if your bot cannot access message content.
