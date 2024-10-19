@@ -5,26 +5,35 @@ import { themes } from 'prism-react-renderer';
 const lightCodeTheme = themes.github;
 const darkCodeTheme = themes.oceanicNext;
 
+const defaultLocale = 'en';
 /** @type {import('@docusaurus/types').Config} */
 const config: Config = {
 	title: 'Necord',
+	titleDelimiter: '|',
 	tagline: 'A module for creating Discord bots using NestJS, based on Discord.js',
 	url: 'https://necord.org',
 	baseUrl: '/',
 	onBrokenLinks: 'throw',
 	onBrokenMarkdownLinks: 'warn',
+	onBrokenAnchors: 'throw',
+	onDuplicateRoutes: 'throw',
 	favicon: 'img/favicon.ico',
 	organizationName: 'necordjs', // Usually your GitHub org/user name.
 	projectName: 'necord.org', // Usually your repo name.
 	presets: [
 		[
 			'classic',
-			/** @type {import('@docusaurus/preset-classic').Options} */
 			{
 				debug: process.env.NODE_ENV !== 'production',
 				docs: {
 					sidebarPath: require.resolve('./sidebars.js'),
-					editUrl: 'https://github.com/necordjs/documentation/tree/master',
+					editUrl: ({ locale, versionDocsDirPath, docPath }) => {
+						if (locale === defaultLocale) {
+							return `https://`
+						}
+
+						return `https://github.com/necordjs/necord.org/edit/master/${versionDocsDirPath}/${docPath}`;
+					},
 					path: 'content',
 					routeBasePath: '/',
 					showLastUpdateAuthor: true,
@@ -39,13 +48,13 @@ const config: Config = {
 				sitemap: {
 					changefreq: 'weekly',
 					priority: 0.5,
-					ignorePatterns: ['/contributing/**']
+					ignorePatterns: ['/contributing/**'],
 				},
 				gtag: {
 					trackingID: 'G-46VBZHXG63',
 					anonymizeIP: false
 				}
-			}
+			} satisfies Preset.Options
 		]
 	],
 	headTags: [
@@ -143,7 +152,20 @@ const config: Config = {
 					position: 'left',
 					href: 'https://discord.com/invite/mcBYvMTnwP'
 				},
-
+				{
+					type: 'localeDropdown',
+					position: 'right',
+					dropdownItemsAfter: [
+						{
+							type: 'html',
+							value: '<hr style="margin: 0.3rem 0;">',
+						},
+						{
+							href: 'https://github.com/facebook/docusaurus/issues/3526',
+							label: 'Help Us Translate',
+						},
+					],
+				},
 				{
 					href: 'https://www.npmjs.com/package/necord',
 					position: 'right',
@@ -155,7 +177,7 @@ const config: Config = {
 					position: 'right',
 					className: 'header-github-link',
 					'aria-label': 'GitHub repository'
-				}
+				},
 			]
 		},
 		colorMode: {
@@ -224,7 +246,22 @@ const config: Config = {
 				]
 			}
 		]
-	]
+	],
+	i18n: {
+		defaultLocale,
+		locales: ['en'],
+		path: 'locale',
+		localeConfigs: {
+			en: {
+				label: 'English',
+				direction: 'ltr'
+			},
+			// ru: {
+			// 	label: 'Русский',
+			// 	direction: 'ltr'
+			// }
+		}
+	}
 };
 
 module.exports = config;
