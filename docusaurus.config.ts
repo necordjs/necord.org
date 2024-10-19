@@ -6,7 +6,7 @@ const lightCodeTheme = themes.github;
 const darkCodeTheme = themes.oceanicNext;
 
 const defaultLocale = 'en';
-/** @type {import('@docusaurus/types').Config} */
+
 const config: Config = {
 	title: 'Necord',
 	titleDelimiter: '|',
