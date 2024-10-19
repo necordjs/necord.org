@@ -29,6 +29,7 @@ const config: Config = {
 					sidebarPath: require.resolve('./sidebars.js'),
 					editUrl: ({ locale, versionDocsDirPath, docPath }) => {
 						if (locale === defaultLocale) {
+							// TODO: Add support for crowdin
 							return `https://`
 						}
 
