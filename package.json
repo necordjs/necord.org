@@ -16,6 +16,7 @@
 		"translations:write": "yarn write-translations",
 		"translations:upload": "yarn crowdin upload",
 		"translations:download": "yarn crowdin download",
+		"translations:sync": "yarn translations:write && yarn translations:upload && yarn translations:download",
 		"typecheck": "tsc",
 		"predocker:start": "yarn",
 		"docker:start": "yarn start --host 0.0.0.0",
