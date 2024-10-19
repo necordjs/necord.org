@@ -175,7 +175,6 @@ const config: Config = {
 					position: 'left',
 					href: 'https://discord.com/invite/mcBYvMTnwP'
 				},
-				isDev && { to: '/__docusaurus/debug', label: 'Debug' },
 				{
 					type: 'localeDropdown',
 					position: 'right',
@@ -221,11 +220,11 @@ const config: Config = {
 			// 		]
 			// 	}
 			// ],
-			logo: {
-				alt: 'Necord Logo',
-				src: 'img/logo.svg',
-				href: 'https://necord.org'
-			},
+			// logo: {
+			// 	alt: 'Necord Logo',
+			// 	src: 'img/logo.svg',
+			// 	href: 'https://necord.org'
+			// },
 			copyright: `Copyright © 2021 - ${new Date().getFullYear()} • Built by <a target="_blank" href="https://github.com/SocketSomeone">Alexey Filippov</a> and <a target="_blank" href="https://github.com/SocketSomeone/necord/graphs/contributors">Others</a> with 💖`
 		}
 	} satisfies Preset.ThemeConfig,
