@@ -1,11 +1,13 @@
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import type { Options as DocsOptions } from '@docusaurus/plugin-content-docs';
 import { themes } from 'prism-react-renderer';
 
 const lightCodeTheme = themes.github;
 const darkCodeTheme = themes.oceanicNext;
 
 const defaultLocale = 'en';
+const isDev = process.env.NODE_ENV === 'development';
 
 const config: Config = {
 	title: 'Necord',
@@ -14,6 +16,7 @@ const config: Config = {
 	url: 'https://necord.org',
 	baseUrl: '/',
 	onBrokenLinks: 'throw',
+	onBrokenAnchors: 'throw',
 	onBrokenMarkdownLinks: 'warn',
 	favicon: 'img/favicon.ico',
 	organizationName: 'necordjs', // Usually your GitHub org/user name.
@@ -28,7 +31,7 @@ const config: Config = {
 					editUrl: ({ locale, versionDocsDirPath, docPath }) => {
 						if (locale === defaultLocale) {
 							// TODO: Add support for crowdin
-							return `https://`
+							return `https://`;
 						}
 
 						return `https://github.com/necordjs/necord.org/edit/master/${versionDocsDirPath}/${docPath}`;
@@ -38,7 +41,7 @@ const config: Config = {
 					showLastUpdateAuthor: true,
 					showLastUpdateTime: true,
 					remarkPlugins: [[require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }]]
-				},
+				} satisfies DocsOptions,
 				blog: false,
 				pages: false,
 				theme: {
@@ -47,7 +50,7 @@ const config: Config = {
 				sitemap: {
 					changefreq: 'weekly',
 					priority: 0.5,
-					ignorePatterns: ['/contributing/**'],
+					ignorePatterns: ['/contributing/**']
 				},
 				gtag: {
 					trackingID: 'G-46VBZHXG63',
@@ -60,7 +63,7 @@ const config: Config = {
 		{
 			tagName: 'script',
 			attributes: {
-				type: 'application/ld+json',
+				type: 'application/ld+json'
 			},
 			innerHTML: JSON.stringify({
 				'@context': 'https://schema.org/',
@@ -87,8 +90,30 @@ const config: Config = {
 				'⭐️ If you like Necord, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/necordjs/necord">GitHub</a>! ⭐️'
 		},
 		prism: {
-			additionalLanguages: ['bash', 'diff', 'json'],
+			additionalLanguages: [
+				'java',
+				'latex',
+				'haskell',
+				'matlab',
+				'PHp',
+				'powershell',
+				'bash',
+				'diff',
+				'json',
+				'scss'
+			],
 			defaultLanguage: 'typescript',
+			magicComments: [
+				{
+					className: 'theme-code-block-highlighted-line',
+					line: 'highlight-next-line',
+					block: { start: 'highlight-start', end: 'highlight-end' }
+				},
+				{
+					className: 'code-block-error-line',
+					line: 'This will error'
+				}
+			],
 			theme: lightCodeTheme,
 			darkTheme: darkCodeTheme
 		},
@@ -151,19 +176,21 @@ const config: Config = {
 					position: 'left',
 					href: 'https://discord.com/invite/mcBYvMTnwP'
 				},
+				isDev && { to: '/__docusaurus/debug', label: 'Debug' },
 				{
 					type: 'localeDropdown',
 					position: 'right',
 					dropdownItemsAfter: [
 						{
 							type: 'html',
-							value: '<hr style="margin: 0.3rem 0;">',
+							value: '<hr style="margin: 0.3rem 0;">'
 						},
 						{
+							// TODO: Add crowdin url
 							href: 'https://github.com/facebook/docusaurus/issues/3526',
-							label: 'Help Us Translate',
-						},
-					],
+							label: 'Help Us Translate'
+						}
+					]
 				},
 				{
 					href: 'https://www.npmjs.com/package/necord',
@@ -176,7 +203,7 @@ const config: Config = {
 					position: 'right',
 					className: 'header-github-link',
 					'aria-label': 'GitHub repository'
-				},
+				}
 			]
 		},
 		colorMode: {
@@ -185,6 +212,22 @@ const config: Config = {
 			respectPrefersColorScheme: true
 		},
 		footer: {
+			links: [
+				{
+					title: 'Help us',
+					items: [
+						{ label: 'Donate', href: 'https://opencollective.com/necord' },
+						{ label: 'Contribute', href: 'https://github.com/necordjs' },
+						// TODO: Add link to crowdin
+						{ label: 'Translate', href: 'https://crowdin' }
+					]
+				}
+			],
+			logo: {
+				alt: 'Necord Logo',
+				src: 'img/logo.svg',
+				href: 'https://necord.org'
+			},
 			copyright: `Copyright © 2021 - ${new Date().getFullYear()} • Built by <a target="_blank" href="https://github.com/SocketSomeone">Alexey Filippov</a> and <a target="_blank" href="https://github.com/SocketSomeone/necord/graphs/contributors">Others</a> with 💖`
 		}
 	} satisfies Preset.ThemeConfig,
@@ -248,17 +291,13 @@ const config: Config = {
 	],
 	i18n: {
 		defaultLocale,
-		locales: ['en'],
+		locales: ['en', 'ru', 'pt-BR'],
 		path: 'locale',
 		localeConfigs: {
 			en: {
 				label: 'English',
 				direction: 'ltr'
-			},
-			// ru: {
-			// 	label: 'Русский',
-			// 	direction: 'ltr'
-			// }
+			}
 		}
 	}
 };
