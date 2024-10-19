@@ -30,8 +30,7 @@ const config: Config = {
 					sidebarPath: require.resolve('./sidebars.js'),
 					editUrl: ({ locale, versionDocsDirPath, docPath }) => {
 						if (locale === defaultLocale) {
-							// TODO: Add support for crowdin
-							return `https://`;
+							return `https://crowdin.com/project/necord/${locale}`
 						}
 
 						return `https://github.com/necordjs/necord.org/edit/master/${versionDocsDirPath}/${docPath}`;
@@ -186,8 +185,7 @@ const config: Config = {
 							value: '<hr style="margin: 0.3rem 0;">'
 						},
 						{
-							// TODO: Add crowdin url
-							href: 'https://github.com/facebook/docusaurus/issues/3526',
+							href: 'https://crowdin.com/project/necord',
 							label: 'Help Us Translate'
 						}
 					]
@@ -212,17 +210,17 @@ const config: Config = {
 			respectPrefersColorScheme: true
 		},
 		footer: {
-			links: [
-				{
-					title: 'Help us',
-					items: [
-						{ label: 'Donate', href: 'https://opencollective.com/necord' },
-						{ label: 'Contribute', href: 'https://github.com/necordjs' },
-						// TODO: Add link to crowdin
-						{ label: 'Translate', href: 'https://crowdin' }
-					]
-				}
-			],
+			// TODO: Add links
+			// links: [
+			// 	{
+			// 		title: 'Help us',
+			// 		items: [
+			// 			{ label: 'Donate', href: 'https://opencollective.com/necord' },
+			// 			{ label: 'Contribute', href: 'https://github.com/necordjs' },
+			// 			{ label: 'Translate', href: 'https://crowdin.com/project/necord' }
+			// 		]
+			// 	}
+			// ],
 			logo: {
 				alt: 'Necord Logo',
 				src: 'img/logo.svg',
