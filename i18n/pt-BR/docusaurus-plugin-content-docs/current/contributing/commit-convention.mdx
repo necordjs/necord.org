@@ -4,7 +4,7 @@ title: Convenção de commits
 sidebar_position: 3
 ---
 
-## Git Commit Message Convention {#git-commit-message-convention}
+## Convenção de Mensagens de Commit do Git {#git-commit-message-convention}
 
 :::info
 
@@ -20,7 +20,7 @@ Títulos de commit devem corresponder ao seguinte regex:
 /^(revert: )?(feat|fix|docs|style|refactor|perf|test|workflow|build|ci|chore|types|wip)(\(.+\))?: .{1,72}/;
 ```
 
-### Full Message Format {#full-message-format}
+### Formato Completo de Mensagem {#full-message-format}
 
 Uma mensagem de commit consiste em um **cabeçalho**, **corpo** e **rodapé**. O cabeçalho possui um **tipo**, **escopo** e **assunto**:
 
@@ -34,21 +34,21 @@ Uma mensagem de commit consiste em um **cabeçalho**, **corpo** e **rodapé**. O
 
 O **cabeçalho** é obrigatório e o **escopo** do cabeçalho é opcional.
 
-### Revert {#revert}
+### Reverter {#revert}
 
 Se o commit reverter um commit anterior, ele deve começar com `revert:`, seguido pelo cabeçalho do commit revertido. No corpo, deveria dizer: `Isto reverte o commit <hash>.`, onde o hash é o SHA do commit que está sendo revertido.
 
-### Type {#type}
+### Tipo {#type}
 
 Se o prefixo for `feat`, `fix` ou `perf`, ele aparecerá no log de mudanças. Entretanto, se houver alguma [Alteração significativa](#footer), o commit sempre aparecerá no log de mudanças.
 
 Outros prefixos estão à sua disposição. Prefixos sugeridos são `docs`, `chore`, `style`, `refactor`, e `test` para tarefas não relacionadas ao changelog.
 
-### Scope {#scope}
+### Escopo {#scope}
 
 O escopo se refere a qual seção da aplicação as alterações ocorreram, como `SlashCommand`, `ContextMenu`, ou `MessageComponents`
 
-### Subject {#subject}
+### Assunto {#subject}
 
 O assunto contém uma descrição sucinta da alteração:
 
@@ -56,12 +56,12 @@ O assunto contém uma descrição sucinta da alteração:
 - não use letra maiúscula na primeira letra
 - não encerre sua mensagem com um ponto (.)
 
-### Body {#body}
+### Corpo {#body}
 
 Assim como no **assunto**, use o imperativo, presente a tensão
 O corpo deve incluir a motivação para a mudança e a diferença com o comportamento anterior.
 
-### Footer {#footer}
+### Rodapé {#footer}
 
 O rodapé deve conter qualquer informação sobre **Alterações significativas** e também é o lugar para
 fazer referência a problemas no GitHub que comportem **Fechados**.
