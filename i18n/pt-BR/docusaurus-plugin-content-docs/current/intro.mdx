@@ -1,0 +1,106 @@
+---
+id: intro
+slug: /
+title: Introdução
+description: Um módulo para criar bots do Discord usando o NestJS, baseado no Discord.js.
+sidebar_position: 1
+---
+
+<div align="center">
+	<h1>
+		<a href="#"><img src="https://necord.org/img/logo.png" alt="Necord Logo" /></a>
+	</h1>
+	🤖 A module for creating <b><a href="https://discord.com/">Discord</a> bots</b> using <a href="https://nestjs.com">NestJS</a>, based
+	on <a href="https://discord.js.org/">Discord.js</a>
+
+```
+<p style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem' }}>
+	<a href="https://necord.org">Documentation ✨</a>
+	<a href="https://github.com/necordjs/necord">Source code 🪡</a>
+	<a href="https://github.com/necordjs/samples">Examples 🛠️</a>
+	<a href="https://discord.gg/mcBYvMTnwP">Community 💬</a>
+</p>
+```
+
+</div>
+
+<p align="center">
+	<a href='https://img.shields.io/npm/v/necord'><img src="https://img.shields.io/npm/v/necord" alt="NPM Version" /></a>
+	<a href='https://img.shields.io/npm/l/necord'><img src="https://img.shields.io/npm/l/necord" alt="NPM License" /></a>
+	<a href='https://img.shields.io/npm/dm/necord'><img src="https://img.shields.io/npm/dm/necord" alt="NPM Downloads" /></a>
+	<a href='https://img.shields.io/github/last-commit/necordjs/necord'><img
+		src="https://img.shields.io/github/last-commit/SocketSomeone/necord" alt="Last commit" /></a>
+</p>
+
+## About {#about}
+
+Este pacote usa o melhor do mundo NodeJS debaixo do pano. [Discord.js](https://github.com/discordjs/discord.js) é a biblioteca
+mais poderosa para criar bots e [Nest.js](https://github.com/nestjs) é um framework progressivo para a criação de aplicações bem arquitetadas.
+Este módulo fornece uma maneira rápida e fácil para criar bots do Discord e uma integração profunda com sua aplicação NestJS.
+
+**Recursos**
+
+- Simples. Flexível. Fácil de usar.
+- Capacidade de criar decoradores personalizados.
+- Interaja com o Discord (Slash Commands, Menus de Contexto, Componentes de Mensagem, Listeners).
+- Suporte completo de guards NestJS, interceptors, filtros e pipes!
+
+Para perguntas e suporte, por favor use
+o [Issues](https://github.com/necordjs/necord/issues/new?assignees=&labels=question&template=question.yml).
+
+## Installation {#installation}
+
+**Node.js 18.0.0 ou mais recente é necessário.**
+
+```bash npm2yarn
+$ npm install necord discord.js
+```
+
+## Usage {#usage}
+
+Uma vez que o processo de instalação estiver concluído, nós podemos importar o `NecordPaginationModule` com o seu `NecordModule` para a raiz `AppModule`:
+
+```typescript title="src/app.module.ts"
+import { NecordModule } from 'necord';
+import { Module } from '@nestjs/common';
+import { IntentsBitField } from 'discord.js';
+import { AppUpdate } from './app.update';
+
+@Module({
+    imports: [
+        NecordModule.forRoot({
+            token: 'DISCORD_BOT_TOKEN',
+            intents: [IntentsBitField.Flags.Guilds]
+        })
+    ],
+    providers: [AppUpdate]
+})
+export class AppModule {}
+```
+
+Em seguida, crie o arquivo `app.update.ts` e adicione os decoradores `On`/`Once` para lidar com eventos de API do Discord:
+
+```typescript title="src/app.update.ts"
+import { Injectable, Logger } from '@nestjs/common';
+import { Context, On, Once, ContextOf } from 'necord';
+import { Client } from 'discord.js';
+
+@Injectable()
+export class AppUpdate {
+    private readonly logger = new Logger(AppUpdate.name);
+
+    public constructor(private readonly client: Client) {}
+
+    @Once('ready')
+    public onReady(@Context() [client]: ContextOf<'ready'>) {
+        this.logger.log(`Bot conectado como ${client.user.username}`);
+    }
+
+    @On('warn')
+    public onWarn(@Context() [message]: ContextOf<'warn'>) {
+        this.logger.warn(message);
+    }
+}
+```
+
+Sempre que você precisar manipular qualquer dado de eventos, use o decorador `Context`.

@@ -1,0 +1,69 @@
+---
+id: commit-convention
+title: Convenção de commits
+sidebar_position: 3
+---
+
+## Git Commit Message Convention {#git-commit-message-convention}
+
+:::info
+
+Isso foi adaptado da [convenção de commit de Angular](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular).
+
+:::
+
+#### TL;DR: {#tldr}
+
+Títulos de commit devem corresponder ao seguinte regex:
+
+```js
+/^(revert: )?(feat|fix|docs|style|refactor|perf|test|workflow|build|ci|chore|types|wip)(\(.+\))?: .{1,72}/;
+```
+
+### Full Message Format {#full-message-format}
+
+Uma mensagem de commit consiste em um **cabeçalho**, **corpo** e **rodapé**. O cabeçalho possui um **tipo**, **escopo** e **assunto**:
+
+```
+<tipo>(<escopo>): <assunto>
+<LINHA EM BRANCO>
+<corpo>
+<LINHA EM BRANCO>
+<rodapé>
+```
+
+O **cabeçalho** é obrigatório e o **escopo** do cabeçalho é opcional.
+
+### Revert {#revert}
+
+Se o commit reverter um commit anterior, ele deve começar com `revert:`, seguido pelo cabeçalho do commit revertido. No corpo, deveria dizer: `Isto reverte o commit <hash>.`, onde o hash é o SHA do commit que está sendo revertido.
+
+### Type {#type}
+
+Se o prefixo for `feat`, `fix` ou `perf`, ele aparecerá no log de mudanças. Entretanto, se houver alguma [Alteração significativa](#footer), o commit sempre aparecerá no log de mudanças.
+
+Outros prefixos estão à sua disposição. Prefixos sugeridos são `docs`, `chore`, `style`, `refactor`, e `test` para tarefas não relacionadas ao changelog.
+
+### Scope {#scope}
+
+O escopo se refere a qual seção da aplicação as alterações ocorreram, como `SlashCommand`, `ContextMenu`, ou `MessageComponents`
+
+### Subject {#subject}
+
+O assunto contém uma descrição sucinta da alteração:
+
+- Use o imperativo, o tenso atual: "change", não "changed" nem "changes"
+- não use letra maiúscula na primeira letra
+- não encerre sua mensagem com um ponto (.)
+
+### Body {#body}
+
+Assim como no **assunto**, use o imperativo, presente a tensão
+O corpo deve incluir a motivação para a mudança e a diferença com o comportamento anterior.
+
+### Footer {#footer}
+
+O rodapé deve conter qualquer informação sobre **Alterações significativas** e também é o lugar para
+fazer referência a problemas no GitHub que comportem **Fechados**.
+
+**Alterações significativas** deve começar com a palavra `BREAKING CHANGE:` com um espaço ou duas novas linhas. O resto da mensagem de commit é depois utilizado para isso.

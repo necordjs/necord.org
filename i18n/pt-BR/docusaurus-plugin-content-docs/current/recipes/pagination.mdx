@@ -1,0 +1,93 @@
+---
+id: pagination
+title: Paginação
+sidebar_position: 1
+---
+
+Certamente! Paginação é uma técnica útil empregada nas interfaces do usuário para apresentar grandes quantidades de informações de forma estruturada e controlável. Ao lidar com volumes substanciais de dados, como resultados de busca, artigos ou listagens de produtos, apresentá-lo tudo de uma vez pode sobrecarregar usuários e levar a uma experiência de usuário ruim. A paginação permite dividir as informações em partes menores, organizadas,
+melhorando o envolvimento dos usuários e a facilidade de navegação. Esse modulo permite que você crie uma paginação com algumas linhas de código.
+
+## Installation {#installation}
+
+```bash npm2yarn
+$ npm i @necord/pagination necord discord.js
+```
+
+## Usage {#usage}
+
+Uma vez que o processo de instalação estiver concluído, nós podemos importar o `NecordPaginationModule` com o seu `NecordModule` para a raiz `AppModule`:
+
+```typescript
+import { NecordModule } from 'necord';
+import { Module } from '@nestjs/common';
+import { NecordPaginationModule } from '@necord/pagination';
+import { AppService } from './app.service';
+
+@Module({
+    imports: [
+        NecordModule.forRoot({
+            token: 'DISCORD_BOT_TOKEN',
+            intents: ['Guilds', 'GuildMessages', 'DirectMessages']
+        }),
+        NecordPaginationModule.forRoot({
+            // Muda a aparênciados botões
+            buttons: {},
+            // Adiciona botões para pular entre a primeira e última página
+            allowSkip: true,
+            // Adiciona um botão para procurar uma página
+            allowTraversal: true,
+            // Define a pocição dos botões (inicio ("start") / fim ("end"))
+            buttonsPosition: "end"
+        })
+    ],
+    providers: [AppService]
+})
+export class AppModule {}
+```
+
+Então, podemos injetar o `PaginationService` em nosso serviço e registrar um manipulador de paginação:
+
+```typescript
+import { OnModuleInit, Injectable } from '@nestjs/common';
+import { NecordPaginationService, PageBuilder } from '@necord/pagination';
+import { Context, SlashCommand, SlashCommandContext } from 'necord';
+
+@Injectable()
+export class AppService implements OnModuleInit {
+    public constructor(private readonly paginationService: NecordPaginationService) {
+    }
+
+    public onModuleInit(): void {
+        return this.paginationService.register(builder =>
+            builder
+                // Requerido, para pesquisar pelo seu criador
+                .setCustomId('teste')
+                // Primeiro jeito de definir páginas
+                .setPages([
+                    new PageBuilder().setContent('Página 1'),
+                    new PageBuilder().setContent('Página 2'),
+                    new PageBuilder().setContent('Página 3'),
+                    new PageBuilder().setContent('Página 4'),
+                    new PageBuilder().setContent('Página 5')
+                ])
+                // Segundo jeito, você pode definir as páginas manualmente usando o método `setPages`
+                .setPagesFactory(page => new PageBuilder().setContent(`Página ${page}`))
+                // Opcional, apenas se você deseja usar fábrica de páginas
+                .setMaxPages(5)
+        );
+    }
+
+    @SlashCommand({ name: 'paginacao', description: 'Teste paginação' })
+    public async onPagination(@Context() [interaction]: SlashCommandContext) {
+        const pagination = this.paginationService.get('teste');
+        const page = await pagination.build();
+
+        return interaction.reply(page);
+    }
+}
+```
+
+Parabéns! Você criou com sucesso sua primeira paginação!
+Apenas use o comando `paginacao` e você verá sua paginação!
+
+Você pode ver um exemplo funcional [aqui](https://github.com/necordjs/examples/tree/master/06-pagination).
