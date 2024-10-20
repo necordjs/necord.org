@@ -12,12 +12,18 @@
 		"serve": "docusaurus serve",
 		"write-translations": "docusaurus write-translations",
 		"write-heading-ids": "docusaurus write-heading-ids",
+		"crowdin": "crowdin",
+		"translations:write": "yarn write-translations",
+		"translations:upload": "yarn crowdin upload",
+		"translations:download": "yarn crowdin download",
+		"translations:sync": "yarn translations:write && yarn translations:upload && yarn translations:download",
 		"typecheck": "tsc",
 		"predocker:start": "yarn",
 		"docker:start": "yarn start --host 0.0.0.0",
 		"prettier:write": "prettier --write ./content"
 	},
 	"dependencies": {
+		"@crowdin/cli": "^4.2.0",
 		"@docusaurus/core": "3.5.2",
 		"@docusaurus/plugin-pwa": "3.5.2",
 		"@docusaurus/preset-classic": "3.5.2",
@@ -48,5 +54,6 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
-	}
+	},
+	"packageManager": "yarn@1.22.22"
 }

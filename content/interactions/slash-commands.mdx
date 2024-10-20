@@ -12,7 +12,7 @@ you get the command right the first time.
 
 ![Slash Commands](/img/content/slash_command_menu.png 'Slash Commands')
 
-## Global Commands
+## Global Commands {#global-commands}
 
 :::tip
 
@@ -20,7 +20,7 @@ Global commands are cached for one hour. New global commands will fan out slowly
 after an hour. Guild commands update instantly. As such, we recommend you use guild-based commands during development and publish them to
 global commands when they're ready for public use.
 
-[Read more about dev-mode configuration](/start#development)
+[Read more about dev-mode configuration](/start#module-setup)
 :::
 
 Create `app.commands.ts` file and add method with `SlashCommand` decorator.
@@ -41,7 +41,7 @@ export class AppCommands {
 }
 ```
 
-## Guild Commands
+## Guild Commands {#guild-commands}
 
 If you want to have guild specific commands, use the `guilds` property on the `SlashCommand` decorator
 
@@ -64,7 +64,7 @@ export class AppCommands {
 
 > You can use decorator on both method and class.
 
-## Options
+## Options {#options}
 
 Use the option decorator to define a parameter in a slash command, let's create the `LengthDto` class:
 
@@ -116,7 +116,7 @@ List of all built-in option decorators:
 | `MentionableOption` | `GuildMember` \| `Role` \| `User` | A mentionable option |
 | `AttachmentOption`  | `Attachment`            | An attachment option |
 
-## Autocomplete
+## Autocomplete {#autocomplete}
 
 To add autocomplete to your Slashcommand you will need a interceptor first. This class will intercept all requests from the user after typing in the autocomplete option field
 
@@ -181,7 +181,7 @@ export class AnimeCommands {
 }
 ```
 
-## Groups
+## Groups {#groups}
 
 :::tip **TIP**
 

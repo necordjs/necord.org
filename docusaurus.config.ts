@@ -1,36 +1,46 @@
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import type { Options as DocsOptions } from '@docusaurus/plugin-content-docs';
 import { themes } from 'prism-react-renderer';
 
 const lightCodeTheme = themes.github;
 const darkCodeTheme = themes.oceanicNext;
 
-/** @type {import('@docusaurus/types').Config} */
+const defaultLocale = 'en';
+const isDev = process.env.NODE_ENV === 'development';
+
 const config: Config = {
 	title: 'Necord',
+	titleDelimiter: '|',
 	tagline: 'A module for creating Discord bots using NestJS, based on Discord.js',
 	url: 'https://necord.org',
 	baseUrl: '/',
 	onBrokenLinks: 'throw',
+	onBrokenAnchors: 'throw',
 	onBrokenMarkdownLinks: 'warn',
 	favicon: 'img/favicon.ico',
-	organizationName: 'necordjs', // Usually your GitHub org/user name.
+	organizationName: 'necordjs', // Usually your GitHub org/username.
 	projectName: 'necord.org', // Usually your repo name.
 	presets: [
 		[
 			'classic',
-			/** @type {import('@docusaurus/preset-classic').Options} */
 			{
 				debug: process.env.NODE_ENV !== 'production',
 				docs: {
 					sidebarPath: require.resolve('./sidebars.js'),
-					editUrl: 'https://github.com/necordjs/documentation/tree/master',
+					editUrl: ({ locale, versionDocsDirPath, docPath }) => {
+						if (locale === defaultLocale) {
+							return `https://crowdin.com/project/necord/${locale}`
+						}
+
+						return `https://github.com/necordjs/necord.org/edit/master/${versionDocsDirPath}/${docPath}`;
+					},
 					path: 'content',
 					routeBasePath: '/',
 					showLastUpdateAuthor: true,
 					showLastUpdateTime: true,
 					remarkPlugins: [[require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }]]
-				},
+				} satisfies DocsOptions,
 				blog: false,
 				pages: false,
 				theme: {
@@ -45,14 +55,14 @@ const config: Config = {
 					trackingID: 'G-46VBZHXG63',
 					anonymizeIP: false
 				}
-			}
+			} satisfies Preset.Options
 		]
 	],
 	headTags: [
 		{
 			tagName: 'script',
 			attributes: {
-				type: 'application/ld+json',
+				type: 'application/ld+json'
 			},
 			innerHTML: JSON.stringify({
 				'@context': 'https://schema.org/',
@@ -79,8 +89,30 @@ const config: Config = {
 				'⭐️ If you like Necord, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/necordjs/necord">GitHub</a>! ⭐️'
 		},
 		prism: {
-			additionalLanguages: ['bash', 'diff', 'json'],
+			additionalLanguages: [
+				'java',
+				'latex',
+				'haskell',
+				'matlab',
+				'PHp',
+				'powershell',
+				'bash',
+				'diff',
+				'json',
+				'scss'
+			],
 			defaultLanguage: 'typescript',
+			magicComments: [
+				{
+					className: 'theme-code-block-highlighted-line',
+					line: 'highlight-next-line',
+					block: { start: 'highlight-start', end: 'highlight-end' }
+				},
+				{
+					className: 'code-block-error-line',
+					line: 'This will error'
+				}
+			],
 			theme: lightCodeTheme,
 			darkTheme: darkCodeTheme
 		},
@@ -143,7 +175,20 @@ const config: Config = {
 					position: 'left',
 					href: 'https://discord.com/invite/mcBYvMTnwP'
 				},
-
+				{
+					type: 'localeDropdown',
+					position: 'right',
+					dropdownItemsAfter: [
+						{
+							type: 'html',
+							value: '<hr style="margin: 0.3rem 0;">'
+						},
+						{
+							href: 'https://crowdin.com/project/necord',
+							label: 'Help Us Translate'
+						}
+					]
+				},
 				{
 					href: 'https://www.npmjs.com/package/necord',
 					position: 'right',
@@ -164,6 +209,22 @@ const config: Config = {
 			respectPrefersColorScheme: true
 		},
 		footer: {
+			// TODO: Add links
+			// links: [
+			// 	{
+			// 		title: 'Help us',
+			// 		items: [
+			// 			{ label: 'Donate', href: 'https://opencollective.com/necord' },
+			// 			{ label: 'Contribute', href: 'https://github.com/necordjs' },
+			// 			{ label: 'Translate', href: 'https://crowdin.com/project/necord' }
+			// 		]
+			// 	}
+			// ],
+			// logo: {
+			// 	alt: 'Necord Logo',
+			// 	src: 'img/logo.svg',
+			// 	href: 'https://necord.org'
+			// },
 			copyright: `Copyright © 2021 - ${new Date().getFullYear()} • Built by <a target="_blank" href="https://github.com/SocketSomeone">Alexey Filippov</a> and <a target="_blank" href="https://github.com/SocketSomeone/necord/graphs/contributors">Others</a> with 💖`
 		}
 	} satisfies Preset.ThemeConfig,
@@ -224,7 +285,11 @@ const config: Config = {
 				]
 			}
 		]
-	]
+	],
+	i18n: {
+		defaultLocale,
+		locales: ['en', 'ru', 'pt-BR']
+	}
 };
 
 module.exports = config;

@@ -10,7 +10,7 @@ sidebar_position: 3
 
 There are several different types of components; this documentation will outline the basics of this new framework and each example.
 
-## Button
+## Button {#button}
 
 **Buttons** are interactive components that render on messages. They can be clicked by users, and send an [interaction](https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object) to your app when clicked.
 
@@ -29,7 +29,7 @@ export class AppComponents {
 }
 ```
 
-### Dynamic Button
+### Dynamic Button {#dynamic-button}
 You can create buttons with dynamic `id` field. This is useful for passing metadata to buttons.
 
 Dynamic buttons uses [path-to-regexp](https://www.npmjs.com/package/path-to-regexp) format to perform regexp matching. Turn a path string such as `user/:name` into a regular expression.
@@ -60,7 +60,7 @@ export class AppComponents {
 
 ```
 
-## Select Menu
+## Select Menu {#select-menu}
 
 **Select menus** are another interactive component that renders on messages. On desktop, clicking on a select menu opens a dropdown-style UI; on mobile, tapping a select menu opens up a half-sheet with the options.
 
@@ -73,7 +73,7 @@ Discord has introduced new select menu components :
 - `Mentionable Select`
 - `Channel Select`
 
-### String Select
+### String Select {#string-select}
 **String Select** is Select Menu for picking defined text options
 
 To create String Select:
@@ -109,7 +109,7 @@ export class AppComponents {
 }
 ```
 
-### User Select
+### User Select {#user-select}
 **User Select** are Select Menu for selecting users
 
 To create User Select:
@@ -124,7 +124,7 @@ new UserSelectMenuBuilder()
 To receive a User Select:
 ```typescript
 import { Injectable } from '@nestjs/common';
-import { 
+import {
   Context,
   UserSelect,
   UserSelectContext,
@@ -152,7 +152,7 @@ export class AppComponents {
 }
 ```
 
-### Role Select
+### Role Select {#role-select}
 **Role Select** are Select Menu for selecting roles
 
 To create Role Select:
@@ -167,7 +167,7 @@ new RoleSelectMenuBuilder()
 To receive a Role Select:
 ```typescript
 import { Injectable } from '@nestjs/common';
-import { 
+import {
   Context,
   RoleSelect,
   RoleSelectContext,
@@ -206,12 +206,10 @@ new ChannelSelectMenuBuilder()
 To receive a Channel Select:
 ```typescript
 import { Injectable } from '@nestjs/common';
-import { 
+import {
   Context,
   ChannelSelect,
   ChannelSelectContext,
-  SelectedChannel,
-  ISelectedChannel,
 } from 'necord';
 
 @Injectable()
@@ -230,7 +228,7 @@ export class AppComponents {
 }
 ```
 
-### Mentionable Select
+### Mentionable Select {#mentionable-select}
 **Mentionable Select** are Select Menu for selecting mentionables (users and roles)
 
 To create Mentionable Select:
@@ -245,7 +243,7 @@ new MentionableSelectMenuBuilder()
 To receive a Mentionable Select:
 ```typescript
 import { Injectable } from '@nestjs/common';
-import { 
+import {
   Context,
   MentionableSelect,
   MentionableSelectContext,
@@ -277,8 +275,8 @@ export class AppComponents {
 }
 ```
 
-### Dynamic Select Menu
-All of the Select Menu types, support Dynamic `id` using [path-to-regexp](https://www.npmjs.com/package/path-to-regexp) format.
+### Dynamic Select Menu {#dynamic-select-menu}
+All the Select Menu types, support Dynamic `id` using [path-to-regexp](https://www.npmjs.com/package/path-to-regexp) format.
 
 To create a Dynamic select menu
 ```typescript

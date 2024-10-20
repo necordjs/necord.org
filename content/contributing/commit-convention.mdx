@@ -6,7 +6,7 @@ title: Commit convention
 sidebar_position: 3
 ---
 
-## Git Commit Message Convention
+## Git Commit Message Convention {#git-commit-message-convention}
 
 :::info
 
@@ -14,7 +14,7 @@ This is adapted from [Angular's commit convention](https://github.com/convention
 
 :::
 
-#### TL;DR:
+#### TL;DR: {#tldr}
 
 Commit titles must match the following regex:
 
@@ -22,7 +22,7 @@ Commit titles must match the following regex:
 /^(revert: )?(feat|fix|docs|style|refactor|perf|test|workflow|build|ci|chore|types|wip)(\(.+\))?: .{1,72}/;
 ```
 
-### Full Message Format
+### Full Message Format {#full-message-format}
 
 A commit message consists of a **header**, **body** and **footer**. The header has a **type**, **scope** and **subject**:
 
@@ -36,21 +36,21 @@ A commit message consists of a **header**, **body** and **footer**. The header h
 
 The **header** is mandatory and the **scope** of the header is optional.
 
-### Revert
+### Revert {#revert}
 
 If the commit reverts a previous commit, it should begin with `revert:`, followed by the header of the reverted commit. In the body, it should say: `This reverts commit <hash>.`, where the hash is the SHA of the commit being reverted.
 
-### Type
+### Type {#type}
 
 If the prefix is `feat`, `fix` or `perf`, it will appear in the changelog. However, if there is any [BREAKING CHANGE](#footer), the commit will always appear in the changelog.
 
 Other prefixes are up to your discretion. Suggested prefixes are `docs`, `chore`, `style`, `refactor`, and `test` for non-changelog related tasks.
 
-### Scope
+### Scope {#scope}
 
 The scope refers to which section of the application the changes took place in, such as `SlashCommand`, `ContextMenu`, or `MessageComponents`
 
-### Subject
+### Subject {#subject}
 
 The subject contains a succinct description of the change:
 
@@ -58,12 +58,12 @@ The subject contains a succinct description of the change:
 -   do not capitalize the first letter
 -   do not end you message with a period (.)
 
-### Body
+### Body {#body}
 
 Like in the **subject**, use the imperative, present tense
 The body should include the motivation for the change and difference with the previous behavior.
 
-### Footer
+### Footer {#footer}
 
 The footer should contain any information about **Breaking Changes** and is also the place to
 reference GitHub issues that this commit **Closes**.

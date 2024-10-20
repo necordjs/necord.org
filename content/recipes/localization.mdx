@@ -10,13 +10,13 @@ sidebar_position: 2
 commands and messages. The module provides a simple API for managing locales and translations, as well as a powerful localization adapter
 system.
 
-## Installation
+## Installation {#installation}
 
 ```bash npm2yarn
 npm i @necord/localization necord discord.js
 ```
 
-## Usage
+## Usage {#usage}
 
 Once the installation process is complete, we can import the `NecordLocalizationModule` with your `NecordModule` into the root `AppModule`:
 
@@ -64,7 +64,7 @@ export class AppModule {
 }
 ```
 
-## Adapters
+## Adapters {#adapters}
 
 The `DefaultLocalizationAdapter` is a simple adapter that allows you to provide a map of locales and translations.
 
@@ -125,7 +125,7 @@ export class AppModule {
 `DefaultLocalizationAdapter` and `NestedLocalizationAdapter` can translate your localization strings and placeholders (e.g `{{username}}`)
 :::
 
-#### Custom Adapters
+#### Custom Adapters {#custom-adapters}
 
 Also, you can create your own localization adapter. Just implement the `BaseLocalizationAdapter` interface:
 
@@ -144,7 +144,7 @@ export class CustomLocalizationAdapter extends BaseLocalizationAdapter<CustomLoc
 }
 ```
 
-## Resolvers
+## Resolvers {#resolvers}
 
 Resolvers are used to get the locale for translation. By default, Necord provides two resolvers: `UserResolver` and `GuildResolver`.
 
@@ -153,7 +153,7 @@ Resolvers are used to get the locale for translation. By default, Necord provide
 | UserResolver  | Gets the locale from the user's locale property (`interaction.locale`)       |
 | GuildResolver | Gets the locale from the guild's locale property (`interaction.guildLocale`) |
 
-#### Custom Resolvers
+#### Custom Resolvers {#custom-resolvers}
 
 Also, you can create your own Resolver. Just implement the `LocaleResolver` interface:
 
@@ -173,7 +173,7 @@ export class GuildResolver implements LocaleResolver {
 }
 ```
 
-## Localization 
+## Localization  {#localization}
 
 We can inject the `LOCALIZATION_ADAPTER` into our service and use it to localize our commands and messages:
 
@@ -236,7 +236,7 @@ Function `localizationMapByKey` are used to localize the command name and descri
 an argument to the function.
 :::
 
-#### Setting up localized commands
+#### Setting up localized commands {#setting-up-localized-commands}
 You can set what locales the command will be localized
 
 ```typescript

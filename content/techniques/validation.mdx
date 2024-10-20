@@ -8,13 +8,13 @@ sidebar_position: 0
 
 The `ValidationPipe` is a built-in pipe that can be used to validate data coming from the client. It uses [class-validator](https://github.com/typestack/class-validator) package under the hood. The `ValidationPipe` provides a convenient approach to enforce validation rules for all incoming client payloads, where the specific rules are declared with simple annotations in DTO declarations in each module.
 
-## Installation
+## Installation {#installation}
 
 ```bash npm2yarn
 $ npm install class-validator class-transformer
 ```
 
-## Usage
+## Usage {#usage}
 
 Now we can add a few validation rules in our `CreateUserDto`. We do this using decorators provided by the class-validator package, described in detail [here](https://github.com/typestack/class-validator#validation-decorators). In this fashion, any route that uses the `CreateUserDto` will automatically enforce these validation rules.
 
