@@ -6,7 +6,7 @@ sidebar_position: 3
 
 Transform your bot into a professional DJ with the power of the [Lavalink](https://lavalink.dev/) ecosystem. This package uses [lavalink-client](https://github.com/Tomato6966/lavalink-client) behind the scenes, providing a high-performance and efficient solution for managing audio streams on Discord. By leveraging Lavalink, your bot gains the ability to manage audio playback, queues, and real-time controls with minimal latency, transforming it into a fully capable and professional music system.
 
-## Installation {#installation}
+## Instalação {#installation}
 
 ```bash npm2yarn
 npm i @necord/lavalink necord discord.js lavalink-client
@@ -14,7 +14,7 @@ npm i @necord/lavalink necord discord.js lavalink-client
 
 - [Lavalink Installation Guide](https://lavalink.dev/getting-started/index.html)
 
-## Usage {#usage}
+## Utilização {#usage}
 
 Once the installation process is complete, we can import the `NecordLavalinkModule` with your `NecordModule` into the root `AppModule`:
 
@@ -84,66 +84,66 @@ export class AppService {
 
 - View in Official [**lavalink-client** Documentation](https://tomato6966.github.io/lavalink-client/extra/manager-events/).
 
-| Event Name                | Descrição                                                                                                                    |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `trackStart`              | Emitted whenever a Track plays.                                                                                              |
-| `trackEnd`                | Emitted whenever a track finished playing.                                                                                   |
-| `trackStuck`              | Emitted whenever a Track got stuck while playing.                                                                            |
-| `trackError`              | Emitted whenever a Track errored.                                                                                            |
-| `queueEnd`                | Emitted when the track Ended, but there are no more tracks in the queue. (`trackEnd`, does NOT get executed)                 |
-| `playerCreate`            | Emitted whenever a Player gets created.                                                                                      |
-| `playerMove`              | Emitted whenever a Player gets moved between Voice Channels.                                                                 |
-| `playerDisconnect`        | Emitted whenever a player is disconnected from a channel.                                                                    |
-| `playerSocketClose`       | Emitted whenever a Node-Socket got closed for a specific Player.                                                             |
-| `playerDestroy`           | Emitted whenever a Player got destroyed.                                                                                     |
-| `playerUpdate`            | Emitted whenever a Player gets an update from Lavalink's playerUpdate Event.                                                 |
-| `playerMuteChange`        | Emitted whenever Player's voice state related to muting is changed.                                                          |
-| `playerDeafChange`        | Emitted whenever Player's voice state related to deafing is changed.                                                         |
-| `playerSuppressChange`    | Emitted whenever Player's voice state related to supressing is changed.                                                      |
-| `playerQueueEmptyStart`   | Emitted whenever the Queue empty handler started (timeout).                                                                  |
-| `playerQueueEmptyEnd`     | Emitted whenever the Queue empty handler finished (successfully) and destroyed the player.                                   |
-| `playerQueueEmptyCancel`  | Emitted whenever the Queue empty handler cancelled (e.g. because a new track got added).                                     |
-| `playerVoiceJoin`         | Emitted whenever a user joins the player's voice channel.                                                                    |
-| `playerVoiceLeave`        | Emitted whenever a user leaves the player's voice channel.                                                                   |
-| `debug`                   | Emitted for several erros, and logs within lavalink-client, if `managerOptions.advancedOptions.enableDebugEvents` is `true`. |
+| Nome do evento                | Descrição                                                                                                                    |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `trackStart`                  | Emitted whenever a Track plays.                                                                                              |
+| `trackEnd`                    | Emitted whenever a track finished playing.                                                                                   |
+| `trackStuck`                  | Emitted whenever a Track got stuck while playing.                                                                            |
+| `trackError`                  | Emitted whenever a Track errored.                                                                                            |
+| `queueEnd`                    | Emitted when the track Ended, but there are no more tracks in the queue. (`trackEnd`, does NOT get executed)                 |
+| `playerCreate`                | Emitted whenever a Player gets created.                                                                                      |
+| `playerMove`                  | Emitted whenever a Player gets moved between Voice Channels.                                                                 |
+| `playerDisconnect`            | Emitted whenever a player is disconnected from a channel.                                                                    |
+| `playerSocketClose`           | Emitted whenever a Node-Socket got closed for a specific Player.                                                             |
+| `playerDestroy`               | Emitted whenever a Player got destroyed.                                                                                     |
+| `playerUpdate`                | Emitted whenever a Player gets an update from Lavalink's playerUpdate Event.                                                 |
+| `playerMuteChange`            | Emitted whenever Player's voice state related to muting is changed.                                                          |
+| `playerDeafChange`            | Emitted whenever Player's voice state related to deafing is changed.                                                         |
+| `playerSuppressChange`        | Emitted whenever Player's voice state related to supressing is changed.                                                      |
+| `playerQueueEmptyStart`       | Emitted whenever the Queue empty handler started (timeout).                                                                  |
+| `playerQueueEmptyEnd`         | Emitted whenever the Queue empty handler finished (successfully) and destroyed the player.                                   |
+| `playerQueueEmptyCancel`      | Emitted whenever the Queue empty handler cancelled (e.g. because a new track got added).                                     |
+| `playerVoiceJoin`             | Emitted whenever a user joins the player's voice channel.                                                                    |
+| `playerVoiceLeave`            | Emitted whenever a user leaves the player's voice channel.                                                                   |
+| `debug`                       | Emitted for several erros, and logs within lavalink-client, if `managerOptions.advancedOptions.enableDebugEvents` is `true`. |
 
 #### SponsorBlock Plugin Events {#sponsorblock-plugin-events}
 
 - This Events is a part of [LavalinkManager Events](#lavalinkmanager-events).
 - This requires the [**SponsorBlock Plugin**](https://github.com/topi314/Sponsorblock-Plugin) added in Lavalink Server.
 
-| Event Name                | Descrição                                                  |
-| ------------------------- | ---------------------------------------------------------- |
-| `SegmentsLoaded`          | Emitted whenever Segments are loaded.                      |
-| `SegmentSkipped`          | Emitted whenever a specific Segment was skipped.           |
-| `ChapterStarted`          | Emitted whenever a specific Chapter starts playing.        |
-| `ChaptersLoaded`          | Emitted whenever Chapters are loaded.                      |
+| Nome do evento                | Descrição                                                  |
+| ----------------------------- | ---------------------------------------------------------- |
+| `SegmentsLoaded`              | Emitted whenever Segments are loaded.                      |
+| `SegmentSkipped`              | Emitted whenever a specific Segment was skipped.           |
+| `ChapterStarted`              | Emitted whenever a specific Chapter starts playing.        |
+| `ChaptersLoaded`              | Emitted whenever Chapters are loaded.                      |
 
 #### LavaLyrics Plugin Events {#lavalyrics-plugin-events}
 
 - This Events is a part of [LavalinkManager Events](#lavalinkmanager-events).
 - This requires the [**LavaLyrics Plugin**](https://github.com/topi314/LavaLyrics) added in Lavalink Server.
 
-| Event Name                | Descrição                                                  |
-| ------------------------- | ---------------------------------------------------------- |
-| `LyricsLine`              | Emitted whenever a Lyrics line is received.                |
-| `LyricsFound`             | Emitted whenever a Lyrics is found.                        |
-| `LyricsNotFound`          | Emitted whenever a Lyrics is not found.                    |
+| Nome do evento                | Descrição                                                  |
+| ----------------------------- | ---------------------------------------------------------- |
+| `LyricsLine`                  | Emitted whenever a Lyrics line is received.                |
+| `LyricsFound`                 | Emitted whenever a Lyrics is found.                        |
+| `LyricsNotFound`              | Emitted whenever a Lyrics is not found.                    |
 
 ### NodeManager Events {#nodemanager-events}
 
 - View in Official [**lavalink-client** Documentation](https://tomato6966.github.io/lavalink-client/extra/node-events/).
 
-| Event Name                | Descrição                                                                                                                                                                                                               |
-| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `create`                  | Emitted whenever a Node is created.                                                                                                                                                                                     |
-| `destroy`                 | Emitted whenever a Node is destroyed.                                                                                                                                                                                   |
-| `connect`                 | Emitted whenever a Node is connected.                                                                                                                                                                                   |
-| `reconnecting`            | Emitted whenever a Node is reconnecting.                                                                                                                                                                                |
-| `reconnectinprogress`     | Emitted whenever a node starts to reconnect. (if you have a reconnection delay, the reconnecting event will be emitted after the `retryDelay`.) Useful to check wether the internal node reconnect system works or not. |
-| `disconnect`              | Emitted whenever a Node is disconnects.                                                                                                                                                                                 |
-| `error`                   | Emitted whenever a Node is error.                                                                                                                                                                                       |
-| `raw`                     | Emits every single Node event.                                                                                                                                                                                          |
+| Nome do evento                | Descrição                                                                                                                                                                                                               |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `create`                      | Emitted whenever a Node is created.                                                                                                                                                                                     |
+| `destroy`                     | Emitted whenever a Node is destroyed.                                                                                                                                                                                   |
+| `connect`                     | Emitted whenever a Node is connected.                                                                                                                                                                                   |
+| `reconnecting`                | Emitted whenever a Node is reconnecting.                                                                                                                                                                                |
+| `reconnectinprogress`         | Emitted whenever a node starts to reconnect. (if you have a reconnection delay, the reconnecting event will be emitted after the `retryDelay`.) Useful to check wether the internal node reconnect system works or not. |
+| `disconnect`                  | Emitted whenever a Node is disconnects.                                                                                                                                                                                 |
+| `error`                       | Emitted whenever a Node is error.                                                                                                                                                                                       |
+| `raw`                         | Emits every single Node event.                                                                                                                                                                                          |
 
 ## Providers {#providers}
 
