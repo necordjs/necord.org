@@ -14,7 +14,7 @@ The [Necord Schematics](https://www.npmjs.com/package/@necord/schematics) is a c
 and maintain your Necord applications. It embodies best-practice architectural patterns to encourage
 well-structured apps.
 
-## Installation
+## Installation {#installation}
 
 To install the schematics, run the following command:
 
@@ -23,14 +23,14 @@ npm install -g @nestjs/cli
 npm install -D @necord/schematics
 ```
 
-## Usage
+## Usage {#usage}
 
-### Generating commands
+### Generating commands {#generating-commands}
 
 To generate a slash command you can use the command schematic:
 
 ```bash
-nest g -c @necord/schematics command 
+nest g -c @necord/schematics command
 ```
 
 from there the wizard will ask what the name of the command is and type of command.
@@ -46,12 +46,12 @@ The available options for this command are the following:
 | `--spec`       | Whether or not a spec file is generated. (default: true) |
 | `--strategy`       | The type of command. (text-command or slash-command)     |
 
-### Generating message components
+### Generating message components {#generating-message-components}
 
 To generate a component you can use the component schematic:
 
 ```bash
-nest g -c @necord/schematics component 
+nest g -c @necord/schematics component
 ```
 
 from there the wizard will ask what the name of the component is and type of component.
@@ -67,12 +67,12 @@ The available options for this command are the following:
 | `--spec`       | Whether or not a spec file is generated. (default: true) |
 | `--strategy`       | The type of component. (button, select)                  |
 
-### Generating context menus
+### Generating context menus {#generating-context-menus}
 
 To generate a context menu you can use the context menu schematic:
 
 ```bash
-nest g -c @necord/schematics context-menu 
+nest g -c @necord/schematics context-menu
 ```
 
 from there the wizard will ask what the name of the context menu is and type of context menu.
@@ -88,12 +88,12 @@ The available options for this command are the following:
 | `--spec`       | Whether or not a spec file is generated. (default: true) |
 | `--strategy`       | The type of context menu. (user, message)                |
 
-### Generating modal components
+### Generating modal components {#generating-modal-components}
 
 To generate a modal component you can use the modal schematic:
 
 ```bash
-nest g -c @necord/schematics modal 
+nest g -c @necord/schematics modal
 ```
 from there the wizard will ask what the name of the modal is and type of modal.
 

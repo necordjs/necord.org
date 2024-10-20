@@ -8,7 +8,7 @@ sidebar_position: 3
 
 Transform your bot into a professional DJ with the power of the [Lavalink](https://lavalink.dev/) ecosystem. This package uses [lavalink-client](https://github.com/Tomato6966/lavalink-client) behind the scenes, providing a high-performance and efficient solution for managing audio streams on Discord. By leveraging Lavalink, your bot gains the ability to manage audio playback, queues, and real-time controls with minimal latency, transforming it into a fully capable and professional music system.
 
-## Installation
+## Installation {#installation}
 
 ```bash npm2yarn
 npm i @necord/lavalink necord discord.js lavalink-client
@@ -16,7 +16,7 @@ npm i @necord/lavalink necord discord.js lavalink-client
 
 - [Lavalink Installation Guide](https://lavalink.dev/getting-started/index.html)
 
-## Usage
+## Usage {#usage}
 
 Once the installation process is complete, we can import the `NecordLavalinkModule` with your `NecordModule` into the root `AppModule`:
 
@@ -53,7 +53,7 @@ export class AppModule {}
 
 Checkout more Module options in the official [**lavalink-client** Documentation](https://lc4.gitbook.io/lavalink-client/docs/lavalinkmanager/manager-options).
 
-## Listeners
+## Listeners {#listeners}
 
 In `@necord/lavalink` events handling works same as the [default Necord listeners](https://necord.org/listeners) with some changes.
 
@@ -82,7 +82,7 @@ export class AppService {
 }
 ```
 
-### LavalinkManager Events
+### LavalinkManager Events {#lavalinkmanager-events}
 
 - View in Official [**lavalink-client** Documentation](https://tomato6966.github.io/lavalink-client/extra/manager-events/).
 
@@ -109,7 +109,7 @@ export class AppService {
 | `playerVoiceLeave`        | Emitted whenever a user leaves the player's voice channel. |
 | `debug`                   | Emitted for several erros, and logs within lavalink-client, if `managerOptions.advancedOptions.enableDebugEvents` is `true`. |
 
-#### SponsorBlock Plugin Events
+#### SponsorBlock Plugin Events {#sponsorblock-plugin-events}
 
 - This Events is a part of [LavalinkManager Events](#lavalinkmanager-events).
 - This requires the [**SponsorBlock Plugin**](https://github.com/topi314/Sponsorblock-Plugin) added in Lavalink Server.
@@ -121,7 +121,7 @@ export class AppService {
 | `ChapterStarted`          | Emitted whenever a specific Chapter starts playing.        |
 | `ChaptersLoaded`          | Emitted whenever Chapters are loaded.                      |
 
-#### LavaLyrics Plugin Events
+#### LavaLyrics Plugin Events {#lavalyrics-plugin-events}
 
 - This Events is a part of [LavalinkManager Events](#lavalinkmanager-events).
 - This requires the [**LavaLyrics Plugin**](https://github.com/topi314/LavaLyrics) added in Lavalink Server.
@@ -132,7 +132,7 @@ export class AppService {
 | `LyricsFound`             | Emitted whenever a Lyrics is found.                        |
 | `LyricsNotFound`          | Emitted whenever a Lyrics is not found.                    |
 
-### NodeManager Events
+### NodeManager Events {#nodemanager-events}
 
 - View in Official [**lavalink-client** Documentation](https://tomato6966.github.io/lavalink-client/extra/node-events/).
 
@@ -147,7 +147,7 @@ export class AppService {
 | `error`                   | Emitted whenever a Node is error.                          |
 | `raw`                     |  Emits every single Node event.                            |
 
-## Providers
+## Providers {#providers}
 
 - `@necord/lavalink` have snippets to access the lavalink-client methods. You can inject the managers using constructor.
 
@@ -170,7 +170,7 @@ export class AppService {
 | `NodeManager`               | `lavalinkManager.nodeManager`        | Node Manager           |
 | `PlayerManager`             | `lavalinkManager (player functions)` | Player Manager         |
 
-## Play Tracks
+## Play Tracks {#play-tracks}
 
 - Here you'll view a sample of PlayCommand using the best techniques of [Slash Commands](https://necord.org/interactions/slash-commands) tutorial.
 

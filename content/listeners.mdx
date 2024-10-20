@@ -11,7 +11,7 @@ sidebar_position: 3
 ---
 
 Necord supports interacting with all [discord events](https://discord.js.org/#/docs/main/stable/class/Client#Events) via the `@On`
-and `@Once` decorator.  
+and `@Once` decorator.
 While the best practice is to use the more specific decorators when possible, this is useful if you wish to use features Necord doesn't
 support via custom decorators, to interact with the raw requests, or to listen to all events using a decorator such as `interactionCreate`.
 
@@ -37,13 +37,13 @@ export class AppService {
 
 :::warning Warning
 
-If you use global filters, guards or interceptors, they will be triggered once per event!  
+If you use global filters, guards or interceptors, they will be triggered once per event!
 This means if you are replying to the message in guards, you can run into issues with duplicated responses or invalid interactions.
 Have a look at the `NecordExecutionContext.getInfo()` metadata to learn more about the current context.
 
 :::
 
-## Context
+## Context {#context}
 
 You might have noticed the `@Context` decorator in the last snippet: This is used to inject the event context within the method.
 As there are many type of events, its type must be inferred from the `ContextOf<type: string>` type.
@@ -58,7 +58,7 @@ public onMessageCreate(@Context() [message]: ContextOf<'messageCreate'>) {
 }
 ```
 
-## Custom Events
+## Custom Events {#custom-events}
 
 Necord out of the box supports all the events provided by discord.js. You can also create custom events using the `@CustomListenerHandler` and `@CustomListener` decorators.
 
@@ -109,13 +109,13 @@ public onUserAvatarUpdate(
 
 Also supports custom events.
 
-### Channel Events
+### Channel Events {#channel-events}
 
 | Event Name                      | Description                                                               |
 |---------------------------------|---------------------------------------------------------------------------|
 | `guildChannelPermissionsUpdate` | Emitted whenever a channel's permission overwrite for a guild is updated. |
 
-### Guild Events
+### Guild Events {#guild-events}
 
 | Event Name                | Description                                                |
 |---------------------------|------------------------------------------------------------|
@@ -134,7 +134,7 @@ Also supports custom events.
 | `guildVerificationAdd`    | Emitted whenever a guild's verification level is added.    |
 | `guildVerificationRemove` | Emitted whenever a guild's verification level is removed.  |
 
-#### Guild Audit Log Events
+#### Guild Audit Log Events {#guild-audit-log-events}
 
 | Event Name                        | Description                                              |
 |-----------------------------------|----------------------------------------------------------|
@@ -145,7 +145,7 @@ Also supports custom events.
 | `guildAuditLogEntryWebhookUpdate` | Emitted whenever a webhook is updated in the audit log.  |
 | `guildAuditLogEntryWebhookDelete` | Emitted whenever a webhook is deleted in the audit log.  |
 
-#### Guild Member Events
+#### Guild Member Events {#guild-member-events}
 
 | Event Name                  | Description                                       |
 |-----------------------------|---------------------------------------------------|
@@ -159,7 +159,7 @@ Also supports custom events.
 | `guildMemberAvatarRemove`   | Emitted whenever a member's avatar is removed.    |
 | `guildMemberAvatarUpdate`   | Emitted whenever a member's avatar is updated.    |
 
-#### Role Update Events
+#### Role Update Events {#role-update-events}
 
 | Event Name              | Description                                        |
 |-------------------------|----------------------------------------------------|
@@ -169,7 +169,7 @@ Also supports custom events.
 | `roleIconRemove`        | Emitted whenever a role's icon is removed.         |
 | `roleIconUpdate`        | Emitted whenever a role's icon is updated.         |
 
-#### Thread Update Events
+#### Thread Update Events {#thread-update-events}
 
 | Event Name                        | Description                                                   |
 |-----------------------------------|---------------------------------------------------------------|
@@ -179,21 +179,21 @@ Also supports custom events.
 | `threadRateLimitPerUserUpdate`    | Emitted whenever a thread's rate limit per user is updated.   |
 | `threadAutoArchiveDurationUpdate` | Emitted whenever a thread's auto archive duration is updated. |
 
-### Message Events
+### Message Events {#message-events}
 
 | Event Name             | Description                            |
 |------------------------|----------------------------------------|
 | `messagePinned`        | Emitted whenever a message is pinned.  |
 | `messageContentEdited` | Emitted whenever a message is updated. |
 
-### Presence Events
+### Presence Events {#presence-events}
 
 | Event Name           | Description                             |
 |----------------------|-----------------------------------------|
 | `guildMemberOffline` | Emitted whenever a member goes offline. |
 | `guildMemberOnline`  | Emitted whenever a member goes online.  |
 
-### User Events
+### User Events {#user-events}
 
 | Event Name                | Description                                         |
 |---------------------------|-----------------------------------------------------|
@@ -202,7 +202,7 @@ Also supports custom events.
 | `userDiscriminatorUpdate` | Emitted whenever a user's discriminator is updated. |
 | `userFlagsUpdate`         | Emitted whenever a user's flags are updated.        |
 
-### Voice Events
+### Voice Events {#voice-events}
 
 | Event Name              | Description                                                        |
 |-------------------------|--------------------------------------------------------------------|
