@@ -1,15 +1,15 @@
 ---
 id: listeners
 slug: listeners
-title: Listeners
-description: Listeners are used to listen to events emitted by Discord. They are used to listen to events like `messageCreate`, `interactionCreate`, `guildMemberAdd`, etc.
+title: Ouvintes
+description: Os ouvintes são usados para ouvir eventos emitidos pelo Discord. Eles são usados para ouvir eventos como `messageCreate`, `interactionCreate`, `guildMemberAdd`, etc.
 sidebar_position: 3
 ---
 
-Necord supports interacting with all [discord events](https://discord.js.org/#/docs/main/stable/class/Client#Events) via the `@On`
-and `@Once` decorator.
-While the best practice is to use the more specific decorators when possible, this is useful if you wish to use features Necord doesn't
-support via custom decorators, to interact with the raw requests, or to listen to all events using a decorator such as `interactionCreate`.
+O Necord suporta interação com todos os [eventos do discord](https://discord.js.org/#/docs/main/stable/class/Cliente#Eventos) através do decorador `@On`
+e `@Once`.
+Enquanto a melhor prática é usar os decoradores mais específicos quando possível, isso é útil se você deseja usar recursos necord não
+suporte através de decoradores personalizados, para interagir com as solicitações brutas, ou para ouvir todos os eventos usando um decorador como `interactionCreate`.
 
 ```typescript title="app.service.ts"
 import {Injectable, Logger} from '@nestjs/common';
@@ -21,7 +21,7 @@ export class AppService {
 
     @Once('ready')
     public onReady(@Context() [client]: ContextOf<'ready'>) {
-        this.logger.log(`Bot logged in as ${client.user.username}`);
+        this.logger.log(`Bot conectado como ${client.user.username}`);
     }
 
     @On('warn')
@@ -33,19 +33,19 @@ export class AppService {
 
 :::warning Aviso
 
-If you use global filters, guards or interceptors, they will be triggered once per event!
-This means if you are replying to the message in guards, you can run into issues with duplicated responses or invalid interactions.
-Have a look at the `NecordExecutionContext.getInfo()` metadata to learn more about the current context.
+Se você usar filtros, guardas ou interceptores globais, eles serão acionados uma vez por evento!
+Isto significa que se você está respondendo à mensagem em guards, você pode encontrar problemas com respostas duplicadas ou interações inválidas.
+Dê uma olhada nos metadados `NecordExecutionContext.getInfo()` para aprender mais sobre o contexto atual.
 
 :::
 
-## Context {#context}
+## Contexto {#context}
 
-You might have noticed the `@Context` decorator in the last snippet: This is used to inject the event context within the method.
-As there are many type of events, its type must be inferred from the `ContextOf<type: string>` type.
+Você deve ter notado o decorador `@Context` no último trecho: Isso é usado para injetar o contexto do evento dentro do método.
+Como existem muitos tipos de eventos, seu tipo deve ser inferido do tipo `ContextOf<type: string>`.
 
-You can access the context variables by using the `@Context()` decorator within your function, which will populate the variable with an
-array of arguments.
+Você pode acessar as variáveis de contexto usando o decorador `@Context()` dentro de sua função, que irá preencher a variável com uma matriz
+de argumentos.
 
 ```typescript title="app.service.ts"
 @On('messageCreate')
@@ -54,9 +54,9 @@ public onMessageCreate(@Context() [message]: ContextOf<'messageCreate'>) {
 }
 ```
 
-## Custom Events {#custom-events}
+## Eventos Personalizados {#custom-events}
 
-Necord out of the box supports all the events provided by discord.js. You can also create custom events using the `@CustomListenerHandler` and `@CustomListener` decorators.
+O Necord suporta todos os eventos fornecidos pelo discord.js. Você também pode criar eventos personalizados usando os decoradores `@CustomListenerHandler` e `@CustomListener`.
 
 ```typescript title="app.service.ts"
 import { Injectable } from '@nestjs/common';
@@ -89,7 +89,7 @@ export class UserUpdateHandler extends BaseHandler<CustomUserUpdateEvents> {
 }
 ```
 
-And then you can listen to the custom event using the `@On` decorator.
+E então você pode ouvir o evento personalizado usando o decorador `@On`.
 
 ```typescript title="app.service.ts"
 @On('userAvatarUpdate')
@@ -97,116 +97,116 @@ public onUserAvatarUpdate(
     @Context() [user, oldAvatar, newAvatar]: ContextOfCustomUserUpdate<'userAvatarUpdate'>
 ) {
     console.log(
-        `User ${user.tag} changed their avatar from ${oldAvatar} to ${newAvatar}`
+        `Usuário ${user.tag} mudou seu avatar de ${oldAvatar} para ${newAvatar}`
     );
 }
 ```
 
-Also supports custom events.
+Também suporta eventos personalizados.
 
-### Channel Events {#channel-events}
+### Eventos de Canal {#channel-events}
 
-| Event Name                      | Descrição                                                                 |
-| ------------------------------- | ------------------------------------------------------------------------- |
-| `guildChannelPermissionsUpdate` | Emitted whenever a channel's permission overwrite for a guild is updated. |
+| Nome do evento                      | Descrição                                                               |
+| ----------------------------------- | ----------------------------------------------------------------------- |
+| `guildChannelPermissionsUpdate`     | Emitido sempre que a permissão de um canal é atualizada.                |
 
-### Guild Events {#guild-events}
+### Eventos de Servidor {#guild-events}
 
-| Event Name                | Descrição                                                  |
-| ------------------------- | ---------------------------------------------------------- |
-| `guildBoostLevelUp`       | Emitted whenever a guild's boost level increases.          |
-| `guildBoostLevelDown`     | Emitted whenever a guild's boost level decreases.          |
-| `guildBannerAdd`          | Emitted whenever a guild's banner is added.                |
-| `guildAfkChannelAdd`      | Emitted whenever a guild's AFK channel is added.           |
-| `guildVanityURLAdd`       | Emitted whenever a guild's vanity URL is added.            |
-| `guildVanityURLUpdate`    | Emitted whenever a guild's vanity URL is updated.          |
-| `guildVanityURLRemove`    | Emitted whenever a guild's vanity URL is removed.          |
-| `guildFeaturesUpdate`     | Emitted whenever a guild's features are updated.           |
-| `guildAcronymUpdate`      | Emitted whenever a guild's acronym is updated.             |
-| `guildOwnerUpdate`        | Emitted whenever a guild's owner is updated.               |
-| `guildPartnerAdd`         | Emitted whenever a guild's is partner of discord now       |
-| `guildPartnerRemove`      | Emitted whenever a guild's is no longer partner of discord |
-| `guildVerificationAdd`    | Emitted whenever a guild's verification level is added.    |
-| `guildVerificationRemove` | Emitted whenever a guild's verification level is removed.  |
+| Nome do evento                | Descrição                                                                       |
+| ----------------------------- | ------------------------------------------------------------------------------- |
+| `guildBoostLevelUp`           | Emitido sempre que o nível de boost do servidor é aumentado.                    |
+| `guildBoostLevelDown`         | Emitido sempre que o nível de boost do servidor é diminuido.                    |
+| `guildBannerAdd`              | Emitido sempre que um banner de um servidor é adicionado.                       |
+| `guildAfkChannelAdd`          | Emitido sempre que o canal de ausentes de um servidor for adicionado.           |
+| `guildVanityURLAdd`           | Emitido sempre que o URL personalizado de um servidor é adicionado.             |
+| `guildVanityURLUpdate`        | Emitido sempre que o URL personalizado de um servidor é atualizado.             |
+| `guildVanityURLRemove`        | Emitido sempre que o URL personalizado de um servidor é removido.               |
+| `guildFeaturesUpdate`         | Emitido sempre que os recursos de um servidor são atualizados.                  |
+| `guildAcronymUpdate`          | Emitido sempre que o acrônimo do servidor é atualizado.                         |
+| `guildOwnerUpdate`            | Emitido sempre que o dono do servidor é atualizado.                             |
+| `guildPartnerAdd`             | Emitido sempre que o servidor vira parceiro do discord.                         |
+| `guildPartnerRemove`          | Emitido sempre que o servidor deixa de ser parceiro do discord.                 |
+| `guildVerificationAdd`        | Emitido sempre que um nível de verificação do servidor é adicionado.            |
+| `guildVerificationRemove`     | Emitido sempre que um nível de verificação do servidor é removido.              |
 
-#### Guild Audit Log Events {#guild-audit-log-events}
+#### Eventos de Log de Auditoria do Servidor {#guild-audit-log-events}
 
-| Event Name                        | Descrição                                                |
-| --------------------------------- | -------------------------------------------------------- |
-| `guildAuditLogEntryAdd`           | Emitted whenever an entry is added to the audit log.     |
-| `guildAuditLogEntryUpdate`        | Emitted whenever an entry is updated in the audit log.   |
-| `guildAuditLogEntryDelete`        | Emitted whenever an entry is removed from the audit log. |
-| `guildAuditLogEntryWebhookCreate` | Emitted whenever a webhook is created in the audit log.  |
-| `guildAuditLogEntryWebhookUpdate` | Emitted whenever a webhook is updated in the audit log.  |
-| `guildAuditLogEntryWebhookDelete` | Emitted whenever a webhook is deleted in the audit log.  |
+| Nome do evento                        | Descrição                                                            |
+| ------------------------------------- | -------------------------------------------------------------------- |
+| `guildAuditLogEntryAdd`               | Emitido sempre que uma entrada é adicionada ao log de auditoria.     |
+| `guildAuditLogEntryUpdate`            | Emitido sempre que uma entrada é atualizado no log de auditoria.     |
+| `guildAuditLogEntryDelete`            | Emitido sempre que uma entrada é removida do log de auditoria.       |
+| `guildAuditLogEntryWebhookCreate`     | Emitido sempre que um webhook é criado no log de auditoria.          |
+| `guildAuditLogEntryWebhookUpdate`     | Emitido sempre que um webhook é atualizado no log de auditoria.      |
+| `guildAuditLogEntryWebhookDelete`     | Emitido sempre que um webhook é removido no log de auditoria.        |
 
-#### Guild Member Events {#guild-member-events}
+#### Eventos de Membro do Servidor {#guild-member-events}
 
-| Event Name                  | Descrição                                         |
-| --------------------------- | ------------------------------------------------- |
-| `guildMemberBoost`          | Emitted whenever a member's boost is activated.   |
-| `guildMemberUnboost`        | Emitted whenever a member's boost is deactivated. |
-| ` guildMemberRoleAdd`       | Emitted whenever a role is added to a member.     |
-| `guildMemberRoleRemove`     | Emitted whenever a role is removed from a member. |
-| `guildMemberNicknameUpdate` | Emitted whenever a member's nickname is updated.  |
-| `guildMemberEntered`        | Emitted whenever a member enters a guild.         |
-| `guildMemberAvatarAdd`      | Emitted whenever a member's avatar is added.      |
-| `guildMemberAvatarRemove`   | Emitted whenever a member's avatar is removed.    |
-| `guildMemberAvatarUpdate`   | Emitted whenever a member's avatar is updated.    |
+| Nome do evento                  | Descrição                                                    |
+| ------------------------------- | ------------------------------------------------------------ |
+| `guildMemberBoost`              | Emitido sempre que um boost de membro é ativado.             |
+| `guildMemberUnboost`            | Emitido sempre que um boost de membro é desativado.          |
+| ` guildMemberRoleAdd`           | Emitido sempre que um cargo é adicionado a um membro.        |
+| `guildMemberRoleRemove`         | Emitido sempre que um cargo é removido de um membro.         |
+| `guildMemberNicknameUpdate`     | Emitido sempre que um o apelido de um membro é atualizado.   |
+| `guildMemberEntered`            | Emitido sempre que um membro entra no servidor.              |
+| `guildMemberAvatarAdd`          | Emitido sempre que um avatar de um membro é adicionado.      |
+| `guildMemberAvatarRemove`       | Emitido sempre que um avatar de um membro é removido.        |
+| `guildMemberAvatarUpdate`       | Emitido sempre que um avatar de um membro é atualizado.      |
 
-#### Role Update Events {#role-update-events}
+#### Evento de Atualização de Cargo {#role-update-events}
 
-| Event Name              | Descrição                                          |
-| ----------------------- | -------------------------------------------------- |
-| `rolePositionUpdate`    | Emitted whenever a role's position is updated.     |
-| `rolePermissionsUpdate` | Emitted whenever a role's permissions are updated. |
-| `roleIconAdd`           | Emitted whenever a role's icon is added.           |
-| `roleIconRemove`        | Emitted whenever a role's icon is removed.         |
-| `roleIconUpdate`        | Emitted whenever a role's icon is updated.         |
+| Nome do evento              | Descrição                                                       |
+| --------------------------- | --------------------------------------------------------------- |
+| `rolePositionUpdate`        | Emitido sempre que a posição do cargo é atualizada.             |
+| `rolePermissionsUpdate`     | Emitido sempre que as permissões do cargo são atualizadas.      |
+| `roleIconAdd`               | Emitido sempre que um ícone de um cargo é adicionado.           |
+| `roleIconRemove`            | Emitido sempre que um ícone de um cargo é removido.             |
+| `roleIconUpdate`            | Emitido sempre que um ícone de um cargo é atualizado.           |
 
-#### Thread Update Events {#thread-update-events}
+#### Eventos de Atualização do Tópico {#thread-update-events}
 
-| Event Name                        | Descrição                                                     |
-| --------------------------------- | ------------------------------------------------------------- |
-| `threadStateUpdate`               | Emitted whenever a thread's state is updated.                 |
-| `threadNameUpdate`                | Emitted whenever a thread's name is updated.                  |
-| `threadLockStateUpdate`           | Emitted whenever a thread's lock state is updated.            |
-| `threadRateLimitPerUserUpdate`    | Emitted whenever a thread's rate limit per user is updated.   |
-| `threadAutoArchiveDurationUpdate` | Emitted whenever a thread's auto archive duration is updated. |
+| Nome do evento                        | Descrição                                                                 |
+| ------------------------------------- | ------------------------------------------------------------------------- |
+| `threadStateUpdate`                   | Emitido sempre que o estado de um tópico é atualizado.                    |
+| `threadNameUpdate`                    | Emitido sempre que o nome de um tópico é atualizado.                      |
+| `threadLockStateUpdate`               | Emitido sempre que o estado de trava do tópico é atualizado.              |
+| `threadRateLimitPerUserUpdate`        | Emitido sempre que o tempo de espera por usuário é atualizado.            |
+| `threadAutoArchiveDurationUpdate`     | Emitido sempre que a duração de auto arquivamento do tópico é atualizado. |
 
-### Message Events {#message-events}
+### Eventos de Mensagem {#message-events}
 
-| Event Name             | Descrição                              |
-| ---------------------- | -------------------------------------- |
-| `messagePinned`        | Emitted whenever a message is pinned.  |
-| `messageContentEdited` | Emitted whenever a message is updated. |
+| Nome do evento             | Descrição                                     |
+| -------------------------- | --------------------------------------------- |
+| `messagePinned`            | Emitido sempre que uma mensagem é fixada.     |
+| `messageContentEdited`     | Emitido sempre que uma mensagem é atualizada. |
 
-### Presence Events {#presence-events}
+### Eventos de Presença {#presence-events}
 
-| Event Name           | Descrição                               |
-| -------------------- | --------------------------------------- |
-| `guildMemberOffline` | Emitted whenever a member goes offline. |
-| `guildMemberOnline`  | Emitted whenever a member goes online.  |
+| Nome do evento           | Descrição                                  |
+| ------------------------ | ------------------------------------------ |
+| `guildMemberOffline`     | Emitido sempre que um membro fica offline. |
+| `guildMemberOnline`      | Emitido sempre que um membro fica online.  |
 
-### User Events {#user-events}
+### Eventos de Usuário {#user-events}
 
-| Event Name                | Descrição                                           |
-| ------------------------- | --------------------------------------------------- |
-| `userAvatarUpdate`        | Emitted whenever a user's avatar is updated.        |
-| `userUsernameUpdate`      | Emitted whenever a user's username is updated.      |
-| `userDiscriminatorUpdate` | Emitted whenever a user's discriminator is updated. |
-| `userFlagsUpdate`         | Emitted whenever a user's flags are updated.        |
+| Nome do evento                | Descrição                                                         |
+| ----------------------------- | ----------------------------------------------------------------- |
+| `userAvatarUpdate`            | Emitido sempre que o avatar de um usuário é atualizado.           |
+| `userUsernameUpdate`          | Emitido sempre que o nome de um usuário é atualizado.             |
+| `userDiscriminatorUpdate`     | Emitido sempre que o descriminador de um usuário é atualizado.    |
+| `userFlagsUpdate`             | Emitido sempre que as flags de um usuário são atualizadas.        |
 
-### Voice Events {#voice-events}
+### Eventos de Voz {#voice-events}
 
-| Event Name              | Descrição                                                          |
-| ----------------------- | ------------------------------------------------------------------ |
-| `voiceChannelJoin`      | Emitted whenever a member joins a voice channel.                   |
-| `voiceChannelLeave`     | Emitted whenever a member leaves a voice channel.                  |
-| `voiceChannelSwitch`    | Emitted whenever a member switches voice channel.                  |
-| `voiceChannelMutestate` | Emitted whenever a member is muted or deafened in a voice channel. |
-| `voiceChannelUnmute`    | Emitted whenever a member is unmuted in a voice channel.           |
-| `voiceChannelDeaf`      | Emitted whenever a member is deafened in a voice channel.          |
-| `voiceChannelUndeaf`    | Emitted whenever a member is undeafened in a voice channel.        |
-| `voiceStreamingStart`   | Emitted whenever a member starts streaming.                        |
-| `voiceStreamingStop`    | Emitted whenever a member stops streaming.                         |
+| Nome do evento              | Descrição                                                                          |
+| --------------------------- | ---------------------------------------------------------------------------------- |
+| `voiceChannelJoin`          | Emitido sempre que um membro entra em um canal de voz.                             |
+| `voiceChannelLeave`         | Emitido sempre que um membro sai de um canal de voz.                               |
+| `voiceChannelSwitch`        | Emitido sempre que um membro muda de canal de voz.                                 |
+| `voiceChannelMutestate`     | Emitido sempre que um membro é silenciado ou ensurdecido em um canal de voz.       |
+| `voiceChannelUnmute`        | Emitido sempre que um membro é deixa de estar mutado em um canal de voz.           |
+| `voiceChannelDeaf`          | Emitido sempre que um membro é ensurdecido em um canal de voz.                     |
+| `voiceChannelUndeaf`        | Emitido sempre que um membro deixa de estar ensurdecido em um canal de voz.        |
+| `voiceStreamingStart`       | Emitido sempre que um membro começa uma transmissão.                               |
+| `voiceStreamingStop`        | Emitido sempre que um membro para uma transmissão.                                 |

@@ -1,12 +1,12 @@
 ---
 id: standalone-application
-title: Standalone application
+title: Aplicação independente
 sidebar_position: 3
 ---
 
-If you initialized your application with the Nest CLI, Express framework will be installed by default along with Nest. Nest and Necord does not require Express for work. So if you you don't need a web server, you can remove Express.
+Se você inicializou sua aplicação com o Nest CLI, O framework Express será instalado por padrão com o Nest. Neste Necord não precisam do Express para funcionar. Então, se você não precisa de um servidor web, você pode remover o Express.
 
-To do this, change the bootstrap function in the `main.ts` file of your project on something like that:
+Para fazer isso, altere a função bootstrap no arquivo `main.ts` do seu projeto em algo parecido com:
 
 ```typescript title="src/main.ts"
 import { NestFactory } from '@nestjs/core';
@@ -18,14 +18,14 @@ async function bootstrap() {
 bootstrap();
 ```
 
-This initializes Nest as a **standalone application** (without any network listeners).
+Isso inicializa o Nest como um **aplicativo autônomo** (sem os ouvintes da rede).
 
-All that remains is to remove unused dependencies:
+Tudo que resta é remover dependências não utilizadas:
 
 ```bash
 npm un @nestjs/platform-express @types/express
 ```
 
 :::warning
-But when you run standalone application you can't use global enhancers due to the fact that they are not registered in the application context. While [issue](https://github.com/nestjs/nest/issues/9017) not resolved, you can use local enhancers instead or start your application via `app.init()` method.
+Mas quando você executa aplicativo autônomo, você não pode usar aprimoradores globais porque eles não estão registrados no contexto da aplicação. Enquanto a [issue](https://github.com/nestjs/nest/issues/9017) for resolvida, você pode usar os aprimoradores locais ou iniciar sua aplicação através do método `app.init()`.
 :::
