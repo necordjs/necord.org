@@ -29,7 +29,7 @@ const config: Config = {
 				docs: {
 					sidebarPath: require.resolve('./sidebars.js'),
 					editUrl: ({ locale, versionDocsDirPath, docPath }) => {
-						if (locale === defaultLocale) {
+						if (locale !== defaultLocale) {
 							return `https://crowdin.com/project/necord/${locale}`
 						}
 
