@@ -1,0 +1,58 @@
+---
+id: text-commands
+slug: text-commands
+title: Comando de Texto
+description: Comandos de texto são o tipo de comando mais comum. Eles são usados para enviar uma mensagem ao canal.
+sidebar_position: 5
+---
+
+:::warning
+
+Um comando de texto depende do conteúdo da mensagem mas, infelizmente, O Discord planeja remover o conteúdo da mensagem de bots verificados e
+aplicativos, os com 100 ou mais servidores. Portanto, você não pode usar comandos de texto se o bot não conseguir acessar o conteúdo da mensagem.
+
+[Leia a mensagem do discord aqui](https://support-dev.discord.com/hc/en-us/articles/4404772028055-Message-Content-Access-Deprecation-for-Verified-Bots)
+
+:::
+
+Crie um simples manipulador de comandos para mensagens usando `@TextCommand`.
+
+```typescript title="src/app.service.ts"
+import { Injectable } from '@nestjs/common';
+import { Context, TextCommand, TextCommandContext, Arguments } from 'necord';
+
+@Injectable()
+export class AppService {
+    @TextCommand({
+        name: 'ping',
+        description: 'Comando Ping!',
+    })
+    public onPing(@Context() [message]: TextCommandContext) {
+        return message.reply('pong!');
+    }
+}
+```
+
+Se tudo der certo, você deve ver algo como isto:
+
+![Comando de Texto](/img/content/text_command.png "Text Command")
+
+#### Arguments {#arguments}
+
+Você também pode usar argumentos com comandos de texto. Os argumentos são as palavras após o nome do comando.
+
+```typescript title="src/app.service.ts"
+import { Injectable } from '@nestjs/common';
+import { Context, TextCommand, TextCommandContext, Arguments } from 'necord';
+
+@Injectable()
+export class AppService {
+    @TextCommand({
+        name: 'eco',
+        description: 'Comando de eco!',
+    })
+    public onEcho(@Context() [message]: TextCommandContext, @Arguments() args: string[]) {
+        return message.reply(args.join(' '));
+    }
+}
+```

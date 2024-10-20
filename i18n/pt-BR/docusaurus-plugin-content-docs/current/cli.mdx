@@ -1,0 +1,105 @@
+---
+id: cli
+slug: cli
+title: CLI
+description: Diagramas do Necord é uma ferramenta que ajuda você a criar seu bot mais rápido e fácil.
+sidebar_position: 6
+---
+
+Os [Diagramas do Necord](https://www.npmjs.com/package/@necord/schematics) é uma coleção de diagramas que te ajudam a inicializar, desenvolver,
+e manter suas aplicações Necord. Ele incorpora padrões arquitetônicos de melhor prática para incentivar
+aplicativos bem estruturados.
+
+## Installation {#installation}
+
+Para instalar os diagramas, execute o seguinte comando:
+
+```bash npm2yarn
+npm install -g @nestjs/cli
+npm install -D @necord/schematics
+```
+
+## Usage {#usage}
+
+### Generating commands {#generating-commands}
+
+Para gerar um slash command você pode usar o esquema de comando:
+
+```bash
+nest g -c @necord/schematics command
+```
+
+a partir de lá, o assistente perguntará qual é o nome do comando e o tipo de comando.
+
+As opções disponíveis para este comando são as seguintes:
+
+| Opção              | Descrição                                                  |
+| ------------------ | ---------------------------------------------------------- |
+| `--name`           | O nome do comando.                                         |
+| `--path`           | O caminho para criar o serviço.                            |
+| `--flat`           | Se um diretório foi criado ou não. (padrão: false)         |
+| `--sourceRoot`     | Diretório raiz do serviço NestJS fonte.                    |
+| `--spec`           | Se um arquivo de spec é gerado ou não. (padrão: true)      |
+| `--strategy`       | O tipo de comando. (comando de texto ou slash-command)     |
+
+### Generating message components {#generating-message-components}
+
+Para gerar um slash command você pode usar o diagrama de componente:
+
+```bash
+nest g -c @necord/schematics component
+```
+
+a partir de lá, o assistente perguntará qual é o nome do comando e o tipo de comando.
+
+As opções disponíveis para este comando são as seguintes:
+
+| Opção              | Descrição                                                  |
+| ------------------ | ---------------------------------------------------------- |
+| `--name`           | O nome do componente.                                      |
+| `--path`           | O caminho para criar o serviço.                            |
+| `--flat`           | Se um diretório foi criado ou não. (padrão: false)         |
+| `--sourceRoot`     | Diretório raiz do serviço NestJS fonte.                    |
+| `--spec`           | Se um arquivo de spec é gerado ou não. (padrão: true)      |
+| `--strategy`       | O tipo de componente. (botão, seleção)                     |
+
+### Generating context menus {#generating-context-menus}
+
+Para gerar um menu de contexto você pode usar o diagrama de menu de contexto:
+
+```bash
+nest g -c @necord/schematics context-menu
+```
+
+a partir de lá, o assistente perguntará qual é o nome do menu de contexto e o tipo do menu de contexto.
+
+As opções disponíveis para este comando são as seguintes:
+
+| Opção              | Descrição                                                      |
+| ------------------ | -------------------------------------------------------------- |
+| `--name`           | O nome do menu de contexto.                                    |
+| `--path`           | O caminho para criar o serviço.                                |
+| `--flat`           | Se um diretório foi criado ou não. (padrão: false)             |
+| `--sourceRoot`     | Diretório raiz do serviço NestJS fonte.                        |
+| `--spec`           | Se um arquivo de spec é gerado ou não. (padrão: true)          |
+| `--strategy`       | O tipo de menu de contexto. (usuário, mensagem)                |
+
+### Generating modal components {#generating-modal-components}
+
+Para gerar um componente modal você pode usar o diagrama de componente modal:
+
+```bash
+nest g -c @necord/schematics modal
+```
+
+a partir de lá, o assistente perguntará qual é o nome do componente de modal e o tipo do componente de modal.
+
+As opções disponíveis para este comando são as seguintes:
+
+| Opção              | Descrição                                                  |
+| ------------------ | ---------------------------------------------------------- |
+| `--name`           | O nome do modal.                                           |
+| `--path`           | O caminho para criar o serviço.                            |
+| `--flat`           | Se um diretório foi criado ou não. (padrão: false)         |
+| `--sourceRoot`     | Diretório raiz do serviço NestJS fonte.                    |
+| `--strategy`       | Se um arquivo de spec é gerado ou não. (padrão: true)      |

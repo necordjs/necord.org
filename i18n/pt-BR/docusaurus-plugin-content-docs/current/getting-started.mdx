@@ -1,0 +1,124 @@
+---
+id: start
+slug: start
+title: Primeiros passos
+description: Você está pronto para começar com o necord? Este guia ajudará você a começar com necord, e lhe mostrará como criar o seu primeiro bot!
+sidebar_position: 2
+---
+
+Neste artigo, você aprenderá sobre o básico de necord, e como ele se integra ao [NestJS](https://nestjs.com/)!
+
+:::tip
+
+Muitos dos conceitos vistos com necord são projetados para serem usados como outros componentes em um projeto [NestJS](https://nestjs.com/).
+Nós recomendamos que você esteja familiarizado com a [documentação do NestJS](https://docs.nestjs.com/), especialmente sua seção [overview](https://docs.nestjs.com/first-steps), antes de começar.
+
+:::
+
+O primeiro passo é instalar o necord e sua dependência, [`Discord.js`](https://discord.js.org)
+
+```bash npm2yarn
+npm install necord discord.js
+```
+
+:::tip
+Você precisa instalar [Node.js](https://nodejs.org/en/) v18.0.0 ou mais recente para usar o Necord e o Discord.js.
+:::
+
+## Module setup {#module-setup}
+
+Necord é um módulo como qualquer outro, e pode ser importado como tal dentro da sua aplicação Nest.
+
+:::note Módulos do NestJS
+
+Não tem certeza de que são módulos? Leia sobre eles no [NestJS](https://docs.nestjs.com/modules)!
+
+:::
+
+```typescript title="discord.module.ts"
+import { Module } from '@nestjs/common';
+import { AppService } from './app.service';
+import { IntentsBitField } from 'discord.js';
+
+@Module({
+    imports: [
+        NecordModule.forRoot({
+            token: process.env.DISCORD_TOKEN,
+            intents: [IntentsBitField.Flags.Guilds],
+            development: [process.env.DISCORD_DEVELOPMENT_GUILD_ID]
+        })
+    ],
+    providers: [AppService]
+})
+export class DiscordModule {}
+```
+
+:::info
+
+Certifique-se de configurar os **[intents](https://discordjs.guide/popular-topics/intents.html#privileged-intents)** exigidos pela sua aplicação!
+
+:::
+
+Os argumentos do módulo são uma extensão do [ClientOptions](https://discord.js.org/#/docs/discord.js/stable/typedef/ClientOptions) do discord.js, além de 3 opções do necord: `token`, `prefix` e `development`.
+
+```ts
+export interface NecordModuleOptions extends DiscordClientOptions {
+    token: string;
+    prefix?: string | (message: Message) => string | Promise<string>;
+    development?: Snowflake[] | false;
+    skipRegistration?: boolean;
+}
+```
+
+| Propriedade           | Tipo                                       | Descrição                                                   |
+| --------------------- | ------------------------------------------ | ----------------------------------------------------------- |
+| `token`               | `string`                                   | Seu token do Discord                                        |
+| `prefix`              | `string` ou `(message: Message) => string` | O prefixo de seu bot                                        |
+| `development`         | `Snowflake[]` ou `false`                   | Os servidores de desenvolvimento do seu bot                 |
+| `skipRegistration`    | `boolean`                                  | Pula automaticamente o registro de comandos da aplicação    |
+
+:::warning Aviso
+
+Se você tem, comandos usando a propriedade `guilds`, o argumento global de desenvolvimento **não vai** sobrepor isso.
+
+:::
+
+## Slash Commands {#slash-commands}
+
+O melhor jeito de interagir com seus usuários é usando [Slash Commands](https://support.discord.com/hc/en-us/articles/1500000368501-Slash-Commands-FAQ)!
+Slash commands permitem criar comandos com argumentos precisos e escolhas, dando aos usuários a melhor experiência.
+
+Para criar um comando com Necord, você pode usar o decorador `SlashCommand`.
+
+```typescript title="app.service.ts"
+import { Injectable } from '@nestjs/common';
+import { Context, SlashCommand, SlashCommandContext } from 'necord';
+
+@Injectable()
+export class AppService {
+    @SlashCommand({
+        name: 'ping',
+        description: 'Ping command!'
+    })
+    public async onPing(@Context() [interaction]: SlashCommandContext) {
+        return interaction.reply({ content: 'Pong!' });
+    }
+}
+```
+
+:::tip
+
+Quando o cliente fizer o login, ele automaticamente registrará todos os comandos.
+Comandos globais são armazenados em cache por até uma hora, portanto, para evitar o cache de comandos globais, você deve usar o argumento do `desenvolvimento` no módulo Necord. Isto irá restringir o comando para um único servidor, impedindo-o de ser pego pelo cache.
+
+:::
+
+## Running the application {#running-the-application}
+
+Você pode executar o seguinte comando no seu prompt de comando do SO para iniciar a aplicação que escuta eventos da API do Discord:
+
+```bash npm2yarn
+$ npm run start
+```
+
+Você pode ver um exemplo funcional [aqui](https://github.com/necordjs/examples/tree/master/01-getting-started).

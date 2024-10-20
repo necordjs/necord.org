@@ -1,0 +1,28 @@
+---
+id: contribution-guide
+title: Guia de contribuição
+sidebar_position: 1
+---
+
+# Contribution Guide {#contribution-guide}
+
+Se você deseja contribuir com a base de código necord ou documentação, sinta-se à vontade para bifurcar o repositório e enviar uma pull request. Usamos ESLint para impor um estilo de código consistente, para que isso seja configurado no editor de escolha
+reduz a fricção que contribui para este projeto.
+
+## Setup {#setup}
+
+Você precisará de [Node.js](http://nodejs.org) **versão 18+**, e [npm](https://www.npmjs.com/).
+
+Para se preparar para trabalhar na base de código, por favor faça o seguinte:
+
+1. Faça um fork & clone do repositório. Certifique-se de que você está atualizado com a branch **master**!
+2. Instale as dependências usando `npm ci`
+3. Programe seu coração!
+4. Execute o `npm lint` para executar ESLint e garantir que mudanças respeitem o nosso guia de estilo
+5. [Envie um pull request](https://github.com/necordjs/necord/compare) (Certifique-se de que você segue o [formato convencional de commit](https://github.com/SocketSomeone/necord/blob/main/.github/COMMIT_CONVENTION.md))
+
+Uma visão geral de alto nível das ferramentas usadas:
+
+- [TypeScript](https://www.typescriptlang.org/) como linguagem de programação
+- [Eslint](https://eslint.org/) para estilo de código
+- [Prettier](https://prettier.io/) para formatação de código
