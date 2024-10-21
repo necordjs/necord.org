@@ -1,11 +1,11 @@
 ---
 id: client-providers
-title: Client Providers
+title: Provedores do Cliente
 sidebar_position: 4
 ---
 
-Necord have snippets to access the client and its properties in your application.
-You can inject managers and utils of discord.js client using constructor.
+Necord tem snippets para acessar o cliente e suas propriedades na sua aplicação.
+Você pode injetar gerenciadores e utils do cliente discord.js usando construtor.
 
 ```typescript title="app.service.ts"
 import { Injectable } from '@nestjs/common';
@@ -26,13 +26,13 @@ export class AppService {
 }
 ```
 
-| Class (Type to be Injected) | Client Property (Will access to) | Descrição          |
-| --------------------------- | -------------------------------- | ------------------ |
-| `Client`                    | `client`                         | Discord.js client  |
-| `ChannelManager`            | `client.channels`                | Channels of client |
-| `GuildManager`              | `client.guilds`                  | Guilds of client   |
-| `UserManager`               | `client.users`                   | Users of client    |
-| `ShardClientUtil`           | `client.shard`                   | Shards utilities   |
-| `ClientVoiceManager`        | `client.voice`                   | Voice manager      |
-| `WebSocketManager`          | `client.ws`                      | Websocket manager  |
-| `REST`                      | `client.rest`                    | REST manager       |
+| Classe (Tipo para ser Injetado) | Propriedade do Cliente (Oque será acessado) | Descrição                 |
+| ------------------------------- | ------------------------------------------- | ------------------------- |
+| `Client`                        | `client`                                    | Cliente do Discord.js     |
+| `ChannelManager`                | `client.channels`                           | Canais do cliente         |
+| `GuildManager`                  | `client.guilds`                             | Servidores do cliente     |
+| `UserManager`                   | `client.users`                              | Usuários do cliente       |
+| `ShardClientUtil`               | `client.shard`                              | Utilitarios de shards     |
+| `ClientVoiceManager`            | `client.voice`                              | Gerenciador de voz        |
+| `WebSocketManager`              | `client.ws`                                 | Gerenciador de Websocket  |
+| `REST`                          | `client.rest`                               | Gerenciador REST          |

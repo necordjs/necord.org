@@ -1,14 +1,14 @@
 ---
 id: context-menus
-title: Context Menus
+title: Menus Contextuais
 sidebar_position: 2
 ---
 
-**User commands** and **message commands** are now live! These commands appear on context menus for users and messages, with more to come in the future.
+**Comandos do usuário** e **comandos da mensagem** agora estão no ar! Esses comandos aparecem em menus de contexto para usuários e mensagens, com mais por vir no futuro.
 
-## User Commands {#user-commands}
+## Comandos de Usuário {#user-commands}
 
-**User commands** are application commands that appear on the context menu (right click or tap) of users. They're a great way to surface quick actions for your app that target users.
+**Comandos de usuário** são comandos que aparecem no menu contextual de usuários (clique com o botão direito ou toque). Eles são uma ótima maneira de mostrar ações rápidas para os usuários alvo do aplicativo.
 
 ```typescript title="app.commands.ts"
 import { Injectable } from '@nestjs/common';
@@ -35,11 +35,11 @@ export class AppCommands {
 
 Se tudo der certo, você deve ver algo como isto:
 
-![User Command](/img/content/context_user.png "User Command")
+![Comando de Usuário](/img/content/context_user.png "User Command")
 
-## Message Commands {#message-commands}
+## Comandos de Mensagem {#message-commands}
 
-**Message commands** are application commands that appear on the context menu (right click or tap) of messages. They're a great way to surface quick actions for your app that target messages.
+**Comandos de mensagem** são comandos de aplicativo que aparecem no menu contextual (clique com o botão direito ou toque) de mensagens. Eles são uma ótima maneira de mostrar ações rápidas de mensagens para seu aplicativo.
 
 ```typescript title="app.commands.ts"
 import { Injectable } from '@nestjs/common';
@@ -60,6 +60,6 @@ export class AppCommands {
 
 Se tudo der certo, você deve ver algo como isto:
 
-![Message Command](/img/content/context_message.png "Message Command")
+![Comandos de Mensagem](/img/content/context_message.png "Message Command")
 
-You can view a working example [here](https://github.com/necordjs/examples/tree/master/03-context-menus).
+Você pode ver um exemplo funcional [aqui](https://github.com/necordjs/examples/tree/master/03-context-menus).
