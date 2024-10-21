@@ -4,13 +4,13 @@ title: Sharding
 sidebar_position: 1
 ---
 
-Discord prevents your bot application from logging in without sharding once you hit a scale of 2,500 guilds. If you are not planning to create a public bot application, then you can go ahead and ignore this section. However, if you are creating a public bot application, it would be wise to keep sharding in mind as it can increase the complexity of your application due to how a sharded process works.
+O Discord impede que a aplicação de seu bot faça login sem fazer sharding uma vez que você chega numa escala de 2.500 servidores. Se você não planeja criar um bot público, então você pode ir em frente e ignorar esta seção. No entanto, se você estiver criando um bot público, Seria sensato manter o sharding em mente, pois isso pode aumentar a complexidade de sua aplicação devido à forma como funciona um processo fragmentado.
 
 :::warning
-If you are running the bot as part of a webserver within NestJS, then in order to implement sharding you must understand that initialising `necord` within your HTTP server process isn't going to be a viable option. So we're going to have to split the two into their own independent processes. This doesn't mean you can't share code between the two, just that they will be running on different processes. You could consider your "bot" application as a microservice of sorts.
+Se você estiver executando o bot como parte de um servidor web dentro do NestJS, então para implementar o compartilhamento você deve entender que inicializar o `necord` dentro do processo do servidor HTTP não vai ser uma opção viável. Então vamos ter que dividir os dois em seus próprios processos independentes. Isso não significa que você não pode compartilhar o código entre os dois, então eles serão executados em processos diferentes. Você poderia considerar sua aplicação "bot" como um microsserviço.
 :::
 
-1. In your `src` directory, create a new `bot.ts` file, this will be used to instantiate the bot as a standalone application wth some slight differences. The `DiscordModule` cannot be imported within your `AppModule`. This is because we do not want any bot processes on unsharded processes, so if you need to share code between the two, you should import the necessary modules into your `DiscordModule` or alternatively, create a `SharedModule` which is imported both into your `AppModule` and `DiscordModule`.
+1. No diretório `src`, crie um arquivo `bot.ts`, esse arquivo será usado para instanciar o bot como uma aplicação autônoma com algumas pequenas diferenças. O `DiscordModule` não pode ser importado dentro do seu `AppModule`. Isso porque não queremos nenhum processo bot em processos não compartilhados, então se você precisa compartilhar o código entre os dois, você deve importar os módulos necessários para o seu `DiscordModule` ou como alternativa, crie um `SharedModule` que é importado para o seu `AppModule` e `DiscordModule`.
 
 ```typescript
 import { NestFactory } from '@nestjs/core';
@@ -45,7 +45,7 @@ module.exports = function (options) {
 
 :::
 
-2. Modify your `main.ts` file to create a new `ShardingManager` instance which calls your `bot.js` file (not .ts extension), specifying a .ts extension will cause errors as this is executed only after your code has been transpiled into JavaScript. You can use the snippet below as an example:
+2. Modifique o seu arquivo `main.ts` para criar uma instância de `ShardingManager` que chama o arquivo `bot.js` (não a extensão .ts), especificando uma extensão .ts causará erros, pois ela é executada somente depois que seu código for transpilado em JavaScript. Você pode usar o snippet abaixo como um exemplo:
 
 ```typescript
 import { NestFactory } from '@nestjs/core';
@@ -66,23 +66,23 @@ export async function bootstrap() {
 
     manager.on('shardCreate', shard => {
         shard.on('reconnecting', () => {
-            console.log(`Reconnecting shard: [${shard.id}]`);
+            console.log(`Reconectando shard: [${shard.id}]`);
         });
 
         shard.on('spawn', () => {
-            console.log(`Spawned shard: [${shard.id}]`);
+            console.log(`Criando shard: [${shard.id}]`);
         });
 
         shard.on('ready', () => {
-            console.log(` Shard [${shard.id}] is ready`);
+            console.log(` Shard [${shard.id}] está pronto`);
         });
 
         shard.on('death', () => {
-            console.log(`Died shard: [${shard.id}]`);
+            console.log(`Shard: [${shard.id}] morreu`);
         });
 
         shard.on('error', err => {
-            console.log(`Error in  [${shard.id}] with : ${err} `);
+            console.log(`Erro em  [${shard.id}] com: ${err} `);
             shard.respawn();
         });
     });
@@ -90,8 +90,8 @@ export async function bootstrap() {
 bootstrap();
 ```
 
-3. Now when you bootstrap your application, your `bot.ts` context is created on a sharded process.
+3. Agora quando você inicia sua aplicação, seu contexto `bot.ts` é criado em um processo compartilhado.
 
 :::tip
-If you are running into further issues and require cross-hosting your bot application, then just swap the `ShardingManager` out for other sharding packages like the [discord-hybrid-sharding](https://github.com/meister03/discord-hybrid-sharding) which is required for the [discord-cross-hosting](https://github.com/meister03/discord-cross-hosting) package.
+Se você estiver enfrentando problemas adicionais e exija que seu aplicativo de hospedagem cruzada, então basta trocar o `ShardingManager` para outros pacotes de compartilhamento, como o [discord-hybrid-sharding](https://github. om/meister03/discord-hybrid-sharding) que é necessário para o pacote [discord-cross-hosting](https://github.com/meister03/discord-cross-host).
 :::
