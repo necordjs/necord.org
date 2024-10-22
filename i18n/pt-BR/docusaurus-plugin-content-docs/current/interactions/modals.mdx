@@ -1,10 +1,10 @@
 ---
 id: modals
-title: Modals
+title: Modais
 sidebar_position: 4
 ---
 
-With modals you can create pop-up forms that allow users to provide you with formatted inputs through submissions. We'll cover how to create, show, and receive modal forms using necord
+Com modais você pode criar formulários pop-up que permitem que os usuários lhe forneçam entradas formatadas através de envios. Vamos abordar como criar, mostrar e receber formulários modais usando o necord
 
 <img src="/img/content/modal.png" alt="Modal" width="500" />
 
@@ -17,23 +17,23 @@ export class AppModals {
     @Modal('pizza')
     public onModal(@Ctx() [interaction]: ModalContext) {
       return interaction.reply({
-        content: `Your fav pizza : ${interaction.fields.getTextInputValue('pizza')}`
+        content: `Sua pizza favorita : ${interaction.fields.getTextInputValue('pizza')}`
       });
     }
 }
 ```
 
-### Dynamic Modal {#dynamic-modal}
+### Mod Dinâmico {#dynamic-modal}
 
-You can create modals with dynamic `id` field. This is useful for passing metadata to modals.
+Você pode criar botões com o campo dinâmico `id`. Isso é útil para passar metadados para modais.
 
-Dynamic modals uses [path-to-regexp](https://www.npmjs.com/package/path-to-regexp) format to perform regexp matching. Turn a path string such as `user/:name` into a regular expression.
+Modais dinâmicos usam um formato [path-to-regexp](https://www.npmjs.com/package/path-to-regexp) para realizar a correspondência de expressão regular. Transforme uma string de caminho como `user/:name` em uma expressão regular.
 
-To create a Dynamic modal
+Para criar um modal dinâmico
 
 ```typescript
 new ModalBuilder()
-  .setTitle('What your fav pizza?')
+  .setTitle('Qual sua pizza favorita?')
   .setCustomId('pizza/12345')
   .setComponents([
     new ActionRowBuilder<ModalActionRowComponentBuilder>().addComponents([
@@ -45,7 +45,7 @@ new ModalBuilder()
   ])
 ```
 
-To receive a Dynamic modal
+Para receber um modal dinâmico
 
 ```typescript title="app.modals.ts"
 import { Injectable } from '@nestjs/common';
@@ -56,10 +56,10 @@ export class AppModals {
     @Modal('pizza/:value')
     public onModal(@Ctx() [interaction]: ModalContext, @ModalParam('value') value: string) {
       return interaction.reply({
-        content: `Your fav pizza ${value} : ${interaction.fields.getTextInputValue('pizza')}`
+        content: `Sua pizza favorita ${value} : ${interaction.fields.getTextInputValue('pizza')}`
       });
     }
 }
 ```
 
-You can view a working example [here](https://github.com/necordjs/examples/tree/master/05-modals).
+Você pode ver um exemplo funcional [aqui](https://github.com/necordjs/examples/tree/master/05-modals).
