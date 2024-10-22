@@ -4,24 +4,23 @@ title: Slash Commands
 sidebar_position: 1
 ---
 
-**Slash Commands** are the new, exciting way to build and interact with bots on **Discord**. With Slash Commands, all you have to do is
-type `/` and you're ready to use your favorite bot. You can easily see all the commands a bot has, and validation and error handling help
-you get the command right the first time.
+**Comandos de Golpe** são a nova e emocionante maneira de construir e interagir com bots no **Discord**. Com Slash Commands, tudo que você tem que fazer é
+digitar `/` e você estará pronto para utilizar seu bot favorito. Você pode ver facilmente todos os comandos que um bot tem, e a validação e a manipulação de erros ajudam
+você a obter o comando corretamente na primeira vez.
 
 ![Slash Commands](/img/content/slash_command_menu.png "Slash Commands")
 
-## Global Commands {#global-commands}
+## Comandos Globais {#global-commands}
 
 :::tip
 
-Global commands are cached for one hour. New global commands will fan out slowly across all guilds and will only be guaranteed to be updated
-after an hour. Guild commands update instantly. As such, we recommend you use guild-based commands during development and publish them to
-global commands when they're ready for public use.
+Comandos globais são armazenados em cache por uma hora. Novos comandos globais vão se espalhar lentamente em todas as guildas e só será garantido que serão atualizados
+após uma hora. Comandos de servidor atualizam instantaneamente. Com isso, recomendamos que você use comandos baseados a servidores durante o desenvolvimento e publique eles como comandos globais quando eles estiverem prontos para o uso do público.
 
-[Read more about dev-mode configuration](/start#module-setup)
+[Leia mais sobre configuração modo dev](/start#module-setup)
 :::
 
-Create `app.commands.ts` file and add method with `SlashCommand` decorator.
+Crie o arquivo `app.commands.ts` e adicione um método com o decorador `SlashCommand`.
 
 ```typescript title="app.commands.ts"
 import { Injectable } from '@nestjs/common';
@@ -31,7 +30,7 @@ import { Context, SlashCommand, SlashCommandContext } from 'necord';
 export class AppCommands {
     @SlashCommand({
         name: 'ping',
-        description: 'Ping-Pong Command'
+        description: 'Comando Ping-Pong'
     })
     public async onPing(@Context() [interaction]: SlashCommandContext) {
         return interaction.reply({ content: 'Pong!' });
@@ -39,9 +38,9 @@ export class AppCommands {
 }
 ```
 
-## Guild Commands {#guild-commands}
+## Comandos de Servidor {#guild-commands}
 
-If you want to have guild specific commands, use the `guilds` property on the `SlashCommand` decorator
+Se você quer ter comandos específicos de um servidor, use a propriedade `guilds` no decorador `SlashCommand`
 
 ```typescript title="app.commands.ts"
 import { Injectable } from '@nestjs/common';
@@ -51,7 +50,7 @@ import { Context, SlashCommand, SlashCommandContext } from 'necord';
 export class AppCommands {
     @SlashCommand({
         name: 'ping',
-        description: 'Ping-Pong Command',
+        description: 'Comando Ping-Pong',
         guilds: [process.env.DEV_GUILD]
     })
     public async onPing(@Context() [interaction]: SlashCommandContext) {
@@ -60,11 +59,11 @@ export class AppCommands {
 }
 ```
 
-> You can use decorator on both method and class.
+> Você pode usar decoradores em classes e métodos.
 
-## Options {#options}
+## Opções {#options}
 
-Use the option decorator to define a parameter in a slash command, let's create the `LengthDto` class:
+Use o decorador de opção para definir um parâmetro em um slash command, vamos criar a classe `LengthDto`:
 
 ```typescript title="length.dto.ts"
 import { StringOption } from 'necord';
@@ -72,14 +71,14 @@ import { StringOption } from 'necord';
 export class TextDto {
     @StringOption({
         name: 'text',
-        description: 'Your text',
+        description: 'Seu texto',
         required: true
     })
     text: string;
 }
 ```
 
-It has only one basic properties. Thereafter we can use the newly created DTO inside the `AppCommands`:
+Tem apenas uma propriedade básica. Então, nós podemos usar o recém-criado DTO dentro do `AppCommands`:
 
 ```typescript title="app.commands.ts"
 import { Injectable } from '@nestjs/common';
@@ -89,33 +88,33 @@ import { TextDto } from './length.dto';
 @Injectable()
 export class AppCommands {
     @SlashCommand({
-        name: 'length',
-        description: 'Get length of text'
+        name: 'tamanho',
+        description: 'Consiga o tamanho de um texto'
     })
     public async onLength(@Context() [interaction]: SlashCommandContext, @Options() { text }: TextDto) {
-        return interaction.reply({content: `Length of your text ${text.length}`});
+        return interaction.reply({content: `Tamanho do seu texto ${text.length}`});
     }
 }
 ```
 
-List of all built-in option decorators:
+Lista de todos os decoradores de opção incorporados:
 
-| Decorator           | Tipo                              | Descrição            |
-| :------------------ | :-------------------------------- | :------------------- |
-| `StringOption`      | `string`                          | A string option      |
-| `NumberOption`      | `number`                          | A number option      |
-| `IntegerOption`     | `number`                          | An integer option    |
-| `BooleanOption`     | `boolean`                         | A boolean option     |
-| `UserOption`        | `User`                            | A user option        |
-| `MemberOption`      | `GuildMember`                     | A member option      |
-| `ChannelOption`     | `GuildChannel`                    | A channel option     |
-| `RoleOption`        | `Role`                            | A role option        |
-| `MentionableOption` | `GuildMember` \| `Role` \| `User` | A mentionable option |
-| `AttachmentOption`  | `Attachment`                      | An attachment option |
+| Decorador           | Tipo                              | Descrição                   |
+| :------------------ | :-------------------------------- | :-------------------------- |
+| `StringOption`      | `string`                          | Uma opção de texto          |
+| `NumberOption`      | `number`                          | Uma opção numérica          |
+| `IntegerOption`     | `number`                          | Uma opção de inteiro        |
+| `BooleanOption`     | `boolean`                         | Uma opção booleana          |
+| `UserOption`        | `User`                            | Uma opção de usuário        |
+| `MemberOption`      | `GuildMember`                     | Uma opção de membro         |
+| `ChannelOption`     | `GuildChannel`                    | Uma opção de canal          |
+| `RoleOption`        | `Role`                            | Uma opção de cargo          |
+| `MentionableOption` | `GuildMember` \| `Role` \| `User` | Uma opção mencionável       |
+| `AttachmentOption`  | `Attachment`                      | Uma opção de anexo          |
 
-## Autocomplete {#autocomplete}
+## Autocompletar {#autocomplete}
 
-To add autocomplete to your Slashcommand you will need a interceptor first. This class will intercept all requests from the user after typing in the autocomplete option field
+Para adicionar autocompletar ao seu slash command você precisará de um interceptor primeiro. Esta classe interceptará todas as solicitações do usuário depois de digitar o campo de opção de preenchimento automático
 
 ```typescript title="anime.interceptor.ts"
 import { Injectable } from '@nestjs/common';
@@ -141,15 +140,15 @@ export class AnimeAutocompleteInterceptor extends AutocompleteInterceptor {
 }
 ```
 
-You'll then have to add `autocomplete: true` to your options class:
+Você terá que adicionar `autoComplete: true` para sua classe de opções:
 
 ```typescript title="anime.dto.ts"
-import { StringOption } from 'necord';
+importar { StringOption } de 'necord';
 
 export class AnimeDto {
     @StringOption({
         name: 'anime',
-        description: 'The anime to look up',
+        description: 'O anime para procurar',
         autocomplete: true,
         required: true
     })
@@ -157,7 +156,7 @@ export class AnimeDto {
 }
 ```
 
-And last but not least, apply the interceptor to your slash command
+E por último, mas não menos importante, aplicar o interceptor ao seu slash command
 
 ```typescript title="anime-commands.service.ts"
 import { Injectable, UseInterceptors } from '@nestjs/common';
@@ -170,36 +169,36 @@ export class AnimeCommands {
     @UseInterceptors(AnimeAutocompleteInterceptor)
     @SlashCommand({
         name: 'anime',
-        description: 'Lookup information about an anime'
+        description: 'Procura informações sobre um anime'
     })
     public async onSearch(@Context() [interaction]: SlashCommandContext, @Options() { anime }: AnimeDto) {
-        return interaction.reply({content: `I found the anime ${anime}`});
+        return interaction.reply({content: `Eu encontrei o anime ${anime}`});
     }
 }
 ```
 
-## Groups {#groups}
+## Grupos {#groups}
 
-:::tip **TIP**
+:::tip **DICA**
 
-For those developers looking to make more organized and complex groups of commands, look no further than subgroups and groups.
+Para esses desenvolvedores que desejam fazer grupos de comandos mais organizados e complexos, procure apenas subgrupos e grupos.
 :::
 
-Use `SlashGroup` decorators on class-level `(Group)` and method-level `(SubGroup)`:
+Use decoradores `SlashGroup` em nível de classe `(Grupo)` e nível método `(Subgrupo)`:
 
 ```typescript title="utils-commands.service.ts"
 import { createCommandGroupDecorator, Subcommand } from 'necord';
 
 export const UtilsCommandDecorator = createCommandGroupDecorator({
-    name: 'utils',
-    description: 'Utils group',
+    name: 'utilidades',
+    description: 'Grupo de utilidades',
 });
 
 @UtilsCommandDecorator()
 export class UtilsCommands {
     @Subcommand({
         name: 'ping',
-        description: 'Ping-pong command'
+        description: 'Comando Ping-pong'
     })
     public async onPing(...) {
     ...
@@ -207,13 +206,13 @@ export class UtilsCommands {
 }
 
 @UtilsCommandDecorator({
-    name: 'string',
-    descriptionn: 'String utility commands'
+    name: 'texto',
+    descriptionn: 'Comandos de utilidade de texto'
 })
 export class UtilsStringCommands {
     @Subcommand({
-        name: 'length',
-        description: 'String length command'
+        name: 'tamanho',
+        description: 'Comando de tamanho de texto'
     })
     public async onLength(...) {
     ...
@@ -223,8 +222,8 @@ export class UtilsStringCommands {
 
 ```
 
-After the registration commands, the bot will process `/utils ping` and `/utils string length` commands, like here:
+Após os comandos serem registrados, o bot irá processar os comandos `/utilidades ping` e `/utilidades texto tamanho`, como aqui:
 
-![Commands](/img/content/slash_command_example.png)
+![Comandos](/img/content/slash_command_example.png)
 
-You can view a working example [here](https://github.com/necordjs/examples/tree/master/02-slash-commands).
+Você pode ver um exemplo funcional [aqui](https://github.com/necordjs/examples/tree/master/02-slash-commands).
