@@ -4,7 +4,7 @@ title: Lavalink
 sidebar_position: 3
 ---
 
-Transform your bot into a professional DJ with the power of the [Lavalink](https://lavalink.dev/) ecosystem. This package uses [lavalink-client](https://github.com/Tomato6966/lavalink-client) behind the scenes, providing a high-performance and efficient solution for managing audio streams on Discord. By leveraging Lavalink, your bot gains the ability to manage audio playback, queues, and real-time controls with minimal latency, transforming it into a fully capable and professional music system.
+Transforme seu bot em um DJ profissional com o poder do ecossistema [Lavalink](https://lavalink.dev/). Este pacote usa [lavalink-client](https://github.com/Tomato6966/lavalink-client) nos bastidores, oferecendo uma solução de alto desempenho e eficiente para o gerenciamento de fluxos de áudio no Discord. Aproveitando o Lavalink, o seu bot ganha a capacidade de gerenciar a reprodução de áudio, filas, e controles em tempo real, com latência mínima, transformando-o em um sistema de música totalmente capaz e profissional.
 
 ## Instalação {#installation}
 
@@ -16,7 +16,7 @@ npm i @necord/lavalink necord discord.js lavalink-client
 
 ## Utilização {#usage}
 
-Once the installation process is complete, we can import the `NecordLavalinkModule` with your `NecordModule` into the root `AppModule`:
+Uma vez que o processo de instalação estiver concluído, nós podemos importar o `NecordLavalinkModule` com o seu `NecordModule` para a raiz `AppModule`:
 
 ```typescript title="app.module.ts"
 import { NecordLavalinkModule } from '@necord/lavalink';
@@ -34,7 +34,7 @@ import { AppService } from './app.service';
             ],
         }),
         NecordLavalinkModule.forRoot({
-            // At least 1 node is required
+            // Pelo menos 1 node é necessário
             nodes: [
                 {
                     authorization: 'youshallnotpass',
@@ -49,15 +49,15 @@ import { AppService } from './app.service';
 export class AppModule {}
 ```
 
-Checkout more Module options in the official [**lavalink-client** Documentation](https://lc4.gitbook.io/lavalink-client/docs/lavalinkmanager/manager-options).
+Confira mais opções do módulo na documentação oficial [**lavalink-client**](https://lc4.gitbook.io/lavalink-client/docs/lavalinkmanager/manager-options).
 
-## Listeners {#listeners}
+## Ouvintes {#listeners}
 
-In `@necord/lavalink` events handling works same as the [default Necord listeners](https://necord.org/listeners) with some changes.
+Em '@necord/lavalink' o manuseio de eventos funciona o mesmo que os [ouvintes Necord padrão](https://necord.org/listeners) com algumas alterações.
 
-- Instead of default `On`/`Once` decorators and `ContextOf` you can use
-  - `OnLavalinkManager`/`OnceLavalinkManager` and `LavalinkManagerContextOf` for [LavalinkManager Events](#lavalinkmanager-events).
-  - `OnNodeManager`/`OnceNodeManager` and `NodeManagerContextOf` for [NodeManager Events](#nodemanager-events).
+- Em vez de decoradores `On`/`Once` e `ContextOf` padrão você pode usar
+  - `OnLavalinkManager`/`OnceLavalinkManager` e `LavalinkManagerContextOf` para [Eventos do LavalinkManager](#lavalinkmanager-events).
+  - `OnNodeManager`/`OnceNodeManager` e `NodeManagerContextOf` para [Eventos do NodeManager](#nodemanager-events).
 
 ```typescript title="app.service.ts"
 import { Injectable, Logger } from '@nestjs/common';
@@ -70,84 +70,84 @@ export class AppService {
 
     @OnNodeManager('connect')
     public onConnect(@Context() [node]: NodeManagerContextOf<'connect'>) {
-        this.logger.log(`Node: ${node.options.id} Connected`);
+        this.logger.log(`Node: ${node.options.id} Conectado`);
     }
 
     @OnLavalinkManager('playerCreate')
     public onPlayerCreate(@Context() [player]: LavalinkManagerContextOf<'playerCreate'>) {
-        this.logger.log(`Player created at ${player.guildId}`);
+        this.logger.log(`Player criado em ${player.guildId}`);
     }
 }
 ```
 
-### LavalinkManager Events {#lavalinkmanager-events}
+### Eventos do LavalinkManager {#lavalinkmanager-events}
 
-- View in Official [**lavalink-client** Documentation](https://tomato6966.github.io/lavalink-client/extra/manager-events/).
+- Veja na Documentação Oficial [**lavalink-client**](https://tomato6966.github.io/lavalink-client/extra/manager-events/).
 
-| Nome do evento                | Descrição                                                                                                                    |
-| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `trackStart`                  | Emitted whenever a Track plays.                                                                                              |
-| `trackEnd`                    | Emitted whenever a track finished playing.                                                                                   |
-| `trackStuck`                  | Emitted whenever a Track got stuck while playing.                                                                            |
-| `trackError`                  | Emitted whenever a Track errored.                                                                                            |
-| `queueEnd`                    | Emitted when the track Ended, but there are no more tracks in the queue. (`trackEnd`, does NOT get executed)                 |
-| `playerCreate`                | Emitted whenever a Player gets created.                                                                                      |
-| `playerMove`                  | Emitted whenever a Player gets moved between Voice Channels.                                                                 |
-| `playerDisconnect`            | Emitted whenever a player is disconnected from a channel.                                                                    |
-| `playerSocketClose`           | Emitted whenever a Node-Socket got closed for a specific Player.                                                             |
-| `playerDestroy`               | Emitted whenever a Player got destroyed.                                                                                     |
-| `playerUpdate`                | Emitted whenever a Player gets an update from Lavalink's playerUpdate Event.                                                 |
-| `playerMuteChange`            | Emitted whenever Player's voice state related to muting is changed.                                                          |
-| `playerDeafChange`            | Emitted whenever Player's voice state related to deafing is changed.                                                         |
-| `playerSuppressChange`        | Emitted whenever Player's voice state related to supressing is changed.                                                      |
-| `playerQueueEmptyStart`       | Emitted whenever the Queue empty handler started (timeout).                                                                  |
-| `playerQueueEmptyEnd`         | Emitted whenever the Queue empty handler finished (successfully) and destroyed the player.                                   |
-| `playerQueueEmptyCancel`      | Emitted whenever the Queue empty handler cancelled (e.g. because a new track got added).                                     |
-| `playerVoiceJoin`             | Emitted whenever a user joins the player's voice channel.                                                                    |
-| `playerVoiceLeave`            | Emitted whenever a user leaves the player's voice channel.                                                                   |
-| `debug`                       | Emitted for several erros, and logs within lavalink-client, if `managerOptions.advancedOptions.enableDebugEvents` is `true`. |
+| Nome do evento                | Descrição                                                                                                                   |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `trackStart`                  | Emitido sempre que uma Faixa é reproduzida.                                                                                 |
+| `trackEnd`                    | Emitido quando uma Faixa terminou de tocar.                                                                                 |
+| `trackStuck`                  | Emitido quando uma Faixa travou.                                                                                            |
+| `trackError`                  | Emitido sempre que ocorre um erro em uma Faixa.                                                                             |
+| `queueEnd`                    | Emitido quando a faixa terminou, mas não há mais faixas na fila. (`trackEnd`, NÃO é executado)                              |
+| `playerCreate`                | Emitido sempre que um Player é criado.                                                                                      |
+| `playerMove`                  | Emitido sempre que um Player é movido entre os canais de voz.                                                               |
+| `playerDisconnect`            | Emitido sempre que um Player é desconectado de um canal.                                                                    |
+| `playerSocketClose`           | Emitido quando um Node-Socket foi fechado para um Player específico.                                                        |
+| `playerDestroy`               | Emitido sempre que um Player é destruído.                                                                                   |
+| `playerUpdate`                | Emitido sempre que um Player recebe uma atualização do evento playerUpdate do Lavalink.                                     |
+| `playerMuteChange`            | Emitido sempre que o estado de voz do Player relacionado ao silenciamento é alterado.                                       |
+| `playerDeafChange`            | Emitido sempre que o estado de voz do Player relacionado ao ensurdecimento é alterado.                                      |
+| `playerSuppressChange`        | Emitido sempre que o estado de voz do Player relacionado à supressão é alterado.                                            |
+| `playerQueueEmptyStart`       | Emitido sempre que o manipulador vazio da fila começou (timeout).                                                           |
+| `playerQueueEmptyEnd`         | Emitido quando o manipulador vazio da fila terminou (com sucesso) e destruiu o Player.                                      |
+| `playerQueueEmptyCancel`      | Emitido sempre que o manipulador vazio da fila foi cancelado (por exemplo, porque uma nova faixa foi adicionada).           |
+| `playerVoiceJoin`             | Emitido sempre que um usuário entra em um canal de voz do Player.                                                           |
+| `playerVoiceLeave`            | Emitido sempre que um usuário sai do canal de voz do Player.                                                                |
+| `debug`                       | Emitido por vários erros, e logs dentro de lavalink-client, se `managerOptions.advancedOptions.enableDebugEvents` é `true`. |
 
-#### SponsorBlock Plugin Events {#sponsorblock-plugin-events}
+#### Eventos do Plugin SponsorBlock {#sponsorblock-plugin-events}
 
-- This Events is a part of [LavalinkManager Events](#lavalinkmanager-events).
-- This requires the [**SponsorBlock Plugin**](https://github.com/topi314/Sponsorblock-Plugin) added in Lavalink Server.
+- Estes eventos fazem parte de [eventos do LavalinkManager](#lavalinkmanager-events).
+- Isso requer o [**Plugin SponsorBlock**](https://github.com/topi314/Sponsorblock-Plugin) adicionado no servidor Lavalink.
 
-| Nome do evento                | Descrição                                                  |
-| ----------------------------- | ---------------------------------------------------------- |
-| `SegmentsLoaded`              | Emitted whenever Segments are loaded.                      |
-| `SegmentSkipped`              | Emitted whenever a specific Segment was skipped.           |
-| `ChapterStarted`              | Emitted whenever a specific Chapter starts playing.        |
-| `ChaptersLoaded`              | Emitted whenever Chapters are loaded.                      |
+| Nome do evento                | Descrição                                                              |
+| ----------------------------- | ---------------------------------------------------------------------- |
+| `SegmentsLoaded`              | Emitido quando Segmentos são carregados.                               |
+| `SegmentSkipped`              | Emitido quando um Segmento específico foi ignorado.                    |
+| `ChapterStarted`              | Emitido quando um Capítulo específico começa a ser reproduzido.        |
+| `ChaptersLoaded`              | Emitido quando Capítulos são carregados.                               |
 
-#### LavaLyrics Plugin Events {#lavalyrics-plugin-events}
+#### Eventos do Plugin LavaLyrics {#lavalyrics-plugin-events}
 
-- This Events is a part of [LavalinkManager Events](#lavalinkmanager-events).
-- This requires the [**LavaLyrics Plugin**](https://github.com/topi314/LavaLyrics) added in Lavalink Server.
+- Estes eventos fazem parte de [eventos do LavalinkManager](#lavalinkmanager-events).
+- Isso requer o [**Plugin LavaLyrics**](https://github.com/topi314/LavaLyrics) adicionado no servidor Lavalink.
 
-| Nome do evento                | Descrição                                                  |
-| ----------------------------- | ---------------------------------------------------------- |
-| `LyricsLine`                  | Emitted whenever a Lyrics line is received.                |
-| `LyricsFound`                 | Emitted whenever a Lyrics is found.                        |
-| `LyricsNotFound`              | Emitted whenever a Lyrics is not found.                    |
+| Nome do evento                | Descrição                                                     |
+| ----------------------------- | ------------------------------------------------------------- |
+| `LyricsLine`                  | Emitido quando uma linha de Letra é recebida.                 |
+| `LyricsFound`                 | Emitido quando uma Letra é encontrada.                        |
+| `LyricsNotFound`              | Emitido quando uma Letra não é encontrada.                    |
 
-### NodeManager Events {#nodemanager-events}
+### Eventos do NodeManager {#nodemanager-events}
 
-- View in Official [**lavalink-client** Documentation](https://tomato6966.github.io/lavalink-client/extra/node-events/).
+- Veja na Documentação Oficial [**lavalink-client**](https://tomato6966.github.io/lavalink-client/extra/node-events/).
 
-| Nome do evento                | Descrição                                                                                                                                                                                                               |
-| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `create`                      | Emitted whenever a Node is created.                                                                                                                                                                                     |
-| `destroy`                     | Emitted whenever a Node is destroyed.                                                                                                                                                                                   |
-| `connect`                     | Emitted whenever a Node is connected.                                                                                                                                                                                   |
-| `reconnecting`                | Emitted whenever a Node is reconnecting.                                                                                                                                                                                |
-| `reconnectinprogress`         | Emitted whenever a node starts to reconnect. (if you have a reconnection delay, the reconnecting event will be emitted after the `retryDelay`.) Useful to check wether the internal node reconnect system works or not. |
-| `disconnect`                  | Emitted whenever a Node is disconnects.                                                                                                                                                                                 |
-| `error`                       | Emitted whenever a Node is error.                                                                                                                                                                                       |
-| `raw`                         | Emits every single Node event.                                                                                                                                                                                          |
+| Nome do evento                | Descrição                                                                                                                                                                                                                    |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `create`                      | Emitido sempre que um Node é criado.                                                                                                                                                                                         |
+| `destroy`                     | Emitido sempre que um Node é destruído.                                                                                                                                                                                      |
+| `connect`                     | Emitido sempre que um Node é conectado.                                                                                                                                                                                      |
+| `reconnecting`                | Emitido sempre que um Node está se reconectando.                                                                                                                                                                             |
+| `reconnectinprogress`         | Emitido sempre que um Node começa a reconectar. (se você tiver um atraso de reconexão, o evento de reconexão será emitido após `retryDelay`.) Útil para verificar se o sistema de reconexão de Node interno funciona ou não. |
+| `disconnect`                  | Emitido sempre que um Node é desconectado.                                                                                                                                                                                   |
+| `error`                       | Emitido sempre que ocorre um erro em um Node.                                                                                                                                                                                |
+| `raw`                         | Emite cada evento do Node.                                                                                                                                                                                                   |
 
-## Providers {#providers}
+## Provedores {#providers}
 
-- `@necord/lavalink` have snippets to access the lavalink-client methods. You can inject the managers using constructor.
+- `@necord/lavalink` tem snippets para acessar os métodos do cliente lavalink. Você pode injetar os gerenciadores usando construtor.
 
 ```typescript title="app.service.ts"
 import { Injectable } from '@nestjs/common';
@@ -162,15 +162,15 @@ export class AppService {
 }
 ```
 
-| Class (Type to be injected) | Manager Property (Will access to)    | Descrição              |
-| --------------------------- | ------------------------------------ | ---------------------- |
-| `LavalinkManager`           | `lavalinkManager`                    | Lavalink Manager       |
-| `NodeManager`               | `lavalinkManager.nodeManager`        | Node Manager           |
-| `PlayerManager`             | `lavalinkManager (player functions)` | Player Manager         |
+| Classe (Tipo para ser Injetado) | Propriedade do Gerenciador (será acesso)    | Descrição                     |
+| ------------------------------- | ------------------------------------------- | ----------------------------- |
+| `LavalinkManager`               | `lavalinkManager`                           | Lavalink Manager              |
+| `NodeManager`                   | `lavalinkManager.nodeManager`               | Node Manager                  |
+| `PlayerManager`                 | `lavalinkManager (player functions)`        | Gerenciador de Player         |
 
-## Play Tracks {#play-tracks}
+## Reproduzir {#play-tracks}
 
-- Here you'll view a sample of PlayCommand using the best techniques of [Slash Commands](https://necord.org/interactions/slash-commands) tutorial.
+- Aqui você verá um exemplo de PlayCommand usando as melhores técnicas do [Tutorial de Slash Commands](https://necord.org/interactions/slash-commands).
 
 ```typescript title="app.commands.ts"
 import { Injectable, UseInterceptors } from '@nestjs/common';
@@ -188,8 +188,8 @@ export class AppCommands {
 
     @UseInterceptors(SourceAutocompleteInterceptor)
     @SlashCommand({
-        name: 'play',
-        description: 'play a track',
+        name: 'tocar',
+        description: 'toca uma faixa',
     })
     public async onPlay(
         @Context() [interaction]: SlashCommandContext,
@@ -199,7 +199,7 @@ export class AppCommands {
             this.playerManager.get(interaction.guild.id) ??
             this.playerManager.create({
                 ...this.lavalinkService.extractInfoForPlayer(interaction),
-                // optional configurations:
+                // configurações opcionais:
                 selfDeaf: true,
                 selfMute: false,
                 volume: 100,
@@ -218,9 +218,9 @@ export class AppCommands {
         await player.queue.add(res.tracks[0]);
         if (!player.playing) await player.play();
 
-        // It's extremely recommended to use `trackStart` event for this announcement
+        // É extremamente recomendado utilizar o evento `trackStart` para realizar esse anuncio
         return interaction.reply({
-            content: `Now playing ${res.tracks[0].info.title}`,
+            content: `Tocando agora ${res.tracks[0].info.title}`,
         });
     }
 }
@@ -232,15 +232,15 @@ import { StringOption } from 'necord';
 
 export class QueryDto {
     @StringOption({
-        name: 'query',
-        description: '<name | url> of the requested track'
+        name: 'busca',
+        description: '<nome | url> da faixa requerida'
         required: true
     })
     public readonly query!: string;
 
     @StringOption({
-        name: 'source',
-        description: 'source of the track',
+        name: 'fonte',
+        description: 'fonte da faixa',
         autocomplete: true,
         required: false,
     })
@@ -261,7 +261,7 @@ export class SourceAutocompleteInterceptor extends AutocompleteInterceptor {
         let choices: string[];
 
         if (focused.name === 'source') {
-            choices = [DefaultSources.soundcloud] // Note that some Sources needs extra plugins/configuration to property work
+            choices = [DefaultSources.soundcloud] // Note que alguns Sources requerem plugins ou configurações extras para funcionar corretamente
         }
 
         return interaction.respond(
@@ -273,4 +273,4 @@ export class SourceAutocompleteInterceptor extends AutocompleteInterceptor {
 }
 ```
 
-You can view a working example [here](https://github.com/necordjs/examples/tree/master/08-lavalink).
+Você pode ver um exemplo funcional [aqui](https://github.com/necordjs/examples/tree/master/08-lavalink).
