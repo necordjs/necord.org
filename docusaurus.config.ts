@@ -8,6 +8,7 @@ const darkCodeTheme = themes.oceanicNext;
 
 const defaultLocale = 'en';
 const isDev = process.env.NODE_ENV === 'development';
+const isPreview = process.env.PREVIEW === 'true';
 
 const config: Config = {
 	title: 'Necord',
@@ -21,6 +22,7 @@ const config: Config = {
 	favicon: 'img/favicon.ico',
 	organizationName: 'necordjs', // Usually your GitHub org/username.
 	projectName: 'necord.org', // Usually your repo name.
+	trailingSlash: isPreview,
 	presets: [
 		[
 			'classic',
@@ -30,7 +32,7 @@ const config: Config = {
 					sidebarPath: require.resolve('./sidebars.js'),
 					editUrl: ({ locale, versionDocsDirPath, docPath }) => {
 						if (locale !== defaultLocale) {
-							return `https://crowdin.com/project/necord/${locale}`
+							return `https://crowdin.com/project/necord/${locale}`;
 						}
 
 						return `https://github.com/necordjs/necord.org/edit/master/${versionDocsDirPath}/${docPath}`;
