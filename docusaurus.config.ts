@@ -8,7 +8,7 @@ const darkCodeTheme = themes.oceanicNext;
 
 const defaultLocale = 'en';
 const isDev = process.env.NODE_ENV === 'development';
-const isPreview = process.env.PREVIEW === 'true';
+const isPreview = process.env.NODE_ENV === 'preview';
 
 const config: Config = {
 	title: 'Necord',
