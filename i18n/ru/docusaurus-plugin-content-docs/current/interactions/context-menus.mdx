@@ -1,14 +1,14 @@
 ---
 id: context-menus
-title: Context Menus
+title: Контекстные меню
 sidebar_position: 2
 ---
 
-**User commands** and **message commands** are now live! These commands appear on context menus for users and messages, with more to come in the future.
+**Команды пользователя** и **команды сообщений** теперь доступны! Эти команды появляются в контекстных меню для пользователей и сообщений, а в будущем появятся и другие.
 
-## User Commands {#user-commands}
+## Контекстное меню пользователя {#user-commands}
 
-**User commands** are application commands that appear on the context menu (right click or tap) of users. They're a great way to surface quick actions for your app that target users.
+**Команды пользователя** - это команды приложения, которые появляются в контекстном меню пользователей (правый клик или нажатие). Это отличный способ создать для вашего приложения быстрые действия, ориентированные на пользователей.
 
 ```typescript title="app.commands.ts"
 import { Injectable } from '@nestjs/common';
@@ -33,13 +33,13 @@ export class AppCommands {
 }
 ```
 
-If all goes well, you should see something like this:
+Если все пройдет успешно, вы должны увидеть что-то вроде этого:
 
 ![User Command](/img/content/context_user.png "User Command")
 
-## Message Commands {#message-commands}
+## Контекстное меню сообщений {#message-commands}
 
-**Message commands** are application commands that appear on the context menu (right click or tap) of messages. They're a great way to surface quick actions for your app that target messages.
+**Команды сообщений** - это команды приложения, которые появляются в контекстном меню сообщений (правый клик или нажатие). Это отличный способ создать быстрые действия для вашего приложения, направленные на сообщения.
 
 ```typescript title="app.commands.ts"
 import { Injectable } from '@nestjs/common';
@@ -58,8 +58,8 @@ export class AppCommands {
 }
 ```
 
-If all goes well, you should see something like this:
+Если все пройдет успешно, вы должны увидеть что-то вроде этого:
 
 ![Message Command](/img/content/context_message.png "Message Command")
 
-You can view a working example [here](https://github.com/necordjs/examples/tree/master/03-context-menus).
+Рабочий пример можно посмотреть [здесь](https://github.com/necordjs/examples/tree/master/03-context-menus).
