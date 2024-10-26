@@ -2,7 +2,7 @@
 id: intro
 slug: /
 title: Введение
-description: A module for creating Discord bots using NestJS, based on Discord.js.
+description: Модуль для создания Discord ботов с помощью NestJS, основанный на Discord.js.
 sidebar_position: 1
 ---
 
@@ -10,14 +10,14 @@ sidebar_position: 1
 	<h1>
 		<a href="#"><img src="https://necord.org/img/logo.png" alt="Necord Logo" /></a>
 	</h1>
-	🤖 A module for creating <b><a href="https://discord.com/">Discord</a> bots</b> using <a href="https://nestjs.com">NestJS</a>, based
-	on <a href="https://discord.js.org/">Discord.js</a>
+	🤖 Модуль для создания <b><a href="https://discord.com/">Discord</a> ботов</b> с помощью <a href="https://nestjs.com">NestJS</a>, основанный
+	на <a href="https://discord.js.org/">Discord.js</a>
 
 <p style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem' }}>
-	<a href="https://necord.org">Documentation ✨</a>
-	<a href="https://github.com/necordjs/necord">Source code 🪡</a>
-	<a href="https://github.com/necordjs/samples">Examples 🛠️</a>
-	<a href="https://discord.gg/mcBYvMTnwP">Community 💬</a>
+	<a href="https://necord.org">Документация ✨</a>
+	<a href="https://github.com/necordjs/necord">Исходный код 🪡</a>
+	<a href="https://github.com/necordjs/samples">Примеры 🛠️</a>
+	<a href="https://discord.gg/mcBYvMTnwP">Сообщество 💬</a>
 </p>
 </div>
 
@@ -29,33 +29,31 @@ sidebar_position: 1
 		src="https://img.shields.io/github/last-commit/SocketSomeone/necord" alt="Last commit" /></a>
 </p>
 
-## About {#about}
+## Что это? {#about}
 
-This package uses the best of the NodeJS world under the hood. [Discord.js](https://github.com/discordjs/discord.js) is the most powerful
-library for creating bots and [Nest.js](https://github.com/nestjs) is a progressive framework for creating well-architectured applications.
-This module provides fast and easy way for creating Discord bots and deep integration with your NestJS application.
+Этот пакет использует лучшие возможности платформы NodeJS. [Discord.js](https://github.com/discordjs/discord.js) — это самая мощная библиотека для создания ботов, а [Nest.js](https://github.com/nestjs) — это прогрессивный фреймворк для создания хорошо структурированных приложений.
+Этот модуль обеспечивает быстрый и простой способ создания ботов для Discord и глубокую интеграцию с вашим приложением на NestJS.
 
-**Features**
+**Особенности**
 
-- Simple. Flexible. Easy to use.
-- Ability to create custom decorators.
-- Interact with Discord (Slash Commands, Context Menus, Message Components, Listeners).
-- Full support of NestJS guards, interceptors, filters and pipes!
+- Простой. Гибкий. Легкий в использовании.
+- Возможность создания собственных декораторов.
+- Взаимодействие с Discord (интерактивные команды, контекстные меню, компоненты сообщений, обработчики событий).
+- Полная поддержка фишек и функционала NestJS!
 
-For questions and support please use
-the [Issues](https://github.com/necordjs/necord/issues/new?assignees=&labels=question&template=question.yml).
+Для вопросов и поддержки используйте раздел [Проблем](https://github.com/necordjs/necord/issues/new?assignees=&labels=question&template=question.yml).
 
-## Installation {#installation}
+## Установка {#installation}
 
-**Node.js 18.0.0 or newer is required.**
+**Требуется Node.js 18.0.0 или новее.**
 
 ```bash npm2yarn
 $ npm install necord discord.js
 ```
 
-## Usage {#usage}
+## Использование {#usage}
 
-Once the installation process is complete, we can import the `NecordModule` into the root `AppModule`:
+После завершения процесса установки мы можем импортировать `NecordModule` в корневой `AppModule`:
 
 ```typescript title="src/app.module.ts"
 import { NecordModule } from 'necord';
@@ -75,7 +73,7 @@ import { AppUpdate } from './app.update';
 export class AppModule {}
 ```
 
-Then create `app.update.ts` file and add `On`/`Once` decorators for handling Discord API events:
+Затем создайте файл `app.update.ts` и добавьте декораторы `On`/`Once` для обработки событий Discord API:
 
 ```typescript title="src/app.update.ts"
 import { Injectable, Logger } from '@nestjs/common';
@@ -100,4 +98,4 @@ export class AppUpdate {
 }
 ```
 
-Whenever you need to handle any event data, use the `Context` decorator.
+Когда вам нужно обработать какие-либо данные о событиях, используйте декоратор `Context`.

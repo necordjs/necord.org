@@ -242,11 +242,11 @@ export class AppComponents {
 }
 ```
 
-### Mentionable Select {#mentionable-select}
+### Выбор упоминаемого {#mentionable-select}
 
-**Mentionable Select** are Select Menu for selecting mentionables (users and roles)
+Выбор упоминаемого — это выпадающее меню для выбора упоминаемых с помощью `@` (пользователей и ролей)
 
-To create Mentionable Select:
+Чтобы создать выбор упоминаемого:
 
 ```typescript
 new MentionableSelectMenuBuilder()
@@ -256,7 +256,7 @@ new MentionableSelectMenuBuilder()
   .setMinValues(1)
 ```
 
-To receive a Mentionable Select:
+Чтобы получить данные из выбора упоминаемого:
 
 ```typescript
 import { Injectable } from '@nestjs/common';
@@ -292,11 +292,11 @@ export class AppComponents {
 }
 ```
 
-### Dynamic Select Menu {#dynamic-select-menu}
+### Динамическое меню выбора {#dynamic-select-menu}
 
-All the Select Menu types, support Dynamic `id` using [path-to-regexp](https://www.npmjs.com/package/path-to-regexp) format.
+Все типы меню выбора поддерживают динамические `id`в формате [path-to-regexp](https://www.npmjs.com/package/path-to-regexp).
 
-To create a Dynamic select menu
+Чтобы создать динамическое меню выбора
 
 ```typescript
 new StringSelectMenuBuilder()
@@ -311,7 +311,7 @@ new StringSelectMenuBuilder()
   ])
 ```
 
-To receive a Dynamic select menu
+Чтобы получить данные из динамического меню выбора
 
 ```typescript
 import { Injectable } from '@nestjs/common';
@@ -332,10 +332,9 @@ export class AppComponents {
 		});
 	}
 }
-
 ```
 
-Dynamic select menus are compatible with :
+Меню динамического выбора совместимо с:
 
 - `StringSelect`
 - `UserSelect`
