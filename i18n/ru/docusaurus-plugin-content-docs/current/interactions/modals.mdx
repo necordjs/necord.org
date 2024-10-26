@@ -1,10 +1,10 @@
 ---
 id: modals
-title: Всплывающие окна
+title: Модальные окна
 sidebar_position: 4
 ---
 
-With modals you can create pop-up forms that allow users to provide you with formatted inputs through submissions. We'll cover how to create, show, and receive modal forms using necord
+С помощью модальных окон вы можете создавать всплывающие формы, которые позволяют пользователям предоставлять вам отформатированные данные через отправку. Мы рассмотрим, как создавать, отображать и получать модальные формы с помощью necord
 
 <img src="/img/content/modal.png" alt="Modal" width="500" />
 
@@ -23,13 +23,13 @@ export class AppModals {
 }
 ```
 
-### Dynamic Modal {#dynamic-modal}
+### Динамические модальные окна {#dynamic-modal}
 
-You can create modals with dynamic `id` field. This is useful for passing metadata to modals.
+Вы можете создавать модальные окна с динамическим полем `id`. Это полезно для передачи метаданных модальным окнам.
 
-Dynamic modals uses [path-to-regexp](https://www.npmjs.com/package/path-to-regexp) format to perform regexp matching. Преобразуйте строку пути, такую как `user/:name`, в регулярное выражение.
+Динамические модальные окна используют формат [path-to-regexp](https://www.npmjs.com/package/path-to-regexp) для выполнения сравнения с регулярными выражениями. Преобразуйте строку пути, такую как `user/:name`, в регулярное выражение.
 
-To create a Dynamic modal
+Чтобы создать динамическое модальное окно
 
 ```typescript
 new ModalBuilder()
@@ -45,7 +45,7 @@ new ModalBuilder()
   ])
 ```
 
-To receive a Dynamic modal
+Чтобы получить данные из динамического модального окна
 
 ```typescript title="app.modals.ts"
 import { Injectable } from '@nestjs/common';
@@ -62,4 +62,4 @@ export class AppModals {
 }
 ```
 
-You can view a working example [here](https://github.com/necordjs/examples/tree/master/05-modals).
+Рабочий пример можно посмотреть [здесь](https://github.com/necordjs/examples/tree/master/05-modals).
