@@ -37,7 +37,7 @@
 		"sass": "1.80.6"
 	},
 	"devDependencies": {
-		"@docusaurus/module-type-aliases": "3.6.0",
+		"@docusaurus/module-type-aliases": "3.6.1",
 		"@docusaurus/tsconfig": "3.6.0",
 		"@docusaurus/types": "3.6.1",
 		"prettier": "^3.3.3",
