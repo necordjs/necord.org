@@ -436,5 +436,9 @@
   "theme.contentVisibility.draftBanner.message": {
     "message": "Эта страница является черновиком. Она будет видна только при разработке и будет исключена из основной сборки.",
     "description": "The draft content banner message"
+  },
+  "theme.blog.author.noPosts": {
+    "message": "This author has not written any posts yet.",
+    "description": "The text for authors with 0 blog post"
   }
 }
