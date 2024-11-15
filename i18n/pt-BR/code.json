@@ -436,5 +436,9 @@
   "theme.contentVisibility.draftBanner.message": {
     "message": "Esta página é um rascunho. Ela só será visível em desenvolvimento e será excluída da compilação de produção.",
     "description": "The draft content banner message"
+  },
+  "theme.blog.author.noPosts": {
+    "message": "This author has not written any posts yet.",
+    "description": "The text for authors with 0 blog post"
   }
 }
