@@ -2245,10 +2245,10 @@
     "@docusaurus/theme-search-algolia" "3.6.3"
     "@docusaurus/types" "3.6.3"
 
-"@docusaurus/remark-plugin-npm2yarn@3.6.3":
-  version "3.6.3"
-  resolved "https://registry.yarnpkg.com/@docusaurus/remark-plugin-npm2yarn/-/remark-plugin-npm2yarn-3.6.3.tgz#60364be8ead4fea181e5064407830ba51d64a6c5"
-  integrity sha512-ZF1QM4vULeBi0vqpNI2TLBH9vUB7JkN7aMGPpKy4jM4HvGH3ZM4Rq4xGqpGLL1IsiRtAENyzlTMdcA+q+l4OJg==
+"@docusaurus/remark-plugin-npm2yarn@3.7.0":
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/@docusaurus/remark-plugin-npm2yarn/-/remark-plugin-npm2yarn-3.7.0.tgz#ccbd81c0990dce2862240211897e45a1d63c6859"
+  integrity sha512-2QkZh75vZzPefW5Ljt8gwc1i0ERuS0MRZTEwHsSXSi6vc2NpLVbcmfIuHhwR8o0PcGVTxmBEhQRP0NN1vHdOAA==
   dependencies:
     mdast-util-mdx "^3.0.0"
     npm-to-yarn "^3.0.0"
