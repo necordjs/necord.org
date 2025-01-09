@@ -54,7 +54,7 @@ const config: Config = {
 					ignorePatterns: ['/contributing/**']
 				},
 				gtag: {
-					trackingID: 'G-46VBZHXG63',
+					trackingID: ['G-46VBZHXG63', 'GTM-P29SVPM'],
 					anonymizeIP: false
 				}
 			} satisfies Preset.Options
