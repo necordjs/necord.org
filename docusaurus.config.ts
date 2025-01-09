@@ -54,8 +54,11 @@ const config: Config = {
 					ignorePatterns: ['/contributing/**']
 				},
 				gtag: {
-					trackingID: ['G-46VBZHXG63', 'GTM-P29SVPM'],
+					trackingID: 'G-46VBZHXG63',
 					anonymizeIP: false
+				},
+				googleTagManager: {
+					containerId: 'GTM-P29SVPM'
 				}
 			} satisfies Preset.Options
 		]
