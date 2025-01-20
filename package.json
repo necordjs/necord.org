@@ -23,7 +23,7 @@
 		"prettier:write": "prettier --write ./content"
 	},
 	"dependencies": {
-		"@crowdin/cli": "^4.5.0",
+		"@crowdin/cli": "^4.5.1",
 		"@docusaurus/core": "3.7.0",
 		"@docusaurus/plugin-google-gtag": "^3.7.0",
 		"@docusaurus/plugin-google-tag-manager": "^3.7.0",
