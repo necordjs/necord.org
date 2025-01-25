@@ -235,7 +235,7 @@ const config: Config = {
 				{
 					title: 'Our Sponsors',
 					items: [
-						{ label: 'Become a Sponsor', href: 'https://opencollective.com/necord' },
+						{ label: 'Become a Sponsor', href: 'https://opencollective.com/necord' }
 					]
 				}
 			],
