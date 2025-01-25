@@ -1,6 +1,50 @@
 {
   "copyright": {
-    "message": "Copyright © 2021 - 2024 • Built by <a target=\"_blank\" href=\"https://github.com/SocketSomeone\">Alexey Filippov</a> and <a target=\"_blank\" href=\"https://github.com/SocketSomeone/necord/graphs/contributors\">Others</a> with 💖",
+    "message": "Copyright © 2021 - 2025 • Built by <a target=\"_blank\" href=\"https://github.com/SocketSomeone\">Alexey Filippov</a> and <a target=\"_blank\" href=\"https://github.com/SocketSomeone/necord/graphs/contributors\">Others</a> with 💖",
     "description": "The footer copyright"
+  },
+  "link.title.Help us": {
+    "message": "Help us",
+    "description": "The title of the footer links column with title=Help us in the footer"
+  },
+  "link.title.Community": {
+    "message": "Community",
+    "description": "The title of the footer links column with title=Community in the footer"
+  },
+  "link.title.Our Sponsors": {
+    "message": "Our Sponsors",
+    "description": "The title of the footer links column with title=Our Sponsors in the footer"
+  },
+  "link.item.label.Donate": {
+    "message": "Donate",
+    "description": "The label of footer link with label=Donate linking to https://opencollective.com/necord"
+  },
+  "link.item.label.Contribute": {
+    "message": "Contribute",
+    "description": "The label of footer link with label=Contribute linking to https://github.com/necordjs"
+  },
+  "link.item.label.Translate": {
+    "message": "Translate",
+    "description": "The label of footer link with label=Translate linking to https://crowdin.com/project/necord"
+  },
+  "link.item.label.Discord": {
+    "message": "Discord",
+    "description": "The label of footer link with label=Discord linking to https://discord.com/invite/mcBYvMTnwP"
+  },
+  "link.item.label.GitHub Organization": {
+    "message": "GitHub Organization",
+    "description": "The label of footer link with label=GitHub Organization linking to https://github.com/necordjs"
+  },
+  "link.item.label.NPM Organization": {
+    "message": "NPM Organization",
+    "description": "The label of footer link with label=NPM Organization linking to https://www.npmjs.com/org/necord"
+  },
+  "link.item.label.Become a Sponsor": {
+    "message": "Become a Sponsor",
+    "description": "The label of footer link with label=Become a Sponsor linking to https://opencollective.com/necord"
+  },
+  "logo.alt": {
+    "message": "Necord Logo",
+    "description": "The alt text of footer logo"
   }
 }
