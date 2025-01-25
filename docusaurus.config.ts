@@ -53,10 +53,6 @@ const config: Config = {
 					priority: 0.5,
 					ignorePatterns: ['/contributing/**']
 				},
-				gtag: {
-					trackingID: 'G-46VBZHXG63',
-					anonymizeIP: false
-				},
 				googleTagManager: {
 					containerId: 'GTM-P29SVPM'
 				}
@@ -214,7 +210,6 @@ const config: Config = {
 			respectPrefersColorScheme: true
 		},
 		footer: {
-			// TODO: Add links
 			links: [
 				{
 					title: 'Help us',
