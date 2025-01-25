@@ -1458,10 +1458,10 @@
   resolved "https://registry.yarnpkg.com/@colors/colors/-/colors-1.5.0.tgz#bb504579c1cae923e6576a4f5da43d25f97bdbd9"
   integrity sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==
 
-"@crowdin/cli@^4.5.1":
-  version "4.5.1"
-  resolved "https://registry.yarnpkg.com/@crowdin/cli/-/cli-4.5.1.tgz#f638eedae7e7dd14f0166c68be19cc3541ac043d"
-  integrity sha512-5F2yV5niFZG913HVppn3TopUViFMHxhS+62fZejlsfMciM4+aJGzKKIOUjQ7P1g+6gZCZO4a+jIhkM1fR27mMg==
+"@crowdin/cli@^4.5.2":
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/@crowdin/cli/-/cli-4.5.2.tgz#63bd3a1899af342bdaef5f9b36fb96978258eb1f"
+  integrity sha512-VOHAsDKL3Iug1sFjburOaJ8Z9H5coZtRcADlXfgW9GNFErXZiRSYEYfCyW4VzRpsvvr93kHfmBcFwCBq/1YqIQ==
   dependencies:
     command-exists-promise "^2.0.2"
     node-fetch "2.7.0"
@@ -2076,7 +2076,7 @@
     "@docusaurus/utils-validation" "3.7.0"
     tslib "^2.6.0"
 
-"@docusaurus/plugin-pwa@3.7.0":
+"@docusaurus/plugin-pwa@^3.7.0":
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/@docusaurus/plugin-pwa/-/plugin-pwa-3.7.0.tgz#9ade08513bcf63bcb35e863bed8555c6bf84263b"
   integrity sha512-I/4C2Uuc/+96fDJ3enMBlPJRR2gAzdVRXMKgR/W3U7gAJEl13pKjT8Tn5BTX52+nVMVR23eUmCZsfaipUhiiTA==
@@ -2130,7 +2130,7 @@
     tslib "^2.6.0"
     webpack "^5.88.1"
 
-"@docusaurus/preset-classic@3.7.0":
+"@docusaurus/preset-classic@^3.7.0":
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/@docusaurus/preset-classic/-/preset-classic-3.7.0.tgz#f6656a04ae6a4877523dbd04f7c491632e4003b9"
   integrity sha512-nPHj8AxDLAaQXs+O6+BwILFuhiWbjfQWrdw2tifOClQoNfuXDjfjogee6zfx6NGHWqshR23LrcN115DmkHC91Q==
@@ -2150,7 +2150,7 @@
     "@docusaurus/theme-search-algolia" "3.7.0"
     "@docusaurus/types" "3.7.0"
 
-"@docusaurus/remark-plugin-npm2yarn@3.7.0":
+"@docusaurus/remark-plugin-npm2yarn@^3.7.0":
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/@docusaurus/remark-plugin-npm2yarn/-/remark-plugin-npm2yarn-3.7.0.tgz#ccbd81c0990dce2862240211897e45a1d63c6859"
   integrity sha512-2QkZh75vZzPefW5Ljt8gwc1i0ERuS0MRZTEwHsSXSi6vc2NpLVbcmfIuHhwR8o0PcGVTxmBEhQRP0NN1vHdOAA==

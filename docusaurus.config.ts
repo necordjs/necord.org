@@ -215,21 +215,35 @@ const config: Config = {
 		},
 		footer: {
 			// TODO: Add links
-			// links: [
-			// 	{
-			// 		title: 'Help us',
-			// 		items: [
-			// 			{ label: 'Donate', href: 'https://opencollective.com/necord' },
-			// 			{ label: 'Contribute', href: 'https://github.com/necordjs' },
-			// 			{ label: 'Translate', href: 'https://crowdin.com/project/necord' }
-			// 		]
-			// 	}
-			// ],
-			// logo: {
-			// 	alt: 'Necord Logo',
-			// 	src: 'img/logo.svg',
-			// 	href: 'https://necord.org'
-			// },
+			links: [
+				{
+					title: 'Help us',
+					items: [
+						{ label: 'Donate', href: 'https://opencollective.com/necord' },
+						{ label: 'Contribute', href: 'https://github.com/necordjs' },
+						{ label: 'Translate', href: 'https://crowdin.com/project/necord' }
+					]
+				},
+				{
+					title: 'Community',
+					items: [
+						{ label: 'Discord', href: 'https://discord.com/invite/mcBYvMTnwP' },
+						{ label: 'GitHub Organization', href: 'https://github.com/necordjs' },
+						{ label: 'NPM Organization', href: 'https://www.npmjs.com/org/necord' }
+					]
+				},
+				{
+					title: 'Our Sponsors',
+					items: [
+						{ label: 'Become a Sponsor', href: 'https://opencollective.com/necord' },
+					]
+				}
+			],
+			logo: {
+				alt: 'Necord Logo',
+				src: 'img/logo.svg',
+				href: 'https://necord.org'
+			},
 			copyright: `Copyright © 2021 - ${new Date().getFullYear()} • Built by <a target="_blank" href="https://github.com/SocketSomeone">Alexey Filippov</a> and <a target="_blank" href="https://github.com/SocketSomeone/necord/graphs/contributors">Others</a> with 💖`
 		}
 	} satisfies Preset.ThemeConfig,
