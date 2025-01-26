@@ -1,0 +1,30 @@
+---
+id: faq
+
+title: FAQ
+
+sidebar_position: 5
+---
+
+# FAQ (frequently asked questions) {#faq}
+
+Here you can find the Necord's frequently asked questions \
+Enjoy and take a look at the frequently asked questions on [Discord.JS](https://discordjs.guide/popular-topics/faq.html#legend) \
+For any questions consider [joining](https://discord.com/invite/mcBYvMTnwP) our Discord server. Or [add](https://discord.com/oauth2/authorize?client_id=1081479845940314114&scope=bot&applications.commands) the official Necord bot to take a look at help tag commands
+
+## Shared-Hosting {#shared-hosting}
+
+How I can have 2 or more bots in the same application/process?
+
+> You can't, Necord doesn't support multiple bots because Rate limits are determined based on the IP address of the sender.
+>	- If your bot shares its IP with other bots it will share their rate limits.
+>	- This is a common caveat with [shared hosting](https://en.wikipedia.org/wiki/Shared_web_hosting_service) providers and free plans!
+
+## Dynamic, Conditional, and Async Command Configuration {#dynamic}
+
+How I add | remove | modify commands or any interaction \
+Dynamic configuration with Async \
+Conditional registration
+
+> - You can disable Necord's commands auto-registration with the option `skipRegistration: true` in `NecordModule` and create your own registration service
+> - An example of custom registration service can be found [here](https://github.com/wolffparkinson/necord-playground/tree/dynamic-guilds)
