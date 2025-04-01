@@ -24,7 +24,7 @@
 		"publish:git": "release-it"
 	},
 	"dependencies": {
-		"@crowdin/cli": "^4.6.1",
+		"@crowdin/cli": "^4.7.0",
 		"@docusaurus/core": "3.7.0",
 		"@docusaurus/plugin-google-tag-manager": "^3.7.0",
 		"@docusaurus/plugin-pwa": "^3.7.0",
