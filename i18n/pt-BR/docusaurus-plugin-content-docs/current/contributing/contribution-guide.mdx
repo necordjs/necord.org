@@ -16,9 +16,9 @@ Você precisará de [Node.js](http://nodejs.org) **versão 18+**, e [npm](https:
 Para se preparar para trabalhar na base de código, por favor faça o seguinte:
 
 1. Faça um fork & clone do repositório. Certifique-se de que você está atualizado com a branch **master**!
-2. Instale as dependências usando `npm ci`
+2. Install the dependencies using `yarn install` or `npm install`
 3. Programe seu coração!
-4. Execute o `npm lint` para executar ESLint e garantir que mudanças respeitem o nosso guia de estilo
+4. Run `yarn lint` to run ESLint and ensure changes respect our styleguide
 5. [Envie um pull request](https://github.com/necordjs/necord/compare) (Certifique-se de que você segue o [formato convencional de commit](https://github.com/SocketSomeone/necord/blob/main/.github/COMMIT_CONVENTION.md))
 
 Uma visão geral de alto nível das ferramentas usadas:
@@ -26,3 +26,21 @@ Uma visão geral de alto nível das ferramentas usadas:
 - [TypeScript](https://www.typescriptlang.org/) como linguagem de programação
 - [Eslint](https://eslint.org/) para estilo de código
 - [Prettier](https://prettier.io/) para formatação de código
+
+## Contributing to Documentation {#contributing-to-documentation}
+
+If you want to contribute to the documentation, you can do so by editing the files in the [docs](https://github.com/necordjs/necord.org) repository.
+The documentation is written in Markdown, so you can use any Markdown editor to make changes. Use `yarn dev` to start a local server and preview your changes.
+
+Before submitting a pull request, please ensure that:
+
+- Use [Markdown](https://www.markdownguide.org/) for formatting
+- Use [MDX](https://mdxjs.com/) for embedding React components
+- Use [GitHub Flavored Markdown](https://github.github.com/gfm/) for code blocks
+- Use anchor links for internal links (e.g. `#contributing-to-documentation`)
+
+## Contributors {#contributors}
+
+<a href="https://github.com/necordjs/necord/graphs/contributors">
+	<img src="https://contrib.rocks/image?repo=necordjs/necord" alt="Contributors" />
+</a>
