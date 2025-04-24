@@ -1,0 +1,4 @@
+Contact: mailto:security@necord.org
+Contact: mailto:socket.someone@gmail.com
+Expires: 2030-12-31T23:59:59.000Z
+Preferred-Languages: en
