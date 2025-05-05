@@ -232,19 +232,19 @@ import { StringOption } from 'necord';
 
 export class QueryDto {
     @StringOption({
-        name: 'busca',
-        description: '<nome | url> da faixa requerida'
+        name: 'query',
+        description: '<name | url> of the requested track',
         required: true
     })
     public readonly query!: string;
 
     @StringOption({
-        name: 'fonte',
-        description: 'fonte da faixa',
+        name: 'source',
+        description: 'source of the track',
         autocomplete: true,
         required: false,
     })
-    public readonly source?: SourcePlatform;
+    public readonly source?: SearchPlatform;
 }
 ```
 
