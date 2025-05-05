@@ -233,7 +233,7 @@ import { StringOption } from 'necord';
 export class QueryDto {
     @StringOption({
         name: 'query',
-        description: '<name | url> of the requested track'
+        description: '<name | url> of the requested track',
         required: true
     })
     public readonly query!: string;
@@ -244,7 +244,7 @@ export class QueryDto {
         autocomplete: true,
         required: false,
     })
-    public readonly source?: SourcePlatform;
+    public readonly source?: SearchPlatform;
 }
 ```
 
