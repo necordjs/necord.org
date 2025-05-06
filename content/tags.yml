@@ -1,0 +1,35 @@
+advanced:
+  label: Advanced
+  permalink: /advanced
+  description: Advanced techniques for necord-related tasks.
+
+integrations:
+  label: Integrations
+  permalink: /integrations
+  description: Integrations with other tools and platforms.
+
+
+interactions:
+  label: Interactions API
+  permalink: /interactions
+  description: Discord Interactions API usage and examples.
+
+snippets:
+  label: Snippets
+  permalink: /snippets
+  description: Code snippets for necord-related tasks.
+
+nestjs:
+  label: NestJS
+  permalink: /nestjs
+  description: NestJS-related techniques and examples.
+
+configuration:
+  label: Configuration
+  permalink: /configuration
+  description: How to configure necord and its components.
+
+lts:
+  label: LTS
+  permalink: /lts
+  description: Long-Term Support (LTS) features and techniques.

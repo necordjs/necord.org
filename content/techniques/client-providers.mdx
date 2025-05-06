@@ -4,6 +4,11 @@ id: client-providers
 title: Client Providers
 
 sidebar_position: 4
+
+tags:
+  - advanced
+  - nestjs
+  - snippets
 ---
 
 Necord have snippets to access the client and its properties in your application.
@@ -31,8 +36,8 @@ export class AppService {
 | Class (Type to be Injected) | Client Property (Will access to) | Description        |
 |-----------------------------|----------------------------------|--------------------|
 | `Client`                    | `client`                         | Discord.js client  |
-| `ChannelManager`            | `client.channels`                | Channels of client |  
-| `GuildManager`              | `client.guilds`                  | Guilds of client   | 
+| `ChannelManager`            | `client.channels`                | Channels of client |
+| `GuildManager`              | `client.guilds`                  | Guilds of client   |
 | `UserManager`               | `client.users`                   | Users of client    |
 | `ShardClientUtil`           | `client.shard`                   | Shards utilities   |
 | `ClientVoiceManager`        | `client.voice`                   | Voice manager      |

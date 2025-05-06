@@ -11,6 +11,8 @@ const isDev = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV;
 const isPreview = process.env.NODE_ENV === 'preview';
 const isProd = process.env.NODE_ENV === 'production';
 
+const copyright = `Copyright © 2021 - ${new Date().getFullYear()} • Built by <a target="_blank" href="https://github.com/SocketSomeone">Alexey Filippov</a> and <a target="_blank" href="https://github.com/SocketSomeone/necord/graphs/contributors">Others</a> with 💖`;
+
 const config: Config = {
 	title: 'Necord',
 	titleDelimiter: '|',
@@ -31,7 +33,7 @@ const config: Config = {
 			{
 				debug: isDev,
 				docs: {
-					sidebarPath: require.resolve('./sidebars.js'),
+					sidebarPath: require.resolve('./sidebars.ts'),
 					editUrl: ({ locale, versionDocsDirPath, docPath }) => {
 						if (locale !== defaultLocale) {
 							return `https://crowdin.com/project/necord/${locale}`;
@@ -45,7 +47,30 @@ const config: Config = {
 					showLastUpdateTime: true,
 					remarkPlugins: [[require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }]]
 				} satisfies DocsOptions,
-				blog: false, // Add editUrl to blog posts
+				blog: {
+					editUrl: ({ locale, blogDirPath, blogPath }) => {
+						if (locale !== defaultLocale) {
+							return `https://crowdin.com/project/necord/${locale}`;
+						}
+
+						return `https://github.com/necordjs/necord.org/edit/master/${blogDirPath}/${blogPath}`;
+					},
+					path: 'blog',
+					routeBasePath: '/blog',
+					showReadingTime: true,
+					remarkPlugins: [[require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }]],
+					postsPerPage: 5,
+					feedOptions: {
+						type: 'all',
+						title: 'Necord Blog',
+						description: 'Keep up to date with the latest news and updates from Necord',
+						copyright,
+						xslt: true
+					},
+					blogDescription: 'Read blog posts about Necord from the team',
+					blogSidebarCount: 'ALL',
+					blogSidebarTitle: 'All our posts',
+				},
 				pages: false,
 				theme: {
 					customCss: require.resolve('./styles/custom.scss')
@@ -180,6 +205,11 @@ const config: Config = {
 					href: '/'
 				},
 				{
+					to: 'blog',
+					label: 'Blog',
+					position: 'left'
+				},
+				{
 					label: 'Examples',
 					position: 'left',
 					href: 'https://github.com/necordjs/examples'
@@ -252,7 +282,7 @@ const config: Config = {
 				src: 'img/logo.svg',
 				href: 'https://necord.org'
 			},
-			copyright: `Copyright © 2021 - ${new Date().getFullYear()} • Built by <a target="_blank" href="https://github.com/SocketSomeone">Alexey Filippov</a> and <a target="_blank" href="https://github.com/SocketSomeone/necord/graphs/contributors">Others</a> with 💖`
+			copyright
 		}
 	} satisfies Preset.ThemeConfig,
 	plugins: [
@@ -316,7 +346,7 @@ const config: Config = {
 	i18n: {
 		defaultLocale,
 		locales: ['en', 'ru', 'pt-BR'],
-		path: 'i18n',
+		path: 'i18n'
 	}
 };
 
