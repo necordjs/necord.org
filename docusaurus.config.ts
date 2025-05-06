@@ -7,8 +7,9 @@ const lightCodeTheme = themes.github;
 const darkCodeTheme = themes.oceanicNext;
 
 const defaultLocale = 'en';
-const isDev = process.env.NODE_ENV === 'development';
+const isDev = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV;
 const isPreview = process.env.NODE_ENV === 'preview';
+const isProd = process.env.NODE_ENV === 'production';
 
 const config: Config = {
 	title: 'Necord',
@@ -19,6 +20,7 @@ const config: Config = {
 	onBrokenLinks: 'throw',
 	onBrokenAnchors: 'throw',
 	onBrokenMarkdownLinks: 'warn',
+	onDuplicateRoutes: 'throw',
 	favicon: 'img/favicon.ico',
 	organizationName: 'necordjs', // Usually your GitHub org/username.
 	projectName: 'necord.org', // Usually your repo name.
@@ -27,7 +29,7 @@ const config: Config = {
 		[
 			'classic',
 			{
-				debug: process.env.NODE_ENV !== 'production',
+				debug: isDev,
 				docs: {
 					sidebarPath: require.resolve('./sidebars.js'),
 					editUrl: ({ locale, versionDocsDirPath, docPath }) => {
@@ -86,8 +88,19 @@ const config: Config = {
 			insights: true
 		},
 		announcementBar: {
+			id: 'banner',
 			content:
-				'⭐️ If you like Necord, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/necordjs/necord">GitHub</a>! ⭐️'
+				'⭐️ If you like Necord, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/necordjs/necord">GitHub</a>! ⭐️',
+			backgroundColor: '#c12549',
+			textColor: '#fff',
+			isCloseable: true
+		},
+		docs: {
+			versionPersistence: 'none',
+			sidebar: {
+				hideable: false,
+				autoCollapseCategories: false
+			}
 		},
 		prism: {
 			additionalLanguages: [
@@ -302,7 +315,8 @@ const config: Config = {
 	],
 	i18n: {
 		defaultLocale,
-		locales: ['en', 'ru', 'pt-BR']
+		locales: ['en', 'ru', 'pt-BR'],
+		path: 'i18n',
 	}
 };
 
