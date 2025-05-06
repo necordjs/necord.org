@@ -2,12 +2,18 @@ project_id: '729323'
 api_token_env: CROWDIN_PERSONAL_TOKEN
 preserve_hierarchy: true
 languages_mapping: &languages_mapping
-    two_letters_code:
-        pt-BR: pt-BR
+  two_letters_code:
+    pt-BR: pt-BR
 files:
-    - source: /i18n/en/**/*
-      translation: /i18n/%two_letters_code%/**/%original_file_name%
-      languages_mapping: *languages_mapping
-    - source: /content/**/*
-      translation: /i18n/%two_letters_code%/docusaurus-plugin-content-docs/current/**/%original_file_name%
-      languages_mapping: *languages_mapping
+  # JSON translation files
+  - source: /i18n/en/**/*
+    translation: /i18n/%two_letters_code%/**/%original_file_name%
+    languages_mapping: *languages_mapping
+  # Docs Markdown files
+  - source: /content/**/*
+    translation: /i18n/%two_letters_code%/docusaurus-plugin-content-docs/current/**/%original_file_name%
+    languages_mapping: *languages_mapping
+  # Blog Markdown files
+  - source: /blog/**/*
+    translation: /i18n/%two_letters_code%/docusaurus-plugin-content-blog/**/%original_file_name%
+    languages_mapping: *languages_mapping

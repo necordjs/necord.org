@@ -45,7 +45,7 @@ const config: Config = {
 					showLastUpdateTime: true,
 					remarkPlugins: [[require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }]]
 				} satisfies DocsOptions,
-				blog: false,
+				blog: false, // Add editUrl to blog posts
 				pages: false,
 				theme: {
 					customCss: require.resolve('./styles/custom.scss')
