@@ -1,8 +1,12 @@
 socketsomeone:
-    name: Alexey Filippov
-    email: socket.someone@gmail.com
-    socials:
-        x: socketsomeone
-        linkedin: socketsomeone
-        github: socketsomeone
+  page: true
+  name: Alexey Filippov
+  title: Maintainer
+  email: socket.someone@gmail.com
+  url: https://socketsomeone.me
+  image_url: https://github.com/SocketSomeone.png
+  socials:
+    x: socketsomeone
+    linkedin: socketsomeone
+    github: socketsomeone
 
