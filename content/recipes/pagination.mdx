@@ -100,26 +100,36 @@ Just use `pagination` command and you will see your pagination!
 
 ### Registering Pagination Inside Command
 
-You can also register paginations dynamically inside your command handlers instead of `onModuleInit`:
+You can also register pagination's dynamically inside your command handlers instead of `onModuleInit` hook.
 
 ```ts
-@SlashCommand({ name: 'dynamic-pagination', description: 'Register pagination inside command' })
-public async onDynamicPagination(@Context() [interaction]: SlashCommandContext) {
-    this.paginationService.register(builder =>
-        builder
-            .setCustomId('dynamic')
-            .setPages([
-                new PageBuilder().setContent('Dynamic Page 1'),
-                new PageBuilder().setContent('Dynamic Page 2')
-            ])
-    );
+import { Injectable } from "@nestjs/common";
+import { NecordPaginationService, PageBuilder } from "@necord/pagination";
+import { Context, SlashCommand, SlashCommandContext } from "necord";
 
-    const pagination = this.paginationService.get('dynamic');
-    const page = await pagination.build();
+@Injectable()
+export class AppService {
+    public constructor(private readonly paginationService: NecordPaginationService) {
+    }
 
-    return interaction.reply(page);
+    @SlashCommand({ name: "dynamic-pagination", description: "Register pagination inside command" })
+    public async onDynamicPagination(@Context() [interaction]: SlashCommandContext) {
+        const pagination = this.paginationService.create(builder =>
+            builder
+                .setCustomId(`dynamic-${interaction.user.id}`)
+                .setFilter(i => i.user.id === interaction.user.id)
+                .setPages([
+                    new PageBuilder().setContent("Dynamic Page 1"),
+                    new PageBuilder().setContent("Dynamic Page 2")
+                ])
+        );
+        const page = await pagination.build();
+
+        return interaction.reply(page);
+    }
 }
 ```
+
 :::warning
 You should ensure that `setCustomId` is unique per user/session if you register dynamically to avoid collisions.
 :::
