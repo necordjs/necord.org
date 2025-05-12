@@ -1,5 +1,5 @@
 socketsomeone:
-  page: true
+  page: false
   name: Alexey Filippov
   title: Maintainer
   email: socket.someone@gmail.com
