@@ -58,7 +58,9 @@ const config: Config = {
 					path: 'blog',
 					routeBasePath: '/blog',
 					showReadingTime: true,
-					remarkPlugins: [[require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }]],
+					remarkPlugins: [
+						[require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }]
+					],
 					postsPerPage: 5,
 					feedOptions: {
 						type: 'all',
@@ -69,7 +71,7 @@ const config: Config = {
 					},
 					blogDescription: 'Read blog posts about Necord from the team',
 					blogSidebarCount: 'ALL',
-					blogSidebarTitle: 'All our posts',
+					blogSidebarTitle: 'All our posts'
 				},
 				pages: false,
 				theme: {
@@ -220,6 +222,11 @@ const config: Config = {
 					href: 'https://discord.com/invite/mcBYvMTnwP'
 				},
 				{
+					label: 'Changelog',
+					position: 'left',
+					href: 'https://github.com/necordjs/necord/releases'
+				},
+				{
 					type: 'localeDropdown',
 					position: 'right',
 					dropdownItemsAfter: [
@@ -255,10 +262,10 @@ const config: Config = {
 		footer: {
 			links: [
 				{
-					title: 'Help us',
+					title: 'Support us',
 					items: [
-						{ label: 'Donate', href: 'https://opencollective.com/necord' },
-						{ label: 'Contribute', href: 'https://github.com/necordjs' },
+						{ label: 'Donate', to: 'contributing/funding' },
+						{ label: 'Contribute', href: 'contributing/contribution-guide' },
 						{ label: 'Translate', href: 'https://crowdin.com/project/necord' }
 					]
 				},
@@ -271,9 +278,20 @@ const config: Config = {
 					]
 				},
 				{
+					title: 'More',
+					items: [
+						{ label: 'Blog', href: '/blog' },
+						{ label: 'Changelog', href: 'https://github.com/necordjs/necord/releases' }
+					]
+				},
+				{
 					title: 'Our Sponsors',
 					items: [
-						{ label: 'Become a Sponsor', href: 'https://opencollective.com/necord' }
+						{ label: 'Become a Sponsor', href: 'https://opencollective.com/necord' },
+						{
+							className: 'footer__opencollective',
+							html: `<a href="https://opencollective.com/necord" target="_blank"><img src="https://opencollective.com/necord/backers.svg?width=500" alt="Backers" /></a>`
+						}
 					]
 				}
 			],
