@@ -264,8 +264,8 @@ const config: Config = {
 				{
 					title: 'Support us',
 					items: [
-						{ label: 'Donate', to: 'contributing/funding' },
-						{ label: 'Contribute', href: 'contributing/contribution-guide' },
+						{ label: 'Donate', to: '/contributing/funding' },
+						{ label: 'Contribute', href: '/contributing/contribution-guide' },
 						{ label: 'Translate', href: 'https://crowdin.com/project/necord' }
 					]
 				},
