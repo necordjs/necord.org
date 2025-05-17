@@ -74,7 +74,7 @@ export default function Home() {
 							</Button>
 						</div>
 
-						<small className="text-center text-muted-foreground text-xs">
+						<small className="text-center text-muted-foreground text-xs my-2">
 							or install it with package manager:
 						</small>
 
