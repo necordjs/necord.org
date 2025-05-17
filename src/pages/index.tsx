@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { NecordInstallScriptCopyBtn } from '../components/necord-install-script-copy-btn';
 import { Button } from '../components/ui/button';

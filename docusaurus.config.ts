@@ -74,7 +74,7 @@ const config: Config = {
 					blogSidebarTitle: 'All our posts'
 				},
 				pages: {
-					path: 'src/pages',
+					path: 'src/pages'
 				},
 				theme: {
 					customCss: [
@@ -83,7 +83,7 @@ const config: Config = {
 						require.resolve('./src/css/custom.scss'),
 						require.resolve('./src/css/font.scss'),
 						require.resolve('./src/css/layout.scss'),
-						require.resolve('./src/css/navbar.scss'),
+						require.resolve('./src/css/navbar.scss')
 					]
 				},
 				sitemap: {
@@ -213,7 +213,7 @@ const config: Config = {
 			items: [
 				{
 					label: 'Documentation',
-					to: '/introduction',
+					to: '/introduction'
 				},
 				{
 					to: 'blog',
