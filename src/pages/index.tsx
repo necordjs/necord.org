@@ -18,8 +18,8 @@ export default function Home() {
 					content="The best way to create Discord bots with NestJS"
 				/>
 			</Head>
-			<div className="w-4xl mx-auto flex flex-col items-center justify-center h-screen space-y-6">
-				<h1 className="text-7xl font-bold text-center text-primary">
+			<div className="w-full w-screen-md lg:w-4xl px-4 mx-auto flex flex-col items-center justify-center space-y-6 overflow-hidden h-screen">
+				<h1 className="text-3xl md:text-7xl font-bold text-center text-primary">
 					The best way to create{' '}
 					<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-700">
 					Discord
@@ -30,7 +30,7 @@ export default function Home() {
 				</span>
 				</h1>
 
-				<p className="text-center text-lg text-muted-foreground">
+				<p className="text-center text-sm md:text-lg text-muted-foreground">
 					This package uses the best of the NodeJS world under the hood.{' '}
 					<a href="https://discord.js.org" target="_blank" rel="noopener noreferrer">
 						Discord.js
