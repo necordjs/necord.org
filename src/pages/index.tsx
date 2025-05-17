@@ -47,13 +47,14 @@ export default function Home() {
 
 				<div className="flex flex-col items-center justify-center space-y-3">
 					<div className="flex flex-row space-x-4 h-fit">
-						<Button onClick={() => openLink('/introduction', true)}>
+						<Button onClick={() => openLink('/introduction', true)} className='cursor-pointer'>
 							Documentation
 						</Button>
 
 						<Button
 							variant="outline"
 							onClick={() => openLink('https://discord.com/invite/mcBYvMTnwP')}
+							className='cursor-pointer'
 						>
 							Community
 						</Button>
@@ -61,6 +62,7 @@ export default function Home() {
 						<Button
 							variant="outline"
 							onClick={() => openLink('https://github.com/necordjs')}
+							className='cursor-pointer'
 						>
 							GitHub
 						</Button>
