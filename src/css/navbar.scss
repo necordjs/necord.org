@@ -18,7 +18,7 @@ html[data-theme='dark'] .navbar.navbar--fixed-top {
 	white-space: nowrap;
 }
 .navbar__items a {
-	flex-shrink: 0; /* Не сжимать */
+	flex-shrink: 0; /* Do not shrink */
 }
 
 @media (max-width: 1180px) {
