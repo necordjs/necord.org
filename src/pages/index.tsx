@@ -24,6 +24,7 @@ export default function Home() {
 				</Head>
 				<div
 					className="w-full w-screen-md lg:w-4xl px-4 mx-auto flex flex-col items-center justify-center space-y-6 overflow-hidden h-screen">
+					<ColorModeSwitch />
 
 					<h1 className="text-3xl md:text-7xl font-bold text-center text-primary">
 						The best way to create{' '}
@@ -71,8 +72,6 @@ export default function Home() {
 							>
 								GitHub
 							</Button>
-
-							<ColorModeSwitch />
 						</div>
 
 						<small className="text-center text-muted-foreground text-xs">

@@ -10,7 +10,7 @@ export default function ColorModeSwitch() {
 
 	return (
 		<button
-			className="flex items-center justify-center w-10 h-10 rounded-full bg-transparent hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300"
+			className="absolute top-4 right-4 z-50 flex items-center justify-center w-10 h-10 rounded-full bg-transparent hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300"
 			onClick={toggleColorMode}
 			aria-label="Toggle color mode"
 		>
