@@ -1,0 +1,36 @@
+body,
+html {
+	max-width: 100vw;
+	overflow-x: hidden !important;
+	font-family: "Inter", monospace;
+}
+
+
+.footer {
+	padding-bottom: 0 !important;
+	display: none;
+}
+
+.navbar,
+.main-wrapper {
+	max-width: 1440px;
+	margin: 0 auto;
+	width: 100%;
+}
+
+.main-wrapper {
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+#__docusaurus .footer {
+	padding-bottom: 0 !important;
+}
+
+.menu__link {
+	text-decoration: none;
+}
+
+
+
+

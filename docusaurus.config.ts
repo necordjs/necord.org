@@ -77,7 +77,13 @@ const config: Config = {
 					path: 'src/pages',
 				},
 				theme: {
-					customCss: require.resolve('./src/css/custom.scss')
+					customCss: [
+						require.resolve('./src/css/algolia.scss'),
+						require.resolve('./src/css/custom.scss'),
+						require.resolve('./src/css/font.scss'),
+						require.resolve('./src/css/layout.scss'),
+						require.resolve('./src/css/navbar.scss'),
+					]
 				},
 				sitemap: {
 					changefreq: 'weekly',
