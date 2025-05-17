@@ -37,12 +37,12 @@ html[data-theme='dark'] .navbar.navbar--fixed-top {
 	.navbar.navbar--fixed-top {
 		backdrop-filter: none;
 		-webkit-backdrop-filter: none;
-		background-color: #fff; // или сплошной цвет
+		background-color: #fff; /* or a solid color */
 		border-bottom: 1px solid rgba(200, 200, 200, 0.2);
 	}
 
 	html[data-theme='dark'] .navbar.navbar--fixed-top {
-		background-color: #141414; // или другой сплошной цвет для dark-темы
+		background-color: #141414; /* or another solid color for the dark theme */
 		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 	}
 }
