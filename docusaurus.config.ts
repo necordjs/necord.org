@@ -112,6 +112,21 @@ const config: Config = {
 				image: 'https://necord.org/img/preview.png',
 				logo: 'https://necord.org/img/logo.svg'
 			})
+		},
+		{
+			tagName: 'link',
+			attributes: {
+				rel: 'preconnect',
+				href: 'https://fonts.googleapis.com'
+			}
+		},
+		{
+			tagName: 'link',
+			attributes: {
+				rel: 'preconnect',
+				href: 'https://fonts.gstatic.com',
+				crossOrigin: 'true'
+			}
 		}
 	],
 	themeConfig: {
@@ -369,7 +384,7 @@ const config: Config = {
 				]
 			}
 		],
-		['./src/plugins/tailwind.plugin.ts', {}],
+		['./src/plugins/tailwind.plugin.ts', {}]
 	],
 	i18n: {
 		defaultLocale,
