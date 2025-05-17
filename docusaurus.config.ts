@@ -73,9 +73,11 @@ const config: Config = {
 					blogSidebarCount: 'ALL',
 					blogSidebarTitle: 'All our posts'
 				},
-				pages: false,
+				pages: {
+					path: 'src/pages',
+				},
 				theme: {
-					customCss: require.resolve('./styles/custom.scss')
+					customCss: require.resolve('./src/css/custom.scss')
 				},
 				sitemap: {
 					changefreq: 'weekly',
@@ -204,7 +206,7 @@ const config: Config = {
 			items: [
 				{
 					label: 'Documentation',
-					href: '/'
+					to: '/introduction',
 				},
 				{
 					to: 'blog',
@@ -359,7 +361,8 @@ const config: Config = {
 					}
 				]
 			}
-		]
+		],
+		['./src/plugins/tailwind.plugin.ts', {}],
 	],
 	i18n: {
 		defaultLocale,
