@@ -12,14 +12,6 @@ html[data-theme='dark'] .navbar.navbar--fixed-top {
 	box-shadow: none !important;
 }
 
-.navbar__items {
-	display: flex;
-	overflow: hidden;
-	white-space: nowrap;
-}
-.navbar__items a {
-	flex-shrink: 0; /* Do not shrink */
-}
 
 @media (max-width: 1180px) {
 	.navbar__items a:nth-child(n+7) {
