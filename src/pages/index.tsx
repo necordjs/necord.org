@@ -2,7 +2,6 @@ import React from 'react';
 import { NecordInstallScriptCopyBtn } from '../components/necord-install-script-copy-btn';
 import { Button } from '../components/ui/button';
 import Head from '@docusaurus/Head';
-import Layout from '@theme/Layout';
 
 export default function Home() {
 	const openLink = (url: string, onSite: boolean = false) => {
@@ -22,12 +21,12 @@ export default function Home() {
 				<h1 className="text-3xl md:text-7xl font-bold text-center text-primary">
 					The best way to create{' '}
 					<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-700">
-					Discord
-				</span>{' '}
+						Discord
+					</span>{' '}
 					bots with{' '}
 					<span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-700">
-					NestJS
-				</span>
+						NestJS
+					</span>
 				</h1>
 
 				<p className="text-center text-sm md:text-lg text-muted-foreground">
@@ -39,14 +38,16 @@ export default function Home() {
 					<a href="https://nestjs.com" target="_blank" rel="noopener noreferrer">
 						Nest.js
 					</a>{' '}
-					is a progressive framework for creating well-architectured applications. This module
-					provides fast and easy way for creating Discord bots and deep integration with your
-					NestJS application.
+					is a progressive framework for creating well-architectured applications. This
+					module provides fast and easy way for creating Discord bots and deep integration
+					with your NestJS application.
 				</p>
 
 				<div className="flex flex-col items-center justify-center space-y-3">
 					<div className="flex flex-row space-x-4 h-fit">
-						<Button onClick={() => openLink('/introduction', true)}>Documentation</Button>
+						<Button onClick={() => openLink('/introduction', true)}>
+							Documentation
+						</Button>
 
 						<Button
 							variant="outline"
