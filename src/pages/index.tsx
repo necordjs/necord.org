@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { Fragment } from 'react';
 import { NecordInstallScriptCopyBtn } from '../components/necord-install-script-copy-btn';
 import { Button } from '../components/ui/button';
 import Head from '@docusaurus/Head';
@@ -9,7 +11,7 @@ export default function Home() {
 	};
 
 	return (
-		<>
+		<Fragment>
 			<Head>
 				<title>Necord - The best way to create Discord bots with NestJS</title>
 				<meta
@@ -71,6 +73,6 @@ export default function Home() {
 					<NecordInstallScriptCopyBtn />
 				</div>
 			</div>
-		</>
+		</Fragment>
 	);
 }
