@@ -2,6 +2,7 @@ import React from 'react';
 import { NecordInstallScriptCopyBtn } from '../components/necord-install-script-copy-btn';
 import { Button } from '../components/ui/button';
 import Head from '@docusaurus/Head';
+import Layout from '@theme/Layout';
 
 export default function Home() {
 	const openLink = (url: string, onSite: boolean = false) => {

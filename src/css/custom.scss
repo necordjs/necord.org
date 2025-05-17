@@ -326,3 +326,15 @@ html[data-theme='dark'] [role=banner] {
 		var(--ifm-color-emphasis-100) 100%
 	);
 }
+
+.navbar.navbar--fixed-top {
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.75);
+  border-bottom: 1px solid rgba(200, 200, 200, 0.2);
+}
+
+html[data-theme='dark'] .navbar.navbar--fixed-top {
+  background-color: rgba(20, 20, 20, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
