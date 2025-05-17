@@ -44,7 +44,10 @@
 		"react": "19.1.0",
 		"react-dom": "19.1.0",
 		"sass": "1.89.0",
-		"shiki": "^3.4.2"
+		"shiki": "^3.4.2",
+		"tailwind-merge": "^3.3.0",
+		"tailwindcss": "^4.1.7",
+		"tailwindcss-animate": "^1.0.7"
 	},
 	"devDependencies": {
 		"@docusaurus/module-type-aliases": "^3.7.0",
@@ -54,9 +57,6 @@
 		"prettier": "^3.5.3",
 		"prettier-plugin-tailwindcss": "^0.6.11",
 		"release-it": "^19.0.2",
-		"tailwind-merge": "^3.3.0",
-		"tailwindcss": "^4.1.7",
-		"tailwindcss-animate": "^1.0.7",
 		"typescript": "5.8.3"
 	},
 	"browserslist": {
