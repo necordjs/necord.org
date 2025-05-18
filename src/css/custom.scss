@@ -241,6 +241,10 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 	background-color: rgb(66 66 66 / 30%);
 }
 
-article ul, article li, article ol {
-	list-style: auto;
+article ul {
+	list-style: disc;
+}
+
+article ol {
+	list-style: decimal;
 }
