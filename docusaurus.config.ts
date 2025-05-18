@@ -88,6 +88,7 @@ const config: Config = {
 				},
 				sitemap: {
 					changefreq: 'weekly',
+					lastmod: 'date',
 					priority: 0.5,
 					ignorePatterns: ['/contributing/**']
 				},
@@ -289,7 +290,7 @@ const config: Config = {
 					title: 'Support us',
 					items: [
 						{ label: 'Donate', to: '/contributing/funding' },
-						{ label: 'Contribute', href: '/contributing/contribution-guide' },
+						{ label: 'Contribute', to: '/contributing/contribution-guide' },
 						{ label: 'Translate', href: 'https://crowdin.com/project/necord' }
 					]
 				},
