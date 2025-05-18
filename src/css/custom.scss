@@ -240,3 +240,7 @@ html[data-theme='dark'] {
 html[data-theme='dark'] .docusaurus-highlight-code-line {
 	background-color: rgb(66 66 66 / 30%);
 }
+
+article ul, article li, article ol {
+	list-style: auto;
+}
