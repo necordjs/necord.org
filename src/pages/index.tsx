@@ -16,7 +16,7 @@ export default function Home() {
 		<Fragment>
 			<ColorModeProvider>
 				<Head>
-					<title>Necord - The best way to create Discord bots with NestJS</title>
+					<title>NECORD - The best way to create Discord bots with NestJS</title>
 					<meta
 						name="description"
 						content="The best way to create Discord bots with NestJS"
