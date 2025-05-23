@@ -16,11 +16,11 @@
     "description": "Navbar item with label Community"
   },
   "item.label.Blog": {
-    "message": "Blog",
+    "message": "Блог",
     "description": "Navbar item with label Blog"
   },
   "item.label.Changelog": {
-    "message": "Changelog",
+    "message": "Изменения",
     "description": "Navbar item with label Changelog"
   }
 }

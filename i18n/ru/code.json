@@ -438,7 +438,7 @@
     "description": "The draft content banner message"
   },
   "theme.blog.author.noPosts": {
-    "message": "This author has not written any posts yet.",
+    "message": "Этот автор еще не написал ни одного поста.",
     "description": "The text for authors with 0 blog post"
   }
 }
