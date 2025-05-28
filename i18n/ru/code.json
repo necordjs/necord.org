@@ -49,7 +49,7 @@
   },
   "theme.colorToggle.ariaLabel": {
     "message": "Переключайтесь между темной и светлой темой (сейчас {mode})",
-    "description": "The ARIA label for the navbar color mode toggle"
+    "description": "The ARIA label for the color mode toggle"
   },
   "theme.colorToggle.ariaLabel.mode.dark": {
     "message": "темный режим",
@@ -440,5 +440,17 @@
   "theme.blog.author.noPosts": {
     "message": "Этот автор еще не написал ни одного поста.",
     "description": "The text for authors with 0 blog post"
+  },
+  "theme.colorToggle.ariaLabel.mode.system": {
+    "message": "system mode",
+    "description": "The name for the system color mode"
+  },
+  "theme.navbar.mobileDropdown.collapseButton.expandAriaLabel": {
+    "message": "Expand the dropdown",
+    "description": "The ARIA label of the button to expand the mobile dropdown navbar item"
+  },
+  "theme.navbar.mobileDropdown.collapseButton.collapseAriaLabel": {
+    "message": "Collapse the dropdown",
+    "description": "The ARIA label of the button to collapse the mobile dropdown navbar item"
   }
 }
