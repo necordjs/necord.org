@@ -1,11 +1,40 @@
-import { useColorMode } from '@docusaurus/theme-common';
+import React from 'react';
+import { ColorMode, useColorMode } from '@docusaurus/theme-common';
 import { MoonIcon, SunIcon } from 'lucide-react';
+import IconSystemColorMode from '@/components/Icon/SystemColorMode';
 
-export default function ColorModeSwitch() {
-	const { colorMode, setColorMode } = useColorMode();
+
+
+function getNextColorMode(currentMode: ColorMode) {
+	switch (currentMode) {
+		case null:
+			return 'light';
+		case 'light':
+			return 'dark';
+		case 'dark':
+			return null;
+		default:
+			throw new Error(`Unknown color mode: ${currentMode}`);
+	}
+}
+
+function getIconForColorMode(colorMode: ColorMode) {
+	switch (colorMode) {
+		case 'light':
+			return <SunIcon className="w-5 h-5" />;
+		case 'dark':
+			return <MoonIcon className="w-5 h-5" />;
+		default:
+			return <IconSystemColorMode className="w-5 h-5" />;
+	}
+}
+
+function ColorModeSwitch() {
+	const { setColorMode, colorModeChoice } = useColorMode();
 
 	const toggleColorMode = () => {
-		setColorMode(colorMode === 'light' ? 'dark' : 'light');
+		const nextMode = getNextColorMode(colorModeChoice);
+		setColorMode(nextMode);
 	};
 
 	return (
@@ -14,7 +43,9 @@ export default function ColorModeSwitch() {
 			onClick={toggleColorMode}
 			aria-label="Toggle color mode"
 		>
-			{colorMode === 'light' ? <MoonIcon className="w-5 h-5" /> : <SunIcon className="w-5 h-5" />}
+			{getIconForColorMode(colorModeChoice)}
 		</button>
 	);
 }
+
+export default React.memo(ColorModeSwitch);
