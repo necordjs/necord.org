@@ -1838,7 +1838,7 @@
     "@types/gtag.js" "^0.0.12"
     tslib "^2.6.0"
 
-"@docusaurus/plugin-google-tag-manager@3.7.0", "@docusaurus/plugin-google-tag-manager@^3.7.0":
+"@docusaurus/plugin-google-tag-manager@3.7.0":
   version "3.7.0"
   resolved "https://registry.npmjs.org/@docusaurus/plugin-google-tag-manager/-/plugin-google-tag-manager-3.7.0.tgz#0a4390f4b0e760d073bdb1905436bfa7bd71356b"
   integrity sha512-X8U78nb8eiMiPNg3jb9zDIVuuo/rE1LjGDGu+5m5CX4UBZzjMy+klOY2fNya6x8ACyE/L3K2erO1ErheP55W/w==
@@ -1846,6 +1846,16 @@
     "@docusaurus/core" "3.7.0"
     "@docusaurus/types" "3.7.0"
     "@docusaurus/utils-validation" "3.7.0"
+    tslib "^2.6.0"
+
+"@docusaurus/plugin-google-tag-manager@^3.8.0":
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/@docusaurus/plugin-google-tag-manager/-/plugin-google-tag-manager-3.8.0.tgz#612aa63e161fb273bf7db2591034c0142951727d"
+  integrity sha512-9juRWxbwZD3SV02Jd9QB6yeN7eu+7T4zB0bvJLcVQwi+am51wAxn2CwbdL0YCCX+9OfiXbADE8D8Q65Hbopu/w==
+  dependencies:
+    "@docusaurus/core" "3.8.0"
+    "@docusaurus/types" "3.8.0"
+    "@docusaurus/utils-validation" "3.8.0"
     tslib "^2.6.0"
 
 "@docusaurus/plugin-pwa@^3.8.0":
