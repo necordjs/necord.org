@@ -1957,6 +1957,19 @@
     react-helmet-async "npm:@slorber/react-helmet-async@1.3.0"
     react-loadable "npm:@docusaurus/react-loadable@6.0.0"
 
+"@docusaurus/module-type-aliases@3.8.1":
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/@docusaurus/module-type-aliases/-/module-type-aliases-3.8.1.tgz#454de577bd7f50b5eae16db0f76b49ca5e4e281a"
+  integrity sha512-6xhvAJiXzsaq3JdosS7wbRt/PwEPWHr9eM4YNYqVlbgG1hSK3uQDXTVvQktasp3VO6BmfYWPozueLWuj4gB+vg==
+  dependencies:
+    "@docusaurus/types" "3.8.1"
+    "@types/history" "^4.7.11"
+    "@types/react" "*"
+    "@types/react-router-config" "*"
+    "@types/react-router-dom" "*"
+    react-helmet-async "npm:@slorber/react-helmet-async@1.3.0"
+    react-loadable "npm:@docusaurus/react-loadable@6.0.0"
+
 "@docusaurus/plugin-content-blog@3.8.0":
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/@docusaurus/plugin-content-blog/-/plugin-content-blog-3.8.0.tgz#0c200b1fb821e09e9e975c45255e5ddfab06c392"
@@ -2082,21 +2095,21 @@
     "@docusaurus/utils-validation" "3.8.1"
     tslib "^2.6.0"
 
-"@docusaurus/plugin-pwa@^3.8.0":
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/@docusaurus/plugin-pwa/-/plugin-pwa-3.8.0.tgz#86a220b28d70d7ac1a159df654285b2ad489601e"
-  integrity sha512-94U4qJEaE9G8o09KpjlotW1ikrEoJtkJFc8i2BCLg0CG/ORxOCy6Hu2ijPl7WWbbOgVetB57VRoouJtC+wEdaA==
+"@docusaurus/plugin-pwa@^3.8.1":
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/@docusaurus/plugin-pwa/-/plugin-pwa-3.8.1.tgz#a6955bd0f2d5a30f12ec793fec3e2ea211b740f8"
+  integrity sha512-gRFJ0V1XR0BkdGPrH2F1sOGMu2Ulf4tsJ1Qw2eGytSiJU0enh3aSwbAUmY1l02RI0T0gh77N6gOuuL+mXYunkQ==
   dependencies:
     "@babel/core" "^7.25.9"
     "@babel/preset-env" "^7.25.9"
-    "@docusaurus/bundler" "3.8.0"
-    "@docusaurus/core" "3.8.0"
-    "@docusaurus/logger" "3.8.0"
-    "@docusaurus/theme-common" "3.8.0"
-    "@docusaurus/theme-translations" "3.8.0"
-    "@docusaurus/types" "3.8.0"
-    "@docusaurus/utils" "3.8.0"
-    "@docusaurus/utils-validation" "3.8.0"
+    "@docusaurus/bundler" "3.8.1"
+    "@docusaurus/core" "3.8.1"
+    "@docusaurus/logger" "3.8.1"
+    "@docusaurus/theme-common" "3.8.1"
+    "@docusaurus/theme-translations" "3.8.1"
+    "@docusaurus/types" "3.8.1"
+    "@docusaurus/utils" "3.8.1"
+    "@docusaurus/utils-validation" "3.8.1"
     babel-loader "^9.2.1"
     clsx "^2.0.0"
     core-js "^3.31.1"
@@ -2218,6 +2231,24 @@
     tslib "^2.6.0"
     utility-types "^3.10.0"
 
+"@docusaurus/theme-common@3.8.1":
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/@docusaurus/theme-common/-/theme-common-3.8.1.tgz#17c23316fbe3ee3f7e707c7298cb59a0fff38b4b"
+  integrity sha512-UswMOyTnPEVRvN5Qzbo+l8k4xrd5fTFu2VPPfD6FcW/6qUtVLmJTQCktbAL3KJ0BVXGm5aJXz/ZrzqFuZERGPw==
+  dependencies:
+    "@docusaurus/mdx-loader" "3.8.1"
+    "@docusaurus/module-type-aliases" "3.8.1"
+    "@docusaurus/utils" "3.8.1"
+    "@docusaurus/utils-common" "3.8.1"
+    "@types/history" "^4.7.11"
+    "@types/react" "*"
+    "@types/react-router-config" "*"
+    clsx "^2.0.0"
+    parse-numeric-range "^1.3.0"
+    prism-react-renderer "^2.3.0"
+    tslib "^2.6.0"
+    utility-types "^3.10.0"
+
 "@docusaurus/theme-search-algolia@3.8.0":
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/@docusaurus/theme-search-algolia/-/theme-search-algolia-3.8.0.tgz#21c2f18e07a73d13ca3b44fcf0ae9aac33bef60f"
@@ -2244,6 +2275,14 @@
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/@docusaurus/theme-translations/-/theme-translations-3.8.0.tgz#deb64dccab74361624c3cb352a4949a7ac868c74"
   integrity sha512-1DTy/snHicgkCkryWq54fZvsAglTdjTx4qjOXgqnXJ+DIty1B+aPQrAVUu8LiM+6BiILfmNxYsxhKTj+BS3PZg==
+  dependencies:
+    fs-extra "^11.1.1"
+    tslib "^2.6.0"
+
+"@docusaurus/theme-translations@3.8.1":
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/@docusaurus/theme-translations/-/theme-translations-3.8.1.tgz#4b1d76973eb53861e167c7723485e059ba4ffd0a"
+  integrity sha512-OTp6eebuMcf2rJt4bqnvuwmm3NVXfzfYejL+u/Y1qwKhZPrjPoKWfk1CbOP5xH5ZOPkiAsx4dHdQBRJszK3z2g==
   dependencies:
     fs-extra "^11.1.1"
     tslib "^2.6.0"
