@@ -24,7 +24,7 @@ export default function Home() {
 				/>
 			</Head>
 			<div className="mx-auto flex w-full flex-col items-center justify-center space-y-6 overflow-hidden px-4 min-h-screen lg:w-5xl">
-				<h1 className="text-primary text-center text-3xl! font-bold md:text-7xl!">
+				<h1 className="text-primary text-center text-3xl font-bold md:text-7xl!">
 					The best way to create{' '}
 					<span className="bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">
 						Discord
