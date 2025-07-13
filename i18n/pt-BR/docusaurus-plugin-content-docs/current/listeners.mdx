@@ -12,8 +12,8 @@ Enquanto a melhor prática é usar os decoradores mais específicos quando poss�
 suporte através de decoradores personalizados, para interagir com as solicitações brutas, ou para ouvir todos os eventos usando um decorador como `interactionCreate`.
 
 ```typescript title="app.service.ts"
-import {Injectable, Logger} from '@nestjs/common';
-import {Once, On, Context, ContextOf} from 'necord';
+import { Injectable, Logger } from '@nestjs/common';
+import { Once, On, Context, ContextOf } from 'necord';
 
 @Injectable()
 export class AppService {
@@ -21,7 +21,7 @@ export class AppService {
 
     @Once('ready')
     public onReady(@Context() [client]: ContextOf<'ready'>) {
-        this.logger.log(`Bot conectado como ${client.user.username}`);
+        this.logger.log(`Bot logged in as ${client.user.username}`);
     }
 
     @On('warn')
