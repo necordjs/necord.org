@@ -272,6 +272,12 @@ const config: Config = {
 					'aria-label': 'NPM'
 				},
 				{
+					to: '/contributing/funding',
+					position: 'right',
+					className: 'header-support-link',
+					'aria-label': 'Support Necord'
+				},
+				{
 					href: 'https://github.com/necordjs/necord',
 					position: 'right',
 					className: 'header-github-link',

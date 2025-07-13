@@ -6,10 +6,30 @@ html {
 }
 
 .navbar,
-.main-wrapper {
+.main-wrapper,
+.footer {
 	max-width: 1440px;
 	margin: 0 auto;
 	width: 100%;
+}
+
+.footer {
+	--gap: 1rem;          /* легко менять вертикальные и горизонтальные отступы */
+
+	padding: var(--gap) 0;
+	padding-top: 40px;
+
+	.footer__title {
+		font-weight: 600;
+		margin-bottom: 0.5rem;
+	}
+
+	.footer__links {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+		column-gap: var(--gap);
+		row-gap: calc(var(--gap) * 1.5);
+	}
 }
 
 
