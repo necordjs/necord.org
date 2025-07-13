@@ -79,11 +79,11 @@ interface ContentProps {
 
 
 function Content({ code }: ContentProps) {
-	const { colorModeChoice } = useColorMode();
-	const isDark = colorModeChoice === 'dark';
+	const { colorMode } = useColorMode();
+	const isDark = colorMode === 'dark';
 
 	return (
-		<div className="w-full overflow-x-auto overflow-y-hidden" data-theme={colorModeChoice}>
+		<div className="w-full overflow-x-auto overflow-y-hidden" data-theme={colorMode}>
 			<AnimatePresence mode="wait">
 				<motion.div
 					key={code} // triggers re-mount on tab change
