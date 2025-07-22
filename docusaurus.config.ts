@@ -10,15 +10,16 @@ const defaultLocale = 'en';
 const isDev = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV;
 const isPreview = process.env.NODE_ENV === 'preview';
 const isProd = process.env.NODE_ENV === 'production';
+const isGHPages = process.env.DEPLOY_TARGET === 'gh-pages';
 
-const copyright = `Copyright © 2021 - ${new Date().getFullYear()} • Built by <a target="_blank" href="https://github.com/SocketSomeone">Alexey Filippov</a> and <a target="_blank" href="https://github.com/SocketSomeone/necord/graphs/contributors">Others</a> with 💖`;
+const copyright = `Copyright © 2021—${new Date().getFullYear()} • Built by <a target="_blank" href="https://github.com/SocketSomeone">Alexey Filippov</a> and <a target="_blank" href="https://github.com/SocketSomeone/necord/graphs/contributors">Others</a> with 💖`;
 
 const config: Config = {
 	title: 'Necord',
 	titleDelimiter: '|',
 	tagline: 'A module for creating Discord bots using NestJS, based on Discord.js',
-	url: 'https://necord.org',
-	baseUrl: '/',
+	url: isGHPages ? 'https://necordjs.github.io' : 'https://necord.org',
+	baseUrl: isGHPages ? '/necord.org/' : '/',
 	onBrokenLinks: 'throw',
 	onBrokenAnchors: 'throw',
 	onBrokenMarkdownLinks: 'warn',
