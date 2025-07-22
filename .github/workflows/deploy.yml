@@ -22,8 +22,12 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+
       - name: Build website
         run: yarn build
+        env:
+          NODE_ENV: production
+          DEPLOY_TARGET: gh-pages
 
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
