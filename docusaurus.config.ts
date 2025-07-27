@@ -19,7 +19,7 @@ const config: Config = {
 	titleDelimiter: '|',
 	tagline: 'A module for creating Discord bots using NestJS, based on Discord.js',
 	url: isGHPages ? 'https://necord.js.org' : 'https://necord.org',
-	baseUrl: isGHPages ? '/' : '/',
+	baseUrl: '/',
 	onBrokenLinks: 'throw',
 	onBrokenAnchors: 'throw',
 	onBrokenMarkdownLinks: 'warn',
