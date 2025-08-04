@@ -24,6 +24,7 @@
 		"lint": "echo \"No lint specified\" && exit 0",
 		"lint:fix": "echo \"No lint specified\" && exit 0",
 		"prettier:write": "prettier --write ./content",
+		"prepublish:git": "npm run build",
 		"publish:git": "release-it",
 		"test": "echo \"No tests specified\" && exit 0",
 		"test:watch": "echo \"No tests specified\" && exit 0",
