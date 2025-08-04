@@ -21,8 +21,15 @@
 		"typecheck": "tsc",
 		"predocker:start": "yarn",
 		"docker:start": "yarn start --host 0.0.0.0",
+		"lint": "echo \"No lint specified\" && exit 0",
+		"lint:fix": "echo \"No lint specified\" && exit 0",
 		"prettier:write": "prettier --write ./content",
-		"publish:git": "release-it"
+		"publish:git": "release-it",
+		"test": "echo \"No tests specified\" && exit 0",
+		"test:watch": "echo \"No tests specified\" && exit 0",
+		"test:cov": "echo \"No tests specified\" && exit 0",
+		"test:debug": "echo \"No tests specified\" && exit 0",
+		"test:ci": "echo \"No tests specified\" && exit 0"
 	},
 	"dependencies": {
 		"@crowdin/cli": "^4.9.0",
