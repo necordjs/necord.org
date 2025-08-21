@@ -62,5 +62,13 @@
   "link.item.label.Changelog": {
     "message": "Changelog",
     "description": "The label of footer link with label=Changelog linking to https://github.com/necordjs/necord/releases"
+  },
+  "link.item.label.GitHub": {
+    "message": "GitHub",
+    "description": "The label of footer link with label=GitHub linking to https://github.com/necordjs"
+  },
+  "link.item.label.NPM": {
+    "message": "NPM",
+    "description": "The label of footer link with label=NPM linking to https://www.npmjs.com/org/necord"
   }
 }
