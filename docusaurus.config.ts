@@ -305,8 +305,8 @@ const config: Config = {
 					title: 'Community',
 					items: [
 						{ label: 'Discord', href: 'https://discord.com/invite/mcBYvMTnwP' },
-						{ label: 'GitHub Organization', href: 'https://github.com/necordjs' },
-						{ label: 'NPM Organization', href: 'https://www.npmjs.com/org/necord' }
+						{ label: 'GitHub', href: 'https://github.com/necordjs' },
+						{ label: 'NPM', href: 'https://www.npmjs.com/org/necord' }
 					]
 				},
 				{
