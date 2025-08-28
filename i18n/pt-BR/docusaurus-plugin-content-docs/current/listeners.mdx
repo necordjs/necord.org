@@ -6,10 +6,10 @@ description: Os ouvintes são usados para ouvir eventos emitidos pelo Discord. E
 sidebar_position: 3
 ---
 
+## How to use Listeners {#how-to-use-listeners}
+
 O Necord suporta interação com todos os [eventos do discord](https://discord.js.org/#/docs/main/stable/class/Cliente#Eventos) através do decorador `@On`
-e `@Once`.
-Enquanto a melhor prática é usar os decoradores mais específicos quando possível, isso é útil se você deseja usar recursos necord não
-suporte através de decoradores personalizados, para interagir com as solicitações brutas, ou para ouvir todos os eventos usando um decorador como `interactionCreate`.
+e `@Once`. These decorators can be used within any injectable class, such as services or custom providers.
 
 ```typescript title="app.service.ts"
 import { Injectable, Logger } from '@nestjs/common';
@@ -35,7 +35,7 @@ export class AppService {
 
 Se você usar filtros, guardas ou interceptores globais, eles serão acionados uma vez por evento!
 Isto significa que se você está respondendo à mensagem em guards, você pode encontrar problemas com respostas duplicadas ou interações inválidas.
-Dê uma olhada nos metadados `NecordExecutionContext.getInfo()` para aprender mais sobre o contexto atual.
+Have a look at the `NecordExecutionContext.getDiscovery()` metadata to learn more about the current context.
 
 :::
 
@@ -58,10 +58,10 @@ public onMessageCreate(@Context() [message]: ContextOf<'messageCreate'>) {
 
 O Necord suporta todos os eventos fornecidos pelo discord.js. Você também pode criar eventos personalizados usando os decoradores `@CustomListenerHandler` e `@CustomListener`.
 
-```typescript title="app.service.ts"
+```typescript title="user-update.handler.ts"
 import { Injectable } from '@nestjs/common';
-import { CustomListener, CustomListenerHandler, BaseHandler, ContextOf } from 'necord';
-import { User, UserFlagsBitField } from 'discord.js';
+import { CustomListener, CustomListenerHandler, BaseHandler, ContextOf, createCustomOnDecorator } from 'necord';
+import { User } from 'discord.js';
 
 export type CustomUserUpdateEvents = {
 	userAvatarUpdate: [user: User, oldAvatar: string, newAvatar: string];
@@ -69,6 +69,7 @@ export type CustomUserUpdateEvents = {
 
 export type ContextOfCustomUserUpdate<K extends keyof E, E = CustomUserUpdateEvents> = E[K];
 
+export const OnCustomUserUpdate = createCustomOnDecorator<CustomUserUpdateEvents>();
 
 @Injectable()
 @CustomListener('userUpdate')
@@ -89,20 +90,34 @@ export class UserUpdateHandler extends BaseHandler<CustomUserUpdateEvents> {
 }
 ```
 
-E então você pode ouvir o evento personalizado usando o decorador `@On`.
+:::tip Tip
+
+Also, you can create multiple custom event handlers in a single class by adding more methods with the `@CustomListenerHandler()` decorator.
+:::
+
+And then you can listen to the custom event using the `@OnCustomUserUpdate` decorator.
 
 ```typescript title="app.service.ts"
-@On('userAvatarUpdate')
-public onUserAvatarUpdate(
-    @Context() [user, oldAvatar, newAvatar]: ContextOfCustomUserUpdate<'userAvatarUpdate'>
-) {
-    console.log(
-        `Usuário ${user.tag} mudou seu avatar de ${oldAvatar} para ${newAvatar}`
-    );
+import { Injectable } from '@nestjs/common';
+import { OnCustomUserUpdate, ContextOfCustomUserUpdate, Context } from './user-update.handler';
+
+@Injectable()
+export class AppService {
+	@OnCustomUserUpdate('userAvatarUpdate')
+	public onAvatarUpdate(@Context() context: ContextOfCustomUserUpdate<'userAvatarUpdate'>) {
+		const [user, oldAvatar, newAvatar] = context;
+		console.log(`User ${user.username} changed avatar from ${oldAvatar} to ${newAvatar}`);
+	}
 }
+
 ```
 
-Também suporta eventos personalizados.
+> Also you can use `@On<CustomUserUpdateEvents>('userAvatarUpdate')` instead of creating a new decorator.
+> But creating a new decorator is more convenient and cleaner.
+
+# List of Custom Events {#list-of-custom-events}
+
+The following is a list of all the custom events provided by Necord. It can be accessed via the `@On` decorator.
 
 ### Eventos de Canal {#channel-events}
 
