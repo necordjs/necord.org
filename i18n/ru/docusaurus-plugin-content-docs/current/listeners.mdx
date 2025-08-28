@@ -6,10 +6,10 @@ description: Listeners are used to listen to events emitted by Discord. They are
 sidebar_position: 3
 ---
 
+## How to use Listeners {#how-to-use-listeners}
+
 Necord supports interacting with all [discord events](https://discord.js.org/#/docs/main/stable/class/Client#Events) via the `@On`
-and `@Once` decorator.
-While the best practice is to use the more specific decorators when possible, this is useful if you wish to use features Necord doesn't
-support via custom decorators, to interact with the raw requests, or to listen to all events using a decorator such as `interactionCreate`.
+and `@Once` decorator. These decorators can be used within any injectable class, such as services or custom providers.
 
 ```typescript title="app.service.ts"
 import { Injectable, Logger } from '@nestjs/common';
@@ -35,7 +35,7 @@ export class AppService {
 
 If you use global filters, guards or interceptors, they will be triggered once per event!
 This means if you are replying to the message in guards, you can run into issues with duplicated responses or invalid interactions.
-Have a look at the `NecordExecutionContext.getInfo()` metadata to learn more about the current context.
+Have a look at the `NecordExecutionContext.getDiscovery()` metadata to learn more about the current context.
 
 :::
 
@@ -58,10 +58,10 @@ public onMessageCreate(@Context() [message]: ContextOf<'messageCreate'>) {
 
 Necord out of the box supports all the events provided by discord.js. You can also create custom events using the `@CustomListenerHandler` and `@CustomListener` decorators.
 
-```typescript title="app.service.ts"
+```typescript title="user-update.handler.ts"
 import { Injectable } from '@nestjs/common';
-import { CustomListener, CustomListenerHandler, BaseHandler, ContextOf } from 'necord';
-import { User, UserFlagsBitField } from 'discord.js';
+import { CustomListener, CustomListenerHandler, BaseHandler, ContextOf, createCustomOnDecorator } from 'necord';
+import { User } from 'discord.js';
 
 export type CustomUserUpdateEvents = {
 	userAvatarUpdate: [user: User, oldAvatar: string, newAvatar: string];
@@ -69,6 +69,7 @@ export type CustomUserUpdateEvents = {
 
 export type ContextOfCustomUserUpdate<K extends keyof E, E = CustomUserUpdateEvents> = E[K];
 
+export const OnCustomUserUpdate = createCustomOnDecorator<CustomUserUpdateEvents>();
 
 @Injectable()
 @CustomListener('userUpdate')
@@ -89,20 +90,34 @@ export class UserUpdateHandler extends BaseHandler<CustomUserUpdateEvents> {
 }
 ```
 
-And then you can listen to the custom event using the `@On` decorator.
+:::tip Tip
+
+Also, you can create multiple custom event handlers in a single class by adding more methods with the `@CustomListenerHandler()` decorator.
+:::
+
+And then you can listen to the custom event using the `@OnCustomUserUpdate` decorator.
 
 ```typescript title="app.service.ts"
-@On('userAvatarUpdate')
-public onUserAvatarUpdate(
-    @Context() [user, oldAvatar, newAvatar]: ContextOfCustomUserUpdate<'userAvatarUpdate'>
-) {
-    console.log(
-        `User ${user.tag} changed their avatar from ${oldAvatar} to ${newAvatar}`
-    );
+import { Injectable } from '@nestjs/common';
+import { OnCustomUserUpdate, ContextOfCustomUserUpdate, Context } from './user-update.handler';
+
+@Injectable()
+export class AppService {
+	@OnCustomUserUpdate('userAvatarUpdate')
+	public onAvatarUpdate(@Context() context: ContextOfCustomUserUpdate<'userAvatarUpdate'>) {
+		const [user, oldAvatar, newAvatar] = context;
+		console.log(`User ${user.username} changed avatar from ${oldAvatar} to ${newAvatar}`);
+	}
 }
+
 ```
 
-Also supports custom events.
+> Also you can use `@On<CustomUserUpdateEvents>('userAvatarUpdate')` instead of creating a new decorator.
+> But creating a new decorator is more convenient and cleaner.
+
+# List of Custom Events {#list-of-custom-events}
+
+The following is a list of all the custom events provided by Necord. It can be accessed via the `@On` decorator.
 
 ### Channel Events {#channel-events}
 
