@@ -177,7 +177,7 @@ export class AppService {
 
 ```typescript title="app.commands.ts"
 import { Injectable, UseInterceptors } from '@nestjs/common';
-import { NecordLavalinkService, PlayerManager } from 'lavalink-client';
+import { NecordLavalinkService, PlayerManagerService } from '@necord/lavalink';
 import { Context, Options, SlashCommand, SlashCommandContext } from 'necord';
 import { QueryDto } from './query.dto';
 import { SourceAutocompleteInterceptor } from 'source.autocomplete';
@@ -185,14 +185,14 @@ import { SourceAutocompleteInterceptor } from 'source.autocomplete';
 @Injectable()
 export class AppCommands {
     public constructor(
-        private readonly playerManager: PlayerManager,
+        private readonly playerManager: PlayerManagerService,
         private readonly lavalinkService: NecordLavalinkService
     ) {}
 
     @UseInterceptors(SourceAutocompleteInterceptor)
     @SlashCommand({
-        name: 'tocar',
-        description: 'toca uma faixa',
+        name: 'play',
+        description: 'play a track',
     })
     public async onPlay(
         @Context() [interaction]: SlashCommandContext,
@@ -202,7 +202,7 @@ export class AppCommands {
             this.playerManager.get(interaction.guild.id) ??
             this.playerManager.create({
                 ...this.lavalinkService.extractInfoForPlayer(interaction),
-                // configurações opcionais:
+                // optional configurations:
                 selfDeaf: true,
                 selfMute: false,
                 volume: 100,
@@ -221,9 +221,9 @@ export class AppCommands {
         await player.queue.add(res.tracks[0]);
         if (!player.playing) await player.play();
 
-        // É extremamente recomendado utilizar o evento `trackStart` para realizar esse anuncio
+        // It's extremely recommended to use `trackStart` event for this announcement
         return interaction.reply({
-            content: `Tocando agora ${res.tracks[0].info.title}`,
+            content: `Now playing ${res.tracks[0].info.title}`,
         });
     }
 }

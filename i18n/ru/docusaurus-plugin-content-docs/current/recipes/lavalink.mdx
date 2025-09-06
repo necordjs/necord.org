@@ -177,7 +177,7 @@ export class AppService {
 
 ```typescript title="app.commands.ts"
 import { Injectable, UseInterceptors } from '@nestjs/common';
-import { NecordLavalinkService, PlayerManager } from 'lavalink-client';
+import { NecordLavalinkService, PlayerManagerService } from '@necord/lavalink';
 import { Context, Options, SlashCommand, SlashCommandContext } from 'necord';
 import { QueryDto } from './query.dto';
 import { SourceAutocompleteInterceptor } from 'source.autocomplete';
@@ -185,7 +185,7 @@ import { SourceAutocompleteInterceptor } from 'source.autocomplete';
 @Injectable()
 export class AppCommands {
     public constructor(
-        private readonly playerManager: PlayerManager,
+        private readonly playerManager: PlayerManagerService,
         private readonly lavalinkService: NecordLavalinkService
     ) {}
 
