@@ -65,19 +65,19 @@ export function ScriptCopyBtn({
 				<div className="mb-2 flex items-center justify-between">
 					{showMultiplePackageOptions && (
 						<div className="relative">
-							<div className="inline-flex overflow-hidden rounded-md border border-border text-xs">
+							<div className="border-border inline-flex overflow-hidden rounded-md border text-xs">
 								{packageManagers.map((pm, index) => (
 									<div key={pm} className="flex items-center">
 										{index > 0 && (
 											<div
-												className="h-4 w-px bg-border"
+												className="bg-border h-4 w-px"
 												aria-hidden="true"
 											/>
 										)}
 										<Button
 											variant="ghost"
 											size="sm"
-											className={`relative rounded-none bg-background px-2 py-1 hover:bg-background ${
+											className={`bg-background hover:bg-background relative rounded-none px-2 py-1 ${
 												packageManager === pm
 													? 'text-primary'
 													: 'text-muted-foreground'
@@ -87,7 +87,7 @@ export function ScriptCopyBtn({
 											{pm}
 											{packageManager === pm && (
 												<motion.div
-													className="absolute inset-x-0 bottom-[1px] mx-auto h-0.5 w-[90%] bg-primary"
+													className="bg-primary absolute inset-x-0 bottom-[1px] mx-auto h-0.5 w-[90%]"
 													layoutId="activeTab"
 													initial={false}
 													transition={{
@@ -108,13 +108,13 @@ export function ScriptCopyBtn({
 					<div className="min-w-[300px] grow font-mono">
 						{highlightedCode ? (
 							<div
-								className={`[&>pre]:overflow-x-auto [&>pre]:rounded-md [&>pre]:p-2 [&>pre]:px-4 [&>pre]:mb-0!  [&>pre]:font-mono ${
+								className={`[&>pre]:mb-0! [&>pre]:overflow-x-auto [&>pre]:rounded-md [&>pre]:p-2 [&>pre]:px-4 [&>pre]:font-mono ${
 									theme === 'dark' ? 'dark' : 'light'
 								}`}
 								dangerouslySetInnerHTML={{ __html: highlightedCode }}
 							/>
 						) : (
-							<pre className="rounded-md border border-border bg-white p-2 px-4 font-mono dark:bg-black">
+							<pre className="border-border rounded-md border bg-white p-2 px-4 font-mono dark:bg-black">
 								{command}
 							</pre>
 						)}
@@ -122,7 +122,7 @@ export function ScriptCopyBtn({
 					<Button
 						variant="outline"
 						size="icon"
-						className="relative ml-2 rounded-md cursor-copy"
+						className="relative ml-2 cursor-copy rounded-md"
 						onClick={copyToClipboard}
 						aria-label={copied ? 'Copied' : 'Copy to clipboard'}
 					>

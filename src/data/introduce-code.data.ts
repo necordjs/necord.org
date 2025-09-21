@@ -1,7 +1,7 @@
 export const IntroduceCodeData = [
 	{
-	name: 'app.updates.ts',
-	content: `import { Injectable, Logger } from '@nestjs/common';
+		name: 'app.updates.ts',
+		content: `import { Injectable, Logger } from '@nestjs/common';
 import { Once, On, Context, ContextOf } from 'necord';
 
 @Injectable()
@@ -27,4 +27,4 @@ export class AppCommands {
     }
 }`
 	}
-]
+];

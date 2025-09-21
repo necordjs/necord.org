@@ -3,7 +3,10 @@ import { cn } from '../lib/utils';
 import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { atomOneDark as darkTheme, vs as whiteTheme } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import {
+	atomOneDark as darkTheme,
+	vs as whiteTheme
+} from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 interface File {
 	name: string;
@@ -63,7 +66,7 @@ function Header({ files, activeIndex, onChange }: HeaderProps) {
 						{idx === activeIndex && (
 							<motion.span
 								layoutId="underline"
-								className="absolute left-0 right-0 -bottom-[1px] h-[2px] bg-red-500 dark:bg-red-400"
+								className="absolute right-0 -bottom-[1px] left-0 h-[2px] bg-red-500 dark:bg-red-400"
 							/>
 						)}
 					</button>
@@ -76,7 +79,6 @@ function Header({ files, activeIndex, onChange }: HeaderProps) {
 interface ContentProps {
 	code: string;
 }
-
 
 function Content({ code }: ContentProps) {
 	const { colorMode } = useColorMode();
@@ -97,7 +99,7 @@ function Content({ code }: ContentProps) {
 						showLineNumbers
 						language="typescript"
 						style={isDark ? darkTheme : whiteTheme}
-						className="w-full px-3 pt-2 pb-4! mb-0!"
+						className="mb-0! w-full px-3 pt-2 pb-4!"
 					>
 						{code}
 					</SyntaxHighlighter>

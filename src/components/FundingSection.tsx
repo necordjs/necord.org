@@ -3,11 +3,7 @@ import { CopyIcon } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 
 const FundingSection = ({ children }) => {
-	return (
-		<div className="grid grid-cols-1 gap-4">
-			{children}
-		</div>
-	);
+	return <div className="grid grid-cols-1 gap-4">{children}</div>;
 };
 
 const Item = ({ className, contentClass, children, title }) => (
