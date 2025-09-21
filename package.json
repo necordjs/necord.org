@@ -21,6 +21,7 @@
 		"typecheck": "tsc",
 		"predocker:start": "yarn",
 		"docker:start": "yarn start --host 0.0.0.0",
+		"format": "prettier --write \"{src,apps,libs,test}/**/*.ts\"",
 		"lint": "echo \"No lint specified\" && exit 0",
 		"lint:fix": "echo \"No lint specified\" && exit 0",
 		"prettier:write": "prettier --write ./content",
