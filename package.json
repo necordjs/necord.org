@@ -62,8 +62,8 @@
 		"tailwindcss-animate": "^1.0.7"
 	},
 	"devDependencies": {
-		"@docusaurus/module-type-aliases": "^3.9.0",
-		"@docusaurus/tsconfig": "^3.9.0",
+		"@docusaurus/module-type-aliases": "^3.9.1",
+		"@docusaurus/tsconfig": "^3.9.1",
 		"@docusaurus/types": "^3.8.1",
 		"@release-it/conventional-changelog": "^10.0.1",
 		"@types/react-syntax-highlighter": "^15.5.13",
