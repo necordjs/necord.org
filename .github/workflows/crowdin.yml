@@ -39,12 +39,13 @@ jobs:
           download_translations: true
           localization_branch_name: crowdin/translations
           create_pull_request: true
-          pull_request_title: 'chore: update translations'
+          pull_request_title: 'chore(i18n): update translations'
           pull_request_body: 'New Crowdin translations by [Crowdin GH Action](https://github.com/crowdin/github-action)'
           pull_request_base_branch_name: 'master'
           pull_request_assignees: SocketSomeone
           pull_request_reviewers: SocketSomeone
           export_only_approved: true
+          config: ./crowdin.yml
         env:
           # A classic GitHub Personal Access Token with the 'repo' scope selected (the user should have write access to the repository).
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
