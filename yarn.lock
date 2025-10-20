@@ -1621,12 +1621,25 @@
     vfile "^6.0.1"
     webpack "^5.88.1"
 
-"@docusaurus/module-type-aliases@3.9.1", "@docusaurus/module-type-aliases@^3.9.1":
+"@docusaurus/module-type-aliases@3.9.1":
   version "3.9.1"
   resolved "https://registry.yarnpkg.com/@docusaurus/module-type-aliases/-/module-type-aliases-3.9.1.tgz#201959a22e7b30881cf879a21d2ae5b26415b705"
   integrity sha512-YBce3GbJGGcMbJTyHcnEOMvdXqg41pa5HsrMCGA5Rm4z0h0tHS6YtEldj0mlfQRhCG7Y0VD66t2tb87Aom+11g==
   dependencies:
     "@docusaurus/types" "3.9.1"
+    "@types/history" "^4.7.11"
+    "@types/react" "*"
+    "@types/react-router-config" "*"
+    "@types/react-router-dom" "*"
+    react-helmet-async "npm:@slorber/react-helmet-async@1.3.0"
+    react-loadable "npm:@docusaurus/react-loadable@6.0.0"
+
+"@docusaurus/module-type-aliases@^3.9.2":
+  version "3.9.2"
+  resolved "https://registry.yarnpkg.com/@docusaurus/module-type-aliases/-/module-type-aliases-3.9.2.tgz#993c7cb0114363dea5ef6855e989b3ad4b843a34"
+  integrity sha512-8qVe2QA9hVLzvnxP46ysuofJUIc/yYQ82tvA/rBTrnpXtCjNSFLxEZfd5U8cYZuJIVlkPxamsIgwd5tGZXfvew==
+  dependencies:
+    "@docusaurus/types" "3.9.2"
     "@types/history" "^4.7.11"
     "@types/react" "*"
     "@types/react-router-config" "*"
@@ -1915,15 +1928,31 @@
     fs-extra "^11.1.1"
     tslib "^2.6.0"
 
-"@docusaurus/tsconfig@^3.9.1":
-  version "3.9.1"
-  resolved "https://registry.yarnpkg.com/@docusaurus/tsconfig/-/tsconfig-3.9.1.tgz#a39cb74021f16dd4794db9182de812303817528e"
-  integrity sha512-stdzM1dNDgRO0OvxeznXlE3N1igUoeHPNJjiKqyffLizgpVgNXJBAWeG6fuoYiCH4udGUBqy2dyM+1+kG2/UPQ==
+"@docusaurus/tsconfig@^3.9.2":
+  version "3.9.2"
+  resolved "https://registry.yarnpkg.com/@docusaurus/tsconfig/-/tsconfig-3.9.2.tgz#7f440e0ae665b841e1d487749037f26a0275f9c1"
+  integrity sha512-j6/Fp4Rlpxsc632cnRnl5HpOWeb6ZKssDj6/XzzAzVGXXfm9Eptx3rxCC+fDzySn9fHTS+CWJjPineCR1bB5WQ==
 
-"@docusaurus/types@3.9.1", "@docusaurus/types@^3.8.1":
+"@docusaurus/types@3.9.1":
   version "3.9.1"
   resolved "https://registry.yarnpkg.com/@docusaurus/types/-/types-3.9.1.tgz#e4fdaf0b91ea014a6aae0d8b62d59f3f020117b6"
   integrity sha512-ElekJ29sk39s5LTEZMByY1c2oH9FMtw7KbWFU3BtuQ1TytfIK39HhUivDEJvm5KCLyEnnfUZlvSNDXeyk0vzAA==
+  dependencies:
+    "@mdx-js/mdx" "^3.0.0"
+    "@types/history" "^4.7.11"
+    "@types/mdast" "^4.0.2"
+    "@types/react" "*"
+    commander "^5.1.0"
+    joi "^17.9.2"
+    react-helmet-async "npm:@slorber/react-helmet-async@1.3.0"
+    utility-types "^3.10.0"
+    webpack "^5.95.0"
+    webpack-merge "^5.9.0"
+
+"@docusaurus/types@3.9.2", "@docusaurus/types@^3.8.1":
+  version "3.9.2"
+  resolved "https://registry.yarnpkg.com/@docusaurus/types/-/types-3.9.2.tgz#e482cf18faea0d1fa5ce0e3f1e28e0f32d2593eb"
+  integrity sha512-Ux1JUNswg+EfUEmajJjyhIohKceitY/yzjRUpu04WXgvVz+fbhVC0p+R0JhvEu4ytw8zIAys2hrdpQPBHRIa8Q==
   dependencies:
     "@mdx-js/mdx" "^3.0.0"
     "@types/history" "^4.7.11"
@@ -9679,10 +9708,10 @@ postcss@^8.4.21, postcss@^8.4.24, postcss@^8.4.33, postcss@^8.4.41, postcss@^8.5
     picocolors "^1.1.1"
     source-map-js "^1.2.1"
 
-prettier-plugin-tailwindcss@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/prettier-plugin-tailwindcss/-/prettier-plugin-tailwindcss-0.7.0.tgz#1c877c83c55490e2b3337b5a7fd3c9bd9305923b"
-  integrity sha512-zpRZhkfwq1cNmbKhmKzXKuKFdkgXZXlf6p+KttD75v6pGz1FxmcKMc4RKdw97GYBKBbout4113HSLaBJAomFDw==
+prettier-plugin-tailwindcss@^0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/prettier-plugin-tailwindcss/-/prettier-plugin-tailwindcss-0.7.1.tgz#0cb15246668788e62b5b752868f5e01f0ce7eec9"
+  integrity sha512-Bzv1LZcuiR1Sk02iJTS1QzlFNp/o5l2p3xkopwOrbPmtMeh3fK9rVW5M3neBQzHq+kGKj/4LGQMTNcTH4NGPtQ==
 
 prettier@^3.6.2:
   version "3.6.2"
