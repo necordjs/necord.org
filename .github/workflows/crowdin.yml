@@ -39,8 +39,19 @@ jobs:
           download_translations: true
           localization_branch_name: crowdin/translations
           create_pull_request: true
+          commit_message: 'chore(i18n): update translations'
           pull_request_title: 'chore(i18n): update translations'
-          pull_request_body: 'New Crowdin translations by [Crowdin GH Action](https://github.com/crowdin/github-action)'
+          pull_request_body: |
+               ## 🌐 New translations from Crowdin
+
+               This PR contains the latest translations from [Crowdin](https://crowdin.com).
+
+
+               ### 🔍 Translation Status
+               Check the current translation status at [i18n.necord.org](https://i18n.necord.org)
+
+               ---
+               *Automated by [Crowdin GitHub Action](https://github.com/crowdin/github-action)*
           pull_request_base_branch_name: 'master'
           pull_request_assignees: SocketSomeone
           pull_request_reviewers: SocketSomeone
