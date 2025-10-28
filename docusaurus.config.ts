@@ -37,7 +37,7 @@ const config: Config = {
 					sidebarPath: require.resolve('./sidebars.ts'),
 					editUrl: ({ locale, versionDocsDirPath, docPath }) => {
 						if (locale !== defaultLocale) {
-							return `https://crowdin.com/project/necord/${locale}`;
+							return `https://i18n.necord.org/${locale}`;
 						}
 
 						return `https://github.com/necordjs/necord.org/edit/master/${versionDocsDirPath}/${docPath}`;
@@ -51,7 +51,7 @@ const config: Config = {
 				blog: {
 					editUrl: ({ locale, blogDirPath, blogPath }) => {
 						if (locale !== defaultLocale) {
-							return `https://crowdin.com/project/necord/${locale}`;
+							return `https://i18n.necord.org/${locale}`;
 						}
 
 						return `https://github.com/necordjs/necord.org/edit/master/${blogDirPath}/${blogPath}`;
@@ -261,7 +261,7 @@ const config: Config = {
 							value: '<hr style="margin: 0.3rem 0;">'
 						},
 						{
-							href: 'https://crowdin.com/project/necord',
+							href: 'https://i18n.necord.org',
 							label: 'Help Us Translate'
 						}
 					]
@@ -298,7 +298,7 @@ const config: Config = {
 					items: [
 						{ label: 'Donate', to: '/contributing/funding' },
 						{ label: 'Contribute', to: '/contributing/contribution-guide' },
-						{ label: 'Translate', href: 'https://crowdin.com/project/necord' }
+						{ label: 'Translate', href: 'https://i18n.necord.org' }
 					]
 				},
 				{
