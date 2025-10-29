@@ -1,0 +1,105 @@
+---
+id: crwdns1292:0crwdne1292:0
+title: crwdns1294:0crwdne1294:0
+sidebar_position: crwdns1296:0crwdne1296:0
+tags:
+  - crwdns4414:0crwdne4414:0
+---
+
+crwdns1298:0https://necord.org/crwdne1298:0 crwdns1300:0crwdne1300:0 crwdns1302:0crwdne1302:0
+
+## crwdns2286:0{#installation}crwdne2286:0
+
+```bash npm2yarn
+crwdns1306:0crwdne1306:0
+```
+
+## crwdns2288:0{#usage}crwdne2288:0
+
+crwdns1310:0crwdne1310:0
+
+```typescript
+crwdns1312:0{ NecordModule }crwdnd1312:0{ Module }crwdnd1312:0{ NecordLocalizationModule, DefaultLocalizationAdapter, UserResolver }crwdnd1312:0{ AppService }crwdne1312:0
+```
+
+## crwdns2290:0{#adapters}crwdne2290:0
+
+crwdns1316:0crwdne1316:0
+
+crwdns1318:0crwdne1318:0
+
+```typescript
+crwdns1320:0{ NecordModule }crwdnd1320:0{ Module }crwdnd1320:0{ NecordLocalizationModule, NestedLocalizationAdapter, UserResolver }crwdnd1320:0{ AppService }crwdne1320:0
+```
+
+:::info
+crwdns1322:0{{username}}crwdne1322:0
+:::
+
+#### crwdns2292:0{#custom-adapters}crwdne2292:0
+
+crwdns1326:0crwdne1326:0 crwdns1328:0crwdne1328:0
+
+```typescript
+crwdns1330:0{ BaseLocalizationAdapter }crwdnd1330:0${key}crwdnd1330:0${locale}crwdne1330:0
+```
+
+## crwdns2294:0{#resolvers}crwdne2294:0
+
+crwdns1334:0crwdne1334:0 crwdns1336:0crwdne1336:0
+
+| crwdns1338:0crwdne1338:0      | crwdns1340:0crwdne1340:0                                                                  |
+| ----------------------------- | ----------------------------------------------------------------------------------------- |
+| crwdns1342:0crwdne1342:0      | crwdns1344:0crwdne1344:0                                                                  |
+| crwdns1346:0crwdne1346:0      | crwdns1348:0crwdne1348:0                                                                  |
+
+#### crwdns2296:0{#custom-resolvers}crwdne2296:0
+
+crwdns1352:0crwdne1352:0 crwdns1354:0crwdne1354:0
+
+```typescript
+crwdns1356:0{ CommandContext, LocaleResolver }crwdnd1356:0{ ExecutionContext, Injectable }crwdnd1356:0{ NecordExecutionContext }crwdne1356:0
+```
+
+## crwdns2298:0{#localization}crwdne2298:0
+
+crwdns1360:0crwdne1360:0
+
+```typescript
+crwdns1362:0{ Injectable, Inject, OnModuleInit }crwdnd1362:0{ DefaultLocalizationAdapter, localizationMapByKey, LOCALIZATION_ADAPTER }crwdnd1362:0{ Context, SlashCommand, SlashCommandContext }crwdnd1362:0{
+    }crwdne1362:0
+```
+
+crwdns1364:0crwdne1364:0
+
+```typescript
+crwdns1366:0{ Injectable, Inject, OnModuleInit }crwdnd1366:0{ Context, SlashCommand, SlashCommandContext }crwdne1366:0
+```
+
+:::info
+crwdns1368:0crwdne1368:0 crwdns1370:0crwdne1370:0
+:::
+
+#### crwdns2300:0{#setting-up-localized-commands}crwdne2300:0
+
+crwdns1374:0crwdne1374:0
+
+```typescript
+crwdns1376:0crwdne1376:0
+```
+
+crwdns1378:0crwdne1378:0
+
+```typescript
+crwdns1380:0{
+        en: 'command.ping.name',
+        ru: 'command.ping.name'
+    }crwdnd1380:0{
+        en: 'command.ping.description',
+        ru: 'command.ping.description'
+    }crwdne1380:0
+```
+
+crwdns1382:0crwdne1382:0 crwdns1384:0crwdne1384:0
+
+crwdns1386:0https://github.com/necordjs/examples/tree/master/07-localizationcrwdne1386:0

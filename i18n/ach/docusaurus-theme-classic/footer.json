@@ -1,0 +1,74 @@
+{
+  "copyright": {
+    "message": "crwdns4296:0crwdne4296:0",
+    "description": "The footer copyright"
+  },
+  "link.title.Help us": {
+    "message": "crwdns4274:0crwdne4274:0",
+    "description": "The title of the footer links column with title=Help us in the footer"
+  },
+  "link.title.Community": {
+    "message": "crwdns4276:0crwdne4276:0",
+    "description": "The title of the footer links column with title=Community in the footer"
+  },
+  "link.title.Our Sponsors": {
+    "message": "crwdns4278:0crwdne4278:0",
+    "description": "The title of the footer links column with title=Our Sponsors in the footer"
+  },
+  "link.item.label.Donate": {
+    "message": "crwdns4280:0crwdne4280:0",
+    "description": "The label of footer link with label=Donate linking to /contributing/funding"
+  },
+  "link.item.label.Contribute": {
+    "message": "crwdns4282:0crwdne4282:0",
+    "description": "The label of footer link with label=Contribute linking to /contributing/contribution-guide"
+  },
+  "link.item.label.Translate": {
+    "message": "crwdns4284:0crwdne4284:0",
+    "description": "The label of footer link with label=Translate linking to https://i18n.necord.org"
+  },
+  "link.item.label.Discord": {
+    "message": "crwdns4286:0crwdne4286:0",
+    "description": "The label of footer link with label=Discord linking to https://discord.com/invite/mcBYvMTnwP"
+  },
+  "link.item.label.GitHub Organization": {
+    "message": "crwdns4288:0crwdne4288:0",
+    "description": "The label of footer link with label=GitHub Organization linking to https://github.com/necordjs"
+  },
+  "link.item.label.NPM Organization": {
+    "message": "crwdns4290:0crwdne4290:0",
+    "description": "The label of footer link with label=NPM Organization linking to https://www.npmjs.com/org/necord"
+  },
+  "link.item.label.Become a Sponsor": {
+    "message": "crwdns4292:0crwdne4292:0",
+    "description": "The label of footer link with label=Become a Sponsor linking to https://opencollective.com/necord"
+  },
+  "logo.alt": {
+    "message": "crwdns4294:0crwdne4294:0",
+    "description": "The alt text of footer logo"
+  },
+  "link.title.Support us": {
+    "message": "crwdns4596:0crwdne4596:0",
+    "description": "The title of the footer links column with title=Support us in the footer"
+  },
+  "link.title.More": {
+    "message": "crwdns4598:0crwdne4598:0",
+    "description": "The title of the footer links column with title=More in the footer"
+  },
+  "link.item.label.Blog": {
+    "message": "crwdns4600:0crwdne4600:0",
+    "description": "The label of footer link with label=Blog linking to /blog"
+  },
+  "link.item.label.Changelog": {
+    "message": "crwdns4602:0crwdne4602:0",
+    "description": "The label of footer link with label=Changelog linking to https://github.com/necordjs/necord/releases"
+  },
+  "link.item.label.GitHub": {
+    "message": "crwdns4634:0crwdne4634:0",
+    "description": "The label of footer link with label=GitHub linking to https://github.com/necordjs"
+  },
+  "link.item.label.NPM": {
+    "message": "crwdns4636:0crwdne4636:0",
+    "description": "The label of footer link with label=NPM linking to https://www.npmjs.com/org/necord"
+  }
+}
