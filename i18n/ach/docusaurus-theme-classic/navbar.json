@@ -1,0 +1,26 @@
+{
+  "logo.alt": {
+    "message": "crwdns2150:0crwdne2150:0",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Documentation": {
+    "message": "crwdns2152:0crwdne2152:0",
+    "description": "Navbar item with label Documentation"
+  },
+  "item.label.Examples": {
+    "message": "crwdns2154:0crwdne2154:0",
+    "description": "Navbar item with label Examples"
+  },
+  "item.label.Community": {
+    "message": "crwdns2156:0crwdne2156:0",
+    "description": "Navbar item with label Community"
+  },
+  "item.label.Blog": {
+    "message": "crwdns4394:0crwdne4394:0",
+    "description": "Navbar item with label Blog"
+  },
+  "item.label.Changelog": {
+    "message": "crwdns4604:0crwdne4604:0",
+    "description": "Navbar item with label Changelog"
+  }
+}

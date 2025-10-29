@@ -1,0 +1,22 @@
+{
+  "version.label": {
+    "message": "crwdns1986:0crwdne1986:0",
+    "description": "The label for version current"
+  },
+  "sidebar.docsSidebar.category.Interactions": {
+    "message": "crwdns1992:0crwdne1992:0",
+    "description": "The label for category 'Interactions' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Recipes": {
+    "message": "crwdns1996:0crwdne1996:0",
+    "description": "The label for category 'Recipes' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Techniques": {
+    "message": "crwdns2000:0crwdne2000:0",
+    "description": "The label for category 'Techniques' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Contributing": {
+    "message": "crwdns2004:0crwdne2004:0",
+    "description": "The label for category 'Contributing' in sidebar 'docsSidebar'"
+  }
+}
