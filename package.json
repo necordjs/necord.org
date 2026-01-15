@@ -67,7 +67,7 @@
 		"@docusaurus/types": "^3.8.1",
 		"@release-it/conventional-changelog": "^10.0.4",
 		"@types/react-syntax-highlighter": "^15.5.13",
-		"prettier": "^3.7.4",
+		"prettier": "^3.8.0",
 		"prettier-plugin-tailwindcss": "^0.7.2",
 		"release-it": "^19.2.3",
 		"typescript": "5.9.3"
