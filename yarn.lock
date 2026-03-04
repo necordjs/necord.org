@@ -5860,12 +5860,12 @@ fraction.js@^4.3.7:
   resolved "https://registry.npmjs.org/fraction.js/-/fraction.js-4.3.7.tgz#06ca0085157e42fda7f9e726e79fefc4068840f7"
   integrity sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==
 
-framer-motion@^12.34.4:
-  version "12.34.4"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-12.34.4.tgz#3965124b402738751054806b4a35def58e5f9dab"
-  integrity sha512-q1PwNhc1XJ3qYG7nc9+pEU5P3tnjB6Eh9vv5gGzy61nedDLB4+xk5peMCWhKM0Zn6sfhgunf/q9n0UgCoyKOBA==
+framer-motion@^12.34.5:
+  version "12.34.5"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-12.34.5.tgz#5e9939db3c4a0e48e677e2506dade0fa95126808"
+  integrity sha512-Z2dQ+o7BsfpJI3+u0SQUNCrN+ajCKJen1blC4rCHx1Ta2EOHs+xKJegLT2aaD9iSMbU3OoX+WabQXkloUbZmJQ==
   dependencies:
-    motion-dom "^12.34.3"
+    motion-dom "^12.34.5"
     motion-utils "^12.29.2"
     tslib "^2.4.0"
 
@@ -8356,10 +8356,10 @@ minizlib@^3.1.0:
   dependencies:
     minipass "^7.1.2"
 
-motion-dom@^12.34.3:
-  version "12.34.3"
-  resolved "https://registry.yarnpkg.com/motion-dom/-/motion-dom-12.34.3.tgz#56224109a20bf2cb38277bfaedeeda5151ce369d"
-  integrity sha512-sYgFe+pR9aIM7o4fhs2aXtOI+oqlUd33N9Yoxcgo1Fv7M20sRkHtCmzE/VRNIcq7uNJ+qio+Xubt1FXH3pQ+eQ==
+motion-dom@^12.34.5:
+  version "12.34.5"
+  resolved "https://registry.yarnpkg.com/motion-dom/-/motion-dom-12.34.5.tgz#e37437937ecd9bd8fc2fa69e56067691e54139ad"
+  integrity sha512-k33CsnxO2K3gBRMUZT+vPmc4Utlb5menKdG0RyVNLtlqRaaJPRWlE9fXl8NTtfZ5z3G8TDvqSu0MENLqSTaHZA==
   dependencies:
     motion-utils "^12.29.2"
 
@@ -8368,12 +8368,12 @@ motion-utils@^12.29.2:
   resolved "https://registry.yarnpkg.com/motion-utils/-/motion-utils-12.29.2.tgz#8fdd28babe042c2456b078ab33b32daa3bf5938b"
   integrity sha512-G3kc34H2cX2gI63RqU+cZq+zWRRPSsNIOjpdl9TN4AQwC4sgwYPl/Q/Obf/d53nOm569T0fYK+tcoSV50BWx8A==
 
-motion@^12.34.4:
-  version "12.34.4"
-  resolved "https://registry.yarnpkg.com/motion/-/motion-12.34.4.tgz#f0f68c3ebf6cc9b0d61a72306b655c46e3a9f2a4"
-  integrity sha512-J0cuDNRymNzE0M2WY8CFcbQuprHBZwY+iqADKGLLe6kQUVP4kBQ2l7Z6gWK7Zfrt5Wgxs+kCojj4qu7I4wxBIw==
+motion@^12.34.5:
+  version "12.34.5"
+  resolved "https://registry.yarnpkg.com/motion/-/motion-12.34.5.tgz#59f866d08a556abdd3a1b700a6d7e0c4ddf91d84"
+  integrity sha512-N06NLJ9IeBHeielRqIvYvjPfXuRdyTxa+9++BgpGa+hY2D7TcMkI6QzV3jaRuv0aZRXgMa7cPy9YcBUBisPzAQ==
   dependencies:
-    framer-motion "^12.34.4"
+    framer-motion "^12.34.5"
     tslib "^2.4.0"
 
 mrmime@^2.0.0:
@@ -9766,10 +9766,10 @@ react-fast-compare@^3.2.0:
     react-fast-compare "^3.2.0"
     shallowequal "^1.1.0"
 
-react-icons@^5.5.0:
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-5.5.0.tgz#8aa25d3543ff84231685d3331164c00299cdfaf2"
-  integrity sha512-MEFcXdkP3dLo8uumGI5xN3lDFNsRtrjbOEKDLD7yv76v4wpnEq2Lt2qeHaQOr34I/wPN3s3+N08WkQ+CW37Xiw==
+react-icons@^5.6.0:
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-5.6.0.tgz#27bcc4acbc836e762548d76041cf9b9fef4e3837"
+  integrity sha512-RH93p5ki6LfOiIt0UtDyNg/cee+HLVR6cHHtW3wALfo+eOHTp8RnU2kRkI6E+H19zMIs03DyxUG/GfZMOGvmiA==
 
 react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0:
   version "16.13.1"
