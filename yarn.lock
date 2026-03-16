@@ -1108,10 +1108,10 @@
     "@simple-libs/stream-utils" "^1.1.0"
     semver "^7.5.2"
 
-"@crowdin/cli@^4.14.0":
-  version "4.14.0"
-  resolved "https://registry.yarnpkg.com/@crowdin/cli/-/cli-4.14.0.tgz#36ee00e2626196ed9c172fa1f2cf903446555ac6"
-  integrity sha512-sN3puFcyPWbG9kffuOBqkrcNv/retP6ai12DcY6Qz934JUVaz4xQOipz6XsxKYCctgJQRkyGDDSgwh+vYD897A==
+"@crowdin/cli@^4.14.1":
+  version "4.14.1"
+  resolved "https://registry.yarnpkg.com/@crowdin/cli/-/cli-4.14.1.tgz#1239922681235b6b14bcacd4fd622bc2217dd6c5"
+  integrity sha512-kPhXW4Cw8feITgN1ymH9UPScKoFj5IwIL3PbKSeF/UhQW9jjVsjlGVO5WM0QYy5kZYJWQ+4e81ciXFr5vyflqQ==
   dependencies:
     command-exists-promise "^2.0.2"
     node-fetch "2.7.0"

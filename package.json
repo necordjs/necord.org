@@ -34,7 +34,7 @@
 		"test:ci": "echo \"No tests specified\" && exit 0"
 	},
 	"dependencies": {
-		"@crowdin/cli": "^4.14.0",
+		"@crowdin/cli": "^4.14.1",
 		"@docusaurus/core": "3.9.2",
 		"@docusaurus/plugin-google-tag-manager": "^3.9.2",
 		"@docusaurus/plugin-pwa": "^3.9.2",
