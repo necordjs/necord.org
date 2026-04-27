@@ -65,11 +65,11 @@
 		"@docusaurus/module-type-aliases": "^3.10.0",
 		"@docusaurus/tsconfig": "^3.10.0",
 		"@docusaurus/types": "^3.8.1",
-		"@release-it/conventional-changelog": "^10.0.6",
+		"@release-it/conventional-changelog": "^11.0.0",
 		"@types/react-syntax-highlighter": "^15.5.13",
 		"prettier": "^3.8.3",
 		"prettier-plugin-tailwindcss": "^0.7.3",
-		"release-it": "^20.0.0",
+		"release-it": "^20.0.1",
 		"typescript": "6.0.3"
 	},
 	"browserslist": {
