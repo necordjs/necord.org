@@ -21,14 +21,14 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 22
-          cache: yarn
-          cache-dependency-path: yarn.lock
+          cache: npm
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: npm ci
 
       - name: Write Docusaurus translations
-        run: yarn translations:write
+        run: npm run translations:write
 
       - name: crowdin action
         uses: crowdin/github-action@v2

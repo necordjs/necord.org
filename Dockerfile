@@ -8,7 +8,7 @@ WORKDIR /opt/app
 EXPOSE 3000
 
 ## Install docusaurus globally
-RUN yarn global add docusaurus
+RUN npm install -g docusaurus
 
-## Set yarn as entrypoint
-ENTRYPOINT [ "yarn" ]
+## Set npm as entrypoint
+ENTRYPOINT [ "npm" ]
