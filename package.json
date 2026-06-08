@@ -41,7 +41,7 @@
 		"@docusaurus/preset-classic": "^3.5.2",
 		"@docusaurus/remark-plugin-npm2yarn": "^3.10.1",
 		"@mdx-js/react": "3.1.1",
-		"@radix-ui/react-slot": "^1.2.4",
+		"@radix-ui/react-slot": "^1.2.5",
 		"@tailwindcss/postcss": "^4.3.0",
 		"babel-plugin-tsconfig-paths": "^1.0.3",
 		"class-variance-authority": "^0.7.1",
