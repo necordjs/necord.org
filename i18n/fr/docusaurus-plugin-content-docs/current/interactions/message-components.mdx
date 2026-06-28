@@ -1,18 +1,18 @@
 ---
 id: message-components
-title: Message Components
+title: Composants de message
 sidebar_position: 3
 tags:
   - interactions
 ---
 
-**Message components** — we'll call them "components" moving forward—are a framework for adding interactive elements to the messages your app or bot sends. They're accessible, customizable, and easy to use.
+Les **composants de message** — que nous appellerons « composants » par la suite — constituent un cadre permettant d'ajouter des éléments interactifs aux messages que votre application ou votre bot envoie. Ils sont accessibles, personnalisables et faciles à utiliser.
 
-There are several different types of components; this documentation will outline the basics of this new framework and each example.
+Il existe plusieurs types de composants ; cette documentation présente les bases de ce nouveau cadre ainsi que chaque exemple.
 
-## Button {#button}
+## Bouton {#button}
 
-**Buttons** are interactive components that render on messages. They can be clicked by users, and send an [interaction](https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object) to your app when clicked.
+Les **boutons** sont des composants interactifs qui s'affichent sur les messages. Les utilisateurs peuvent cliquer dessus, ce qui envoie une [interaction](https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object) à votre application lorsqu'ils sont cliqués.
 
 ![Button](/img/content/button.png "Button")
 
@@ -29,13 +29,13 @@ export class AppComponents {
 }
 ```
 
-### Dynamic Button {#dynamic-button}
+### Bouton dynamique {#dynamic-button}
 
-You can create buttons with dynamic `id` field. This is useful for passing metadata to buttons.
+Vous pouvez créer des boutons avec un champ `id` dynamique. Cela est utile pour transmettre des métadonnées aux boutons.
 
-Dynamic buttons uses [path-to-regexp](https://www.npmjs.com/package/path-to-regexp) format to perform regexp matching. Turn a path string such as `user/:name` into a regular expression.
+Les boutons dynamiques utilisent le format [path-to-regexp](https://www.npmjs.com/package/path-to-regexp) pour effectuer la correspondance par expression régulière. Transformez une chaîne de chemin telle que `user/:name` en une expression régulière.
 
-To create a Dynamic button
+Pour créer un bouton dynamique
 
 ```typescript
 new ButtonBuilder()
@@ -44,7 +44,7 @@ new ButtonBuilder()
   .setStyle(ButtonStyle.Primary)
 ```
 
-To receive a Dynamic button
+Pour recevoir un bouton dynamique
 
 ```typescript
 import { Injectable } from '@nestjs/common';
@@ -59,17 +59,17 @@ export class AppComponents {
   ) {
     return interaction.reply({ content: `Button clicked! Value: ${value}` });
   }
-}
+
 
 ```
 
-## Select Menu {#select-menu}
+## Menu de sélection {#select-menu}
 
-**Select menus** are another interactive component that renders on messages. On desktop, clicking on a select menu opens a dropdown-style UI; on mobile, tapping a select menu opens up a half-sheet with the options.
+Les **menus de sélection** sont un autre composant interactif qui s'affiche sur les messages. Sur ordinateur, cliquer sur un menu de sélection ouvre une interface de type liste déroulante ; sur mobile, appuyer sur un menu de sélection ouvre une demi-feuille présentant les options.
 
 <img src="/img/content/select-menu.png" alt="Select Menu" width="500" />
 
-Discord has introduced new select menu components :
+Discord a introduit de nouveaux composants de menu de sélection :
 
 - `String Select`
 - `User Select`
@@ -79,9 +79,9 @@ Discord has introduced new select menu components :
 
 ### String Select {#string-select}
 
-**String Select** is Select Menu for picking defined text options
+Le **String Select** est un menu de sélection permettant de choisir des options de texte définies
 
-To create String Select:
+Pour créer un String Select :
 
 ```typescript
 new StringSelectMenuBuilder()
@@ -96,7 +96,7 @@ new StringSelectMenuBuilder()
   ])
 ```
 
-To receive a String Select:
+Pour recevoir un String Select :
 
 ```typescript
 import { Injectable } from '@nestjs/common';
@@ -118,9 +118,9 @@ export class AppComponents {
 
 ### User Select {#user-select}
 
-**User Select** are Select Menu for selecting users
+Le **User Select** est un menu de sélection permettant de sélectionner des utilisateurs
 
-To create User Select:
+Pour créer un User Select :
 
 ```typescript
 new UserSelectMenuBuilder()
@@ -130,7 +130,7 @@ new UserSelectMenuBuilder()
   .setMinValues(1)
 ```
 
-To receive a User Select:
+Pour recevoir un User Select :
 
 ```typescript
 import { Injectable } from '@nestjs/common';
@@ -164,9 +164,9 @@ export class AppComponents {
 
 ### Role Select {#role-select}
 
-**Role Select** are Select Menu for selecting roles
+Le **Role Select** est un menu de sélection permettant de sélectionner des rôles
 
-To create Role Select:
+Pour créer un Role Select :
 
 ```typescript
 new RoleSelectMenuBuilder()
@@ -176,7 +176,7 @@ new RoleSelectMenuBuilder()
   .setMinValues(1)
 ```
 
-To receive a Role Select:
+Pour recevoir un Role Select :
 
 ```typescript
 import { Injectable } from '@nestjs/common';
@@ -193,7 +193,7 @@ export class AppComponents {
     @RoleSelect('ROLE_SELECT_MENU')
     public onRoleSelect(
       @Context() [interaction]: RoleSelectContext,
-      @SelectedRoles() roles: ISelectedRoles, // Collection of roles
+      @SelectedRoles() roles: ISelectedRoles, // Collection of roles,
     ) {
       interaction.reply({
         content: `

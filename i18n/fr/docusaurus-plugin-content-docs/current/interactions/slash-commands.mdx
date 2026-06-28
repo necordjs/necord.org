@@ -1,29 +1,29 @@
 ---
 id: slash-commands
-title: Slash Commands
+title: Commandes slash
 sidebar_position: 1
 tags:
   - interactions
 ---
 
-**Slash Commands** are the new, exciting way to build and interact with bots on **Discord**. With Slash Commands, all you have to do is
-type `/` and you're ready to use your favorite bot. You can easily see all the commands a bot has, and validation and error handling help
-you get the command right the first time.
+Les **commandes slash** constituent la nouvelle façon passionnante de créer des bots sur **Discord** et d'interagir avec eux. Avec les commandes slash, il vous suffit de
+taper `/` et vous êtes prêt à utiliser votre bot favori. Vous pouvez facilement voir toutes les commandes dont dispose un bot, et la validation ainsi que la gestion des erreurs vous aident
+à saisir la commande correctement du premier coup.
 
-![Slash Commands](/img/content/slash_command_menu.png "Slash Commands")
+![Commandes slash](/img/content/slash_command_menu.png "Commandes slash")
 
-## Global Commands {#global-commands}
+## Commandes globales {#global-commands}
 
 :::tip
 
-Global commands are cached for one hour. New global commands will fan out slowly across all guilds and will only be guaranteed to be updated
-after an hour. Guild commands update instantly. As such, we recommend you use guild-based commands during development and publish them to
-global commands when they're ready for public use.
+Les commandes globales sont mises en cache pendant une heure. Les nouvelles commandes globales se propagent lentement sur tous les serveurs et leur mise à jour n'est garantie
+qu'au bout d'une heure. Les commandes de serveur se mettent à jour instantanément. C'est pourquoi nous vous recommandons d'utiliser des commandes basées sur le serveur pendant le développement et de les publier en tant que
+commandes globales lorsqu'elles sont prêtes pour une utilisation publique.
 
-[Read more about dev-mode configuration](/start#module-setup)
+[En savoir plus sur la configuration du mode développement](/start#module-setup)
 :::
 
-Create `app.commands.ts` file and add method with `SlashCommand` decorator.
+Créez le fichier `app.commands.ts` et ajoutez une méthode avec le décorateur `SlashCommand`.
 
 ```typescript title="app.commands.ts"
 import { Injectable } from '@nestjs/common';
@@ -41,9 +41,9 @@ export class AppCommands {
 }
 ```
 
-## Guild Commands {#guild-commands}
+## Commandes de serveur {#guild-commands}
 
-If you want to have guild specific commands, use the `guilds` property on the `SlashCommand` decorator
+Si vous souhaitez avoir des commandes spécifiques à un serveur, utilisez la propriété `guilds` sur le décorateur `SlashCommand`
 
 ```typescript title="app.commands.ts"
 import { Injectable } from '@nestjs/common';
@@ -62,11 +62,11 @@ export class AppCommands {
 }
 ```
 
-> You can use decorator on both method and class.
+> Vous pouvez utiliser le décorateur à la fois sur la méthode et sur la classe.
 
 ## Options {#options}
 
-Use the option decorator to define a parameter in a slash command, let's create the `LengthDto` class:
+Utilisez le décorateur d'option pour définir un paramètre dans une commande slash, créons la classe `LengthDto` :
 
 ```typescript title="length.dto.ts"
 import { StringOption } from 'necord';
@@ -81,7 +81,7 @@ export class TextDto {
 }
 ```
 
-It has only one basic properties. Thereafter we can use the newly created DTO inside the `AppCommands`:
+Elle ne possède qu'une seule propriété de base. Nous pouvons ensuite utiliser le DTO nouvellement créé dans `AppCommands` :
 
 ```typescript title="app.commands.ts"
 import { Injectable } from '@nestjs/common';
@@ -100,20 +100,20 @@ export class AppCommands {
 }
 ```
 
-List of all built-in option decorators:
+Liste de tous les décorateurs d'option intégrés :
 
-| Decorator           | Type                              | Description          |
-| :------------------ | :-------------------------------- | :------------------- |
-| `StringOption`      | `string`                          | A string option      |
-| `NumberOption`      | `number`                          | A number option      |
-| `IntegerOption`     | `number`                          | An integer option    |
-| `BooleanOption`     | `boolean`                         | A boolean option     |
-| `UserOption`        | `User`                            | A user option        |
-| `MemberOption`      | `GuildMember`                     | A member option      |
-| `ChannelOption`     | `GuildChannel`                    | A channel option     |
-| `RoleOption`        | `Role`                            | A role option        |
-| `MentionableOption` | `GuildMember` \| `Role` \| `User` | A mentionable option |
-| `AttachmentOption`  | `Attachment`                      | An attachment option |
+| Décorateur           | Type                              | Description                                  |
+| :------------------- | :-------------------------------- | :------------------------------------------- |
+| `StringOption`       | `string`                          | Une option de type chaîne de caractères      |
+| `NumberOption`       | `number`                          | Une option de type nombre                    |
+| `IntegerOption`      | `number`                          | Une option de type entier                    |
+| `BooleanOption`      | `boolean`                         | Une option de type booléen                   |
+| `UserOption`         | `User`                            | Une option de type utilisateur               |
+| `MemberOption`       | `GuildMember`                     | Une option de type membre                    |
+| `ChannelOption`      | `GuildChannel`                    | A channel option                             |
+| `RoleOption`         | `Role`                            | A role option                                |
+| `MentionableOption`  | `GuildMember` \| `Role` \| `User` | A mentionable option                         |
+| `AttachmentOption`   | `Attachment`                      | An attachment option                         |
 
 ## Autocomplete {#autocomplete}
 
