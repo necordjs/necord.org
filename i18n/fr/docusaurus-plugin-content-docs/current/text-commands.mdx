@@ -1,8 +1,8 @@
 ---
 id: text-commands
 slug: text-commands
-title: Text Commands
-description: Text commands are the most common type of command. They are used to send a message to the channel.
+title: Commandes textuelles
+description: Les commandes textuelles sont le type de commande le plus courant. Elles sont utilisées pour envoyer un message dans le salon.
 sidebar_position: 5
 tags:
   - lts
@@ -10,14 +10,13 @@ tags:
 
 :::warning
 
-A text command is dependent on the content of the message but unfortunately, Discord plans to remove message content for verified bots and
-apps, those with 100 or more servers. Hence, You cannot use text commands if your bot cannot access message content.
+Une commande textuelle dépend du contenu du message mais, malheureusement, Discord prévoit de supprimer le contenu des messages pour les bots et applications vérifiés, ceux comptant 100 serveurs ou plus. Par conséquent, vous ne pouvez pas utiliser les commandes textuelles si votre bot ne peut pas accéder au contenu des messages.
 
-[Read discord message here](https://support-dev.discord.com/hc/en-us/articles/4404772028055-Message-Content-Access-Deprecation-for-Verified-Bots)
+[Lire le message de Discord ici](https://support-dev.discord.com/hc/en-us/articles/4404772028055-Message-Content-Access-Deprecation-for-Verified-Bots)
 
 :::
 
-Create a simple command handler for messages using `@TextCommand`.
+Créez un gestionnaire de commande simple pour les messages en utilisant `@TextCommand`.
 
 ```typescript title="src/app.service.ts"
 import { Injectable } from '@nestjs/common';
@@ -35,13 +34,13 @@ export class AppService {
 }
 ```
 
-If all goes well, you should see something like this:
+Si tout se passe bien, vous devriez voir quelque chose comme ceci :
 
 ![Text Command](/img/content/text_command.png "Text Command")
 
 #### Arguments {#arguments}
 
-You can also use arguments with text commands. Arguments are the words after the command name.
+Vous pouvez également utiliser des arguments avec les commandes textuelles. Les arguments sont les mots situés après le nom de la commande.
 
 ```typescript title="src/app.service.ts"
 import { Injectable } from '@nestjs/common';

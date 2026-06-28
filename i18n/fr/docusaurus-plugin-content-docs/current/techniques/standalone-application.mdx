@@ -1,15 +1,15 @@
 ---
 id: standalone-application
-title: Standalone application
+title: Application autonome
 sidebar_position: 3
 tags:
   - nestjs
   - configuration
 ---
 
-If you initialized your application with the Nest CLI, Express framework will be installed by default along with Nest. Nest and Necord does not require Express for work. So if you you don't need a web server, you can remove Express.
+Si vous avez initialisé votre application avec le CLI Nest, le framework Express sera installé par défaut en même temps que Nest. Nest et Necord n'ont pas besoin d'Express pour fonctionner. Donc, si vous n'avez pas besoin d'un serveur web, vous pouvez supprimer Express.
 
-To do this, change the bootstrap function in the `main.ts` file of your project on something like that:
+Pour ce faire, modifiez la fonction bootstrap dans le fichier `main.ts` de votre projet de la manière suivante :
 
 ```typescript title="src/main.ts"
 import { NestFactory } from '@nestjs/core';
@@ -21,14 +21,14 @@ async function bootstrap() {
 bootstrap();
 ```
 
-This initializes Nest as a **standalone application** (without any network listeners).
+Cela initialise Nest en tant qu'**application autonome** (sans aucun écouteur réseau).
 
-All that remains is to remove unused dependencies:
+Il ne reste plus qu'à supprimer les dépendances inutilisées :
 
 ```bash
 npm un @nestjs/platform-express @types/express
 ```
 
 :::warning
-But when you run standalone application you can't use global enhancers due to the fact that they are not registered in the application context. While [issue](https://github.com/nestjs/nest/issues/9017) not resolved, you can use local enhancers instead or start your application via `app.init()` method.
+Mais lorsque vous exécutez une application autonome, vous ne pouvez pas utiliser les enhancers globaux, car ils ne sont pas enregistrés dans le contexte de l'application. Tant que ce [problème](https://github.com/nestjs/nest/issues/9017) n'est pas résolu, vous pouvez utiliser des enhancers locaux à la place ou démarrer votre application via la méthode `app.init()`.
 :::

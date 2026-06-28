@@ -8,11 +8,11 @@
     "description": "Navbar item with label Documentation"
   },
   "item.label.Examples": {
-    "message": "Examples",
+    "message": "Exemples",
     "description": "Navbar item with label Examples"
   },
   "item.label.Community": {
-    "message": "Community",
+    "message": "Communauté",
     "description": "Navbar item with label Community"
   },
   "item.label.Blog": {
@@ -20,7 +20,7 @@
     "description": "Navbar item with label Blog"
   },
   "item.label.Changelog": {
-    "message": "Changelog",
+    "message": "Journal des modifications",
     "description": "Navbar item with label Changelog"
   }
 }

@@ -1,28 +1,28 @@
 ---
 id: commit-convention
-title: Commit convention
+title: Convention de commit
 sidebar_position: 3
 ---
 
-## Git Commit Message Convention {#git-commit-message-convention}
+## Convention de message de commit Git {#git-commit-message-convention}
 
 :::info
 
-This is adapted from [Angular's commit convention](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular).
+Ceci est adapté de la [convention de commit d'Angular](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular).
 
 :::
 
-#### TL;DR: {#tldr}
+#### TL;DR : {#tldr}
 
-Commit titles must match the following regex:
+Les titres de commit doivent correspondre à l'expression régulière suivante :
 
 ```js
 /^(revert: )?(feat|fix|docs|style|refactor|perf|test|workflow|build|ci|chore|types|wip)(\(.+\))?: .{1,72}/;
 ```
 
-### Full Message Format {#full-message-format}
+### Format complet du message {#full-message-format}
 
-A commit message consists of a **header**, **body** and **footer**. The header has a **type**, **scope** and **subject**:
+Un message de commit se compose d'un **en-tête**, d'un **corps** et d'un **pied de page**. L'en-tête comporte un **type**, une **portée** et un **sujet** :
 
 ```
 <type>(<scope>): <subject>
@@ -32,38 +32,38 @@ A commit message consists of a **header**, **body** and **footer**. The header h
 <footer>
 ```
 
-The **header** is mandatory and the **scope** of the header is optional.
+L'**en-tête** est obligatoire et la **portée** de l'en-tête est facultative.
 
-### Revert {#revert}
+### Annulation {#revert}
 
-If the commit reverts a previous commit, it should begin with `revert:`, followed by the header of the reverted commit. In the body, it should say: `This reverts commit <hash>.`, where the hash is the SHA of the commit being reverted.
+Si le commit annule un commit précédent, il doit commencer par `revert:`, suivi de l'en-tête du commit annulé. Dans le corps, il doit indiquer : `This reverts commit <hash>.`, où le hash est le SHA du commit annulé.
 
 ### Type {#type}
 
-If the prefix is `feat`, `fix` or `perf`, it will appear in the changelog. However, if there is any [BREAKING CHANGE](#footer), the commit will always appear in the changelog.
+Si le préfixe est `feat`, `fix` ou `perf`, il apparaîtra dans le changelog. Cependant, s'il y a un quelconque [BREAKING CHANGE](#footer), le commit apparaîtra toujours dans le changelog.
 
-Other prefixes are up to your discretion. Suggested prefixes are `docs`, `chore`, `style`, `refactor`, and `test` for non-changelog related tasks.
+Les autres préfixes sont laissés à votre discrétion. Les préfixes suggérés sont `docs`, `chore`, `style`, `refactor` et `test` pour les tâches non liées au changelog.
 
-### Scope {#scope}
+### Portée {#scope}
 
-The scope refers to which section of the application the changes took place in, such as `SlashCommand`, `ContextMenu`, or `MessageComponents`
+La portée indique dans quelle section de l'application les modifications ont eu lieu, telle que `SlashCommand`, `ContextMenu` ou `MessageComponents`
 
-### Subject {#subject}
+### Sujet {#subject}
 
-The subject contains a succinct description of the change:
+Le sujet contient une description succincte de la modification :
 
-- Use the imperative, present tense: "change", not "changed" nor "changes"
-- do not capitalize the first letter
-- do not end you message with a period (.)
+- Utilisez l'impératif, au présent : « change », pas « changed » ni « changes »
+- ne mettez pas de majuscule à la première lettre
+- ne terminez pas votre message par un point (.)
 
-### Body {#body}
+### Corps {#body}
 
-Like in the **subject**, use the imperative, present tense
-The body should include the motivation for the change and difference with the previous behavior.
+Comme dans le **sujet**, utilisez l'impératif, au présent
+Le corps doit inclure la motivation de la modification et la différence avec le comportement précédent.
 
-### Footer {#footer}
+### Pied de page {#footer}
 
-The footer should contain any information about **Breaking Changes** and is also the place to
-reference GitHub issues that this commit **Closes**.
+Le pied de page doit contenir toute information sur les **Breaking Changes** et c'est également l'endroit pour
+référencer les issues GitHub que ce commit **Closes** (clôt).
 
-**Breaking Changes** should start with the word `BREAKING CHANGE:` with a space or two newlines. The rest of the commit message is then used for this.
+Les **Breaking Changes** doivent commencer par les mots `BREAKING CHANGE:` suivis d'un espace ou de deux retours à la ligne. Le reste du message de commit est ensuite utilisé pour cela.

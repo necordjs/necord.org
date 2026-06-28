@@ -1,36 +1,36 @@
 releases:
-  label: Releases
-  description: All the releases of the project
+  label: Versions
+  description: Toutes les versions du projet
   permalink: /releases
 development:
-  label: Development
-  description: Development-related techniques and examples
+  label: Développement
+  description: Techniques et exemples liés au développement
   permalink: /development
 docs:
   label: Documentation
-  description: New or updated documentation
+  description: Documentation nouvelle ou mise à jour
   permalink: /docs
 birthday:
-  label: Birthday
-  description: Our birthday celebration
+  label: Anniversaire
+  description: Notre célébration d'anniversaire
   permalink: /birthday
 beta:
-  label: Beta
-  description: New features and updates in beta
+  label: Bêta
+  description: Nouvelles fonctionnalités et mises à jour en bêta
   permalink: /beta
 break:
-  label: Breaking Changes
-  description: Breaking changes and updates
+  label: Changements incompatibles
+  description: Changements incompatibles et mises à jour
   permalink: /breaking-changes
 migration:
   label: Migration
-  description: Guides and tips for migrating to new versions
+  description: Guides et conseils pour migrer vers les nouvelles versions
   permalink: /migration
 blog:
   label: Blog
-  description: All the blog posts
+  description: Tous les articles du blog
   permalink: /blog
 necord:
   label: Necord
-  description: All the blog posts related to necord
+  description: Tous les articles du blog liés à necord
   permalink: /necord

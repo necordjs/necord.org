@@ -4,11 +4,11 @@
     "description": "The title for the blog used in SEO"
   },
   "description": {
-    "message": "Read blog posts about Necord from the team",
+    "message": "Lisez les articles de blog sur Necord rédigés par l'équipe",
     "description": "The description for the blog used in SEO"
   },
   "sidebar.title": {
-    "message": "All our posts",
+    "message": "Tous nos articles",
     "description": "The label for the left sidebar"
   }
 }

@@ -1,6 +1,6 @@
 ---
 id: client-providers
-title: Client Providers
+title: Providers du client
 sidebar_position: 4
 tags:
   - advanced
@@ -8,8 +8,8 @@ tags:
   - snippets
 ---
 
-Necord have snippets to access the client and its properties in your application.
-You can inject managers and utils of discord.js client using constructor.
+Necord dispose de snippets pour accéder au client et à ses propriétés dans votre application.
+Vous pouvez injecter les managers et les utilitaires du client discord.js à l'aide du constructeur.
 
 ```typescript title="app.service.ts"
 import { Injectable } from '@nestjs/common';
@@ -30,13 +30,13 @@ export class AppService {
 }
 ```
 
-| Class (Type to be Injected) | Client Property (Will access to) | Description        |
-| --------------------------- | -------------------------------- | ------------------ |
-| `Client`                    | `client`                         | Discord.js client  |
-| `ChannelManager`            | `client.channels`                | Channels of client |
-| `GuildManager`              | `client.guilds`                  | Guilds of client   |
-| `UserManager`               | `client.users`                   | Users of client    |
-| `ShardClientUtil`           | `client.shard`                   | Shards utilities   |
-| `ClientVoiceManager`        | `client.voice`                   | Voice manager      |
-| `WebSocketManager`          | `client.ws`                      | Websocket manager  |
-| `REST`                      | `client.rest`                    | REST manager       |
+| Classe (type à injecter)    | Propriété du client (donne accès à) | Description               |
+| --------------------------- | ----------------------------------- | ------------------------- |
+| `Client`                    | `client`                            | Client Discord.js         |
+| `ChannelManager`            | `client.channels`                   | Salons du client          |
+| `GuildManager`              | `client.guilds`                     | Serveurs du client        |
+| `UserManager`               | `client.users`                      | Utilisateurs du client    |
+| `ShardClientUtil`           | `client.shard`                      | Utilitaires des shards    |
+| `ClientVoiceManager`        | `client.voice`                      | Manager vocal             |
+| `WebSocketManager`          | `client.ws`                         | Manager WebSocket         |
+| `REST`                      | `client.rest`                       | Manager REST              |

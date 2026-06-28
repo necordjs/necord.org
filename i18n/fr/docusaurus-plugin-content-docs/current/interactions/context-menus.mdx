@@ -1,16 +1,16 @@
 ---
 id: context-menus
-title: Context Menus
+title: Menus contextuels
 sidebar_position: 2
 tags:
   - interactions
 ---
 
-**User commands** and **message commands** are now live! These commands appear on context menus for users and messages, with more to come in the future.
+Les **commandes utilisateur** et les **commandes de message** sont maintenant disponibles ! Ces commandes apparaissent dans les menus contextuels des utilisateurs et des messages, et d'autres viendront à l'avenir.
 
-## User Commands {#user-commands}
+## Commandes utilisateur {#user-commands}
 
-**User commands** are application commands that appear on the context menu (right click or tap) of users. They're a great way to surface quick actions for your app that target users.
+Les **commandes utilisateur** sont des commandes d'application qui apparaissent dans le menu contextuel (clic droit ou appui) des utilisateurs. Elles constituent un excellent moyen de mettre en avant des actions rapides de votre application ciblant les utilisateurs.
 
 ```typescript title="app.commands.ts"
 import { Injectable } from '@nestjs/common';
@@ -35,13 +35,13 @@ export class AppCommands {
 }
 ```
 
-If all goes well, you should see something like this:
+Si tout se passe bien, vous devriez voir quelque chose comme ceci :
 
-![User Command](/img/content/context_user.png "User Command")
+![Commande utilisateur](/img/content/context_user.png "User Command")
 
-## Message Commands {#message-commands}
+## Commandes de message {#message-commands}
 
-**Message commands** are application commands that appear on the context menu (right click or tap) of messages. They're a great way to surface quick actions for your app that target messages.
+Les **commandes de message** sont des commandes d'application qui apparaissent dans le menu contextuel (clic droit ou appui) des messages. Elles constituent un excellent moyen de mettre en avant des actions rapides de votre application ciblant les messages.
 
 ```typescript title="app.commands.ts"
 import { Injectable } from '@nestjs/common';
@@ -60,8 +60,8 @@ export class AppCommands {
 }
 ```
 
-If all goes well, you should see something like this:
+Si tout se passe bien, vous devriez voir quelque chose comme ceci :
 
-![Message Command](/img/content/context_message.png "Message Command")
+![Commande de message](/img/content/context_message.png "Message Command")
 
-You can view a working example [here](https://github.com/necordjs/examples/tree/master/03-context-menus).
+Vous pouvez consulter un exemple fonctionnel [ici](https://github.com/necordjs/examples/tree/master/03-context-menus).

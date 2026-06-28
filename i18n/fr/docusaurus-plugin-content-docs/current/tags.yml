@@ -1,28 +1,28 @@
 advanced:
-  label: Advanced
+  label: Avancé
   permalink: /advanced
-  description: Advanced techniques for necord-related tasks.
+  description: Techniques avancées pour les tâches liées à necord.
 integrations:
-  label: Integrations
+  label: Intégrations
   permalink: /integrations
-  description: Integrations with other tools and platforms.
+  description: Intégrations avec d'autres outils et plateformes.
 interactions:
-  label: Interactions API
+  label: API Interactions
   permalink: /interactions
-  description: Discord Interactions API usage and examples.
+  description: Utilisation et exemples de l'API Interactions de Discord.
 snippets:
-  label: Snippets
+  label: Extraits de code
   permalink: /snippets
-  description: Code snippets for necord-related tasks.
+  description: Extraits de code pour les tâches liées à necord.
 nestjs:
   label: NestJS
   permalink: /nestjs
-  description: NestJS-related techniques and examples.
+  description: Techniques et exemples liés à NestJS.
 configuration:
   label: Configuration
   permalink: /configuration
-  description: How to configure necord and its components.
+  description: Comment configurer necord et ses composants.
 lts:
   label: LTS
   permalink: /lts
-  description: Long-Term Support (LTS) features and techniques.
+  description: Fonctionnalités et techniques de support à long terme (LTS).

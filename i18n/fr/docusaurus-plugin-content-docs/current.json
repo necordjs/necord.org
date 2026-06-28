@@ -1,6 +1,6 @@
 {
   "version.label": {
-    "message": "Next",
+    "message": "Suivant",
     "description": "The label for version current"
   },
   "sidebar.docsSidebar.category.Interactions": {
@@ -8,7 +8,7 @@
     "description": "The label for category 'Interactions' in sidebar 'docsSidebar'"
   },
   "sidebar.docsSidebar.category.Recipes": {
-    "message": "Recipes",
+    "message": "Recettes",
     "description": "The label for category 'Recipes' in sidebar 'docsSidebar'"
   },
   "sidebar.docsSidebar.category.Techniques": {
@@ -16,7 +16,7 @@
     "description": "The label for category 'Techniques' in sidebar 'docsSidebar'"
   },
   "sidebar.docsSidebar.category.Contributing": {
-    "message": "Contributing",
+    "message": "Contribuer",
     "description": "The label for category 'Contributing' in sidebar 'docsSidebar'"
   }
 }

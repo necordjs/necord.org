@@ -1,12 +1,12 @@
 ---
 id: modals
-title: Modals
+title: Modales
 sidebar_position: 4
 tags:
   - interactions
 ---
 
-With modals you can create pop-up forms that allow users to provide you with formatted inputs through submissions. We'll cover how to create, show, and receive modal forms using necord
+Avec les modales, vous pouvez créer des formulaires contextuels qui permettent aux utilisateurs de vous fournir des saisies formatées via des soumissions. Nous verrons comment créer, afficher et recevoir des formulaires modaux à l'aide de necord
 
 <p>
 	<img src="/img/content/modal.png" alt="Modal" width="500" />
@@ -27,13 +27,13 @@ export class AppModals {
 }
 ```
 
-### Dynamic Modal {#dynamic-modal}
+### Modale dynamique {#dynamic-modal}
 
-You can create modals with dynamic `id` field. This is useful for passing metadata to modals.
+Vous pouvez créer des modales avec un champ `id` dynamique. Ceci est utile pour transmettre des métadonnées aux modales.
 
-Dynamic modals uses [path-to-regexp](https://www.npmjs.com/package/path-to-regexp) format to perform regexp matching. Turn a path string such as `user/:name` into a regular expression.
+Les modales dynamiques utilisent le format [path-to-regexp](https://www.npmjs.com/package/path-to-regexp) pour effectuer la correspondance par expression régulière. Transforme une chaîne de chemin telle que `user/:name` en une expression régulière.
 
-To create a Dynamic modal
+Pour créer une modale dynamique
 
 ```typescript
 new ModalBuilder()
@@ -49,7 +49,7 @@ new ModalBuilder()
   ])
 ```
 
-To receive a Dynamic modal
+Pour recevoir une modale dynamique
 
 ```typescript title="app.modals.ts"
 import { Injectable } from '@nestjs/common';
@@ -66,4 +66,4 @@ export class AppModals {
 }
 ```
 
-You can view a working example [here](https://github.com/necordjs/examples/tree/master/05-modals).
+Vous pouvez consulter un exemple fonctionnel [ici](https://github.com/necordjs/examples/tree/master/05-modals).

@@ -1,30 +1,30 @@
 {
   "copyright": {
-    "message": "Copyright © 2021 - 2025 • Built by <a target=\"_blank\" href=\"https://github.com/SocketSomeone\">Alexey Filippov</a> and <a target=\"_blank\" href=\"https://github.com/SocketSomeone/necord/graphs/contributors\">Others</a> with 💖",
+    "message": "Copyright © 2021 - 2025 • Réalisé par <a target=\"_blank\" href=\"https://github.com/SocketSomeone\">Alexey Filippov</a> et <a target=\"_blank\" href=\"https://github.com/SocketSomeone/necord/graphs/contributors\">d'autres</a> avec 💖",
     "description": "The footer copyright"
   },
   "link.title.Help us": {
-    "message": "Help us",
+    "message": "Aidez-nous",
     "description": "The title of the footer links column with title=Help us in the footer"
   },
   "link.title.Community": {
-    "message": "Community",
+    "message": "Communauté",
     "description": "The title of the footer links column with title=Community in the footer"
   },
   "link.title.Our Sponsors": {
-    "message": "Our Sponsors",
+    "message": "Nos sponsors",
     "description": "The title of the footer links column with title=Our Sponsors in the footer"
   },
   "link.item.label.Donate": {
-    "message": "Donate",
+    "message": "Faire un don",
     "description": "The label of footer link with label=Donate linking to /contributing/funding"
   },
   "link.item.label.Contribute": {
-    "message": "Contribute",
+    "message": "Contribuer",
     "description": "The label of footer link with label=Contribute linking to /contributing/contribution-guide"
   },
   "link.item.label.Translate": {
-    "message": "Translate",
+    "message": "Traduire",
     "description": "The label of footer link with label=Translate linking to https://i18n.necord.org"
   },
   "link.item.label.Discord": {
@@ -32,15 +32,15 @@
     "description": "The label of footer link with label=Discord linking to https://discord.com/invite/mcBYvMTnwP"
   },
   "link.item.label.GitHub Organization": {
-    "message": "GitHub Organization",
+    "message": "Organisation GitHub",
     "description": "The label of footer link with label=GitHub Organization linking to https://github.com/necordjs"
   },
   "link.item.label.NPM Organization": {
-    "message": "NPM Organization",
+    "message": "Organisation NPM",
     "description": "The label of footer link with label=NPM Organization linking to https://www.npmjs.com/org/necord"
   },
   "link.item.label.Become a Sponsor": {
-    "message": "Become a Sponsor",
+    "message": "Devenir sponsor",
     "description": "The label of footer link with label=Become a Sponsor linking to https://opencollective.com/necord"
   },
   "logo.alt": {
@@ -48,11 +48,11 @@
     "description": "The alt text of footer logo"
   },
   "link.title.Support us": {
-    "message": "Support us",
+    "message": "Soutenez-nous",
     "description": "The title of the footer links column with title=Support us in the footer"
   },
   "link.title.More": {
-    "message": "More",
+    "message": "Plus",
     "description": "The title of the footer links column with title=More in the footer"
   },
   "link.item.label.Blog": {
@@ -60,7 +60,7 @@
     "description": "The label of footer link with label=Blog linking to /blog"
   },
   "link.item.label.Changelog": {
-    "message": "Changelog",
+    "message": "Journal des modifications",
     "description": "The label of footer link with label=Changelog linking to https://github.com/necordjs/necord/releases"
   },
   "link.item.label.GitHub": {
