@@ -7,10 +7,10 @@ tags:
   - integrations
 ---
 
-Pagination is a useful technique employed in user interfaces to present large amounts of information in a structured and
-manageable way. When dealing with substantial volumes of data, such as search results, articles, or product listings, presenting it all at
-once can overwhelm users and lead to a poor user experience. Pagination allows you to divide the information into smaller, organized chunks,
-enhancing user engagement and ease of navigation. This module allows you to create a pagination with a few lines of code.
+La pagination est une technique utile employée dans les interfaces utilisateur pour présenter de grandes quantités d'informations de manière structurée et
+gérable. Lorsque l'on traite des volumes de données importants, tels que des résultats de recherche, des articles ou des listes de produits, tout présenter en
+une seule fois peut submerger les utilisateurs et conduire à une mauvaise expérience utilisateur. La pagination vous permet de diviser les informations en plus petits blocs organisés,
+améliorant ainsi l'engagement des utilisateurs et la facilité de navigation. Ce module vous permet de créer une pagination avec quelques lignes de code.
 
 ## Installation {#installation}
 
@@ -18,9 +18,9 @@ enhancing user engagement and ease of navigation. This module allows you to crea
 $ npm i @necord/pagination necord discord.js
 ```
 
-## Usage {#usage}
+## Utilisation {#usage}
 
-Once the installation process is complete, we can import the `NecordPaginationModule` with your `NecordModule` into the root `AppModule`:
+Une fois le processus d'installation terminé, nous pouvons importer le `NecordPaginationModule` avec votre `NecordModule` dans le `AppModule` racine :
 
 ```typescript
 import { NecordModule } from 'necord';
@@ -50,7 +50,7 @@ import { AppService } from './app.service';
 export class AppModule {}
 ```
 
-Then, we can inject the `PaginationService` into our service and register a pagination handler:
+Ensuite, nous pouvons injecter le `PaginationService` dans notre service et enregistrer un gestionnaire de pagination :
 
 ```typescript
 import { OnModuleInit, Injectable } from '@nestjs/common';
@@ -92,12 +92,12 @@ export class AppService implements OnModuleInit {
 }
 ```
 
-Congratulations! You have successfully created your first pagination!
-Just use `pagination` command and you will see your pagination!
+Félicitations ! Vous avez créé avec succès votre première pagination !
+Utilisez simplement la commande `pagination` et vous verrez votre pagination !
 
-### Registering Pagination Inside Command {#registering-pagination-inside-command}
+### Enregistrer une pagination à l'intérieur d'une commande {#registering-pagination-inside-command}
 
-You can also register pagination's dynamically inside your command handlers instead of `onModuleInit` hook.
+Vous pouvez également enregistrer des paginations de manière dynamique à l'intérieur de vos gestionnaires de commande au lieu du hook `onModuleInit`.
 
 ```ts
 import { Injectable } from "@nestjs/common";
@@ -128,7 +128,7 @@ export class AppService {
 ```
 
 :::warning
-You should ensure that `setCustomId` is unique per user/session if you register dynamically to avoid collisions.
+Vous devez vous assurer que `setCustomId` est unique par utilisateur/session si vous enregistrez de manière dynamique, afin d'éviter les collisions.
 :::
 
-You can view a working example [here](https://github.com/necordjs/examples/tree/master/06-pagination).
+Vous pouvez consulter un exemple fonctionnel [ici](https://github.com/necordjs/examples/tree/master/06-pagination).

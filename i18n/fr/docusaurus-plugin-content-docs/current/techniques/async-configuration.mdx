@@ -1,6 +1,6 @@
 ---
 id: async-configuration
-title: Async Configuration
+title: Configuration asynchrone
 sidebar_position: 2
 tags:
   - advanced
@@ -8,9 +8,9 @@ tags:
   - configuration
 ---
 
-When you need to pass module options asynchronously instead of statically, use the `.forRootAsync()` method. As with most dynamic modules, Nest provides several techniques to deal with async configuration.
+Lorsque vous devez passer les options du module de manière asynchrone plutôt que statique, utilisez la méthode `.forRootAsync()`. Comme pour la plupart des modules dynamiques, Nest fournit plusieurs techniques pour gérer la configuration asynchrone.
 
-One technique is to use a factory function:
+Une technique consiste à utiliser une fonction factory :
 
 ```typescript title="src/app.module.ts"
 import { NecordModule } from 'necord';
@@ -34,7 +34,7 @@ import { IntentsBitField } from 'discord.js';
 export class AppModule {}
 ```
 
-Like other [factory providers](https://docs.nestjs.com/fundamentals/custom-providers#factory-providers-usefactory), our factory function can be async and can inject dependencies through inject.
+Comme les autres [providers de type factory](https://docs.nestjs.com/fundamentals/custom-providers#factory-providers-usefactory), notre fonction factory peut être asynchrone et peut injecter des dépendances via inject.
 
 ```typescript title="src/app.module.ts"
 import { NecordModule } from 'necord';
@@ -60,7 +60,7 @@ import { IntentsBitField } from 'discord.js';
 export class AppModule {}
 ```
 
-Alternatively, you can configure the NecordModule using a class instead of a factory, as shown below:
+Vous pouvez également configurer le NecordModule à l'aide d'une classe plutôt que d'une factory, comme indiqué ci-dessous :
 
 ```typescript title="src/app.module.ts"
 import { NecordModule } from 'necord';
@@ -77,7 +77,7 @@ import { IntentsBitField } from 'discord.js';
 export class AppModule {}
 ```
 
-The construction above instantiates `NecordConfigService` inside `NecordModule`, using it to create the required options object. Note that in this example, the `NecordConfigService` has to implement the `NecordOptionsFactory` interface, as shown below. The `NecordModule` will call the `.createNecordOptions()` method on the instantiated object of the supplied class.
+La construction ci-dessus instancie `NecordConfigService` à l'intérieur du `NecordModule`, en l'utilisant pour créer l'objet d'options requis. Notez que dans cet exemple, le `NecordConfigService` doit implémenter l'interface `NecordOptionsFactory`, comme indiqué ci-dessous. Le `NecordModule` appellera la méthode `.createNecordOptions()` sur l'objet instancié de la classe fournie.
 
 ```typescript title="src/discord-config.service.ts"
 import { Injectable } from '@nestjs/common';
@@ -99,4 +99,4 @@ export class NecordConfigService {
 }
 ```
 
-If you want to reuse an existing options provider instead of creating a private copy inside the `NecordModule`, use the `useExisting` syntax.
+Si vous souhaitez réutiliser un provider d'options existant plutôt que d'en créer une copie privée à l'intérieur du `NecordModule`, utilisez la syntaxe `useExisting`.

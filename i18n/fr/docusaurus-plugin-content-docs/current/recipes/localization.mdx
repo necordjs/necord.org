@@ -1,14 +1,14 @@
 ---
 id: localization
-title: Localization
+title: Localisation
 sidebar_position: 2
 tags:
   - integrations
 ---
 
-`@necord/localization` is a lightweight localization module for [Necord](https://necord.org/). It allows you to easily localize your bot's
-commands and messages. The module provides a simple API for managing locales and translations, as well as a powerful localization adapter
-system.
+`@necord/localization` est un module de localisation léger pour [Necord](https://necord.org/). Il vous permet de localiser facilement les
+commandes et messages de votre bot. Le module fournit une API simple pour gérer les locales et les traductions, ainsi qu'un puissant système
+d'adaptateur de localisation.
 
 ## Installation {#installation}
 
@@ -16,9 +16,9 @@ system.
 npm i @necord/localization necord discord.js
 ```
 
-## Usage {#usage}
+## Utilisation {#usage}
 
-Once the installation process is complete, we can import the `NecordLocalizationModule` with your `NecordModule` into the root `AppModule`:
+Une fois le processus d'installation terminé, nous pouvons importer le `NecordLocalizationModule` avec votre `NecordModule` dans le `AppModule` racine :
 
 ```typescript
 import { NecordModule } from 'necord';
@@ -64,11 +64,11 @@ export class AppModule {
 }
 ```
 
-## Adapters {#adapters}
+## Adaptateurs {#adapters}
 
-The `DefaultLocalizationAdapter` is a simple adapter that allows you to provide a map of locales and translations.
+Le `DefaultLocalizationAdapter` est un adaptateur simple qui vous permet de fournir une carte des locales et des traductions.
 
-Also you can use the `NestedLocalizationAdapter` that allows you to organize translation keys into objects
+Vous pouvez aussi utiliser le `NestedLocalizationAdapter` qui vous permet d'organiser les clés de traduction dans des objets
 
 ```typescript
 import { NecordModule } from 'necord';
@@ -122,12 +122,12 @@ export class AppModule {
 ```
 
 :::info
-`DefaultLocalizationAdapter` and `NestedLocalizationAdapter` can translate your localization strings and placeholders (e.g `{{username}}`)
+`DefaultLocalizationAdapter` et `NestedLocalizationAdapter` peuvent traduire vos chaînes de localisation et vos placeholders (par ex. `{{username}}`)
 :::
 
-#### Custom Adapters {#custom-adapters}
+#### Adaptateurs personnalisés {#custom-adapters}
 
-Also, you can create your own localization adapter. Just implement the `BaseLocalizationAdapter` interface:
+Vous pouvez aussi créer votre propre adaptateur de localisation. Implémentez simplement l'interface `BaseLocalizationAdapter` :
 
 ```typescript
 import { BaseLocalizationAdapter } from '@necord/localization';
@@ -146,16 +146,16 @@ export class CustomLocalizationAdapter extends BaseLocalizationAdapter<CustomLoc
 
 ## Resolvers {#resolvers}
 
-Resolvers are used to get the locale for translation. By default, Necord provides two resolvers: `UserResolver` and `GuildResolver`.
+Les resolvers sont utilisés pour obtenir la locale pour la traduction. Par défaut, Necord fournit deux resolvers : `UserResolver` et `GuildResolver`.
 
-| Resolver      | Description                                                                  |
-| ------------- | ---------------------------------------------------------------------------- |
-| UserResolver  | Gets the locale from the user's locale property (`interaction.locale`)       |
-| GuildResolver | Gets the locale from the guild's locale property (`interaction.guildLocale`) |
+| Resolver      | Description                                                                                        |
+| ------------- | -------------------------------------------------------------------------------------------------- |
+| UserResolver  | Obtient la locale à partir de la propriété de locale de l'utilisateur (`interaction.locale`)       |
+| GuildResolver | Obtient la locale à partir de la propriété de locale du serveur (`interaction.guildLocale`)        |
 
-#### Custom Resolvers {#custom-resolvers}
+#### Resolvers personnalisés {#custom-resolvers}
 
-Also, you can create your own Resolver. Just implement the `LocaleResolver` interface:
+Vous pouvez aussi créer votre propre Resolver. Implémentez simplement l'interface `LocaleResolver` :
 
 ```typescript
 import { CommandContext, LocaleResolver } from '@necord/localization';
@@ -173,9 +173,9 @@ export class GuildResolver implements LocaleResolver {
 }
 ```
 
-## Localization  {#localization}
+## Localisation  {#localization}
 
-We can inject the `LOCALIZATION_ADAPTER` into our service and use it to localize our commands and messages:
+Nous pouvons injecter le `LOCALIZATION_ADAPTER` dans notre service et l'utiliser pour localiser nos commandes et messages :
 
 ```typescript
 import { Injectable, Inject, OnModuleInit } from '@nestjs/common';
@@ -206,7 +206,7 @@ export class AppService implements OnModuleInit {
 }
 ```
 
-Or you can use `@CurrentTranslate` decorator to get the current translation from context:
+Ou vous pouvez utiliser le décorateur `@CurrentTranslate` pour obtenir la traduction actuelle à partir du contexte :
 
 ```typescript
 import { Injectable, Inject, OnModuleInit } from '@nestjs/common';
@@ -232,13 +232,13 @@ export class AppService implements OnModuleInit {
 ```
 
 :::info
-Function `localizationMapByKey` are used to localize the command name and description. You pass the translation key or localization map as
-an argument to the function.
+La fonction `localizationMapByKey` est utilisée pour localiser le nom et la description de la commande. Vous passez la clé de traduction ou la carte de localisation comme
+argument à la fonction.
 :::
 
-#### Setting up localized commands {#setting-up-localized-commands}
+#### Configuration des commandes localisées {#setting-up-localized-commands}
 
-You can set what locales the command will be localized
+Vous pouvez définir dans quelles locales la commande sera localisée
 
 ```typescript
 @SlashCommand({
@@ -249,8 +249,7 @@ You can set what locales the command will be localized
 })
 ```
 
-Or just pass a localization object with the location id and translation key to the `nameLocalization` and `descriptionLocalizations`
-properties
+Ou passez simplement un objet de localisation avec l'identifiant de localisation et la clé de traduction aux propriétés `nameLocalization` et `descriptionLocalizations`
 
 ```typescript
 @SlashCommand({
@@ -267,6 +266,6 @@ properties
 })
 ```
 
-Congratulations! You have successfully created your first localized command with Necord!
+Félicitations ! Vous avez créé avec succès votre première commande localisée avec Necord !
 
-You can view a working example [here](https://github.com/necordjs/examples/tree/master/07-localization).
+Vous pouvez consulter un exemple fonctionnel [ici](https://github.com/necordjs/examples/tree/master/07-localization).
