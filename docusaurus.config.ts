@@ -396,7 +396,7 @@ const config: Config = {
 	],
 	i18n: {
 		defaultLocale,
-		locales: ['en', 'ru', 'pt-BR'],
+		locales: ['en', 'ru', 'pt-BR', 'fr'],
 		path: 'i18n'
 	}
 };
