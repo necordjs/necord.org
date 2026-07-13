@@ -62,12 +62,12 @@
 		"tailwindcss-animate": "^1.0.7"
 	},
 	"devDependencies": {
-		"@docusaurus/module-type-aliases": "^3.10.1",
-		"@docusaurus/tsconfig": "^3.10.1",
-		"@docusaurus/types": "^3.8.1",
+		"@docusaurus/module-type-aliases": "^3.10.2",
+		"@docusaurus/tsconfig": "^3.10.2",
+		"@docusaurus/types": "^3.10.2",
 		"@release-it/conventional-changelog": "^11.0.1",
 		"@types/react-syntax-highlighter": "^15.5.13",
-		"prettier": "^3.9.4",
+		"prettier": "^3.9.5",
 		"prettier-plugin-tailwindcss": "^0.8.0",
 		"release-it": "^20.2.0",
 		"typescript": "7.0.2"
