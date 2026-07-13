@@ -111,13 +111,20 @@ html[data-theme='dark'] .header-npm-link::before {
 	}
 
 	/* last three items inline */
-	.theme-layout-navbar-sidebar-panel.menu .menu__list > li:nth-last-child(-n+3) {
+	.navbar-sidebar__items >
+		.theme-layout-navbar-sidebar-panel.menu:first-child >
+		.menu__list >
+		li:nth-last-child(-n+3) {
 		display: inline-block;
 		margin: 0 8px 0 0; /* small gap between icons */
 	}
 
 	/* ensure the icon links themselves stay inline‑flex */
-	.theme-layout-navbar-sidebar-panel.menu .menu__list > li:nth-last-child(-n+3) > a {
+	.navbar-sidebar__items >
+		.theme-layout-navbar-sidebar-panel.menu:first-child >
+		.menu__list >
+		li:nth-last-child(-n+3) >
+		a {
 		display: inline-flex;
 		align-items: center;
 	}
