@@ -69,7 +69,7 @@
 		"@types/react-syntax-highlighter": "^15.5.13",
 		"prettier": "^3.9.6",
 		"prettier-plugin-tailwindcss": "^0.8.1",
-		"release-it": "^21.0.0",
+		"release-it": "^21.0.1",
 		"typescript": "7.0.2"
 	},
 	"browserslist": {
