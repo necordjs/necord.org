@@ -27,13 +27,14 @@ Once the installation process is complete, we can import the `NecordLavalinkModu
 ```typescript title="app.module.ts"
 import { NecordLavalinkModule } from '@necord/lavalink';
 import { Module } from '@nestjs/common';
-import { Client } from 'discord.js';
+import { IntentsBitField } from 'discord.js';
+import { NecordModule } from 'necord';
 import { AppService } from './app.service';
 
 @Module({
     imports: [
         NecordModule.forRoot({
-            token: process.env.DISCORD_TOKEN,
+            token: process.env.DISCORD_TOKEN!,
             intents: [
                 IntentsBitField.Flags.Guilds,
                 IntentsBitField.Flags.GuildVoiceStates
@@ -75,12 +76,12 @@ export class AppService {
     private readonly logger = new Logger(AppService.name);
 
     @OnNodeManager('connect')
-    public onConnect(@Context() [node]: NodeManagerContextOf<'connect'>) {
+    public onConnect(@Context() [node]: NodeManagerContextOf<'connect'>): void {
         this.logger.log(`Node: ${node.options.id} Connected`);
     }
 
     @OnLavalinkManager('playerCreate')
-    public onPlayerCreate(@Context() [player]: LavalinkManagerContextOf<'playerCreate'>) {
+    public onPlayerCreate(@Context() [player]: LavalinkManagerContextOf<'playerCreate'>): void {
         this.logger.log(`Player created at ${player.guildId}`);
     }
 }
@@ -183,7 +184,7 @@ import { Injectable, UseInterceptors } from '@nestjs/common';
 import { NecordLavalinkService, PlayerManagerService } from '@necord/lavalink';
 import { Context, Options, SlashCommand, SlashCommandContext } from 'necord';
 import { QueryDto } from './query.dto';
-import { SourceAutocompleteInterceptor } from 'source.autocomplete';
+import { SourceAutocompleteInterceptor } from './source.autocomplete';
 
 @Injectable()
 export class AppCommands {
@@ -200,9 +201,9 @@ export class AppCommands {
     public async onPlay(
         @Context() [interaction]: SlashCommandContext,
         @Options() { query, source }: QueryDto,
-    ) {
+    ): Promise<void> {
         const player =
-            this.playerManager.get(interaction.guild.id) ??
+            this.playerManager.get(interaction.guildId!) ??
             this.playerManager.create({
                 ...this.lavalinkService.extractInfoForPlayer(interaction),
                 // optional configurations:
@@ -225,7 +226,7 @@ export class AppCommands {
         if (!player.playing) await player.play();
 
         // It's extremely recommended to use `trackStart` event for this announcement
-        return interaction.reply({
+        await interaction.reply({
             content: `Now playing ${res.tracks[0].info.title}`,
         });
     }
@@ -262,13 +263,9 @@ import { AutocompleteInterceptor } from 'necord';
 
 @Injectable()
 export class SourceAutocompleteInterceptor extends AutocompleteInterceptor {
-    public transformOptions(interaction: AutocompleteInteraction) {
+    public transformOptions(interaction: AutocompleteInteraction): Promise<void> {
         const focused = interaction.options.getFocused(true);
-        let choices: string[];
-
-        if (focused.name === 'source') {
-            choices = [DefaultSources.soundcloud] // Note that some Sources needs extra plugins/configuration to property work
-        }
+        const choices = focused.name === 'source' ? [DefaultSources.soundcloud] : [];
 
         return interaction.respond(
         choices

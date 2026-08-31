@@ -38,8 +38,8 @@ export class AppCommands {
         name: 'ping',
         description: 'Ping-Pong Command'
     })
-    public async onPing(@Context() [interaction]: SlashCommandContext) {
-        return interaction.reply({ content: 'Pong!' });
+    public async onPing(@Context() [interaction]: SlashCommandContext): Promise<void> {
+        await interaction.reply({ content: 'Pong!' });
     }
 }
 ```
@@ -57,10 +57,10 @@ export class AppCommands {
     @SlashCommand({
         name: 'ping',
         description: 'Ping-Pong Command',
-        guilds: [process.env.DEV_GUILD]
+        guilds: [process.env.DEV_GUILD!]
     })
-    public async onPing(@Context() [interaction]: SlashCommandContext) {
-        return interaction.reply({ content: 'Pong!' });
+    public async onPing(@Context() [interaction]: SlashCommandContext): Promise<void> {
+        await interaction.reply({ content: 'Pong!' });
     }
 }
 ```
@@ -80,7 +80,7 @@ export class TextDto {
         description: 'Your text',
         required: true
     })
-    text: string;
+    public readonly text!: string;
 }
 ```
 
@@ -97,8 +97,11 @@ export class AppCommands {
         name: 'length',
         description: 'Get length of text'
     })
-    public async onLength(@Context() [interaction]: SlashCommandContext, @Options() { text }: TextDto) {
-        return interaction.reply({content: `Length of your text ${text.length}`});
+    public async onLength(
+        @Context() [interaction]: SlashCommandContext,
+        @Options() { text }: TextDto
+    ): Promise<void> {
+        await interaction.reply({ content: `Length of your text ${text.length}` });
     }
 }
 ```
@@ -130,13 +133,10 @@ import { AutocompleteInterceptor } from 'necord';
 
 @Injectable()
 export class AnimeAutocompleteInterceptor extends AutocompleteInterceptor {
-    public transformOptions(interaction: AutocompleteInteraction) {
+    public transformOptions(interaction: AutocompleteInteraction): Promise<void> {
         const focused = interaction.options.getFocused(true);
-        let choices: string[];
-
-        if (focused.name === 'anime') {
-            choices = ['Hunter x Hunter', 'Naruto', 'One Piece'];
-        }
+        const choices =
+            focused.name === 'anime' ? ['Hunter x Hunter', 'Naruto', 'One Piece'] : [];
 
         return interaction.respond(
             choices
@@ -159,7 +159,7 @@ export class AnimeDto {
         autocomplete: true,
         required: true
     })
-    anime: string;
+    public readonly anime!: string;
 }
 ```
 
@@ -168,7 +168,7 @@ And last but not least, apply the interceptor to your slash command
 ```typescript title="anime-commands.service.ts"
 import { Injectable, UseInterceptors } from '@nestjs/common';
 import { Context, SlashCommand, Options, SlashCommandContext } from 'necord';
-import { AnimeDto } from '/anime.dto';
+import { AnimeDto } from './anime.dto';
 import { AnimeAutocompleteInterceptor } from './anime.interceptor';
 
 @Injectable()
@@ -178,8 +178,11 @@ export class AnimeCommands {
         name: 'anime',
         description: 'Lookup information about an anime'
     })
-    public async onSearch(@Context() [interaction]: SlashCommandContext, @Options() { anime }: AnimeDto) {
-        return interaction.reply({content: `I found the anime ${anime}`});
+    public async onSearch(
+        @Context() [interaction]: SlashCommandContext,
+        @Options() { anime }: AnimeDto
+    ): Promise<void> {
+        await interaction.reply({ content: `I found the anime ${anime}` });
     }
 }
 ```
@@ -194,7 +197,13 @@ For those developers looking to make more organized and complex groups of comman
 Use `SlashGroup` decorators on class-level `(Group)` and method-level `(SubGroup)`:
 
 ```typescript title="utils-commands.service.ts"
-import { createCommandGroupDecorator, Subcommand } from 'necord';
+import { Injectable } from '@nestjs/common';
+import {
+    Context,
+    createCommandGroupDecorator,
+    SlashCommandContext,
+    Subcommand
+} from 'necord';
 
 export const UtilsCommandDecorator = createCommandGroupDecorator({
     name: 'utils',
@@ -202,27 +211,29 @@ export const UtilsCommandDecorator = createCommandGroupDecorator({
 });
 
 @UtilsCommandDecorator()
+@Injectable()
 export class UtilsCommands {
     @Subcommand({
         name: 'ping',
         description: 'Ping-pong command'
     })
-    public async onPing(...) {
-    ...
+    public async onPing(@Context() [interaction]: SlashCommandContext): Promise<void> {
+        await interaction.reply({ content: 'Pong!' });
     }
 }
 
 @UtilsCommandDecorator({
     name: 'string',
-    descriptionn: 'String utility commands'
+    description: 'String utility commands'
 })
+@Injectable()
 export class UtilsStringCommands {
     @Subcommand({
         name: 'length',
         description: 'String length command'
     })
-    public async onLength(...) {
-    ...
+    public async onLength(@Context() [interaction]: SlashCommandContext): Promise<void> {
+        await interaction.reply({ content: 'Use this subcommand to measure text.' });
     }
 }
 
