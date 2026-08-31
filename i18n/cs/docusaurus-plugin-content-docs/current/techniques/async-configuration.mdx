@@ -23,9 +23,9 @@ import { IntentsBitField } from 'discord.js';
             useFactory: () => ({
                 token: 'DISCORD_BOT_TOKEN',
                 intents: [
-                    IntentsBitField.Guilds,
-                    IntentsBitField.GuildMessages,
-                    IntentsBitField.DirectMessages
+                    IntentsBitField.Flags.Guilds,
+                    IntentsBitField.Flags.GuildMessages,
+                    IntentsBitField.Flags.DirectMessages
                 ]
             })
         })
@@ -37,20 +37,21 @@ export class AppModule {}
 Like other [factory providers](https://docs.nestjs.com/fundamentals/custom-providers#factory-providers-usefactory), our factory function can be async and can inject dependencies through inject.
 
 ```typescript title="src/app.module.ts"
-import { NecordModule } from 'necord';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Module } from '@nestjs/common';
 import { IntentsBitField } from 'discord.js';
+import { NecordModule, NecordModuleOptions } from 'necord';
 
 @Module({
     imports: [
         NecordModule.forRootAsync({
-            imports: [ConfigModule.forFeature(necordModuleConfig)],
-            useFactory: async (configService: ConfigService) => ({
-                token: configService.get<string>('DISCORD_BOT_TOKEN'),
+            imports: [ConfigModule.forRoot()],
+            useFactory: (configService: ConfigService): NecordModuleOptions => ({
+                token: configService.getOrThrow<string>('DISCORD_BOT_TOKEN'),
                 intents: [
-                    IntentsBitField.Guilds,
-                    IntentsBitField.GuildMessages,
-                    IntentsBitField.DirectMessages
+                    IntentsBitField.Flags.Guilds,
+                    IntentsBitField.Flags.GuildMessages,
+                    IntentsBitField.Flags.DirectMessages
                 ]
             }),
             inject: [ConfigService]
@@ -65,7 +66,7 @@ Alternatively, you can configure the NecordModule using a class instead of a fac
 ```typescript title="src/app.module.ts"
 import { NecordModule } from 'necord';
 import { Module } from '@nestjs/common';
-import { IntentsBitField } from 'discord.js';
+import { NecordConfigService } from './discord-config.service';
 
 @Module({
     imports: [
@@ -77,7 +78,7 @@ import { IntentsBitField } from 'discord.js';
 export class AppModule {}
 ```
 
-The construction above instantiates `NecordConfigService` inside `NecordModule`, using it to create the required options object. Note that in this example, the `NecordConfigService` has to implement the `NecordOptionsFactory` interface, as shown below. The `NecordModule` will call the `.createNecordOptions()` method on the instantiated object of the supplied class.
+The construction above instantiates `NecordConfigService` inside `NecordModule`, using it to create the required options object. The class must expose a `createNecordOptions()` method returning `NecordModuleOptions`; `NecordModule` calls this method on the supplied class.
 
 ```typescript title="src/discord-config.service.ts"
 import { Injectable } from '@nestjs/common';
@@ -86,13 +87,13 @@ import { IntentsBitField } from 'discord.js';
 
 @Injectable()
 export class NecordConfigService {
-    createNecordOptions(): NecordModuleOptions {
+    public createNecordOptions(): NecordModuleOptions {
         return {
             token: 'DISCORD_BOT_TOKEN',
             intents: [
-                IntentsBitField.Guilds,
-                IntentsBitField.GuildMessages,
-                IntentsBitField.DirectMessages
+                IntentsBitField.Flags.Guilds,
+                IntentsBitField.Flags.GuildMessages,
+                IntentsBitField.Flags.DirectMessages
             ]
         };
     }

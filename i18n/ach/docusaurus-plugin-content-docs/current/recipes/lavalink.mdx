@@ -9,7 +9,7 @@ tags:
 
 crwdns1030:0https://lavalink.dev/crwdne1030:0 crwdns1032:0https://github.com/Tomato6966/lavalink-clientcrwdne1032:0 crwdns1034:0crwdne1034:0
 
-## crwdns2268:0{#installation}crwdne2268:0
+## crwdns2268:0crwdne2268:0
 
 ```bash npm2yarn
 crwdns1038:0crwdne1038:0
@@ -17,17 +17,17 @@ crwdns1038:0crwdne1038:0
 
 - crwdns1040:0https://lavalink.dev/getting-started/index.htmlcrwdne1040:0
 
-## crwdns2270:0{#usage}crwdne2270:0
+## crwdns2270:0crwdne2270:0
 
 crwdns1044:0crwdne1044:0
 
 ```typescript title="app.module.ts"
-crwdns1046:0{ NecordLavalinkModule }crwdnd1046:0{ Module }crwdnd1046:0{ Client }crwdnd1046:0{ AppService }crwdne1046:0
+crwdns11373:0{ NecordLavalinkModule }crwdnd11373:0{ Module }crwdnd11373:0{ IntentsBitField }crwdnd11373:0{ NecordModule }crwdnd11373:0{ AppService }crwdne11373:0
 ```
 
 crwdns1048:0https://lc4.gitbook.io/lavalink-client/docs/lavalinkmanager/manager-optionscrwdne1048:0
 
-## crwdns2272:0{#listeners}crwdne2272:0
+## crwdns2272:0crwdne2272:0
 
 crwdns1052:0https://necord.org/listenerscrwdne1052:0
 
@@ -36,10 +36,10 @@ crwdns1052:0https://necord.org/listenerscrwdne1052:0
   - crwdns1058:0#nodemanager-eventscrwdne1058:0
 
 ```typescript title="app.service.ts"
-crwdns1060:0{ Injectable, Logger }crwdnd1060:0{ Context }crwdnd1060:0${node.options.id}crwdnd1060:0${player.guildId}crwdne1060:0
+crwdns11375:0{ Context }crwdnd11375:0${node.options.id}crwdnd11375:0${player.guildId}crwdne11375:0
 ```
 
-### crwdns2274:0{#lavalinkmanager-events}crwdne2274:0
+### crwdns2274:0crwdne2274:0
 
 - crwdns1064:0https://tomato6966.github.io/lavalink-client/extra/manager-events/crwdne1064:0
 
@@ -66,7 +66,7 @@ crwdns1060:0{ Injectable, Logger }crwdnd1060:0{ Context }crwdnd1060:0${node.opti
 | crwdns1144:0crwdne1144:0                   | crwdns1146:0crwdne1146:0                                                |
 | crwdns1148:0crwdne1148:0                   | crwdns1150:0crwdne1150:0                                                |
 
-#### crwdns2276:0{#sponsorblock-plugin-events}crwdne2276:0
+#### crwdns2276:0crwdne2276:0
 
 - crwdns1154:0#lavalinkmanager-eventscrwdne1154:0
 - crwdns1156:0https://github.com/topi314/Sponsorblock-Plugincrwdne1156:0
@@ -78,7 +78,7 @@ crwdns1060:0{ Injectable, Logger }crwdnd1060:0{ Context }crwdnd1060:0${node.opti
 | crwdns1170:0crwdne1170:0                | crwdns1172:0crwdne1172:0                                                |
 | crwdns1174:0crwdne1174:0                | crwdns1176:0crwdne1176:0                                                |
 
-#### crwdns2278:0{#lavalyrics-plugin-events}crwdne2278:0
+#### crwdns2278:0crwdne2278:0
 
 - crwdns1180:0#lavalinkmanager-eventscrwdne1180:0
 - crwdns1182:0https://github.com/topi314/LavaLyricscrwdne1182:0
@@ -89,7 +89,7 @@ crwdns1060:0{ Injectable, Logger }crwdnd1060:0{ Context }crwdnd1060:0${node.opti
 | crwdns1192:0crwdne1192:0                | crwdns1194:0crwdne1194:0                                                |
 | crwdns1196:0crwdne1196:0                | crwdns1198:0crwdne1198:0                                                |
 
-### crwdns2280:0{#nodemanager-events}crwdne2280:0
+### crwdns2280:0crwdne2280:0
 
 - crwdns1202:0https://tomato6966.github.io/lavalink-client/extra/node-events/crwdne1202:0
 
@@ -104,12 +104,12 @@ crwdns1060:0{ Injectable, Logger }crwdnd1060:0{ Context }crwdnd1060:0${node.opti
 | crwdns1236:0crwdne1236:0                     | crwdns1238:0crwdne1238:0                                                   |
 | crwdns1240:0crwdne1240:0                     | crwdns1242:0crwdne1242:0                                                   |
 
-## crwdns2282:0{#providers}crwdne2282:0
+## crwdns2282:0crwdne2282:0
 
 - crwdns1246:0crwdne1246:0 crwdns1248:0crwdne1248:0
 
 ```typescript title="app.service.ts"
-crwdns1250:0{ Injectable }crwdnd1250:0{ LavalinkManager, NodeManager }crwdne1250:0
+crwdns1250:0{ Injectable }crwdne1250:0
 ```
 
 | crwdns1252:0crwdne1252:0               | crwdns1254:0crwdne1254:0                    | crwdns1256:0crwdne1256:0            |
@@ -118,15 +118,12 @@ crwdns1250:0{ Injectable }crwdnd1250:0{ LavalinkManager, NodeManager }crwdne1250
 | crwdns1264:0crwdne1264:0               | crwdns1266:0crwdne1266:0                    | crwdns1268:0crwdne1268:0            |
 | crwdns1270:0crwdne1270:0               | crwdns1272:0crwdne1272:0                    | crwdns1274:0crwdne1274:0            |
 
-## crwdns2284:0{#play-tracks}crwdne2284:0
+## crwdns2284:0crwdne2284:0
 
 - crwdns1278:0https://necord.org/interactions/slash-commandscrwdne1278:0
 
 ```typescript title="app.commands.ts"
-crwdns4690:0{ Injectable, UseInterceptors }crwdnd4690:0{ NecordLavalinkService, PlayerManagerService }crwdnd4690:0{ QueryDto }crwdnd4690:0{ SourceAutocompleteInterceptor }crwdnd4690:0{
-        name: 'play',
-        description: 'play a track',
-    }crwdnd4690:0{ query, source }crwdne4690:0
+crwdns11377:0{ QueryDto }crwdnd11377:0{ SourceAutocompleteInterceptor }crwdne11377:0
 ```
 
 ```typescript title="query.dto.ts"
@@ -134,7 +131,7 @@ crwdns4380:0{ SearchPlatform }crwdnd4380:0{ StringOption }crwdne4380:0
 ```
 
 ```typescript title="source.autocomplete.ts"
-crwdns1284:0{ Injectable }crwdnd1284:0{ AutocompleteInteraction }crwdnd1284:0{ DefaultSources }crwdnd1284:0{ AutocompleteInterceptor }crwdnd1284:0{ name: choice, value: choice }crwdne1284:0
+crwdns11379:0{ Injectable }crwdnd11379:0{ AutocompleteInteraction }crwdnd11379:0{ DefaultSources }crwdnd11379:0{ AutocompleteInterceptor }crwdne11379:0
 ```
 
 crwdns1286:0https://github.com/necordjs/examples/tree/master/08-lavalinkcrwdne1286:0

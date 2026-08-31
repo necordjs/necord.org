@@ -15,20 +15,20 @@ tags:
 ```typescript title="app.commands.ts"
 import { Injectable } from '@nestjs/common';
 import { Context, UserCommand, UserCommandContext, TargetUser } from 'necord';
-import { User } from 'discord.js';
+import { EmbedBuilder, User } from 'discord.js';
 
 @Injectable()
 export class AppCommands {
-    @UserCommand({ name: 'Pegar avatar' })
+    @UserCommand({ name: 'Get avatar' })
     public async getUserAvatar(
         @Context() [interaction]: UserCommandContext,
         @TargetUser() user: User
-    ) {
-        return interaction.reply({
+    ): Promise<void> {
+        await interaction.reply({
             embeds: [
-                new MessageEmbed()
+                new EmbedBuilder()
                     .setTitle(`Avatar ${user.username}`)
-                    .setImage(user.displayAvatarURL({ size: 4096, dynamic: true }))
+                    .setImage(user.displayAvatarURL({ size: 4096 }))
             ]
         });
     }
@@ -54,8 +54,8 @@ export class AppCommands {
     public async copyMessage(
         @Context() [interaction]: MessageCommandContext,
         @TargetMessage() message: Message
-    ) {
-        return interaction.reply({ content: message.content });
+    ): Promise<void> {
+        await interaction.reply({ content: message.content });
     }
 }
 ```
