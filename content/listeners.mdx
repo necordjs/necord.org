@@ -24,12 +24,12 @@ export class AppService {
     private readonly logger = new Logger(AppService.name);
 
     @Once('clientReady')
-    public onReady(@Context() [client]: ContextOf<'clientReady'>) {
+    public onReady(@Context() [client]: ContextOf<'clientReady'>): void {
         this.logger.log(`Bot logged in as ${client.user.username}`);
     }
 
     @On('warn')
-    public onWarn(@Context() [message]: ContextOf<'warn'>) {
+    public onWarn(@Context() [message]: ContextOf<'warn'>): void {
         this.logger.warn(message);
     }
 }
@@ -52,9 +52,15 @@ You can access the context variables by using the `@Context()` decorator within 
 array of arguments.
 
 ```typescript title="app.service.ts"
-@On('messageCreate')
-public onMessageCreate(@Context() [message]: ContextOf<'messageCreate'>) {
-    console.log(message.content);
+import { Injectable } from '@nestjs/common';
+import { Context, ContextOf, On } from 'necord';
+
+@Injectable()
+export class AppService {
+    @On('messageCreate')
+    public onMessageCreate(@Context() [message]: ContextOf<'messageCreate'>): void {
+        console.log(message.content);
+    }
 }
 ```
 
@@ -71,7 +77,8 @@ export type CustomUserUpdateEvents = {
 	userAvatarUpdate: [user: User, oldAvatar: string, newAvatar: string];
 };
 
-export type ContextOfCustomUserUpdate<K extends keyof E, E = CustomUserUpdateEvents> = E[K];
+export type ContextOfCustomUserUpdate<K extends keyof CustomUserUpdateEvents> =
+	CustomUserUpdateEvents[K];
 
 export const OnCustomUserUpdate = createCustomOnDecorator<CustomUserUpdateEvents>();
 
@@ -79,7 +86,7 @@ export const OnCustomUserUpdate = createCustomOnDecorator<CustomUserUpdateEvents
 @CustomListener('userUpdate')
 export class UserUpdateHandler extends BaseHandler<CustomUserUpdateEvents> {
 	@CustomListenerHandler()
-	public handleUserAvatarUpdate([oldUser, newUser]: ContextOf<'userUpdate'>) {
+	public handleUserAvatarUpdate([oldUser, newUser]: ContextOf<'userUpdate'>): void {
 		if (oldUser.partial) return;
 
 		if (oldUser.displayAvatarURL() !== newUser.displayAvatarURL()) {
@@ -110,7 +117,7 @@ import { OnCustomUserUpdate, ContextOfCustomUserUpdate, Context } from './user-u
 @Injectable()
 export class AppService {
 	@OnCustomUserUpdate('userAvatarUpdate')
-	public onAvatarUpdate(@Context() context: ContextOfCustomUserUpdate<'userAvatarUpdate'>) {
+	public onAvatarUpdate(@Context() context: ContextOfCustomUserUpdate<'userAvatarUpdate'>): void {
 		const [user, oldAvatar, newAvatar] = context;
 		console.log(`User ${user.username} changed avatar from ${oldAvatar} to ${newAvatar}`);
 	}

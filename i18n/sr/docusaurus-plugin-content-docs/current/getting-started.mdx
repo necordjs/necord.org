@@ -39,13 +39,14 @@ Not sure what modules are? Catch up by reading about them in [NestJS](https://do
 import { Module } from '@nestjs/common';
 import { AppService } from './app.service';
 import { IntentsBitField } from 'discord.js';
+import { NecordModule } from 'necord';
 
 @Module({
     imports: [
         NecordModule.forRoot({
-            token: process.env.DISCORD_TOKEN,
+            token: process.env.DISCORD_TOKEN!,
             intents: [IntentsBitField.Flags.Guilds],
-            development: [process.env.DISCORD_DEVELOPMENT_GUILD_ID]
+            development: [process.env.DISCORD_DEVELOPMENT_GUILD_ID!]
         })
     ],
     providers: [AppService]
@@ -59,23 +60,29 @@ Make sure to setup the correct **[intents](https://discordjs.guide/popular-topic
 
 :::
 
-The module arguments are an extension of discord.js [ClientOptions](https://discord.js.org/#/docs/discord.js/stable/typedef/ClientOptions), in addition to 3 necord options: `token`, `prefix` and `development`.
+`NecordModuleOptions` extends discord.js [ClientOptions](https://discord.js.org/docs/packages/discord.js/main/ClientOptions:Interface), so every Discord client option is also available. The simplified type below shows only the additional Necord-specific fields:
 
 ```ts
-export interface NecordModuleOptions extends DiscordClientOptions {
+import type { Message, Snowflake } from 'discord.js';
+
+type NecordPrefix = string | ((message: Message) => string | Promise<string>);
+
+interface NecordSpecificOptions {
     token: string;
-    prefix?: string | (message: Message) => string | Promise<string>;
+    prefix?: NecordPrefix;
+    allowTextCommandsWithoutPrefix?: boolean;
     development?: Snowflake[] | false;
     skipRegistration?: boolean;
 }
 ```
 
-| Property           | Type                                       | Description                                         |
-| ------------------ | ------------------------------------------ | --------------------------------------------------- |
-| `token`            | `string`                                   | Your Discord token                                  |
-| `prefix`           | `string` or `(message: Message) => string` | The prefix for your bot                             |
-| `development`      | `Snowflake[]` or `false`                   | The development guilds for your bot                 |
-| `skipRegistration` | `boolean`                                  | Skip automatic registration of application commands |
+| Property                         | Type                                                          | Description                                                    |
+| -------------------------------- | ------------------------------------------------------------- | -------------------------------------------------------------- |
+| `token`                          | `string`                                                      | Token used to authenticate the Discord client                  |
+| `prefix`                         | `string` or `(message: Message) => string \| Promise<string>` | Static or message-dependent prefix for text commands           |
+| `allowTextCommandsWithoutPrefix` | `boolean`                                                     | Allow text commands to run without a prefix                    |
+| `development`                    | `Snowflake[]` or `false`                                      | Guilds where application commands are registered immediately   |
+| `skipRegistration`               | `boolean`                                                     | Disable automatic registration of application commands         |
 
 :::warning Warning
 
@@ -100,8 +107,8 @@ export class AppService {
         name: 'ping',
         description: 'Ping command!'
     })
-    public async onPing(@Context() [interaction]: SlashCommandContext) {
-        return interaction.reply({ content: 'Pong!' });
+    public async onPing(@Context() [interaction]: SlashCommandContext): Promise<void> {
+        await interaction.reply({ content: 'Pong!' });
     }
 }
 ```

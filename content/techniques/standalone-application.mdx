@@ -16,12 +16,13 @@ To do this, change the bootstrap function in the `main.ts` file of your project 
 
 ```typescript title="src/main.ts"
 import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
 
-async function bootstrap() {
-    const app = await NestFactory.createApplicationContext(AppModule);
+async function bootstrap(): Promise<void> {
+    await NestFactory.createApplicationContext(AppModule);
 }
 
-bootstrap();
+void bootstrap();
 ```
 
 This initializes Nest as a **standalone application** (without any network listeners).

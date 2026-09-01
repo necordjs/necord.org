@@ -6,12 +6,12 @@ description: crwdns692:0crwdne692:0 crwdns694:0crwdne694:0
 sidebar_position: crwdns696:0crwdne696:0
 ---
 
-## crwdns4656:0{#how-to-use-listeners}crwdne4656:0
+## crwdns4656:0crwdne4656:0
 
 crwdns698:0https://discord.js.org/#/docs/main/stable/class/Client#Eventscrwdne698:0 crwdns4658:0crwdne4658:0
 
 ```typescript title="app.service.ts"
-crwdns4686:0{ Injectable, Logger }crwdnd4686:0${client.user.username}crwdne4686:0
+crwdns11417:0${client.user.username}crwdne11417:0
 ```
 
 :::warning crwdns704:0crwdne704:0
@@ -22,7 +22,7 @@ crwdns4660:0crwdne4660:0
 
 :::
 
-## crwdns2244:0{#context}crwdne2244:0
+## crwdns2244:0crwdne2244:0
 
 crwdns714:0crwdne714:0
 crwdns716:0crwdne716:0
@@ -30,15 +30,15 @@ crwdns716:0crwdne716:0
 crwdns718:0crwdne718:0
 
 ```typescript title="app.service.ts"
-crwdns720:0crwdne720:0
+crwdns11419:0{ Injectable }crwdne11419:0
 ```
 
-## crwdns2246:0{#custom-events}crwdne2246:0
+## crwdns2246:0crwdne2246:0
 
 crwdns724:0crwdne724:0 crwdns726:0crwdne726:0
 
 ```typescript title="user-update.handler.ts"
-crwdns4662:0{ Injectable }crwdnd4662:0{ User }crwdne4662:0
+crwdns11421:0{ Injectable }crwdnd11421:0{ User }crwdne11421:0
 ```
 
 :::tip crwdns4664:0crwdne4664:0
@@ -49,23 +49,23 @@ crwdns4668:0crwdne4668:0
 crwdns4670:0crwdne4670:0
 
 ```typescript title="app.service.ts"
-crwdns4672:0{ Injectable }crwdnd4672:0{ OnCustomUserUpdate, ContextOfCustomUserUpdate, Context }crwdnd4672:0${user.username}crwdnd4672:0${oldAvatar}crwdnd4672:0${newAvatar}crwdne4672:0
+crwdns11423:0{ Injectable }crwdnd11423:0${user.username}crwdnd11423:0${oldAvatar}crwdnd11423:0${newAvatar}crwdne11423:0
 ```
 
 > crwdns4674:0crwdne4674:0
 > crwdns4676:0crwdne4676:0
 
-# crwdns4678:0{#list-of-custom-events}crwdne4678:0
+# crwdns4678:0crwdne4678:0
 
 crwdns4680:0crwdne4680:0 crwdns4682:0crwdne4682:0
 
-### crwdns2248:0{#channel-events}crwdne2248:0
+### crwdns2248:0crwdne2248:0
 
 | crwdns738:0crwdne738:0                      | crwdns740:0crwdne740:0                                                               |
 | ------------------------------------------- | ------------------------------------------------------------------------------------ |
 | crwdns742:0crwdne742:0                      | crwdns744:0crwdne744:0                                                               |
 
-### crwdns2250:0{#guild-events}crwdne2250:0
+### crwdns2250:0crwdne2250:0
 
 | crwdns748:0crwdne748:0                | crwdns750:0crwdne750:0                                                |
 | ------------------------------------- | --------------------------------------------------------------------- |
@@ -84,7 +84,7 @@ crwdns4680:0crwdne4680:0 crwdns4682:0crwdne4682:0
 | crwdns800:0crwdne800:0                | crwdns802:0crwdne802:0                                                |
 | crwdns804:0crwdne804:0                | crwdns806:0crwdne806:0                                                |
 
-#### crwdns2252:0{#guild-audit-log-events}crwdne2252:0
+#### crwdns2252:0crwdne2252:0
 
 | crwdns810:0crwdne810:0                        | crwdns812:0crwdne812:0                                              |
 | --------------------------------------------- | ------------------------------------------------------------------- |
@@ -95,7 +95,7 @@ crwdns4680:0crwdne4680:0 crwdns4682:0crwdne4682:0
 | crwdns830:0crwdne830:0                        | crwdns832:0crwdne832:0                                              |
 | crwdns834:0crwdne834:0                        | crwdns836:0crwdne836:0                                              |
 
-#### crwdns2254:0{#guild-member-events}crwdne2254:0
+#### crwdns2254:0crwdne2254:0
 
 | crwdns840:0crwdne840:0                  | crwdns842:0crwdne842:0                                       |
 | --------------------------------------- | ------------------------------------------------------------ |
@@ -109,7 +109,7 @@ crwdns4680:0crwdne4680:0 crwdns4682:0crwdne4682:0
 | crwdns872:0crwdne872:0                  | crwdns874:0crwdne874:0                                       |
 | crwdns876:0crwdne876:0                  | crwdns878:0crwdne878:0                                       |
 
-#### crwdns2256:0{#role-update-events}crwdne2256:0
+#### crwdns2256:0crwdne2256:0
 
 | crwdns882:0crwdne882:0              | crwdns884:0crwdne884:0                                        |
 | ----------------------------------- | ------------------------------------------------------------- |
@@ -119,7 +119,7 @@ crwdns4680:0crwdne4680:0 crwdns4682:0crwdne4682:0
 | crwdns898:0crwdne898:0              | crwdns900:0crwdne900:0                                        |
 | crwdns902:0crwdne902:0              | crwdns904:0crwdne904:0                                        |
 
-#### crwdns2258:0{#thread-update-events}crwdne2258:0
+#### crwdns2258:0crwdne2258:0
 
 | crwdns908:0crwdne908:0                        | crwdns910:0crwdne910:0                                                   |
 | --------------------------------------------- | ------------------------------------------------------------------------ |
@@ -129,21 +129,21 @@ crwdns4680:0crwdne4680:0 crwdns4682:0crwdne4682:0
 | crwdns924:0crwdne924:0                        | crwdns926:0crwdne926:0                                                   |
 | crwdns928:0crwdne928:0                        | crwdns930:0crwdne930:0                                                   |
 
-### crwdns2260:0{#message-events}crwdne2260:0
+### crwdns2260:0crwdne2260:0
 
 | crwdns934:0crwdne934:0             | crwdns936:0crwdne936:0                            |
 | ---------------------------------- | ------------------------------------------------- |
 | crwdns938:0crwdne938:0             | crwdns940:0crwdne940:0                            |
 | crwdns942:0crwdne942:0             | crwdns944:0crwdne944:0                            |
 
-### crwdns2262:0{#presence-events}crwdne2262:0
+### crwdns2262:0crwdne2262:0
 
 | crwdns948:0crwdne948:0           | crwdns950:0crwdne950:0                             |
 | -------------------------------- | -------------------------------------------------- |
 | crwdns952:0crwdne952:0           | crwdns954:0crwdne954:0                             |
 | crwdns956:0crwdne956:0           | crwdns958:0crwdne958:0                             |
 
-### crwdns2264:0{#user-events}crwdne2264:0
+### crwdns2264:0crwdne2264:0
 
 | crwdns962:0crwdne962:0                | crwdns964:0crwdne964:0                                         |
 | ------------------------------------- | -------------------------------------------------------------- |
@@ -153,7 +153,7 @@ crwdns4680:0crwdne4680:0 crwdns4682:0crwdne4682:0
 | crwdns978:0crwdne978:0                | crwdns980:0crwdne980:0                                         |
 | crwdns11314:0crwdne11314:0            | crwdns11316:0crwdne11316:0                                     |
 
-### crwdns2266:0{#voice-events}crwdne2266:0
+### crwdns2266:0crwdne2266:0
 
 | crwdns984:0crwdne984:0              | crwdns986:0crwdne986:0                                                        |
 | ----------------------------------- | ----------------------------------------------------------------------------- |

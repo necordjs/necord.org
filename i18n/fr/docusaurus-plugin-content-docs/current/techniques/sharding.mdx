@@ -18,11 +18,11 @@ Si vous exécutez le bot dans le cadre d'un serveur web au sein de NestJS, alors
 import { NestFactory } from '@nestjs/core';
 import { DiscordModule } from './discord/discord.module';
 
-async function bootstrap() {
+async function bootstrap(): Promise<void> {
     await NestFactory.createApplicationContext(DiscordModule);
 }
 
-bootstrap();
+void bootstrap();
 ```
 
 :::info
@@ -51,20 +51,19 @@ module.exports = function (options) {
 
 ```typescript
 import { NestFactory } from '@nestjs/core';
+import { ShardingManager } from 'discord.js';
+import { join } from 'node:path';
 import { AppModule } from './app.module';
-import * as Path from 'path';
 
-export async function bootstrap() {
+export async function bootstrap(): Promise<void> {
     const app = await NestFactory.create(AppModule);
     const port = 80;
 
     await app.listen(port);
 
-    const manager = new ShardingManager(Path.join(__dirname, 'bot.js'), {
+    const manager = new ShardingManager(join(__dirname, 'bot.js'), {
         token: 'secret'
     });
-
-    manager.spawn();
 
     manager.on('shardCreate', shard => {
         shard.on('reconnecting', () => {
@@ -88,8 +87,10 @@ export async function bootstrap() {
             shard.respawn();
         });
     });
+
+    await manager.spawn();
 }
-bootstrap();
+void bootstrap();
 ```
 
 3. Désormais, lorsque vous amorcez votre application, le contexte de votre `bot.ts` est créé sur un processus shardé.

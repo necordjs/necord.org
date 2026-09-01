@@ -18,11 +18,11 @@ Se você estiver executando o bot como parte de um servidor web dentro do NestJS
 import { NestFactory } from '@nestjs/core';
 import { DiscordModule } from './discord/discord.module';
 
-async function bootstrap() {
+async function bootstrap(): Promise<void> {
     await NestFactory.createApplicationContext(DiscordModule);
 }
 
-bootstrap();
+void bootstrap();
 ```
 
 :::info
@@ -51,45 +51,46 @@ module.exports = function (options) {
 
 ```typescript
 import { NestFactory } from '@nestjs/core';
+import { ShardingManager } from 'discord.js';
+import { join } from 'node:path';
 import { AppModule } from './app.module';
-import * as Path from 'path';
 
-export async function bootstrap() {
+export async function bootstrap(): Promise<void> {
     const app = await NestFactory.create(AppModule);
     const port = 80;
 
     await app.listen(port);
 
-    const manager = new ShardingManager(Path.join(__dirname, 'bot.js'), {
+    const manager = new ShardingManager(join(__dirname, 'bot.js'), {
         token: 'secret'
     });
 
-    manager.spawn();
-
     manager.on('shardCreate', shard => {
         shard.on('reconnecting', () => {
-            console.log(`Reconectando shard: [${shard.id}]`);
+            console.log(`Reconnecting shard: [${shard.id}]`);
         });
 
         shard.on('spawn', () => {
-            console.log(`Criando shard: [${shard.id}]`);
+            console.log(`Spawned shard: [${shard.id}]`);
         });
 
         shard.on('ready', () => {
-            console.log(` Shard [${shard.id}] está pronto`);
+            console.log(` Shard [${shard.id}] is ready`);
         });
 
         shard.on('death', () => {
-            console.log(`Shard: [${shard.id}] morreu`);
+            console.log(`Died shard: [${shard.id}]`);
         });
 
         shard.on('error', err => {
-            console.log(`Erro em  [${shard.id}] com: ${err} `);
+            console.log(`Error in  [${shard.id}] with : ${err} `);
             shard.respawn();
         });
     });
+
+    await manager.spawn();
 }
-bootstrap();
+void bootstrap();
 ```
 
 3. Agora quando você inicia sua aplicação, seu contexto `bot.ts` é criado em um processo compartilhado.

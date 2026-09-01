@@ -39,13 +39,14 @@ Não tem certeza de que são módulos? Leia sobre eles no [NestJS](https://docs.
 import { Module } from '@nestjs/common';
 import { AppService } from './app.service';
 import { IntentsBitField } from 'discord.js';
+import { NecordModule } from 'necord';
 
 @Module({
     imports: [
         NecordModule.forRoot({
-            token: process.env.DISCORD_TOKEN,
+            token: process.env.DISCORD_TOKEN!,
             intents: [IntentsBitField.Flags.Guilds],
-            development: [process.env.DISCORD_DEVELOPMENT_GUILD_ID]
+            development: [process.env.DISCORD_DEVELOPMENT_GUILD_ID!]
         })
     ],
     providers: [AppService]
@@ -59,23 +60,29 @@ Certifique-se de configurar os **[intents](https://discordjs.guide/popular-topic
 
 :::
 
-Os argumentos do módulo são uma extensão do [ClientOptions](https://discord.js.org/#/docs/discord.js/stable/typedef/ClientOptions) do discord.js, além de 3 opções do necord: `token`, `prefix` e `development`.
+`NecordModuleOptions` extends discord.js [ClientOptions](https://discord.js.org/docs/packages/discord.js/main/ClientOptions:Interface), so every Discord client option is also available. The simplified type below shows only the additional Necord-specific fields:
 
 ```ts
-export interface NecordModuleOptions extends DiscordClientOptions {
+import type { Message, Snowflake } from 'discord.js';
+
+type NecordPrefix = string | ((message: Message) => string | Promise<string>);
+
+interface NecordSpecificOptions {
     token: string;
-    prefix?: string | (message: Message) => string | Promise<string>;
+    prefix?: NecordPrefix;
+    allowTextCommandsWithoutPrefix?: boolean;
     development?: Snowflake[] | false;
     skipRegistration?: boolean;
 }
 ```
 
-| Propriedade           | Tipo                                       | Descrição                                                   |
-| --------------------- | ------------------------------------------ | ----------------------------------------------------------- |
-| `token`               | `string`                                   | Seu token do Discord                                        |
-| `prefix`              | `string` ou `(message: Message) => string` | O prefixo de seu bot                                        |
-| `development`         | `Snowflake[]` ou `false`                   | Os servidores de desenvolvimento do seu bot                 |
-| `skipRegistration`    | `boolean`                                  | Pula automaticamente o registro de comandos da aplicação    |
+| Propriedade                         | Tipo                                                          | Descrição                                                      |
+| ----------------------------------- | ------------------------------------------------------------- | -------------------------------------------------------------- |
+| `token`                             | `string`                                                      | Token used to authenticate the Discord client                  |
+| `prefix`                            | `string` or `(message: Message) => string \| Promise<string>` | Static or message-dependent prefix for text commands           |
+| `allowTextCommandsWithoutPrefix`    | `boolean`                                                     | Allow text commands to run without a prefix                    |
+| `development`                       | `Snowflake[]` ou `false`                                      | Guilds where application commands are registered immediately   |
+| `skipRegistration`                  | `boolean`                                                     | Disable automatic registration of application commands         |
 
 :::warning Aviso
 
@@ -100,8 +107,8 @@ export class AppService {
         name: 'ping',
         description: 'Ping command!'
     })
-    public async onPing(@Context() [interaction]: SlashCommandContext) {
-        return interaction.reply({ content: 'Pong!' });
+    public async onPing(@Context() [interaction]: SlashCommandContext): Promise<void> {
+        await interaction.reply({ content: 'Pong!' });
     }
 }
 ```

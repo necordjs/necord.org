@@ -26,8 +26,8 @@ import { Context, Button, ButtonContext } from 'necord';
 @Injectable()
 export class AppComponents {
     @Button('BUTTON')
-    public onButton(@Context() [interaction]: ButtonContext) {
-        return interaction.reply({ content: 'Button clicked!' });
+    public async onButton(@Context() [interaction]: ButtonContext): Promise<void> {
+        await interaction.reply({ content: 'Button clicked!' });
     }
 }
 ```
@@ -39,6 +39,8 @@ Dynamic buttons uses [path-to-regexp](https://www.npmjs.com/package/path-to-rege
 
 To create a Dynamic button
 ```typescript
+import { ButtonBuilder, ButtonStyle } from 'discord.js';
+
 new ButtonBuilder()
   .setCustomId('click/12345')
   .setLabel('LABEL')
@@ -48,16 +50,16 @@ new ButtonBuilder()
 To receive a Dynamic button
 ```typescript
 import { Injectable } from '@nestjs/common';
-import { Context, Button, ButtonContext } from 'necord';
+import { Button, ButtonContext, ComponentParam, Context } from 'necord';
 
 @Injectable()
 export class AppComponents {
   @Button('click/:value')
-  public onButton(
+  public async onButton(
     @Context() [interaction]: ButtonContext,
     @ComponentParam('value') value: string
-  ) {
-    return interaction.reply({ content: `Button clicked! Value: ${value}` });
+  ): Promise<void> {
+    await interaction.reply({ content: `Button clicked! Value: ${value}` });
   }
 }
 
@@ -81,6 +83,8 @@ Discord has introduced new select menu components :
 
 To create String Select:
 ```typescript
+import { StringSelectMenuBuilder } from 'discord.js';
+
 new StringSelectMenuBuilder()
   .setCustomId('STRING_SELECT_MENU') // replace with your customId
   .setPlaceholder('Select your color')
@@ -101,11 +105,11 @@ import { Context, StringSelect, StringSelectContext, SelectedStrings } from 'nec
 @Injectable()
 export class AppComponents {
     @StringSelect('STRING_SELECT_MENU')
-    public onStringSelect(
+    public async onStringSelect(
       @Context() [interaction]: StringSelectContext,
       @SelectedStrings() selected: string[]
-    ) {
-      return interaction.reply({
+    ): Promise<void> {
+      await interaction.reply({
         content: `Your selected color - ${selected.join(' ')}`
       });
     }
@@ -117,6 +121,8 @@ export class AppComponents {
 
 To create User Select:
 ```typescript
+import { UserSelectMenuBuilder } from 'discord.js';
+
 new UserSelectMenuBuilder()
   .setCustomId('USER_SELECT_MENU')
   .setPlaceholder('Select a user')
@@ -131,8 +137,8 @@ import {
   Context,
   UserSelect,
   UserSelectContext,
-  SelectedUser,
-  ISelectedUser,
+  SelectedUsers,
+  ISelectedUsers,
   SelectedMembers,
   ISelectedMembers
 } from 'necord';
@@ -140,12 +146,12 @@ import {
 @Injectable()
 export class AppComponents {
     @UserSelect('USER_SELECT_MENU')
-    public onUserSelect(
+    public async onUserSelect(
       @Context() [interaction]: UserSelectContext,
       @SelectedUsers() users: ISelectedUsers, // Collection of users
       @SelectedMembers() members: ISelectedMembers // Collection of members
-    ) {
-      interaction.reply({
+    ): Promise<void> {
+      await interaction.reply({
         content: `
         Selected users - ${users.map(user => user.username).join(',')}\n
         Selected members - ${members.map(member => member.user?.username).join(',')}
@@ -160,6 +166,8 @@ export class AppComponents {
 
 To create Role Select:
 ```typescript
+import { RoleSelectMenuBuilder } from 'discord.js';
+
 new RoleSelectMenuBuilder()
   .setCustomId('ROLE_SELECT_MENU')
   .setPlaceholder('Select a role')
@@ -174,18 +182,18 @@ import {
   Context,
   RoleSelect,
   RoleSelectContext,
-  SelectedRole,
-  ISelectedRole,
+  SelectedRoles,
+  ISelectedRoles,
 } from 'necord';
 
 @Injectable()
 export class AppComponents {
     @RoleSelect('ROLE_SELECT_MENU')
-    public onRoleSelect(
+    public async onRoleSelect(
       @Context() [interaction]: RoleSelectContext,
       @SelectedRoles() roles: ISelectedRoles, // Collection of roles
-    ) {
-      interaction.reply({
+    ): Promise<void> {
+      await interaction.reply({
         content: `
         Selected roles - ${roles.map(role => role.id).join(',')}
         `
@@ -199,6 +207,8 @@ export class AppComponents {
 
 To create Channel Select:
 ```typescript
+import { ChannelSelectMenuBuilder } from 'discord.js';
+
 new ChannelSelectMenuBuilder()
   .setCustomId('CHANNEL_SELECT_MENU')
   .setPlaceholder('Select a channel')
@@ -213,16 +223,18 @@ import {
   Context,
   ChannelSelect,
   ChannelSelectContext,
+  SelectedChannels,
+  ISelectedChannels
 } from 'necord';
 
 @Injectable()
 export class AppComponents {
     @ChannelSelect('CHANNEL_SELECT_MENU')
-    public onChannelSelect(
+    public async onChannelSelect(
       @Context() [interaction]: ChannelSelectContext,
       @SelectedChannels() channels: ISelectedChannels, // Collection of channels
-    ) {
-      interaction.reply({
+    ): Promise<void> {
+      await interaction.reply({
         content: `
         Selected channels - ${channels.map(channel => channel.id).join(',')}
         `
@@ -236,6 +248,8 @@ export class AppComponents {
 
 To create Mentionable Select:
 ```typescript
+import { MentionableSelectMenuBuilder } from 'discord.js';
+
 new MentionableSelectMenuBuilder()
   .setCustomId('MENTIONABLE_SELECT_MENU')
   .setPlaceholder('Select a user/role')
@@ -261,13 +275,13 @@ import {
 @Injectable()
 export class AppComponents {
     @MentionableSelect('MENTIONABLE_SELECT_MENU')
-    public onMentionableSelect(
+    public async onMentionableSelect(
       @Context() [interaction]: MentionableSelectContext,
       @SelectedUsers() users: ISelectedUsers,
       @SelectedMembers() members: ISelectedMembers,
       @SelectedRoles() roles: ISelectedRoles
-    ) {
-      return interaction.reply({
+    ): Promise<void> {
+      await interaction.reply({
         content: `
         Selected users - ${users.map(user => user.username).join(',')}\n
         Selected members - ${members.map(member => member.user?.username).join(',')}\n
@@ -283,6 +297,8 @@ All the Select Menu types, support Dynamic `id` using [path-to-regexp](https://w
 
 To create a Dynamic select menu
 ```typescript
+import { StringSelectMenuBuilder } from 'discord.js';
+
 new StringSelectMenuBuilder()
   .setCustomId('preferences/color')
   .setPlaceholder('Select a color')
@@ -298,17 +314,23 @@ new StringSelectMenuBuilder()
 To receive a Dynamic select menu
 ```typescript
 import { Injectable } from '@nestjs/common';
-import { Context, StringSelect, StringSelectContext,SelectedStrings } from 'necord';
+import {
+  ComponentParam,
+  Context,
+  SelectedStrings,
+  StringSelect,
+  StringSelectContext
+} from 'necord';
 
 @Injectable()
 export class AppComponents {
     @StringSelect('preferences/:item')
-	public onPreferenceSelect(
+	public async onPreferenceSelect(
 		@Context() [interaction]: StringSelectContext,
 		@SelectedStrings() values: string[],
 		@ComponentParam('item') item: string
-	) {
-		return interaction.reply({
+	): Promise<void> {
+		await interaction.reply({
 			content: `
       ${item} = ${values.join(',')}\n
       `

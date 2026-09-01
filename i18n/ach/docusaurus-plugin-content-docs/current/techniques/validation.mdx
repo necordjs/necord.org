@@ -6,26 +6,18 @@ sidebar_position: crwdns178:0crwdne178:0
 
 crwdns180:0crwdne180:0 crwdns182:0https://github.com/typestack/class-validatorcrwdne182:0 crwdns184:0crwdne184:0
 
-## crwdns2198:0{#installation}crwdne2198:0
+## crwdns2198:0crwdne2198:0
 
 ```bash npm2yarn
 crwdns188:0crwdne188:0
 ```
 
-## crwdns2200:0{#usage}crwdne2200:0
+## crwdns2200:0crwdne2200:0
 
 crwdns192:0crwdne192:0 crwdns194:0https://github.com/typestack/class-validator#validation-decoratorscrwdne194:0 crwdns196:0crwdne196:0
 
 ```typescript title="src/users/dto/create-user.dto.ts"
-crwdns198:0{ IsNotEmpty, IsString, IsEmail }crwdnd198:0{
-        name: 'name',
-        description: 'Your name',
-        required: true
-    }crwdnd198:0{
-        name: 'text',
-        description: 'Your email',
-        required: false
-    }crwdne198:0
+crwdns11443:0{ StringOption }crwdne11443:0
 ```
 
 :::tip
@@ -36,22 +28,19 @@ crwdns200:0https://docs.nestjs.com/techniques/validation#transform-payload-objec
 crwdns202:0crwdne202:0
 
 ```typescript title="src/users/users.commands.ts"
-crwdns204:0{ Injectable }crwdnd204:0{ Context, SlashCommand, SlashCommandContext }crwdnd204:0{
-        name: 'create',
-        description: 'Create a new user'
-    }crwdnd204:0{ validateCustomDecorators: true }crwdnd204:0${createUserDto.name}crwdne204:0
+crwdns11445:0{ CreateUserDto }crwdnd11445:0${createUserDto.name}crwdne11445:0
 ```
 
-crwdns206:0crwdne206:0
+crwdns11447:0crwdne11447:0
 
 ```bash
-crwdns208:0crwdne208:0
+crwdns11449:0crwdne11449:0
 ```
 
 crwdns210:0crwdne210:0
 
 ```typescript title="src/decorators/validated-options.decorator.ts"
-crwdns212:0{ ValidationPipe, PipeTransform }crwdne212:0
+crwdns11451:0{ Options }crwdne11451:0
 ```
 
 :::tip

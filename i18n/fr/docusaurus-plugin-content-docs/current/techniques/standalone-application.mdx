@@ -13,12 +13,13 @@ Pour ce faire, modifiez la fonction bootstrap dans le fichier `main.ts` de votre
 
 ```typescript title="src/main.ts"
 import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
 
-async function bootstrap() {
-    const app = await NestFactory.createApplicationContext(AppModule);
+async function bootstrap(): Promise<void> {
+    await NestFactory.createApplicationContext(AppModule);
 }
 
-bootstrap();
+void bootstrap();
 ```
 
 Cela initialise Nest en tant qu'**application autonome** (sans aucun écouteur réseau).

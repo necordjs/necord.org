@@ -29,13 +29,18 @@ Once the installation process is complete, we can import the `NecordPaginationMo
 import { NecordModule } from 'necord';
 import { Module } from '@nestjs/common';
 import { NecordPaginationModule } from '@necord/pagination';
+import { GatewayIntentBits } from 'discord.js';
 import { AppService } from './app.service';
 
 @Module({
     imports: [
         NecordModule.forRoot({
             token: 'DISCORD_BOT_TOKEN',
-            intents: ['Guilds', 'GuildMessages', 'DirectMessages']
+            intents: [
+                GatewayIntentBits.Guilds,
+                GatewayIntentBits.GuildMessages,
+                GatewayIntentBits.DirectMessages
+            ]
         }),
         NecordPaginationModule.forRoot({
             // Change your buttons appearance
@@ -66,7 +71,7 @@ export class AppService implements OnModuleInit {
     }
 
     public onModuleInit(): void {
-        return this.paginationService.register(builder =>
+        this.paginationService.register(builder =>
             builder
                 // Required, need for search your builder
                 .setCustomId('test')
@@ -86,11 +91,11 @@ export class AppService implements OnModuleInit {
     }
 
     @SlashCommand({ name: 'pagination', description: 'Test pagination' })
-    public async onPagination(@Context() [interaction]: SlashCommandContext) {
+    public async onPagination(@Context() [interaction]: SlashCommandContext): Promise<void> {
         const pagination = this.paginationService.get('test');
         const page = await pagination.build();
 
-        return interaction.reply(page);
+        await interaction.reply(page);
     }
 }
 ```
@@ -113,7 +118,9 @@ export class AppService {
     }
 
     @SlashCommand({ name: "dynamic-pagination", description: "Register pagination inside command" })
-    public async onDynamicPagination(@Context() [interaction]: SlashCommandContext) {
+    public async onDynamicPagination(
+        @Context() [interaction]: SlashCommandContext
+    ): Promise<void> {
         const pagination = this.paginationService.create(builder =>
             builder
                 .setCustomId(`dynamic-${interaction.user.id}`)
@@ -125,7 +132,7 @@ export class AppService {
         );
         const page = await pagination.build();
 
-        return interaction.reply(page);
+        await interaction.reply(page);
     }
 }
 ```

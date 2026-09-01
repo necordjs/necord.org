@@ -22,8 +22,8 @@ import { Context, Modal, ModalContext } from 'necord';
 @Injectable()
 export class AppModals {
     @Modal('pizza')
-    public onModal(@Ctx() [interaction]: ModalContext) {
-      return interaction.reply({
+    public async onModal(@Context() [interaction]: ModalContext): Promise<void> {
+      await interaction.reply({
         content: `Your fav pizza : ${interaction.fields.getTextInputValue('pizza')}`
       });
     }
@@ -38,6 +38,14 @@ Dynamic modals uses [path-to-regexp](https://www.npmjs.com/package/path-to-regex
 To create a Dynamic modal
 
 ```typescript
+import {
+  ActionRowBuilder,
+  ModalActionRowComponentBuilder,
+  ModalBuilder,
+  TextInputBuilder,
+  TextInputStyle
+} from 'discord.js';
+
 new ModalBuilder()
   .setTitle('What your fav pizza?')
   .setCustomId('pizza/12345')
@@ -54,13 +62,16 @@ new ModalBuilder()
 To receive a Dynamic modal
 ```typescript title="app.modals.ts"
 import { Injectable } from '@nestjs/common';
-import { Context, Modal, ModalContext,ModalParam } from 'necord';
+import { Context, Modal, ModalContext, ModalParam } from 'necord';
 
 @Injectable()
 export class AppModals {
     @Modal('pizza/:value')
-    public onModal(@Ctx() [interaction]: ModalContext, @ModalParam('value') value: string) {
-      return interaction.reply({
+    public async onModal(
+      @Context() [interaction]: ModalContext,
+      @ModalParam('value') value: string
+    ): Promise<void> {
+      await interaction.reply({
         content: `Your fav pizza ${value} : ${interaction.fields.getTextInputValue('pizza')}`
       });
     }

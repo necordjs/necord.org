@@ -32,10 +32,10 @@ import { Context, SlashCommand, SlashCommandContext } from 'necord';
 export class AppCommands {
     @SlashCommand({
         name: 'ping',
-        description: 'Comando Ping-Pong'
+        description: 'Ping-Pong Command'
     })
-    public async onPing(@Context() [interaction]: SlashCommandContext) {
-        return interaction.reply({ content: 'Pong!' });
+    public async onPing(@Context() [interaction]: SlashCommandContext): Promise<void> {
+        await interaction.reply({ content: 'Pong!' });
     }
 }
 ```
@@ -52,11 +52,11 @@ import { Context, SlashCommand, SlashCommandContext } from 'necord';
 export class AppCommands {
     @SlashCommand({
         name: 'ping',
-        description: 'Comando Ping-Pong',
-        guilds: [process.env.DEV_GUILD]
+        description: 'Ping-Pong Command',
+        guilds: [process.env.DEV_GUILD!]
     })
-    public async onPing(@Context() [interaction]: SlashCommandContext) {
-        return interaction.reply({ content: 'Pong!' });
+    public async onPing(@Context() [interaction]: SlashCommandContext): Promise<void> {
+        await interaction.reply({ content: 'Pong!' });
     }
 }
 ```
@@ -73,10 +73,10 @@ import { StringOption } from 'necord';
 export class TextDto {
     @StringOption({
         name: 'text',
-        description: 'Seu texto',
+        description: 'Your text',
         required: true
     })
-    text: string;
+    public readonly text!: string;
 }
 ```
 
@@ -90,11 +90,14 @@ import { TextDto } from './length.dto';
 @Injectable()
 export class AppCommands {
     @SlashCommand({
-        name: 'tamanho',
-        description: 'Consiga o tamanho de um texto'
+        name: 'length',
+        description: 'Get length of text'
     })
-    public async onLength(@Context() [interaction]: SlashCommandContext, @Options() { text }: TextDto) {
-        return interaction.reply({content: `Tamanho do seu texto ${text.length}`});
+    public async onLength(
+        @Context() [interaction]: SlashCommandContext,
+        @Options() { text }: TextDto
+    ): Promise<void> {
+        await interaction.reply({ content: `Length of your text ${text.length}` });
     }
 }
 ```
@@ -125,13 +128,10 @@ import { AutocompleteInterceptor } from 'necord';
 
 @Injectable()
 export class AnimeAutocompleteInterceptor extends AutocompleteInterceptor {
-    public transformOptions(interaction: AutocompleteInteraction) {
+    public transformOptions(interaction: AutocompleteInteraction): Promise<void> {
         const focused = interaction.options.getFocused(true);
-        let choices: string[];
-
-        if (focused.name === 'anime') {
-            choices = ['Hunter x Hunter', 'Naruto', 'One Piece'];
-        }
+        const choices =
+            focused.name === 'anime' ? ['Hunter x Hunter', 'Naruto', 'One Piece'] : [];
 
         return interaction.respond(
             choices
@@ -145,16 +145,16 @@ export class AnimeAutocompleteInterceptor extends AutocompleteInterceptor {
 Você terá que adicionar `autoComplete: true` para sua classe de opções:
 
 ```typescript title="anime.dto.ts"
-importar { StringOption } de 'necord';
+import { StringOption } from 'necord';
 
 export class AnimeDto {
     @StringOption({
         name: 'anime',
-        description: 'O anime para procurar',
+        description: 'The anime to look up',
         autocomplete: true,
         required: true
     })
-    anime: string;
+    public readonly anime!: string;
 }
 ```
 
@@ -163,7 +163,7 @@ E por último, mas não menos importante, aplicar o interceptor ao seu slash com
 ```typescript title="anime-commands.service.ts"
 import { Injectable, UseInterceptors } from '@nestjs/common';
 import { Context, SlashCommand, Options, SlashCommandContext } from 'necord';
-import { AnimeDto } from '/anime.dto';
+import { AnimeDto } from './anime.dto';
 import { AnimeAutocompleteInterceptor } from './anime.interceptor';
 
 @Injectable()
@@ -171,10 +171,13 @@ export class AnimeCommands {
     @UseInterceptors(AnimeAutocompleteInterceptor)
     @SlashCommand({
         name: 'anime',
-        description: 'Procura informações sobre um anime'
+        description: 'Lookup information about an anime'
     })
-    public async onSearch(@Context() [interaction]: SlashCommandContext, @Options() { anime }: AnimeDto) {
-        return interaction.reply({content: `Eu encontrei o anime ${anime}`});
+    public async onSearch(
+        @Context() [interaction]: SlashCommandContext,
+        @Options() { anime }: AnimeDto
+    ): Promise<void> {
+        await interaction.reply({ content: `I found the anime ${anime}` });
     }
 }
 ```
@@ -189,35 +192,43 @@ Para esses desenvolvedores que desejam fazer grupos de comandos mais organizados
 Use decoradores `SlashGroup` em nível de classe `(Grupo)` e nível método `(Subgrupo)`:
 
 ```typescript title="utils-commands.service.ts"
-import { createCommandGroupDecorator, Subcommand } from 'necord';
+import { Injectable } from '@nestjs/common';
+import {
+    Context,
+    createCommandGroupDecorator,
+    SlashCommandContext,
+    Subcommand
+} from 'necord';
 
 export const UtilsCommandDecorator = createCommandGroupDecorator({
-    name: 'utilidades',
-    description: 'Grupo de utilidades',
+    name: 'utils',
+    description: 'Utils group',
 });
 
 @UtilsCommandDecorator()
+@Injectable()
 export class UtilsCommands {
     @Subcommand({
         name: 'ping',
-        description: 'Comando Ping-pong'
+        description: 'Ping-pong command'
     })
-    public async onPing(...) {
-    ...
+    public async onPing(@Context() [interaction]: SlashCommandContext): Promise<void> {
+        await interaction.reply({ content: 'Pong!' });
     }
 }
 
 @UtilsCommandDecorator({
-    name: 'texto',
-    descriptionn: 'Comandos de utilidade de texto'
+    name: 'string',
+    description: 'String utility commands'
 })
+@Injectable()
 export class UtilsStringCommands {
     @Subcommand({
-        name: 'tamanho',
-        description: 'Comando de tamanho de texto'
+        name: 'length',
+        description: 'String length command'
     })
-    public async onLength(...) {
-    ...
+    public async onLength(@Context() [interaction]: SlashCommandContext): Promise<void> {
+        await interaction.reply({ content: 'Use this subcommand to measure text.' });
     }
 }
 
