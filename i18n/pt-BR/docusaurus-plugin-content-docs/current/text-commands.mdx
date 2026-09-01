@@ -21,16 +21,16 @@ Crie um simples manipulador de comandos para mensagens usando `@TextCommand`.
 
 ```typescript title="src/app.service.ts"
 import { Injectable } from '@nestjs/common';
-import { Context, TextCommand, TextCommandContext, Arguments } from 'necord';
+import { Context, TextCommand, TextCommandContext } from 'necord';
 
 @Injectable()
 export class AppService {
     @TextCommand({
         name: 'ping',
-        description: 'Comando Ping!',
+        description: 'Ping command!',
     })
-    public onPing(@Context() [message]: TextCommandContext) {
-        return message.reply('pong!');
+    public async onPing(@Context() [message]: TextCommandContext): Promise<void> {
+        await message.reply('pong!');
     }
 }
 ```
@@ -50,11 +50,14 @@ import { Context, TextCommand, TextCommandContext, Arguments } from 'necord';
 @Injectable()
 export class AppService {
     @TextCommand({
-        name: 'eco',
-        description: 'Comando de eco!',
+        name: 'echo',
+        description: 'Echo command!',
     })
-    public onEcho(@Context() [message]: TextCommandContext, @Arguments() args: string[]) {
-        return message.reply(args.join(' '));
+    public async onEcho(
+        @Context() [message]: TextCommandContext,
+        @Arguments() args: string[]
+    ): Promise<void> {
+        await message.reply(args.join(' '));
     }
 }
 ```

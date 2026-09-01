@@ -19,8 +19,8 @@ import { Context, Modal, ModalContext } from 'necord';
 @Injectable()
 export class AppModals {
     @Modal('pizza')
-    public onModal(@Ctx() [interaction]: ModalContext) {
-      return interaction.reply({
+    public async onModal(@Context() [interaction]: ModalContext): Promise<void> {
+      await interaction.reply({
         content: `Your fav pizza : ${interaction.fields.getTextInputValue('pizza')}`
       });
     }
@@ -36,6 +36,14 @@ export class AppModals {
 Чтобы создать динамическое модальное окно
 
 ```typescript
+import {
+  ActionRowBuilder,
+  ModalActionRowComponentBuilder,
+  ModalBuilder,
+  TextInputBuilder,
+  TextInputStyle
+} from 'discord.js';
+
 new ModalBuilder()
   .setTitle('What your fav pizza?')
   .setCustomId('pizza/12345')
@@ -53,13 +61,16 @@ new ModalBuilder()
 
 ```typescript title="app.modals.ts"
 import { Injectable } from '@nestjs/common';
-import { Context, Modal, ModalContext,ModalParam } from 'necord';
+import { Context, Modal, ModalContext, ModalParam } from 'necord';
 
 @Injectable()
 export class AppModals {
     @Modal('pizza/:value')
-    public onModal(@Ctx() [interaction]: ModalContext, @ModalParam('value') value: string) {
-      return interaction.reply({
+    public async onModal(
+      @Context() [interaction]: ModalContext,
+      @ModalParam('value') value: string
+    ): Promise<void> {
+      await interaction.reply({
         content: `Your fav pizza ${value} : ${interaction.fields.getTextInputValue('pizza')}`
       });
     }

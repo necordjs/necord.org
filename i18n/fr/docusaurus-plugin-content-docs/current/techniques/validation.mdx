@@ -17,23 +17,27 @@ $ npm install class-validator class-transformer
 Nous pouvons maintenant ajouter quelques règles de validation dans notre `CreateUserDto`. Pour cela, nous utilisons les décorateurs fournis par le paquet class-validator, décrits en détail [ici](https://github.com/typestack/class-validator#validation-decorators). De cette manière, toute route qui utilise le `CreateUserDto` appliquera automatiquement ces règles de validation.
 
 ```typescript title="src/users/dto/create-user.dto.ts"
-import { IsNotEmpty, IsString, IsEmail } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { StringOption } from 'necord';
 
 export class CreateUserDto {
+    @IsString()
+    @IsNotEmpty()
     @StringOption({
         name: 'name',
         description: 'Your name',
         required: true
     })
-    name: string;
+    public readonly name!: string;
 
+    @IsOptional()
     @IsEmail()
     @StringOption({
-        name: 'text',
+        name: 'email',
         description: 'Your email',
         required: false
     })
-    email: string;
+    public readonly email?: string;
 }
 ```
 
@@ -46,8 +50,9 @@ Also you can use `ValidationPipe` for transforming and validating the payload of
 Nous pouvons maintenant utiliser le `ValidationPipe` dans notre `UsersCommands` pour appliquer les règles de validation que nous venons de définir.
 
 ```typescript title="src/users/users.commands.ts"
-import { Injectable } from '@nestjs/common';
-import { Context, SlashCommand, SlashCommandContext } from 'necord';
+import { Injectable, ValidationPipe } from '@nestjs/common';
+import { Context, Options, SlashCommand, SlashCommandContext } from 'necord';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
 export class UsersCommands {
@@ -58,26 +63,27 @@ export class UsersCommands {
     public async onCreateUser(
         @Context() [interaction]: SlashCommandContext,
         @Options(new ValidationPipe({ validateCustomDecorators: true })) createUserDto: CreateUserDto
-    ) {
-        return interaction.reply({ content: `User created: ${createUserDto.name}` });
+    ): Promise<void> {
+        await interaction.reply({ content: `User created: ${createUserDto.name}` });
     }
 }
 ```
 
-Maintenant, si nous essayons d'utiliser la commande `create` sans fournir de nom ou d'email, nous obtiendrons un message d'erreur.
+Now, if we try to use the `create` command without providing a name, or provide an invalid email, we will get an error message.
 
 ```bash
-{"statusCode":400,"message":["email should not be empty"],"error":"Bad Request"}
+{"statusCode":400,"message":["email must be an email"],"error":"Bad Request"}
 ```
 
 Vous pouvez créer un snippet pour le décorateur d'options validées :
 
 ```typescript title="src/decorators/validated-options.decorator.ts"
-import { ValidationPipe, PipeTransform } from '@nestjs/common';
+import { PipeTransform, Type, ValidationPipe } from '@nestjs/common';
+import { Options } from 'necord';
 
-export const ValidatedOptions = (...dataOrPipes: PipeTransform[] | string) => {
-    return Options(...dataOrPipes, new ValidationPipe());
-};
+export const ValidatedOptions = (
+    ...pipes: Array<PipeTransform | Type<PipeTransform>>
+) => Options(...pipes, new ValidationPipe({ validateCustomDecorators: true }));
 ```
 
 :::tip

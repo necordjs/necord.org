@@ -10,7 +10,7 @@ crwdns290:0crwdne290:0 crwdns292:0crwdne292:0 crwdns294:0crwdne294:0
 
 crwdns296:0crwdne296:0
 
-## crwdns2214:0{#global-commands}crwdne2214:0
+## crwdns2214:0crwdne2214:0
 
 :::tip
 
@@ -21,41 +21,31 @@ crwdns2166:0/start#module-setupcrwdne2166:0
 crwdns310:0crwdne310:0
 
 ```typescript title="app.commands.ts"
-crwdns312:0{ Injectable }crwdnd312:0{ Context, SlashCommand, SlashCommandContext }crwdnd312:0{
-        name: 'ping',
-        description: 'Ping-Pong Command'
-    }crwdne312:0
+crwdns11381:0{ Injectable }crwdne11381:0
 ```
 
-## crwdns2216:0{#guild-commands}crwdne2216:0
+## crwdns2216:0crwdne2216:0
 
 crwdns316:0crwdne316:0
 
 ```typescript title="app.commands.ts"
-crwdns318:0{ Injectable }crwdnd318:0{ Context, SlashCommand, SlashCommandContext }crwdne318:0
+crwdns11383:0{ Injectable }crwdne11383:0
 ```
 
 > crwdns320:0crwdne320:0
 
-## crwdns2218:0{#options}crwdne2218:0
+## crwdns2218:0crwdne2218:0
 
 crwdns324:0crwdne324:0
 
 ```typescript title="length.dto.ts"
-crwdns326:0{ StringOption }crwdnd326:0{
-        name: 'text',
-        description: 'Your text',
-        required: true
-    }crwdne326:0
+crwdns11385:0{ StringOption }crwdne11385:0
 ```
 
 crwdns328:0crwdne328:0 crwdns330:0crwdne330:0
 
 ```typescript title="app.commands.ts"
-crwdns332:0{ Injectable }crwdnd332:0{ TextDto }crwdnd332:0{
-        name: 'length',
-        description: 'Get length of text'
-    }crwdnd332:0{ text }crwdnd332:0${text.length}crwdne332:0
+crwdns11387:0{ Injectable }crwdnd11387:0{ TextDto }crwdnd11387:0{ text }crwdnd11387:0${text.length}crwdne11387:0
 ```
 
 crwdns334:0crwdne334:0
@@ -73,30 +63,27 @@ crwdns334:0crwdne334:0
 | crwdns390:0crwdne390:0           | crwdns392:0crwdne392:0                          | crwdns394:0crwdne394:0          |
 | crwdns396:0crwdne396:0           | crwdns398:0crwdne398:0                          | crwdns400:0crwdne400:0          |
 
-## crwdns2220:0{#autocomplete}crwdne2220:0
+## crwdns2220:0crwdne2220:0
 
 crwdns404:0crwdne404:0 crwdns406:0crwdne406:0
 
 ```typescript title="anime.interceptor.ts"
-crwdns408:0{ Injectable }crwdnd408:0{ AutocompleteInteraction }crwdnd408:0{ AutocompleteInterceptor }crwdnd408:0{ name: choice, value: choice }crwdne408:0
+crwdns11389:0{ Injectable }crwdnd11389:0{ AutocompleteInteraction }crwdnd11389:0{ AutocompleteInterceptor }crwdne11389:0
 ```
 
 crwdns410:0crwdne410:0
 
 ```typescript title="anime.dto.ts"
-crwdns412:0{ StringOption }crwdne412:0
+crwdns11391:0{ StringOption }crwdne11391:0
 ```
 
 crwdns414:0crwdne414:0
 
 ```typescript title="anime-commands.service.ts"
-crwdns416:0{ Injectable, UseInterceptors }crwdnd416:0{ AnimeDto }crwdnd416:0{ AnimeAutocompleteInterceptor }crwdnd416:0{
-        name: 'anime',
-        description: 'Lookup information about an anime'
-    }crwdnd416:0{ anime }crwdnd416:0${anime}crwdne416:0
+crwdns11393:0{ AnimeDto }crwdnd11393:0{ AnimeAutocompleteInterceptor }crwdnd11393:0{ anime }crwdnd11393:0${anime}crwdne11393:0
 ```
 
-## crwdns2222:0{#groups}crwdne2222:0
+## crwdns2222:0crwdne2222:0
 
 :::tip crwdns420:0crwdne420:0
 
@@ -106,20 +93,7 @@ crwdns424:0crwdne424:0
 crwdns426:0crwdne426:0
 
 ```typescript title="utils-commands.service.ts"
-crwdns428:0{ createCommandGroupDecorator, Subcommand }crwdnd428:0{
-        name: 'ping',
-        description: 'Ping-pong command'
-    }crwdnd428:0{
-    ...
-    }crwdnd428:0{
-    name: 'string',
-    descriptionn: 'String utility commands'
-}crwdnd428:0{
-        name: 'length',
-        description: 'String length command'
-    }crwdnd428:0{
-    ...
-    }crwdne428:0
+crwdns11395:0{ Injectable }crwdne11395:0
 ```
 
 crwdns430:0crwdne430:0

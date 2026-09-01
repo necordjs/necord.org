@@ -23,12 +23,13 @@ Uma vez que o processo de instalação estiver concluído, nós podemos importar
 import { NecordModule } from 'necord';
 import { Module } from '@nestjs/common';
 import { NecordLocalizationModule, DefaultLocalizationAdapter, UserResolver } from '@necord/localization';
+import { IntentsBitField } from 'discord.js';
 import { AppService } from './app.service';
 
 @Module({
     imports: [
         NecordModule.forRoot({
-            token: process.env.DISCORD_TOKEN,
+            token: process.env.DISCORD_TOKEN!,
             intents: [
                 IntentsBitField.Flags.Guilds,
                 IntentsBitField.Flags.DirectMessages,
@@ -37,11 +38,11 @@ import { AppService } from './app.service';
                 IntentsBitField.Flags.MessageContent
             ],
             prefix: '!',
-            development: [process.env.DISCORD_TEST_GUILD]
+            development: [process.env.DISCORD_TEST_GUILD!]
         }),
         NecordLocalizationModule.forRoot({
             resolvers: UserResolver,
-            // Você também pode prover uma classe com suporte a injeções com @Inject
+            // Also you can provide class for support injection by @Inject
             adapter: new DefaultLocalizationAdapter({
                 fallbackLocale: 'en-US',
                 locales: {
@@ -49,9 +50,9 @@ import { AppService } from './app.service';
                         'commands.ping.name': 'ping',
                         'commands.ping.description': 'Pong!'
                     },
-                    pt-BR: {
-                        'commands.ping.name': 'ping',
-                        'commands.ping.description': 'Pong!'
+                    ru: {
+                        'commands.ping.name': 'пинг',
+                        'commands.ping.description': 'Понг!'
                     }
                 }
             })
@@ -73,12 +74,13 @@ Também você pode usar o `NestedLocalizationAdapter` que lhe permite organizar 
 import { NecordModule } from 'necord';
 import { Module } from '@nestjs/common';
 import { NecordLocalizationModule, NestedLocalizationAdapter, UserResolver } from '@necord/localization';
+import { IntentsBitField } from 'discord.js';
 import { AppService } from './app.service';
 
 @Module({
     imports: [
         NecordModule.forRoot({
-            token: process.env.DISCORD_TOKEN,
+            token: process.env.DISCORD_TOKEN!,
             intents: [
                 IntentsBitField.Flags.Guilds,
                 IntentsBitField.Flags.DirectMessages,
@@ -87,7 +89,7 @@ import { AppService } from './app.service';
                 IntentsBitField.Flags.MessageContent
             ],
             prefix: '!',
-            development: [process.env.DISCORD_TEST_GUILD]
+            development: [process.env.DISCORD_TEST_GUILD!]
         }),
         NecordLocalizationModule.forRoot({
             resolvers: UserResolver,
@@ -105,8 +107,8 @@ import { AppService } from './app.service';
                     ru: {
                         'commands': {
                             'ping': {
-                                'name': 'ping',
-                                'description': 'Pong!'
+                                'name': 'пинг',
+                                'description': 'Понг!'
                             }
                         }
                     }
@@ -126,7 +128,7 @@ export class AppModule {
 
 #### Adaptadores Personalizados {#custom-adapters}
 
-Além disso, você pode criar seu próprio adaptador de localização. Basta implementar a interface do `BaseLocalizationAdapter`:
+Also, you can create your own localization adapter by extending the abstract `BaseLocalizationAdapter` class:
 
 ```typescript
 import { BaseLocalizationAdapter } from '@necord/localization';
@@ -163,11 +165,11 @@ import { NecordExecutionContext } from 'necord';
 
 @Injectable()
 export class GuildResolver implements LocaleResolver {
-    resolve(context: ExecutionContext): string | string[] | undefined {
+    public resolve(context: ExecutionContext): string | string[] | undefined {
         const necordContext = NecordExecutionContext.create(context);
         const [interaction] = necordContext.getContext<CommandContext>();
 
-        return interaction.guildLocale;
+        return interaction.guildLocale ?? undefined;
     }
 }
 ```
@@ -177,12 +179,12 @@ export class GuildResolver implements LocaleResolver {
 Podemos injetar o `LOCALIZATION_ADAPTER` no nosso serviço e usá-lo para localizar nossos comandos e mensagens:
 
 ```typescript
-import { Injectable, Inject, OnModuleInit } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { DefaultLocalizationAdapter, localizationMapByKey, LOCALIZATION_ADAPTER } from '@necord/localization';
 import { Context, SlashCommand, SlashCommandContext } from 'necord';
 
 @Injectable()
-export class AppService implements OnModuleInit {
+export class AppService {
     public constructor(
         @Inject(LOCALIZATION_ADAPTER)
         private readonly localizationAdapter: DefaultLocalizationAdapter
@@ -193,14 +195,14 @@ export class AppService implements OnModuleInit {
         name: 'ping',
         description: 'Pong!',
         nameLocalizations: localizationMapByKey('commands.ping.name'),
-        descriptionLocalizations: localizationMapByKey('commands.ping.name')
+        descriptionLocalizations: localizationMapByKey('commands.ping.description')
     })
-    public ping(@Context() [interaction]: SlashCommandContext) {
+    public async ping(@Context() [interaction]: SlashCommandContext): Promise<void> {
         const message = this.localizationAdapter.getTranslation(
             'commands.ping.description',
             interaction.locale
         );
-        return interaction.reply(message);
+        await interaction.reply(message);
     }
 }
 ```
@@ -208,24 +210,24 @@ export class AppService implements OnModuleInit {
 Ou você pode usar o decorador `@CurrentTranslate` para obter a tradução atual do contexto:
 
 ```typescript
-import { Injectable, Inject, OnModuleInit } from '@nestjs/common';
-import { DefaultLocalizationAdapter, CurrentTranslate, localizationMapByKey, TranslationFn } from '@necord/localization';
+import { Injectable } from '@nestjs/common';
+import { CurrentTranslate, localizationMapByKey, TranslationFn } from '@necord/localization';
 import { Context, SlashCommand, SlashCommandContext } from 'necord';
 
 @Injectable()
-export class AppService implements OnModuleInit {
+export class AppService {
     @SlashCommand({
         name: 'ping',
         description: 'Pong!',
         nameLocalizations: localizationMapByKey('commands.ping.name'),
-        descriptionLocalizations: localizationMapByKey('commands.ping.name')
+        descriptionLocalizations: localizationMapByKey('commands.ping.description')
     })
-    public ping(
+    public async ping(
         @Context() [interaction]: SlashCommandContext,
         @CurrentTranslate() t: TranslationFn
-    ) {
+    ): Promise<void> {
         const message = t('commands.ping.description');
-        return interaction.reply(message);
+        await interaction.reply(message);
     }
 }
 ```
@@ -240,30 +242,41 @@ um argumento para a função.
 Você pode definir quais localidades o comando será localizado
 
 ```typescript
-@SlashCommand({
-    name: 'ping',
-    description: 'Pong!',
-    nameLocalizations: localizationMapByKey('commands.ping.name', ['en', 'pt-Br']),
-    descriptionLocalizations: localizationMapByKey('commands.ping.name', ['en', 'pt-Br'])
-})
+import { localizationMapByKey } from '@necord/localization';
+import { SlashCommand } from 'necord';
+
+export class AppService {
+    @SlashCommand({
+        name: 'ping',
+        description: 'Pong!',
+        nameLocalizations: localizationMapByKey('commands.ping.name', ['en-US', 'ru']),
+        descriptionLocalizations: localizationMapByKey('commands.ping.description', ['en-US', 'ru'])
+    })
+    public ping(): void {}
+}
 ```
 
-Ou passe um objeto de localização com a chave de localização e tradução para `nameLocalization` e `descriptionLocalizations`
-propriedades
+Or just pass a localization object with the locale and translation key to the `nameLocalizations` and `descriptionLocalizations`
+properties
 
 ```typescript
-@SlashCommand({
-    name: 'ping',
-    description: 'Pong!',
-    nameLocalizations: {
-        en: 'command.ping.name',
-        'pt-Br': 'command.ping.name'
-    },
-    descriptionLocalizations: {
-        en: 'command.ping.description',
-        'pt-Br': 'command.ping.description'
-    }
-})
+import { SlashCommand } from 'necord';
+
+export class AppService {
+    @SlashCommand({
+        name: 'ping',
+        description: 'Pong!',
+        nameLocalizations: {
+            'en-US': 'commands.ping.name',
+            ru: 'commands.ping.name'
+        },
+        descriptionLocalizations: {
+            'en-US': 'commands.ping.description',
+            ru: 'commands.ping.description'
+        }
+    })
+    public ping(): void {}
+}
 ```
 
 Parabéns! Você criou com sucesso seu primeiro comando localizado com Necord!
