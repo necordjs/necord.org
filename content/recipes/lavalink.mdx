@@ -154,26 +154,61 @@ export class AppService {
 
 ## Providers {#providers}
 
-- `@necord/lavalink` have snippets to access the lavalink-client methods. You can inject the managers using constructor.
+- `@necord/lavalink` have snippets to access the lavalink-client methods. Each manager is available under its own injection token, exposed through a dedicated decorator.
 
 ```typescript title="app.service.ts"
 import { Injectable } from '@nestjs/common';
-import { LavalinkManager, NodeManager } from 'lavalink-client';
+import { InjectLavalinkManager, InjectManagerUtils, InjectNodeManager } from '@necord/lavalink';
+import { LavalinkManager, ManagerUtils, NodeManager } from 'lavalink-client';
 
 @Injectable()
 export class AppService {
     public constructor(
-        private readonly lavalinkManager: LavalinkManager,
-        private readonly nodeManager: NodeManager,
+        @InjectLavalinkManager() private readonly lavalinkManager: LavalinkManager,
+        @InjectNodeManager() private readonly nodeManager: NodeManager,
+        @InjectManagerUtils() private readonly managerUtils: ManagerUtils,
     ) {}
 }
 ```
 
-| Class (Type to be injected) | Manager Property (Will access to)    | Description            |
-|-----------------------------|--------------------------------------|------------------------|
-| `LavalinkManager`           | `lavalinkManager`                    | Lavalink Manager       |
-| `NodeManager`               | `lavalinkManager.nodeManager`        | Node Manager           |
-| `PlayerManager`             | `lavalinkManager (player functions)` | Player Manager         |
+| Decorator                  | Token                   | Manager Property (Will access to) | Description      |
+|----------------------------|-------------------------|-----------------------------------|------------------|
+| `@InjectLavalinkManager()` | `LAVALINK_MANAGER`      | `lavalinkManager`                 | Lavalink Manager |
+| `@InjectNodeManager()`     | `LAVALINK_NODE_MANAGER` | `lavalinkManager.nodeManager`     | Node Manager     |
+| `@InjectManagerUtils()`    | `LAVALINK_UTILS`        | `lavalinkManager.utils`           | Manager Utils    |
+| `@InjectPlayerStore()`     | `PlayerStore`           | `autoResume.playerStore`          | Player Store     |
+
+`PlayerManagerService` and `NecordLavalinkService` are classes owned by `@necord/lavalink`, so they are injected normally, without a decorator:
+
+```typescript title="app.commands.ts"
+public constructor(
+    private readonly playerManager: PlayerManagerService,
+    private readonly lavalinkService: NecordLavalinkService
+) {}
+```
+
+:::warning Breaking change
+
+Injecting the managers by class type is no longer supported:
+
+```typescript
+// Does not work anymore
+public constructor(
+    private readonly lavalinkManager: LavalinkManager,
+    private readonly nodeManager: NodeManager,
+) {}
+```
+
+`lavalink-client` ships both a CommonJS and an ESM build. An application that loads it in a different module format than `@necord/lavalink` gets two distinct `LavalinkManager` class objects — same name, same shape, different identity. Nest resolves providers by reference, so injecting by class type failed with `UnknownDependenciesException` in every ESM application:
+
+```
+Nest can't resolve dependencies of the AppService (?). Please make sure that the
+argument NodeManager at index [0] is available in the AppModule module.
+```
+
+The tokens are created with `Symbol.for()`, which resolves through the global symbol registry by key instead of by reference, so they stay valid no matter how many times the package is loaded.
+
+:::
 
 ## Play Tracks {#play-tracks}
 
