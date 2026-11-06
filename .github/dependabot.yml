@@ -1,6 +1,7 @@
 version: 2
 updates:
   - package-ecosystem: github-actions
+    rebase-strategy: "auto"
     directory: "/"
     schedule:
       interval: daily
@@ -9,6 +10,7 @@ updates:
         patterns:
           - "*"
   - package-ecosystem: npm
+    rebase-strategy: "auto"
     directory: "/"
     schedule:
       interval: daily
